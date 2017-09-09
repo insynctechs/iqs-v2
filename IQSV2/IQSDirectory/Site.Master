@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="IQSDirectory.SiteMaster" %>
+﻿<%@ master language="C#" autoeventwireup="true" codebehind="Site.master.cs" inherits="IQSDirectory.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -6,23 +6,94 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %></title>
 
     <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%--        <%: Scripts.Render("~/bundles/modernizr") %>--%>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <%--    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
+        <header id='head'>
+            <a id='logo' title='IQSDirectory' href='http://www.iqsdirectory.com/'>IQSDirectory
+            </a>
+            <div>
+                <input type='hidden' id='hdnCategorySK' value='119' />
+                <input type='hidden' id='hdnRootPath' value='../' />
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        $.get('../statesearch-products.htm', function (data) {
+                            $('#secsbox').html(data);
+                            $('#txtsearch').val('Metal Stampings');
+                            $('#txtsearch').attr('class', 'txtsearchsel');
+                        });
+                    });
+                </script>
+                <section id='secsbox'>
+                </section>
+                <nav>
+                    <script src="http://www.iqsdirectory.com/js/site_links.js" type="text/javascript"></script>
+                </nav>
+            </div>
+        </header>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <footer id='new-footer' itemscope itemtype='http://schema.org/Organization'>
+            <ul id='footerlinks'>
+                <li class='one'>
+                    <span>IQS&reg; Directory</span>
+                    <a href='http://www.iqsdirectory.com/about-us.html'>About Us</a><br>
+                    <a href='http://www.iqsdirectory.com/testimonial.htm'>Testimonials</a><br>
+                    <a href='http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx'>Advertise Your Company</a><br />
+                    <a href='http://www.iqsdirectory.com/directorylistcompanies.aspx'>Directory of Companies</a><br />
+                    <a href='http://www.iqsdirectory.com/sitemap/sitemap.htm'>Directory Sitemap</a><br />
+                </li>
+                <li class='two'>
+                    <span>Resources</span>
+                    <a href='http://www.iqsdirectory.com/resources/home/'>Resource Center</a><br />
+                    <a href='http://blog.iqsdirectory.com/' target='blank'>IQS&reg; Newsroom</a><br />
+                    <a href='http://www.iqsdirectory.com/industry-associations.html'>Manufacturing Associations</a><br />
+                    <a href='http://www.iqsdirectory.com/industry-tradeshows.html'>Industry Tradeshows</a><br />
+                    <a href='http://www.iqsdirectory.com/faq.html'>FAQ</a>
+                </li>
+                <li class='three'>
+                    <span>Marketing Services</span>
+                    <a href='http://www.iqsdirectory.com/web-marketing/seo/' target='_blank'>Search Engine Optimization</a><br>
+                    <a href='http://www.iqsdirectory.com/web-marketing/social-media/' target='_blank'>Social Media</a><br>
+                    <a href='http://www.iqsdirectory.com/web-marketing/ppc/' target='_blank'>PPC Management</a><br />
+                    <a href='http://www.iqsdirectory.com/web-marketing/web-design/' target='_blank'>Web Design</a><br />
+                </li>
+                <li class='four'>
+                    <span>Connect with Us</span>
+                    <a href='http://google.com/+Iqsdirectory' target='_blank'>Google+</a><br>
+                    <a href='https://twitter.com/IQSDirectory' target='_blank'>Twitter</a><br>
+                    <a href='http://www.youtube.com/c/Iqsdirectory' target='_blank'>YouTube</a><br />
+                    <a href='http://www.linkedin.com/company/iqsdirectory-com' target='_blank'>LinkedIn</a><br />
+                    <a href='https://www.facebook.com/IQSDirectory' target='_blank'>Facebook</a>
+                </li>
+            </ul>
+            <div class='sch-logo'>
+                <a href='http://www.iqsdirectory.com' id='flogo' itemprop='url'>
+                    <img id='footerlogo' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' alt='IQS Directory' title='IQS Directory' itemprop='logo' /></a>
+                <a href='http://www.iqsdirectory.com/contact.html' class='contactlink'>
+                    <img src='http://www.iqsdirectory.com/images/contact-us1.png' alt='contact us image' title='contact us image' class='contactlink' /></a>
+            </div>
+            <div class='sch-org'>
+                <a href='http://www.iqsdirectory.com/directorytermsconditions.htm'>Terms and Conditions</a>
+                <h3><span class='tele' itemprop='telephone'>877-977-5377</span></h3>
+                <span itemprop='name'>IQS Directory</span>
+            </div>
+        </footer>
+
+        <%--        <asp:ScriptManager runat="server">
+            <Scripts>--%>
+        <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+        <%--Framework Scripts--%>
+        <%--                <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
                 <asp:ScriptReference Name="respond" />
@@ -36,10 +107,10 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+        <%--            </Scripts>
+        </asp:ScriptManager>--%>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <%--        <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -57,16 +128,15 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="container body-content">
+        </div>--%>
+        <%--        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
-        </div>
-
+        </div>--%>
     </form>
 </body>
 </html>

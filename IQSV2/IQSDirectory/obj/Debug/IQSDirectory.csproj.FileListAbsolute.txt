@@ -60,3 +60,5 @@ E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.Web.xml
 E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.csprojResolveAssemblyReference.cache
 E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.dll
 E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.pdb
+E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\bin\System.Net.Http.Formatting.dll
+E:\Binil\Misc\iqs-v2\IQSV2\IQSDirectory\bin\System.Net.Http.Formatting.xml

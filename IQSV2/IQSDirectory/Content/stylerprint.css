@@ -1,0 +1,199 @@
+﻿html,body,div,span,header,section,article,ul,li,applet,object,iframe,h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;outline:0;font-size:100%}
+#head
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#head div
+{
+    display:none;
+}
+#seccat span, #seccat ul
+{
+    display:none;
+}
+#secrelcat
+{
+    display:none;
+}
+#secpage1
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    clear:none;
+    float:none;
+    overflow:auto;
+}
+#secpage2
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    clear:none;
+    float:none;
+    overflow:auto;
+}
+#secpage3
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    clear:none;
+    float:none;
+    overflow:auto;
+}
+#secadpage
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    clear:none;
+    float:none;
+    overflow:auto;
+}
+#secpage1 #secpage1art
+{
+    padding-top: 15px;
+    overflow:auto;
+}
+#secpage1 aside
+{
+    display:none;
+}
+#secpage2 aside
+{
+    display:none;
+}
+#secpage3 aside
+{
+    display:none;
+}
+#secpage1 section
+{
+    float:none;
+    margin:0;
+    width: 100%;
+}
+#secpage2 section
+{
+    float:none;
+    margin:0;
+    width: 100%;
+}
+#secpage3 section
+{
+    float:none;
+    margin:0;
+    width: 100%;
+}
+#secadpage section
+{
+    float:none;
+    margin:0;
+    width: 100%;
+}
+#secpage1 section article
+{
+    clear:none;
+    overflow:auto;
+}
+#secpage2 section article
+{
+    clear:none;
+    overflow:auto;
+}
+#secpage3 section article
+{
+    clear:none;
+    overflow:auto;
+}
+#secpage1 .licname
+{
+    width:100%;
+    border:none;
+}
+#secpage2 .licname
+{
+    width:100%;
+    border:none;
+}
+#secpage3 .licname
+{
+    width:100%;
+    border:none;
+}
+#secadpage .licname
+{
+    width:100%;
+    border:none;
+}
+#secpage1 .licname a
+{
+    margin-left:0px;
+}
+#secpage2 .licname a
+{
+    margin-left:0px;
+}
+#secpage3 .licname a
+{
+    margin-left:0px;
+}
+#secadpage .licname a
+{
+    margin-left:0px;
+}
+.licopro
+{
+    display:none;
+}
+.lirfq
+{
+    display:none;
+}
+.divratingclientmain
+{
+    display:none !important;
+}
+#secaddcomp
+{
+    display:none;
+}
+#secininfo
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#secininfo header
+{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.goto1
+{
+    display:none !important;
+}
+.footerLinks
+{
+    display:none;
+}
+#secgoto
+{
+    display:none;
+}
+#secadpage header
+{
+    display:none;
+}
+#player
+{
+    display:none;
+}
+footer div a
+{
+    display:none;
+}

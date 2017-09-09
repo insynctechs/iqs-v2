@@ -1,0 +1,27 @@
+﻿using Microsoft.ApplicationBlocks.Data;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+
+namespace IQSCore.Models
+{
+    public class CategoryPages
+    {
+        public async Task<DataSet> GetCategoryList()
+        {
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "Usp_GetCategoryList"));
+        }
+
+        public async Task<DataSet> GetCategoryPage1Details(int CategorySK, string WebsiteType)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[4];
+            sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
+            sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
+            sqlParam[3] = new SqlParameter("@Page2AdsCount", SqlDbType.Int);
+            sqlParam[3].Direction = ParameterDirection.Output;
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage1AdvertisementDetails", sqlParam));
+        }
+
+    }
+}

@@ -34,6 +34,23 @@ namespace IQSDirectory
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
 
+            bundles.Add(new StyleBundle("~/bundles/ScriptCategoryPage1").Include(
+                "~/Content/dynamic_styles.css",
+                "~/Content/stylerprint.css",
+                "~/Content/jquery-ui.css",
+                "~/Content/jquery.fancybox-1.3.4.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/StyleCategoryPage1").Include(
+                "~/Scripts/jquery-1.7.2.min.js",
+                "~/Scripts/jquery.rating.pack.js",
+                "~/Scripts/jquery-ui.js",
+                "~/Scripts/jquery.fancybox-1.3.4.js",
+                "~/Scripts/fb.js",
+                "~/Scripts/category_page1.js",
+                "~/Scripts/move_top.js"
+                ));
+
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
                 new ScriptResourceDefinition
