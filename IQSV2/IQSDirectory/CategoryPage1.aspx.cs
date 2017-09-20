@@ -21,13 +21,28 @@ namespace IQSDirectory
         {
             if(!IsPostBack)
             {
-                DisplayCategory();                
+                CheckCategory();
+                //DisplayCategory();                
             }
         }
 
-        private void DisplayCategory()
+        private void CheckCategory()
         {
-            var url = string.Format("api/CategoryPages/GetCategoryPage1Details?CategorySK=81&WebsiteType=Directory");
+            string url = HttpContext.Current.Request.Url.AbsolutePath;
+            if(url.IndexOf("/", url.Length - 1) > -1)
+            {
+                url = url.Remove(url.Length - 1);
+            }
+            string category = url.Split('/').Last();
+            //Response.Write(category);
+            var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + category);
+            DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
+            DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
+        }
+
+        private void DisplayCategory(string CategoryID)
+        {
+            var url = string.Format("api/CategoryPages/GetCategoryPage1Details?CategorySK=" + CategoryID + "&WebsiteType=Directory");
             DataSet ds =  wHelper.GetDataSetFromWebApi(url);
             if(ds!= null)
             {
@@ -35,6 +50,7 @@ namespace IQSDirectory
                 GenerateRelatedCategories(ds.Tables[2]);
                 GenerateProfile(ds.Tables[3]);
                 GenerateAdvertisements(ds.Tables[4]);
+                GenerateIndustryInformation(ds.Tables[6]);
             }
         }
 
@@ -43,7 +59,7 @@ namespace IQSDirectory
             CategorySK = dt.Rows[0]["CATEGORY_SK"].ToString();
             H1Text = dt.Rows[0]["H1DISPLAY_NAME"].ToString();
             DisplayName = dt.Rows[0]["DISPLAY_NAME"].ToString();
-            ItemDesc = dt.Rows[0]["DESCRIPTION"].ToString();
+            ItemDesc = new HtmlString(dt.Rows[0]["DESCRIPTION"].ToString());
         }
 
         private void GenerateRelatedCategories(DataTable dt)
@@ -72,15 +88,49 @@ namespace IQSDirectory
 
             Tier1Advertisements = dt.Select("TIER_SK=1").ToList();
             Tier2Advertisements = dt.Select("TIER_SK=2").ToList();
+
+            GetClientSkForRating(Tier1Advertisements, Tier2Advertisements);
+        }
+
+        private void GetClientSkForRating(List<DataRow> tier1Advertisements, List<DataRow> tier2Advertisements)
+        {
+            string ClientSKForRating = "";
+            if (tier1Advertisements.Count > 0)
+            {
+                ClientSKForRating += string.Join(",", tier1Advertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+            }
+            if(Tier2Advertisements.Count > 0)
+            {
+                if (ClientSKForRating != "")
+                    ClientSKForRating += ",";
+                ClientSKForRating += string.Join(",", tier2Advertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+            }
+            if(ClientSKForRating != "")
+            {
+                var url = string.Format("api/CompanyRatings/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                ClientRatings = dt.Select("SHOW_REVIEWS='Y'").ToList();
+            }
+        }
+
+        private void GenerateIndustryInformation(DataTable dt)
+        {
+            DataRow[] dr = dt.Select("SECTION_ID ='Industry Information'");
+            if (dr != null)
+            {
+                IndustryInformation = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+            }
         }
 
         public string CategorySK { get; set; }
         public string H1Text { get; set; }
         public string DisplayName { get; set; }
-        public string ItemDesc { get; set; }
+        public IHtmlString ItemDesc { get; set; }
         public List<DataRow> RelatedCategories { get; set; }
         public List<DataRow> Tier1Advertisements { get; set; }
         public List<DataRow> Tier2Advertisements { get; set; }
         public List<DataRow> ProfileLinks { get; set; }
+        public IHtmlString IndustryInformation { get; set; }
+        public List<DataRow> ClientRatings { get; set; }
     }
 }

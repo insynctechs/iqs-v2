@@ -26,8 +26,8 @@ namespace IQSDirectory.Helpers
             if (response.IsSuccessStatusCode)
             {
                 var res = response.Content.ReadAsStringAsync().Result;
-                DataTable dt = JsonConvert.DeserializeObject<DataTable>(res);
-                return dt;
+                DataSet dt = JsonConvert.DeserializeObject<DataSet>(res);
+                return dt.Tables[0];
             }
             return null;
         }

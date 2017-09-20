@@ -135,9 +135,12 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\category_styles.css" />
     <Content Include="Content\dynamic_styles.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.fancybox-1.3.4.css" />
+    <Content Include="Content\master_styles.css" />
+    <Content Include="Content\searchbox_styles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\stylerprint.css" />
     <Content Include="Default.aspx" />
@@ -154,6 +157,7 @@
     <Content Include="images\barrow.png" />
     <Content Include="images\cardboard-placeholder.jpg" />
     <Content Include="images\icons_small.png" />
+    <Content Include="images\star.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\category_page1.js" />
@@ -190,6 +194,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="StateSearch.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -229,6 +234,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CategoryConstraint.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Helpers\WebApiHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

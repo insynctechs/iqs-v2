@@ -69,6 +69,6 @@ E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\bin\Microsoft.AI.DependencyCollector.xml
 E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\bin\Microsoft.AI.WindowsServer.xml
 E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\bin\Microsoft.AI.Web.xml
-E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\obj\Debug\IQSCore.csprojResolveAssemblyReference.cache
 E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\obj\Debug\IQSCore.dll
 E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\obj\Debug\IQSCore.pdb
+E:\Binil\Misc\iqs-v2\IQSV2\IQSCore\obj\Debug\IQSCore.csprojResolveAssemblyReference.cache

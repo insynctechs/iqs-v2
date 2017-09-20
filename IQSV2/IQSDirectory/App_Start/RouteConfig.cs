@@ -16,13 +16,14 @@ namespace IQSDirectory
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
 
-            routes.MapPageRoute("CategoryPage1", "{category}", "~/CategoryPage1.aspx");
+            routes.MapPageRoute("CategoryPage1", 
+                "{category}", 
+                "~/CategoryPage1.aspx", 
+                true,
+                null,
+                new RouteValueDictionary { { "category", new CategoryConstraint() } }
+                );
 
-        }
-
-        private static void GetCategories()
-        {
-            client.BaseAddress = new Uri("");
         }
     }
 }

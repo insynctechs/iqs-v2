@@ -1,19 +1,14 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage1.aspx.cs" inherits="IQSDirectory.CategoryPage1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Content/dynamic_styles.css" rel="stylesheet" type='text/css' />
     <link href='Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='Content/jquery-ui.css' rel='Stylesheet' type='text/css' media='screen' />
     <link href='Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
     <script src='Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='Scripts/jquery-ui.js' type='text/javascript'></script>
     <script src='Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='Scripts/fb.js' type='text/javascript'></script>
     <script src='Scripts/category_page1.js' type='text/javascript'></script>
     <script src='Scripts/move_top.js' type='text/javascript'></script>
-
 
 
     <section id='seccat'>
@@ -112,7 +107,7 @@
                 </div>
             </li>
             <% } %>
-            <script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>
+            <%--<script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>--%>
         </ul>
         <aside>
             <iframe id='preview_iframe1' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
@@ -154,7 +149,7 @@
                 </div>
             </li>
             <% } %>
-            <script language='javascript' type='text/javascript'>$(document).ready(function () { LoadCompanyTotalRatingByArray('65819,73262,60803,76582'); });</script>
+            <%--<script language='javascript' type='text/javascript'>$(document).ready(function () { LoadCompanyTotalRatingByArray('65819,73262,60803,76582'); });</script>--%>
         </ul>
         <aside>
             <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
@@ -162,7 +157,18 @@
         </aside>
     </section>
 
-
+    <script type='text/javascript'>
+        $(document).ready(function ()
+        {
+            <% foreach (var cr in ClientRatings)
+                {%>
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
+            if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
+            <% } %>
+        });
+    </script>
 
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
@@ -216,7 +222,21 @@
     <section id='secininfo'>
         <header>Industry Information</header>
         <article>
-            <!-- Dynamic content industrial info-->
+            <%: IndustryInformation %>
         </article>
     </section>
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $.get('../StateSearch.html', function (data) {
+                $('#secsbox').html(data);
+                $('#txtsearch').val('Metal Stampings');
+                $('#txtsearch').attr('class', 'txtsearchsel');
+            });
+        });
+<%--        $(document).ready(function () {
+            $('#txtsearch').val('<%: DisplayName %>');
+            $('#txtsearch').attr('class', 'txtsearchsel');
+        });--%>
+    </script>
 </asp:Content>

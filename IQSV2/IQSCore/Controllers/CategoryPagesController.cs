@@ -33,6 +33,13 @@ namespace IQSCore.Controllers
             return Ok(cat);
         }
 
+        [Route("api/CategoryPages/GetCategoryIdByName")]
+        public async Task<IHttpActionResult> GetCategoryIdByName(string DisplayName)
+        {
+            var cat = await categoryPages.GetCategoryIdByName(DisplayName);
+            return Ok(cat);
+        }
+
         // GET: api/CategoryPages/5
         public string Get(int id)
         {

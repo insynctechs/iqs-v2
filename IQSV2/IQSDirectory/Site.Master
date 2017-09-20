@@ -14,6 +14,12 @@
 
     <%--    <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <link href="Content/master_styles.css" rel="stylesheet" type='text/css'/>
+    <link href="Content/dynamic_styles.css" rel="stylesheet" type='text/css' />
+    <link href='Content/jquery-ui.css' rel='Stylesheet' type='text/css' media='screen' />
+    <link href="Content/searchbox_styles.css" rel="stylesheet" />
+    <script src='Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script src='Scripts/jquery-ui.js' type='text/javascript'></script>
 </head>
 <body>
     <form runat="server">
@@ -21,18 +27,8 @@
             <a id='logo' title='IQSDirectory' href='http://www.iqsdirectory.com/'>IQSDirectory
             </a>
             <div>
-                <input type='hidden' id='hdnCategorySK' value='119' />
-                <input type='hidden' id='hdnRootPath' value='../' />
-                <script type='text/javascript'>
-                    $(document).ready(function () {
-                        $.get('../statesearch-products.htm', function (data) {
-                            $('#secsbox').html(data);
-                            $('#txtsearch').val('Metal Stampings');
-                            $('#txtsearch').attr('class', 'txtsearchsel');
-                        });
-                    });
-                </script>
                 <section id='secsbox'>
+
                 </section>
                 <nav>
                     <script src="http://www.iqsdirectory.com/js/site_links.js" type="text/javascript"></script>
@@ -137,6 +133,7 @@
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
         </div>--%>
+        <input type="hidden" id="hdnRootPath" value="<%: ApiPath %>" />
     </form>
 </body>
 </html>

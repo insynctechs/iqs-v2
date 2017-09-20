@@ -23,5 +23,12 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage1AdvertisementDetails", sqlParam));
         }
 
+        public async Task<DataSet> GetCategoryIdByName(string DisplayName)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[1];
+            sqlParam[0] = new SqlParameter("@Display_Name", DisplayName);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCategoryIdByName", sqlParam));
+        }
+
     }
 }
