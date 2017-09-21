@@ -228,15 +228,13 @@
 
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get('../StateSearch.html', function (data) {
+            $.get('StateSearch.html', function (data) {
                 $('#secsbox').html(data);
                 $('#txtsearch').val('Metal Stampings');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
         });
-<%--        $(document).ready(function () {
-            $('#txtsearch').val('<%: DisplayName %>');
-            $('#txtsearch').attr('class', 'txtsearchsel');
-        });--%>
     </script>
+    <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
+    <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
 </asp:Content>

@@ -17,5 +17,12 @@ namespace IQSCore.Models
             sqlParam[0] = new SqlParameter("@SrhStr", SrhStr);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetSearchResults", sqlParam));
         }
+
+        public async Task<DataSet> GetStateForSearch(string CategorySK)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[4];
+            sqlParam[0] = new SqlParameter("@CATEGORY_SK", CategorySK);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetStateForSearch", sqlParam));
+        }
     }
 }

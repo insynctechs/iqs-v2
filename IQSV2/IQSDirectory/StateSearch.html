@@ -22,18 +22,19 @@
 
             $("#txtsearch").autocomplete({
                 source: function (request, response) {
-                    var list = [$('#txtsearch').val()];
-                    var jsonText = JSON.stringify({ list: list });
+                    var list = $('#txtsearch').val();
+                    var jsonText = JSON.stringify(list);
                     $.ajax({
-                        type: "POST",
-                        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/getsearchresults",
-                        data: jsonText,
+                        type: "GET",
+                        url: $('#hdnApiPath').val() + "api/StateSearch/GetSearchResults",
+                        data: { SrhStr: jsonText },
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         async: true,
                         cache: false,
                         success: function (data) {
                             if (data != "Invalid") {
+                                alert($.parseJSON(data));
                                 response($.parseJSON(data));
                             }
                         },
@@ -107,12 +108,12 @@
 
             var srhdefval = "";
 
-            var list = [$('#hdnCategorySK').val()];
-            var jsonText = JSON.stringify({ list: list });
+            var list = $('#hdnCategorySK').val();
+            var jsonText = JSON.stringify(list);
             $.ajax({
-                type: "POST",
-                url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/getstateforsearch",
-                data: jsonText,
+                type: "GET",
+                url: $('#hdnApiPath').val() + "api/StateSearch/GetStateForSearch",
+                data: { CategorySK : jsonText },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
@@ -122,6 +123,7 @@
                         var result = $.parseJSON(data);
                         var item = [];
                         var id = {};
+                        alert(result);
                         for (i = 0; i < result.length; i++) {
                             item.push(result[i][1]);
                             id[result[i][1]] = result[i][0];
@@ -159,7 +161,7 @@
                 //    return false;
                 //}
                 //else {
-                var srhurl = $('#hdnRootPath').val() + "directorysearch.aspx?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
+                var srhurl = $('#hdnApiPath').val() + "directorysearch.aspx?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
                 //}
                 window.location = srhurl;
                 return false;

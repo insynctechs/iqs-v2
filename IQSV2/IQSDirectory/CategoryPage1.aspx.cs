@@ -21,8 +21,7 @@ namespace IQSDirectory
         {
             if(!IsPostBack)
             {
-                CheckCategory();
-                //DisplayCategory();                
+                CheckCategory();           
             }
         }
 
@@ -34,7 +33,6 @@ namespace IQSDirectory
                 url = url.Remove(url.Length - 1);
             }
             string category = url.Split('/').Last();
-            //Response.Write(category);
             var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + category);
             DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
             DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
@@ -56,6 +54,8 @@ namespace IQSDirectory
 
         private void GenerateHeader(DataTable dt)
         {
+            ApiPath = wHelper.ApiUrl;
+            //RootPath = HttpContext.Current.Request.ApplicationPath.ToString();
             CategorySK = dt.Rows[0]["CATEGORY_SK"].ToString();
             H1Text = dt.Rows[0]["H1DISPLAY_NAME"].ToString();
             DisplayName = dt.Rows[0]["DISPLAY_NAME"].ToString();
@@ -132,5 +132,6 @@ namespace IQSDirectory
         public List<DataRow> ProfileLinks { get; set; }
         public IHtmlString IndustryInformation { get; set; }
         public List<DataRow> ClientRatings { get; set; }
+        public string ApiPath { get; set; }
     }
 }

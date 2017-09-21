@@ -31,5 +31,13 @@ namespace IQSDirectory.Helpers
             }
             return null;
         }
+
+        public string ApiUrl
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["Api"].ToString();
+            }
+        }
     }
 }
