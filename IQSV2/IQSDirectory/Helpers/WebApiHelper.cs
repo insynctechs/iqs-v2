@@ -39,5 +39,21 @@ namespace IQSDirectory.Helpers
                 return System.Configuration.ConfigurationManager.AppSettings["Api"].ToString();
             }
         }
+
+        public string NewsDirectory
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["NewsDirectory"].ToString();
+            }
+        }
+
+        public string BlogDirectory
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["BlogDirectory"].ToString();
+            }
+        }
     }
 }

@@ -277,6 +277,29 @@ namespace IQSDirectory.Helpers
             return _replacecontent;
         }
 
+        public static string FirstWords(string input, int numberWords)
+        {
+            try
+            {
+                int words = numberWords;
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (input[i] == ' ')
+                    {
+                        words--;
+                    }
+                    if (words == 0)
+                    {
+                        return input.Substring(0, i);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return input;
+        }
+
         private static HttpClient client;
         public static HttpClient Client
         {

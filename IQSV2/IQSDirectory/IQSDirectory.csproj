@@ -157,6 +157,7 @@
     <Content Include="images\barrow.png" />
     <Content Include="images\cardboard-placeholder.jpg" />
     <Content Include="images\darrow.png" />
+    <Content Include="images\div3bg.jpg" />
     <Content Include="images\icons_small.png" />
     <Content Include="images\star.png" />
     <Content Include="Scripts\bootstrap.js" />

@@ -1,6 +1,7 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage1.aspx.cs" inherits="IQSDirectory.CategoryPage1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="Content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 
@@ -17,15 +18,15 @@
             <ul>
                 <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
                 <li><a class="google" rel="nofollow"
-                    href="https://plus.google.com/share?url=http://www.iqsdirectory.com/metal-stampings" onclick="javascript:popupwindow(this.href,'',600,600);return false;">Google</a></li>
+                    href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">Google</a></li>
                 <li><a class="twitter" rel="nofollow"
-                    href="https://twitter.com/share?url=http://www.iqsdirectory.com/metal-stampings&text=%23Top 10 Metal Stampings Companies + Services [2017 Updated]. Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized." onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
+                    href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: Title %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
                 <li><a class="linkedin" rel="nofollow"
-                    href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.iqsdirectory.com/metal-stampings&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&summary=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&source=http://www.iqsdirectory.com/" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinedIn</a></li>
+                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: Title %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinedIn</a></li>
                 <li><a class="facebook" rel="nofollow" href=""
-                    onclick="javascript:postToFeed('Top 10 Metal Stampings Companies + Services [2017 Updated]','http://www.iqsdirectory.com/','Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.');return false;">Facebook</a></li>
+                    onclick="javascript:postToFeed('<%: Title %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
                 <li><a rel="nofollow" class="iframe lnkmail mail"
-                    href="../controls/MailSend.aspx?p=../&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&des=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&url=http://www.iqsdirectory.com/metal-stampings">Mail</a></li>
+                    href="../controls/MailSend.aspx?p=../&title=<%: Title %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
                 <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
             </ul>
             <script type="text/javascript">
@@ -179,44 +180,31 @@
 
     <section id='secartmain'>
         <!-- Dynamic Articles and Press Releases -->
+        <% if (Articles.Count > 0)
+            { %>
         <section id="secarticle">
             <h2 id="secarthead">ARTICLES AND PRESS RELEASES</h2>
 
-
             <ul>
+                <% foreach (var art in Articles)
+                    { %>
                 <li>
 
-                    <h3><a href="http://blog.iqsdirectory.com/process-equipment/plastec-ventilation/"
-                        target="_blank">Proven Ventilation Systems from Plastec Ventilation</a></h3>
+                    <h3><a href="<%: art["URL"].ToString() %>"
+                        target="_blank"><%: art["HEADING"].ToString() %></a></h3>
                     <aside>
-                        Process Equipment
+                        <%: art["NAME"].ToString() %>
                     </aside>
                     <p>
-                        Blowers Plastec Ventilation, Inc. is the North American subsidiary of SEAT Ventilation, locate
-                        d in Verniolle, France. We offer durable, cost effective, and low noise industrial blowers.
-                        PLASTEC exhaust systems are currently distributed in 70 countries and across 5 continents. Our extensive experience in the field of fume extraction systems means we can help find the best solution for your needs. Read more......
+                        <%: art["DISPLAYDESC"].ToString() %>
                     </p>
 
                 </li>
-                <li>
-
-                    <h3><a href="http://blog.iqsdirectory.com/process-equipment/blowers-6/" target="_blank">The Ins a
-                        nd Outs of Regenerative Blowers</a></h3>
-                    <aside>
-                        Process Equipment
-                    </aside>
-                    <p>
-                        Vacuum blowers work just like a vacuum, but rather than suck a material up, the blowers blow m
-                        aterials out. Many industrial vacuums can become both blowers or suckers, depending on how
-                        the system is set up. One type of vacuum blower that many factories use is the regenerative blower. A regenerative blower is the best way to move large volumes of air at low pressure. A regenerative blower works differently from a displacement compressor or traditional vacuum pump. A regenerative blower moves air molecules through a non-positive displacement system, which...
-                    </p>
-
-                </li>
-
-
+                <% } %>
             </ul>
 
         </section>
+        <% } %>
     </section>
 
     <section id='secininfo'>

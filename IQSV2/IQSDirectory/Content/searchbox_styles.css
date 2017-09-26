@@ -137,9 +137,10 @@ table, tr, td {max-width:100% !important;}
 
 .ui-button-text
 {
-    background: url('../images/darrow.png') no-repeat scroll 0 0 transparent;
+    background: url('../images/darrow.png') no-repeat scroll 0 center transparent;
     float:none !important;
     margin:0 !important;
+    height: 80%;
 }
 
 .ui-combobox .ui-combobox-input, #combo
