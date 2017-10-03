@@ -132,6 +132,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="CategoryPage1.aspx" />
+    <Content Include="CategoryPage2.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -157,8 +158,10 @@
     <Content Include="images\barrow.png" />
     <Content Include="images\cardboard-placeholder.jpg" />
     <Content Include="images\darrow.png" />
+    <Content Include="images\delete.gif" />
     <Content Include="images\div3bg.jpg" />
     <Content Include="images\icons_small.png" />
+    <Content Include="images\newsroom-main.png" />
     <Content Include="images\star.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -218,6 +221,13 @@
     </Compile>
     <Compile Include="CategoryPage1.aspx.designer.cs">
       <DependentUpon>CategoryPage1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryPage2.aspx.cs">
+      <DependentUpon>CategoryPage2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryPage2.aspx.designer.cs">
+      <DependentUpon>CategoryPage2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

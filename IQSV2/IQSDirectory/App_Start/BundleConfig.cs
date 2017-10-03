@@ -34,6 +34,18 @@ namespace IQSDirectory
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
 
+            bundles.Add(new StyleBundle("~/bundles/SiteMasterStyles").Include(
+                "~/Content/master_styles.css",
+                "~/Content/searchbox_styles.css",
+                "~/Content/jquery-ui.css",
+                "~/Content/jquery.fancybox-1.3.4.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/SiteMasterScripts").Include(
+                "~/Scripts/jquery-1.7.2.min.js",
+                "~/Scripts/jquery-ui.js"
+                ));
+
             bundles.Add(new StyleBundle("~/bundles/ScriptCategoryPage1").Include(
                 "~/Content/dynamic_styles.css",
                 "~/Content/stylerprint.css",

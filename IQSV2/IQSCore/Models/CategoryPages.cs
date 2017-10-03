@@ -30,5 +30,16 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCategoryIdByName", sqlParam));
         }
 
+        public async Task<DataSet> GetCategoryPage2Details(int CategorySK, string WebsiteType)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[4];
+            sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
+            sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
+            sqlParam[3] = new SqlParameter("@Page3AdsCount", SqlDbType.Int);
+            sqlParam[3].Direction = ParameterDirection.Output;
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage2AdvertisementDetails", sqlParam));
+        }
+
     }
 }

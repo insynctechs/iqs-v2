@@ -20,13 +20,13 @@
                 <li><a class="google" rel="nofollow"
                     href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">Google</a></li>
                 <li><a class="twitter" rel="nofollow"
-                    href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: Title %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
+                    href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
                 <li><a class="linkedin" rel="nofollow"
-                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: Title %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinedIn</a></li>
+                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinedIn</a></li>
                 <li><a class="facebook" rel="nofollow" href=""
-                    onclick="javascript:postToFeed('<%: Title %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
+                    onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
                 <li><a rel="nofollow" class="iframe lnkmail mail"
-                    href="../controls/MailSend.aspx?p=../&title=<%: Title %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
+                    href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
                 <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
             </ul>
             <script type="text/javascript">
@@ -173,7 +173,7 @@
 
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
-            <a class='addcomp' href='http://www.iqsdirectory.com/metal-stampings/metal-stampings-2.htm'><span>More <%: DisplayName %> Companies</span>
+            <a class='addcomp' href='<%: CategoryName %>/<%: CategoryName %>-2'><span>More <%: DisplayName %> Companies</span>
                 <img src='images/barrow.png' alt='More <%: DisplayName %> Companies' title='More <%: DisplayName %> Companies'></a>
         </header>
     </section>
@@ -218,7 +218,7 @@
         $(document).ready(function () {
             $.get('StateSearch.html', function (data) {
                 $('#secsbox').html(data);
-                $('#txtsearch').val('Metal Stampings');
+                $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
         });

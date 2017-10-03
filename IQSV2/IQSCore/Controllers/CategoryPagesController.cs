@@ -40,6 +40,13 @@ namespace IQSCore.Controllers
             return Ok(cat);
         }
 
+        [Route("api/CategoryPages/GetCategoryPage2Details")]
+        public async Task<IHttpActionResult> GetCategoryPage2Details(int CategorySK, string WebsiteType)
+        {
+            var cat = await categoryPages.GetCategoryPage2Details(CategorySK, WebsiteType);
+            return Ok(cat);
+        }
+
         // GET: api/CategoryPages/5
         public string Get(int id)
         {

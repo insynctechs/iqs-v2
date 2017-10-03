@@ -21,7 +21,15 @@ namespace IQSDirectory
                 "~/CategoryPage1.aspx", 
                 true,
                 null,
-                new RouteValueDictionary { { "category", new CategoryConstraint() } }
+                new RouteValueDictionary { { "category", new CategoryPage1Constraint() } }
+                );
+
+            routes.MapPageRoute("CategoryPage2",
+                "{category1}/{category2}-2",
+                "~/CategoryPage2.aspx",
+                true,
+                null,
+                new RouteValueDictionary { { "category1,category2", new CategoryPage2Constraint() } }
                 );
 
         }

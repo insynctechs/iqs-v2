@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
-using System.Net.Http;
 using IQSDirectory.Helpers;
-using System.Threading.Tasks;
 using System.Data;
-using System.Dynamic;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
@@ -139,9 +134,9 @@ namespace IQSDirectory
             DataRow[] dr = dt.Select("META_TAG_ID = 'TITLE'");
             if (dr != null)
             {
-                Title = dr[0]["DESCRIPTION"].ToString();
-                Title = Title.Replace("–", "-");
-                Title = Title.Replace("&", "&amp;");
+                CategoryTitle = dr[0]["DESCRIPTION"].ToString();
+                CategoryTitle = CategoryTitle.Replace("–", "-");
+                CategoryTitle = CategoryTitle.Replace("&", "&amp;");
             }
 
             dr = dt.Select("META_TAG_ID = 'DESCRIPTION'");
@@ -267,7 +262,7 @@ namespace IQSDirectory
 
         public string CategoryName { get; set; }
         public string CategorySK { get; set; }
-        public string Title { get; set; }
+        public string CategoryTitle { get; set; }
         public string MetaDesc { get; set; }
         public string H1Text { get; set; }
         public string DisplayName { get; set; }
