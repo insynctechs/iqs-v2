@@ -16,9 +16,17 @@
 
 }
 function loadWebPreview(site, tier, thisObj) {
+    /*
     var id= 'preview_iframe'+ tier;
     if (document.getElementById(id)) { document.getElementById(id).src = "about:blank"; document.getElementById(id).src = site; document.getElementById(id).name = thisObj.href; }
     else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
+    */
+    var id = 'preview' + tier;
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = "<img src='https://image.thum.io/get/" + site + "' />";
+    }
+    else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
+
     
 }
 
