@@ -138,6 +138,8 @@ namespace IQSDirectory
                 CategoryTitle = CategoryTitle.Replace("–", "-");
                 CategoryTitle = CategoryTitle.Replace("&", "&amp;");
             }
+            else //sj added
+                CategoryTitle = "Category Title";
 
             dr = dt.Select("META_TAG_ID = 'DESCRIPTION'");
             if (dr != null)

@@ -111,8 +111,12 @@
             <%--<script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>--%>
         </ul>
         <aside>
+           <!--
             <iframe id='preview_iframe1' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
+            -->
+            <div id="preview1"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
 
@@ -153,8 +157,12 @@
             <%--<script language='javascript' type='text/javascript'>$(document).ready(function () { LoadCompanyTotalRatingByArray('65819,73262,60803,76582'); });</script>--%>
         </ul>
         <aside>
+            <!--
             <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
+            -->
+             <div id="preview2"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
 
