@@ -27,6 +27,7 @@ namespace IQSDirectory
             if(url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
+                Response.Redirect(url);
             }
             CategoryName = url.Split('/').Last();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -122,10 +123,13 @@ namespace IQSDirectory
 
         private void GenerateIndustryInformation(DataTable dt)
         {
-            DataRow[] dr = dt.Select("SECTION_ID ='Industry Information'");
-            if (dr != null)
+            if (dt.Rows.Count > 0)
             {
-                IndustryInformation = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                DataRow[] dr = dt.Select("SECTION_ID ='Industry Information'");
+                if (dr != null)
+                {
+                    IndustryInformation = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                }
             }
         }
 

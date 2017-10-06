@@ -28,6 +28,7 @@ namespace IQSDirectory
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
+                Response.Redirect(url);
             }
             CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;

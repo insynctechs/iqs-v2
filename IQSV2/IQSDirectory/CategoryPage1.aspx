@@ -121,11 +121,11 @@
     </section>
 
 
-
+    <% if (Tier2Advertisements.Count > 0) { %>
     <section id='sectier2' class="adlist_section">
         <ul class="adlist_ul">
             <% foreach (var drT2Ad in Tier2Advertisements)
-                {%>
+              {%>
             <li>
                 <header>
                     <h3 class='cname'>
@@ -165,7 +165,7 @@
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
-
+    <% } %>
     <script type='text/javascript'>
         $(document).ready(function ()
         {
