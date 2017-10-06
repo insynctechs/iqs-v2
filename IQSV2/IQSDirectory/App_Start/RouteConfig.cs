@@ -32,6 +32,22 @@ namespace IQSDirectory
                 new RouteValueDictionary { { "category1,category2", new CategoryPage2Constraint() } }
                 );
 
+            routes.MapPageRoute("StateSearch",
+                "{category}/{state}",
+                "~/StateSearch.aspx",
+                true,
+                null,
+                new RouteValueDictionary { { "category,state", new StateSearchConstraint() } }
+                );
+
+            routes.MapPageRoute("StateSearchCan",
+                "{category}/canada/{state}",
+                "~/StateSearch.aspx",
+                true,
+                null,
+                new RouteValueDictionary { { "category,state", new StateSearchConstraint() } }
+                );
+
         }
     }
 }

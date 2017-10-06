@@ -62,5 +62,12 @@ namespace IQSCore.Controllers
                 return Json(JsonConvert.SerializeObject(lo));
             }
         }
+
+        [Route("api/StateSearch/GetStateSearchResults")]
+        public async Task<IHttpActionResult> GetStateSearchResults(string Category, string State)
+        {
+            var res = await stateSearch.GetStateSearchResults(Category, State);
+            return Ok(res);
+        }
     }
 }

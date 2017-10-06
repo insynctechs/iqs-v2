@@ -85,7 +85,7 @@
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>
-                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>
+                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a rel='nofollow' class='btncopro' alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT1Ad["ADDESCRIPTION"] %></p>
@@ -221,6 +221,10 @@
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
+
+            $('.btnrfq').fancybox({'height':600,'width':800,'onStart':function(){$('body').css('overflow','hidden');},'onClosed':function(){$('body').css('overflow','auto');},'hideOnOverlayClick':false});
+            $('.btnrfq').bind('contextmenu', function(e){return false;});
+            $('.btnrfq').css('display','block');
         });
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
