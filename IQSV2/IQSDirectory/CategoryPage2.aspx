@@ -79,7 +79,7 @@
                         <span><%: drTAd["CITY_STATE"] %></span>
                         <span><%: drTAd["PHONE"] %></span>
                     </h3>
-                    <a href='http://www.iqsdirectory.com/directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>
+                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>
                     <a rel='nofollow' class='btncopro' alt='<%: drTAd["FORMATED_NAME"] %> Profile' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drTAd["ADDESCRIPTION"] %></p>
@@ -106,8 +106,10 @@
 
         </ul>
         <aside>
-            <iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
-            <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>
+            <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
+            <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
+            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
     <script type='text/javascript'>
