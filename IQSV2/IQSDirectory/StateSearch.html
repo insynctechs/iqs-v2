@@ -6,6 +6,7 @@
     <script type="text/javascript" language="javascript">
         var txtval = 'Enter A Product/Service Category Or Company Name';
         $(document).ready(function () {
+            
             $('#txtsearch').val(txtval);
             $('#txtsearch').focus(function () {
                 if ($('#txtsearch').val() == txtval) {
@@ -152,6 +153,7 @@
 
         });
         function submitForm() {
+            //alert($("#weburl").val());
             if ($.trim($("#txtsearch").val()).length > 0 && $("#txtsearch").val() != txtval) {
                 $("#txtsearch").val($.trim($("#txtsearch").val()));
                 //if ($.trim($("#comboval").val()) != '') {
@@ -159,7 +161,7 @@
                 //    return false;
                 //}
                 //else {
-                var srhurl = "directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
+                var srhurl = $('#hdnSrhRootPath').val()+"directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
                 //}
                 window.location = srhurl;
                 return false;
@@ -179,6 +181,7 @@
         </li>
         <li id="libutton"><a href="#" id="btnSearch" class="submit" tabindex="2">Search</a></li>
     </ul>
-    <input type='hidden' id='hdnSrhRootPath' />
+   <input type='hidden' id='hdnSrhRootPath' value="http://216.250.147.171/IQSBeta2017/" />
+    <!--<asp:Label runat="server" Text="<%$ AppSettings: WebURL %>" />-->
 </body>
 </html>

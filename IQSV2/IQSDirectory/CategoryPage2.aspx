@@ -64,7 +64,7 @@
 
     <section id='secgoto'>
         <article>
-            <header><a href='./<%: CategoryName %>'>Go To <%: DisplayName %> Manufacturers and Companies Home</a></header>
+            <header><a href='../<%: CategoryName %>'>Go To <%: DisplayName %> Manufacturers and Companies Home</a></header>
         </article>
     </section>
 
@@ -108,8 +108,8 @@
         <aside>
             <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
-            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='images/cardboard-placeholder.jpg' /></div>
+            <div id="preview1" class=""> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='../images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
     <script type='text/javascript'>
