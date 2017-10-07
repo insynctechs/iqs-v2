@@ -115,7 +115,7 @@
             <iframe id='preview_iframe1' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
             -->
-            <div id="preview1"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
@@ -161,7 +161,7 @@
             <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
             -->
-             <div id="preview2"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+             <div id="preview2" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
