@@ -10,11 +10,17 @@
 }
 function loadWebPreview(site, thisobj)
 {
-    if (document.getElementById('preview_iframe')) {
+    /*if (document.getElementById('preview_iframe')) {
         document.getElementById('preview_iframe').src = "about:blank";
         document.getElementById('preview_iframe').src = site;
         document.getElementById('preview_iframe').name = thisobj.href; 
+    }*/
+    var id = 'preview1' ;
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='https://image.thum.io/get/" + site + "' /></a>";
     }
+    
+
 }
 function effectiveDeviceWidth() {
     var deviceWidth = window.orientation == 0 ? window.screen.height : window.screen.width;
@@ -55,7 +61,7 @@ $(document).ready(function () {
 
     });
     $('logo').html("IQS Directory");
-    $('li.licname a').mousemove(function (e) {
+    $('h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
@@ -68,55 +74,20 @@ $(document).ready(function () {
             offset = mod; // - offset ;
         else
             offset = parseInt(h); // - (mod - offset)) ;
-        //top = Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) ;
-        //top = Math.max(0, y - ( y - $(window).scrollTop()) - (h/2) + h/4) ; 
-        // (($(window).height() - $(this).outerHeight()) / 2) + 
-        //top = Math.max(0, $(window).scrollTop()-mod) ; 
-        // (($(window).height() - $(this).outerHeight()) / 2) + 
+       
         top = Math.max(0, $(window).scrollTop() - 250 + (mod / 4));
         var docheight = $(document).height();
-        //alert(top);
-        //alert(parseInt(top+h) + '---' + docheight);
-
         
 
         if (top + 900 > docheight) {
             top = top - (top + 1000 - docheight);
         }
 
-        //alert(top);			
-        $('.foriframe').css('margin-top', top + "px");
+        			
+        $('.forpreview').css('margin-top', top + "px");
 
         
-        /*var y = e.pageY;
-        var x = e.pageX;
-        var h = $(window).height();
-        var h1 = effectiveDeviceHeight();
-        var el = document.querySelector("#preview_iframe");
-        var tel = document.querySelector("#secadpageart");
-        var position = getPosition(el);
-
-        var ifheight = el.getBoundingClientRect().height;
-        var txtheight = tel.getBoundingClientRect().height;
-        var mod = (y - position.y) % h; //+ 250;	
-        var f = parseInt(y / h);
-        var top = y; //(f * h);
-        var top1 = $(window).scrollTop();
-
-        //(elem
-        top = Math.max(0, top1 - position.y + (mod / 4));
-
-        var elemheight = $("#secpage1art").height();
-
-
-        if (top + ifheight > elemheight) {
-            top = top - (top + ifheight - elemheight);
-        }
-        //alert(txtheight);
         
-        //alert("elemheight=" + elemheight + "\r\nelementtop=" + position.y + "\r\nwindowheight=" + h + "\r\n" + "deviceheight=" + h1 + "\r\ntop=" + top + "\r\nscrolltop=" + top1 + "\r\nmousey=" + y + "\r\npreview iframeheight=" + ifheight);
-        //alert(top);			
-        $('.foriframe').css('margin-top', top + "px");*/
 
     });
 });
