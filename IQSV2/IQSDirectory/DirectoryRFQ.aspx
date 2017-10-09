@@ -53,7 +53,7 @@ margin-right:15px;
 </style>
 <![endif]-->
 <!-- Industrial Quick Search Referring Site Stats web tools statistics hit counter code -->
-<script type="text/javascript" id="wa_u"></script>
+<!--<script type="text/javascript" id="wa_u"></script>
 <script type="text/javascript">//<![CDATA[
     wa_account = "CFCFADB9AE"; wa_location = 214;
     wa_pageName = location.pathname;  // you can customize the page name here
@@ -128,8 +128,8 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                             <div><%--<uc1:Captcha ID="Captcha1" runat="server" OnSuccess="OnSuccess" OnFailure="OnFailure"/>--%></div>
                             <div id="rfqmessage" runat="server"></div>
                             <div class="rfqbuttonsnew">
-                                <%--<asp:Button ID="btnSend" runat="server" Text="Send" CssClass="RFQSend btnIpBlock"
-                                OnClick="btnSend_Click" />--%>
+                                <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="RFQSend btnIpBlock"
+                                OnClick="btnSend_Click" />
                                 <input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" />
                                 <input type="hidden" name="val_curip" id="val_curip" value="" runat="server" />
                                 <input type="button" class="RFQSend" value="Reset"  onclick="ResetValues();" />

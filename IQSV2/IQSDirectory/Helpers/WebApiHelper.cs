@@ -6,6 +6,7 @@ namespace IQSDirectory.Helpers
 {
     public class WebApiHelper
     {
+
         public DataSet GetDataSetFromWebApi(string path)
         {
             var url = string.Format(path);
@@ -32,6 +33,19 @@ namespace IQSDirectory.Helpers
             return null;
         }
 
+        public int GetExecuteNonQueryResFromWebApi(string path)
+        {
+            var url = string.Format(path);
+            HttpResponseMessage response = Utils.Client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var res = response.Content.ReadAsStringAsync().Result;
+                int ret = JsonConvert.DeserializeObject<int>(res);
+                return ret;
+            }
+            return 0;
+        }
+
         public string ApiUrl
         {
             get
@@ -55,5 +69,7 @@ namespace IQSDirectory.Helpers
                 return System.Configuration.ConfigurationManager.AppSettings["BlogDirectory"].ToString();
             }
         }
+
+
     }
 }
