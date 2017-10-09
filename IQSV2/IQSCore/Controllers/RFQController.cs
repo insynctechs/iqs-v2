@@ -23,14 +23,14 @@ namespace IQSCore.Controllers
         [Route("api/RFQ/GetCompanyDetailsForCategory")]
         public async Task<IHttpActionResult> GetCompanyDetailsForCategory(int CategorySK)
         {
-            var cat = await rfq.GetCategoryDisplayName(CategorySK);
+            var cat = await rfq.GetCompanyDetailsForCategory(CategorySK);
             return Ok(cat);
         }
 
         [Route("api/RFQ/GetCompanyDetailsForClient")]
         public async Task<IHttpActionResult> GetCompanyDetailsForClient(int ClientSK)
         {
-            var cat = await rfq.GetCategoryDisplayName(ClientSK);
+            var cat = await rfq.GetCompanyDetailsForClient(ClientSK);
             return Ok(cat);
         }
         [Route("api/RFQ/InsertRFQ")]
