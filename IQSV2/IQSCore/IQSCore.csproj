@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CategoryPagesController.cs" />
     <Compile Include="Controllers\CompanyRatingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\StateSearchController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +192,7 @@
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\CategoryPages.cs" />
     <Compile Include="Models\CompanyRatings.cs" />
+    <Compile Include="Models\RFQ.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\StateSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

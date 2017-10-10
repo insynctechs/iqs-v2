@@ -23,7 +23,7 @@ function loadWebPreview(site, tier, thisObj) {
     */
     var id = 'preview' + tier;
     if (document.getElementById(id)) {
-        document.getElementById(id).innerHTML = "<img src='https://image.thum.io/get/" + site + "' />";
+        document.getElementById(id).innerHTML = "<a href='"+site+"' target='_blank' ><img src='https://image.thum.io/get/" + site + "' /></a>";
     }
     else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
 
@@ -104,7 +104,7 @@ $(document).ready(function () {
             window.open(framesource, '_blank')
         // alert(document.getElementById('preview_iframe').src);
     });
-    $('#secpage1art li.licname a').mousemove(function (e) {
+    $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
@@ -118,7 +118,7 @@ $(document).ready(function () {
         else
             offset = parseInt(h); // - (mod - offset)) ;
         top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#secpage1art").height();
+        var elemheight = $("#sectier1").height();
 
 
         if (top + cutheight > elemheight) {
@@ -126,48 +126,15 @@ $(document).ready(function () {
         }
 
         //alert(top);			
-        $('#secpage1 iframe.foriframe').css('margin-top', top + "px");
-        $('#secpage1 div#iframe_mask1').css('margin-top', top + "px");
+        $('#sectier1 .forpreview').css('margin-top', top + "px");
+        
 
 
     });
 
-    /*  $('#secpage1art li.licname a').mousemove(function (e) {
-    var y = e.pageY;
-    var x = e.pageX;
-    var h = $(window).height();
-    var h1 = effectiveDeviceHeight();
-    var el = document.querySelector("#preview_iframe");
-    var tel = document.querySelector("#secpage1art");
-    var position = getPosition(el);
+    
 
-    var ifheight = el.getBoundingClientRect().height;
-    var txtheight = tel.getBoundingClientRect().height;
-    var mod = (y - position.y) % h; //+ 250;	
-    var f = parseInt(y / h);
-    var top = y; //(f * h);
-    var top1 = $(window).scrollTop();
-
-    //(elem
-    top = Math.max(0, top1 - position.y + (mod / 4));
-
-    var elemheight = $("#secpage1art").height();
-
-
-    if (top + ifheight > elemheight) {
-    top = top - (top + ifheight - elemheight);
-    }
-    //alert(txtheight);
-	      
-    //alert("elemheight=" + elemheight + "\r\nelementtop=" + position.y + "\r\nwindowheight=" + h + "\r\n" + "deviceheight=" + h1 + "\r\ntop=" + top + "\r\nscrolltop=" + top1 + "\r\nmousey=" + y + "\r\npreview iframeheight=" + ifheight);
-    //alert(top);			
-    $('#secpage1 iframe.foriframe').css('margin-top', top + "px");
-
-
-
-    });*/
-
-    $('#secpage2art li.licname a').mousemove(function (e) {
+    $('#sectier2 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
@@ -181,22 +148,20 @@ $(document).ready(function () {
         else
             offset = parseInt(h); // - (mod - offset)) ;
         top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#secpage2art").height();
+        var elemheight = $("#sectier2").height();
 
 
         if (top + cutheight > elemheight) {
             top = top - (top + cutheight - elemheight);
         }
 
-        //alert(top);			
-        $('#secpage2 iframe.foriframe').css('margin-top', top + "px");
-        $('#secpage2 div#iframe_mask2').css('margin-top', top + "px");
+        $('#sectier2 .forpreview').css('margin-top', top + "px");
 
 
     });
 
 
-    $('#secpage3art li.licname a').mousemove(function (e) {
+    $('#sectier3 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
@@ -210,7 +175,7 @@ $(document).ready(function () {
         else
             offset = parseInt(h); // - (mod - offset)) ;
         top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#secpage3art").height();
+        var elemheight = $("#sectier3").height();
 
 
         if (top + cutheight > elemheight) {
@@ -218,8 +183,7 @@ $(document).ready(function () {
         }
 
         //alert(top);			
-        $('#secpage3 iframe.foriframe').css('margin-top', top + "px");
-        $('#secpage3 div#iframe_mask3').css('margin-top', top + "px");
+        $('#sectier3 .forpreview').css('margin-top', top + "px");
 
 
     });

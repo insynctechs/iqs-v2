@@ -41,5 +41,13 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage2AdvertisementDetails", sqlParam));
         }
 
+        public async Task<DataSet> GetCategoryStateValidate(string Category, string State)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[2];
+            sqlParam[0] = new SqlParameter("@Category", Category);
+            sqlParam[1] = new SqlParameter("@State", State);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspCategoryStateValidate", sqlParam));
+        }
+
     }
 }

@@ -85,7 +85,7 @@
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>
-                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>
+                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a rel='nofollow' class='btncopro' alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT1Ad["ADDESCRIPTION"] %></p>
@@ -115,17 +115,17 @@
             <iframe id='preview_iframe1' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
             -->
-            <div id="preview1"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
 
 
-
+    <% if (Tier2Advertisements.Count > 0) { %>
     <section id='sectier2' class="adlist_section">
         <ul class="adlist_ul">
             <% foreach (var drT2Ad in Tier2Advertisements)
-                {%>
+              {%>
             <li>
                 <header>
                     <h3 class='cname'>
@@ -161,11 +161,11 @@
             <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
             -->
-             <div id="preview2"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+             <div id="preview2" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
-
+    <% } %>
     <script type='text/javascript'>
         $(document).ready(function ()
         {
@@ -229,6 +229,10 @@
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
+
+            $('.btnrfq').fancybox({'height':600,'width':800,'onStart':function(){$('body').css('overflow','hidden');},'onClosed':function(){$('body').css('overflow','auto');},'hideOnOverlayClick':false});
+            $('.btnrfq').bind('contextmenu', function(e){return false;});
+            $('.btnrfq').css('display','block');
         });
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />

@@ -37,8 +37,7 @@ namespace IQSDirectory
             bundles.Add(new StyleBundle("~/bundles/SiteMasterStyles").Include(
                 "~/Content/master_styles.css",
                 "~/Content/searchbox_styles.css",
-                "~/Content/jquery-ui.css",
-                "~/Content/jquery.fancybox-1.3.4.css"
+                "~/Content/jquery-ui.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/SiteMasterScripts").Include(
@@ -60,6 +59,20 @@ namespace IQSDirectory
                 "~/Scripts/jquery.fancybox-1.3.4.js",
                 "~/Scripts/fb.js",
                 "~/Scripts/category_page1.js",
+                "~/Scripts/move_top.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/bundles/StyleStateSearch").Include(
+                "~/Content/category_styles.css",
+                "~/Content/stylerprint.css",
+                "~/Content/jquery.fancybox-1.3.4.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ScriptStateSearch").Include(
+                "~/Scripts/jquery.rating.pack.js",
+                "~/Scripts/jquery.fancybox-1.3.4.js",
+                "~/Scripts/fb.js",
+                "~/Scripts/category_page2.js",
                 "~/Scripts/move_top.js"
                 ));
 

@@ -47,6 +47,13 @@ namespace IQSCore.Controllers
             return Ok(cat);
         }
 
+        [Route("api/CategoryPages/GetCategoryStateValidate")]
+        public async Task<IHttpActionResult> GetCategoryStateValidate(string Category, string State)
+        {
+            var cat = await categoryPages.GetCategoryStateValidate(Category, State);
+            return Ok(cat);
+        }
+
         // GET: api/CategoryPages/5
         public string Get(int id)
         {

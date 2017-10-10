@@ -54,4 +54,21 @@ namespace IQSDirectory
             return false;
         }
     }
+
+    public class StateSearchConstraint : IRouteConstraint
+    {
+        WebApiHelper wHelper = new WebApiHelper();
+
+        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower());
+        }
+
+        private bool GetCategoryIdByName(string Category, string State)
+        {
+            var url = string.Format("api/CategoryPages/GetCategoryStateValidate?Category=" + Category + "&State=" + State);
+            DataTable dt = wHelper.GetDataTableFromWebApi(url);
+            return Convert.ToBoolean(dt.Rows[0][0]);
+        }
+    }
 }

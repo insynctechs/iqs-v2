@@ -141,10 +141,13 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.fancybox-1.3.4.css" />
     <Content Include="Content\master_styles.css" />
+    <Content Include="Content\publish_styles.css" />
     <Content Include="Content\searchbox_styles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\stylerprint.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DirectoryRFQ.aspx" />
+    <Content Include="DirectorySearch.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -160,12 +163,35 @@
     <Content Include="images\darrow.png" />
     <Content Include="images\delete.gif" />
     <Content Include="images\div3bg.jpg" />
+    <Content Include="images\div4bg.jpg" />
+    <Content Include="images\fancybox\blank.gif" />
+    <Content Include="images\fancybox\fancybox-x.png" />
+    <Content Include="images\fancybox\fancybox-y.png" />
+    <Content Include="images\fancybox\fancybox.png" />
+    <Content Include="images\fancybox\fancy_close.png" />
+    <Content Include="images\fancybox\fancy_loading.png" />
+    <Content Include="images\fancybox\fancy_nav_left.png" />
+    <Content Include="images\fancybox\fancy_nav_right.png" />
+    <Content Include="images\fancybox\fancy_shadow_e.png" />
+    <Content Include="images\fancybox\fancy_shadow_n.png" />
+    <Content Include="images\fancybox\fancy_shadow_ne.png" />
+    <Content Include="images\fancybox\fancy_shadow_nw.png" />
+    <Content Include="images\fancybox\fancy_shadow_s.png" />
+    <Content Include="images\fancybox\fancy_shadow_se.png" />
+    <Content Include="images\fancybox\fancy_shadow_sw.png" />
+    <Content Include="images\fancybox\fancy_shadow_w.png" />
+    <Content Include="images\fancybox\fancy_title_left.png" />
+    <Content Include="images\fancybox\fancy_title_main.png" />
+    <Content Include="images\fancybox\fancy_title_over.png" />
+    <Content Include="images\fancybox\fancy_title_right.png" />
     <Content Include="images\icons_small.png" />
     <Content Include="images\newsroom-main.png" />
+    <Content Include="images\popup-close.png" />
     <Content Include="images\star.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\category_page1.js" />
+    <Content Include="Scripts\category_page2.js" />
     <Content Include="Scripts\fb.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -199,6 +225,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="StateSearch.aspx" />
     <Content Include="StateSearch.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -243,6 +270,20 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DirectoryRFQ.aspx.cs">
+      <DependentUpon>DirectoryRFQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectoryRFQ.aspx.designer.cs">
+      <DependentUpon>DirectoryRFQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DirectorySearch.aspx.cs">
+      <DependentUpon>DirectorySearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorySearch.aspx.designer.cs">
+      <DependentUpon>DirectorySearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +304,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="StateSearch.aspx.cs">
+      <DependentUpon>StateSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateSearch.aspx.designer.cs">
+      <DependentUpon>StateSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
