@@ -46,7 +46,7 @@
                 minLength: 2,
                 select: function (event, ui) {
                     $('#txtsearch').val(ui.item.value);
-                    //submitForm();
+                    submitForm();
                 }
             });
             $("#txtsearch").keyup(function (event) {
@@ -131,6 +131,8 @@
                             source: item,
                             select: function (event, ui) {
                                 $("#comboval").val(id[ui.item.value]);
+                                if ($("#comboval").val() != "" && $.trim($("#txtsearch").val()).length > 0)
+                                    submitForm();
                             }
                         });
                         if ($.trim($('#combo').val()).length == 0) {
@@ -155,14 +157,8 @@
         function submitForm() {
             //alert($("#weburl").val());
             if ($.trim($("#txtsearch").val()).length > 0 && $("#txtsearch").val() != txtval) {
-                $("#txtsearch").val($.trim($("#txtsearch").val()));
-                //if ($.trim($("#comboval").val()) != '') {
-                //    alert($("#comboval").val());
-                //    return false;
-                //}
-                //else {
+                $("#txtsearch").val($.trim($("#txtsearch").val()));               
                 var srhurl = $('#hdnSrhRootPath').val()+"directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
-                //}
                 window.location = srhurl;
                 return false;
             }

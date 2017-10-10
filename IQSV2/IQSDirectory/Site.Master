@@ -7,7 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <title><%: Page.Title %></title>
+    <meta property="og:image" content="<%: WebURL %>images/iqs_logo.gif" />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:width" content="348" />
+    <meta property="og:image:height" content="79" />
+    
 
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/bundles/SiteMasterStyles") %>
@@ -80,7 +84,7 @@
                 <span itemprop='name'>IQS Directory</span>
             </div>
         </footer>
-
+        <div id='back-top'><a href='#head'>Move to Top</a></div>
         <%--        <asp:ScriptManager runat="server">
             <Scripts>--%>
         <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -130,6 +134,7 @@
             </footer>
         </div>--%>
         <input type="hidden" id="hdnRootPath" value="<%: ApiPath %>" />
+        <input type="hidden" id="hdnWebURL" value="<%: WebURL %>" />
     </form>
 </body>
 </html>

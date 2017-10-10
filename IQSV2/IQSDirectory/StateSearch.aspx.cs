@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using IQSDirectory.Helpers;
 using System.Data;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace IQSDirectory
 {
@@ -48,7 +50,10 @@ namespace IQSDirectory
             DataSet ds = wHelper.GetDataSetFromWebApi(urlGet);
             if(ds != null)
             {
+                SetRegionalValues(ds.Tables[5]);
                 GenerateHeader(ds.Tables[0]);
+                
+                GenerateMetaAndScripts(ds.Tables[7], ds.Tables[8], ds.Tables[6], ds.Tables[10]);
                 GenerateRelatedCategories(ds.Tables[1]);
                 GenerateAdvertisements(ds.Tables[2]);
                 GenerateOtherAdvertisements(ds.Tables[4]);
@@ -57,6 +62,19 @@ namespace IQSDirectory
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
         }
 
+        private void SetRegionalValues(DataTable dt)
+        {
+            StateName = dt.Rows[0]["STATE_NAME"].ToString();
+            StateCode = dt.Rows[0]["STATE_CODE"].ToString();
+            StateSK = dt.Rows[0]["STATE_SK"].ToString();
+            CountryCode = dt.Rows[0]["COUNTRY_SHORT"].ToString();
+            CountryName = dt.Rows[0]["COUNTRY_LONG"].ToString();
+        }
+
+        
+
+
+
         private void GenerateHeader(DataTable dt)
         {
             ApiPath = wHelper.ApiUrl;
@@ -64,9 +82,55 @@ namespace IQSDirectory
             CategoryName = dt.Rows[0]["NAME"].ToString();
             H1Text = dt.Rows[0]["FACET_DISPLAY_NAME"].ToString();
             DisplayName = dt.Rows[0]["DISPLAY_NAME"].ToString();
-            ItemDesc = new HtmlString(dt.Rows[0]["DESCRIPTION"].ToString());
+            string description = dt.Rows[0]["DESCRIPTION"].ToString();
+            description = description.Replace("[keyword]", H1Text);
+            if (description.IndexOf("[city],") > 0)
+                description = description.Replace("[city],", "");
+            
+            if ((description.IndexOf("[state], [country]") > 0 || description.IndexOf("[state],[country]") > 0) )
+            {
+                description = description.Replace("[state], [country]", "[state]");
+                description = description.Replace("[state],[country]", "[state]");
+            }
+            else
+                description = description.Replace("[country]", CountryName);
+            description = description.Replace("[state]", StateName);
+            ItemDesc = new HtmlString(description);
         }
 
+        private void GenerateMetaAndScripts(DataTable dtMeta, DataTable dtScripts, DataTable dtAnalytics, DataTable dtIndexes)
+        {
+            DataRow[] dr = dtMeta.Select("META_TAG_ID='TITLE'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<title>" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "</title>"));
+            dr = dtMeta.Select("META_TAG_ID='DESCRIPTION'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(3, new LiteralControl("<meta name='Description' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "' />"));            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(4, new LiteralControl("<meta name='Description' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]",H1Text) + "' />"));
+            dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(7, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
+            /*
+            DataRow[] drIndex = dtIndexes.Select("state_sk=" + StateSK);
+            bool isIndexed = false;            
+            if (drIndex.Length > 0)
+            {
+                isIndexed = true;
+                this.Page.Header.Controls.AddAt(1, new LiteralControl("<meta name='robots' content='index,follow'>"));
+            }          
+
+            if (isIndexed == false)
+            {
+                dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+                if (dr.Length > 0)
+                    this.Page.Header.Controls.AddAt(1, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
+                else
+                    this.Page.Header.Controls.AddAt(1, new LiteralControl("<meta name='robots' content='noindex,follow'>"));
+            }*/
+
+
+        }
         private void GenerateRelatedCategories(DataTable dt)
         {
             RelatedCategories = dt.AsEnumerable().ToList();
@@ -104,6 +168,11 @@ namespace IQSDirectory
         public string CategorySK { get; set; }
         public string H1Text { get; set; }
         public string DisplayName { get; set; }
+        public string StateName { get; set; }
+        public string StateCode { get; set; }
+        public string StateSK { get; set; }
+        public string CountryCode { get; set; }
+        public string CountryName { get; set; }
         public string CategoryTitle { get; set; }
         public string MetaDesc { get; set; }
         public string ShareURL { get; set; }

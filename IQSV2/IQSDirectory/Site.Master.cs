@@ -15,8 +15,10 @@ namespace IQSDirectory
             if(!IsPostBack)
             {
                 ApiPath = ConfigurationManager.AppSettings["Api"].ToString();
+                WebURL = ConfigurationManager.AppSettings["WebURL"].ToString();
             }
         }
         public string ApiPath { get; set; }
+        public string WebURL { get; set; }
     }
 }
