@@ -3,26 +3,31 @@
     <link href="<%:RootPath %>Content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
-    <%: Scripts.Render("~/bundles/ScriptStateSearch") %>
+
+    <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/category_page2.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
     <section id='seccat'>
     <div id="social">
         <span>Share this page on</span>
         <ul>
             <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
             <li><a class="google" rel=nofollow
-                   href="https://plus.google.com/share?url=http://www.iqsdirectory.com/metal-stampings" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
+                   href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
                 Google</a></li>
             <li><a class="twitter" rel=nofollow
-                   href="https://twitter.com/share?url=http://www.iqsdirectory.com/metal-stampings&text=%23Top 10 Metal Stampings Companies + Services [2017 Updated]. Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized." onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
+                   href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
                 Twitter</a></li>
             <li><a class="linkedin" rel=nofollow
-                   href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.iqsdirectory.com/metal-stampings&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&summary=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&source=http://www.iqsdirectory.com/" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
+                   href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
                 LinedIn</a></li>
             <li><a class="facebook" rel=nofollow href=""
-                   onclick="javascript:postToFeed('Top 10 Metal Stampings Companies + Services [2017 Updated]','http://www.iqsdirectory.com/','Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.');return false;">
+                   onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">
                 Facebook</a></li>
             <li><a rel=nofollow class="iframe lnkmail mail"
-                   href="../controls/MailSend.aspx?p=../&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&des=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&url=http://www.iqsdirectory.com/metal-stampings">
+                   href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">
                 Mail</a></li>
             <li><a href="" class="print" onclick="javascript:window.print();return false;">
                 Print</a></li>
@@ -58,117 +63,123 @@
             }
         </script>
     </div>
-    <h1 itemprop='name'>Metal Stampings Manufacturers and Companies</h1>
-    <div class="desc" itemprop='description'>IQS Directory provides a comprehensive list of metal stamping manufacturers and
-        suppliers. Use our website to review and source top metal stamping manufacturers with roll over ads and detailed product descriptions. Find metal stamping companies that can design, engineer, and manufacture metal stampings to your companies specifications. Then contact the metal stamping companies through our quick and easy request for quote form. Website links, company profile, locations, phone, product videos and product information is provided for each company. Access customer reviews and keep up to date with product new articles. Whether you are looking for metal stampers, short run stampings, aluminum stampings, or customized metal stampings of every type, this is the resource for you.</div>
+    <h1 itemprop='name'><%: DisplayName %></h1>
+    <div class="desc" itemprop='description'><%: ItemDesc %></div>
 </section>
 
 <section id='secrelcat'>
     <h2>Related Categories</h2>
     <ul id="ulRelatedCategories">
-        <li><a href="http://www.iqsdirectory.com/axial-fans/">Axial Fans</a></li>
-        <li><a href="http://www.iqsdirectory.com/high-velocity-fans/">High Velocity Fans</a></li>
-        <li><a href="http://www.iqsdirectory.com/air-pollution-control/">Air Pollution Control</a></li>
-        <li><a href="http://www.iqsdirectory.com/industrial-blowers/">Industrial Blowers</a></li>
-        <li><a href="http://www.iqsdirectory.com/dust-collector/">Dust Collector</a></li>
-        <li><a href="http://www.iqsdirectory.com/fan-manufacturers/">Fan Manufacturers</a></li>
-        <li><a href="http://www.iqsdirectory.com/air-blowers/">Air Blowers</a></li>
-        <li><a href="http://www.iqsdirectory.com/high-pressure-blowers/">High Pressure Blowers</a></li>
-        <li><a href="http://www.iqsdirectory.com/air-compressors/">Air Compressors</a></li>
-        <li><a href="http://www.iqsdirectory.com/vacuum-cleaners/">Vacuum Cleaners</a></li>
+        <% foreach (var dr in RelatedCategories)
+                {  %>
+            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
+        <% } %>
     </ul>
 </section>
-    <input type="hidden" runat="server" id="hdnSearchCondition" />
-    <input type="hidden" runat="server" id="hdnCurrentFacet" />
-    <input type="hidden" runat="server" id="hdnFacetSk" />
-    <input type="hidden" runat="server" id="hdnUrl" />
-    <input type="hidden" runat="server" id="hdnCountry" />
-    <input type="hidden" runat="server" id="hdnCategorySK" />
-    <input type="hidden" runat="server" id="hdnCategoryName" />
 
     <section id='secadpage' class="adlist_section boxnone">
-        <div class="div_buttons"><a href="http://www.iqsdirectory.com/directoryrfq.aspx?CategorySK=119&amp;ClientSK="
-                                  id="l
-        nkRFQ" class="iframe lnkrfq" style="float:left;">Request For Quote</a><a
-                href="http://www.iqsdirectory.com/metal-stampings/" id="lnkBack" class="iframe"
-                style="float:left; ">Go To Metal Stampings Home</a></div>
-
+        <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
+                                  id="lnkRFQ" class="iframe lnkrfq" style="float:left;">Request For Quote</a>
+            <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" class="iframe"
+                style="float:left; ">Go To <%: H1Text %> Home</a></div>
         <ul class="adlist_ul">
-            <h2>Blowers Companies Serving Wisconsin</h2>
+            <h2><%: H1Text %> Companies Serving <%: CurrentState %></h2>
+            <% foreach (var stAd in StateAdvertisements)
+                { %>
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='Micro Forms' title='Micro Forms' target='_blank' href='http://www.mforms.com' onmouseover="loadWebPreview('http://www.mforms.com', this)">Micro Forms, Inc.</a>
-                        <span>Garland, TX</span>
-                        <span>972-494-1313</span>
+                        <a rel='nofollow' alt='<%: stAd["FORMATED_NAME"] %>' title='<%: stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', this)"><%: stAd["CLIENT_NAME"] %></a>
+                        <span><%: stAd["CITY_STATE"] %></span>
+                        <span><%: stAd["PHONE"] %></span>
                     </h3>
-                    <a href='http://www.iqsdirectory.com/directoryrfq.aspx?CategorySK=119&amp;ClientSK=62009' class='btnrfq'
-                            >Request For Quote</a>
-                    <a rel='nofollow' class='btncopro'   alt='Micro Forms Profile' title='Micro Forms Profile' id='ID250363' href='http://www.iqsdirectory.com/profile/micro-forms-62009/'>View Company Profile</a>
+                   
+                    <a rel='nofollow' class='btncopro'   alt='<%: stAd["FORMATED_NAME"] %> Profile' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
-                <p class='cdesc'>We take pride in all our metal stampings. We strive to
-                    provide the best quality and most cost-effective solutions for all our customers. We are not simply satisfied with doing the same things over and over, but constantly look for new ways to improve our manufacturing methods. Find out how we can help you by visiting our website for more info!
+                <p class='cdesc'><%: stAd["ADDESCRIPTION"] %>
                 </p>
                 <div class='divRate'>
-                    <div id='divRate62009' class="divratingclientmain">
+                    <div id='divRate<%: stAd["CLIENT_SK"] %>' class="divratingclientmain">
                         <script language='javascript' type='text/javascript'>
-                            $(document).ready(function () {$('input[type=radio].star62009').rating({required: true});});
+                            $(document).ready(function () { $('input[type=radio].star<%: stAd["CLIENT_SK"] %>').rating({required: true});});
                         </script>
                     <span class="spanreadreviews">
-                        <a alt='Micro Forms Profile' title='Micro Forms Profile' id='ID250363' href='http://www.iqsdirectory.com/profile/micro-forms-62009/'>Read Reviews</a>
+                        <a alt='<%: stAd["FORMATED_NAME"] %> Profile' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["CLIENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>Read Reviews</a>
                     </span>
                     <span class='divratingclient'>
-                        <input name='star62009' type='radio' class='star62009' value='1' title='1'/><input name='star62009' type='radio' class='star62009' value='2' title='2'/><input name='star62009' type='radio' class='star62009' value='3' title='3'/><input name='star62009' type='radio' class='star62009' value='4' title='4'/><input name='star62009' type='radio' class='star62009' value='5' title='5'/>
+                        <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='1' title='1'/>
+                        <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='2' title='2'/>
+                        <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='3' title='3'/>
+                        <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='4' title='4'/>
+                        <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='5' title='5'/>
                     </span>
                     </div>
                 </div>
             </li>
-            <h2>Blowers Companies Serving michigan</h2>
+            <% } %>
+            <% 
+                string scode = "", precode = "";
+                foreach (var nghAd in NeighAdvertisements)
+                { 
+                    scode = nghAd["theState"].ToString();
+                    %>
+            <% if (scode != precode)
+                { %>
+            <h2><%: H1Text %> Companies Serving <%: nghAd["STATECODE"].ToString()  %></h2>
+            <%} %>
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='Micro Forms' title='Micro Forms' target='_blank' href='http://www.mforms.com' onmouseover="loadWebPreview('http://www.mforms.com', this)">Micro Forms, Inc.</a>
-                        <span>Garland, TX</span>
-                        <span>972-494-1313</span>
+                        <a rel='nofollow' alt='<%: nghAd["FORMATED_NAME"] %>' title='<%: nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this)"><%: nghAd["CLIENT_NAME"] %></a>
+                        <span><%: nghAd["CITY_STATE"] %></span>
+                        <span><%: nghAd["PHONE"] %></span>
                     </h3>
-                    <a href='http://www.iqsdirectory.com/directoryrfq.aspx?CategorySK=119&amp;ClientSK=62009' class='btnrfq'
+                    <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: nghAd["CLIENT_SK"] %>' class='btnrfq'
                             >Request For Quote</a>
-                    <a rel='nofollow' class='btncopro'   alt='Micro Forms Profile' title='Micro Forms Profile' id='ID250363' href='http://www.iqsdirectory.com/profile/micro-forms-62009/'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro'   alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
-                <p class='cdesc'>We take pride in all our metal stampings. We strive to
-                    provide the best quality and most cost-effective solutions for all our customers. We are not simply satisfied with doing the same things over and over, but constantly look for new ways to improve our manufacturing methods. Find out how we can help you by visiting our website for more info!
+                <p class='cdesc'><%: nghAd["ADDESCRIPTION"] %>
                 </p>
                 <div class='divRate'>
-                    <div id='divRate62009' class="divratingclientmain">
+                    <div id='divRate<%: nghAd["CLIENT_SK"] %>' class="divratingclientmain">
                         <script language='javascript' type='text/javascript'>
-                            $(document).ready(function () {$('input[type=radio].star62009').rating({required: true});});
+                            $(document).ready(function () { $('input[type=radio].star<%: nghAd["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                     <span class="spanreadreviews">
-                        <a alt='Micro Forms Profile' title='Micro Forms Profile' id='ID250363' href='http://www.iqsdirectory.com/profile/micro-forms-62009/'>Read Reviews</a>
+                        <a alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["CLIENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>Read Reviews</a>
                     </span>
                     <span class='divratingclient'>
-                        <input name='star62009' type='radio' class='star62009' value='1' title='1'/><input name='star62009' type='radio' class='star62009' value='2' title='2'/><input name='star62009' type='radio' class='star62009' value='3' title='3'/><input name='star62009' type='radio' class='star62009' value='4' title='4'/><input name='star62009' type='radio' class='star62009' value='5' title='5'/>
+                        <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='1' title='1'/>
+                        <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='2' title='2'/>
+                        <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='3' title='3'/>
+                        <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='4' title='4'/>
+                        <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='5' title='5'/>
                     </span>
                     </div>
                 </div>
             </li>
+            <% 
+                precode = nghAd["theState"].ToString();
+                } %>
             <%--<script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>--%>
 
         </ul>
         <aside>
-            <iframe id='preview_iframe' class='foriframe' src='./images/cardboard-placeholder.jpg' scrolling='no'>
-            </iframe>
-            <div class='foriframe' id='iframe_mask' style='position:absolute; cursor:pointer;'></div>
+            <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
+            <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
+            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='../images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
 
     <section id='secad_canada' >
     <h2>WE LIST FOR OTHER COUNTRIES TOO!</h2>
-        <h3>Checkout the blower manfuctures in CANADA STATES</h3>
+        <h3>Checkout the <%: H1Text %> manfuctures in CANADA STATES</h3>
         <ul>
-            <li><a href="">Ontario(3)</a></li>
-            <li><a href="">Qubec(4)</a></li>
-            <li><a href="">British Columbia(3)</a></li>
+            <% foreach (var othAd in OtherAdvertisements)
+                { %>
+            <li><a href=""><%: othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
+            <% } %>
         </ul>
     </section>
 
@@ -187,5 +198,5 @@
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
-
+    <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
 </asp:Content>

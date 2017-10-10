@@ -30,6 +30,7 @@ namespace IQSDirectory
                 url = url.Remove(url.Length - 1);
                 Response.Redirect(url);
             }
+            RootPath = "";
             CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
@@ -85,6 +86,7 @@ namespace IQSDirectory
             TierAdvertisements = dt.AsEnumerable().ToList();
         }
 
+        public string RootPath { get; set; }
         public string CategoryName { get; set; }
         public string CategorySK { get; set; }
         public string CategoryTitle { get; set; }

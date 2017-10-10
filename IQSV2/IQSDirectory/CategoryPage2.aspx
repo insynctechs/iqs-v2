@@ -108,7 +108,7 @@
         <aside>
             <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
-            <div id="preview1" class=""> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='../images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
@@ -123,4 +123,5 @@
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
+    <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
 </asp:Content>
