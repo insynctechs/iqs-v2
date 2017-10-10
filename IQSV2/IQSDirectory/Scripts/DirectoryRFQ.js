@@ -1,17 +1,18 @@
 ﻿// JScript File
 
 $(document).ready(function () {
+    var response = grecaptcha.getResponse();
+    $("#hiddenRecaptcha").val(response);
 
     $("#frmRFQ").validate({
-
+        
         rules: {
 
             txtCompanyName: { required: true, minlength: 2 },
             txtContactName: { required: true, minlength: 2 },
             txtContactEmail: { required: true, emailRule: true },
             txtContactCity: { required: true },
-            txtCompanyWeb: { required: true }
-            /*
+            txtCompanyWeb: { required: true },            
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -21,7 +22,7 @@ $(document).ready(function () {
                     }
                 }
             }
-            */
+            
         },
         messages: {
 
@@ -36,10 +37,13 @@ $(document).ready(function () {
             alert("submitted!");
         }
     });
-
+   
     $('#btnSubmit').on('click', function () {
-        alert($("#frmRFQ").valid());
-        var response = grecaptcha.getResponse();
+        
+        
+        $("#frmRFQ").submit();
+        alert($("#frmRFQ").valid() + " -- " + response);
+       
         if ($("#frmRFQ").valid() == true) {
             if (response.length == 0) {
                 if (SetSelectedValues()) {
@@ -58,9 +62,9 @@ $(document).ready(function () {
         }
         //else
         //  alert("form validation failed");
-
+        
     });
-
+    
     jQuery.validator.addMethod("emailRule", function (value, element) {
         Exp = /\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
         return this.optional(element) || Exp.test(value);
