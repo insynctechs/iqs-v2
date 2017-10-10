@@ -17,15 +17,15 @@
             <span>Share this page on</span>
             <ul>
                 <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
-                <li><a class="google" rel="nofollow"
+                <li><a class="google" 
                     href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">Google</a></li>
-                <li><a class="twitter" rel="nofollow"
+                <li><a class="twitter" 
                     href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
-                <li><a class="linkedin" rel="nofollow"
-                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinedIn</a></li>
-                <li><a class="facebook" rel="nofollow" href=""
+                <li><a class="linkedin" 
+                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinkedIn</a></li>
+                <li><a class="facebook"  href=""
                     onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
-                <li><a rel="nofollow" class="iframe lnkmail mail"
+                <li><a class="iframe lnkmail mail"
                     href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
                 <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
             </ul>
@@ -69,7 +69,7 @@
         <ul id="ulRelatedCategories">
             <% foreach (var dr in RelatedCategories)
                 {  %>
-            <li><a href="<%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
+            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
             <% } %>
         </ul>
     </section>
@@ -162,7 +162,7 @@
             <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
             -->
              <div id="preview2" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='images/cardboard-placeholder.jpg' /></div>
+            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
     <% } %>

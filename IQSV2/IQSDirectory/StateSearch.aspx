@@ -14,19 +14,19 @@
         <span>Share this page on</span>
         <ul>
             <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
-            <li><a class="google" rel=nofollow
+            <li><a class="google" 
                    href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
                 Google</a></li>
-            <li><a class="twitter" rel=nofollow
+            <li><a class="twitter" 
                    href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
                 Twitter</a></li>
-            <li><a class="linkedin" rel=nofollow
+            <li><a class="linkedin" 
                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
                 LinedIn</a></li>
-            <li><a class="facebook" rel=nofollow href=""
+            <li><a class="facebook"  href=""
                    onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">
                 Facebook</a></li>
-            <li><a rel=nofollow class="iframe lnkmail mail"
+            <li><a  class="iframe lnkmail mail"
                    href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">
                 Mail</a></li>
             <li><a href="" class="print" onclick="javascript:window.print();return false;">
@@ -72,7 +72,7 @@
     <ul id="ulRelatedCategories">
         <% foreach (var dr in RelatedCategories)
                 {  %>
-            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
+            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
         <% } %>
     </ul>
 </section>
@@ -168,24 +168,24 @@
             <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
             <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='../images/cardboard-placeholder.jpg' /></div>
+            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
-
+    <% if (OtherAdvertisements.Count > 0) { %>
     <section id='secad_canada' >
     <h2>WE LIST FOR OTHER COUNTRIES TOO!</h2>
-        <h3>Checkout the <%: H1Text %> manfuctures in CANADA STATES</h3>
+        <h3><%: H1Text %> manufacturers in CANADA STATES</h3>
         <ul>
             <% foreach (var othAd in OtherAdvertisements)
                 { %>
-            <li><a href=""><%: othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
+            <li><a href="<%: RootPath %><%: CategoryName %>/<%: othAd["SEARCH_URL"].ToString() %>"><%: othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
             <% } %>
         </ul>
     </section>
-
+    <% } %>
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get('../StateSearch.html', function (data) {
+            $.get($('#hdnSrhRootPath').val()+'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
