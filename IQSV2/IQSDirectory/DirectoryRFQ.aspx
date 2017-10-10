@@ -124,12 +124,14 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                             <div class="rfqdivspecattsub">Attachment1 :</div><div><input id="inpAttachment1"  type="file" size="46" class="rfqFileCtrlArea"  name="filMyFile" runat="server"></div>
                             <div class="rfqdivspecattsub">Attachment2 :</div><div><input id="inpAttachment2"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             <div class="rfqdivspecattsub">Attachment3 :</div><div><input id="inpAttachment3"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
-                            <div class="rfqdivspecatt">Enter the text as shown in the box.</div>
+                            
+                            <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_">
+                                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback" /></div>
+                            <!--<div class="rfqdivspecatt">Enter the text as shown in the box.</div>-->
                             <div><%--<uc1:Captcha ID="Captcha1" runat="server" OnSuccess="OnSuccess" OnFailure="OnFailure"/>--%></div>
                             <div id="rfqmessage" runat="server"></div>
                             <div class="rfqbuttonsnew">
-                                <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="RFQSend btnIpBlock"
-                                OnClick="btnSend_Click" />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="RFQSend btnIpBlock" />
                                 <input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" />
                                 <input type="hidden" name="val_curip" id="val_curip" value="" runat="server" />
                                 <input type="button" class="RFQSend" value="Reset"  onclick="ResetValues();" />

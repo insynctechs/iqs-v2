@@ -74,10 +74,12 @@ namespace IQSDirectory
         #region "Load Tracking Scripts"
         private void LoadTrackingScripts()
         {
+            /* sj commented
             string attrs = "";
             
             attrs += " return btnSend_click();";
             btnSend.Attributes.Add("onclick", attrs);
+            */
         }
         #endregion
 
@@ -247,14 +249,15 @@ namespace IQSDirectory
         }
         #endregion
 
-        #region " Send Button Click "
-        protected void btnSend_Click(object sender, EventArgs e)
+        #region " Submit Button Click "
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             divip_error.Visible = false;
             if (txtCompanyWeb.Text != "" && txtCompanyWeb.Text != null)
             {
                 OnSecurityFailure(0);
             }
+            /* sj commented for testing
             else
             {
                 string[] allowedCountries = new string[] { "US", "UM", "CA", "MX" };
@@ -282,6 +285,7 @@ namespace IQSDirectory
                     OnSecurityFailure(2);
                 }
             }
+            */
             
         }
 
@@ -621,13 +625,25 @@ namespace IQSDirectory
                     string[] Details = companyDetails[count].Split(chrsplitDetail);
                     //CommonLogger.Info("Sending mail for RFQ: " + "From mail id: " + txtContactEmail.Text.Trim().ToString() + "To Mail Id: " + Details[1] + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                     _strMailBody = "Name : " + Server.HtmlEncode(txtContactName.Text.Trim()) + "<br>" + "Company : " + txtCompanyName.Text.Trim() + "<br>" + "Email : " + Server.HtmlEncode(txtContactEmail.Text.Trim()) + "<br>" + "Contact Phone : " + Server.HtmlEncode(txtContactPhone.Text.Trim()) + "<br>" + "City, State : " + Server.HtmlEncode(txtContactCity.Text.Trim()) + "<br>" + "Specifications/Questions/RFQ : " + Server.HtmlEncode(txtDescription.Value.Trim()) + "<br>" + "Request IP:" + _RequestIP;
-                    _toAddress = ((Details[1].Equals("N/A")) | (Details[1].Equals("NULL"))) ? System.Configuration.ConfigurationManager.AppSettings["RFQAlternateMailID"].ToString() : Details[1];
-                    _ccAddress = System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"];
+                    //sj adding for testing purpose
+                    if (System.Configuration.ConfigurationManager.AppSettings["RFQTestMode"] == "true")
+                    {
+                        _toAddress = System.Configuration.ConfigurationManager.AppSettings["RFQTestToMailID"];
+                        _ccAddress = System.Configuration.ConfigurationManager.AppSettings["RFQTestCCMailID"];
+
+                    }
+                    else
+                    {
+                        _toAddress = ((Details[1].Equals("N/A")) | (Details[1].Equals("NULL"))) ? System.Configuration.ConfigurationManager.AppSettings["RFQAlternateMailID"].ToString() : Details[1];
+                        _ccAddress = System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"];
+
+                    }
+
                     _FromAddress = txtContactEmail.Text.Trim().ToString();
                     _Subject = System.Configuration.ConfigurationManager.AppSettings["RFQSubject"];
                     
                     //sendMailWithAttachment(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
-                    sendMailWithAttachment("linda@insynctechs.com", "linda@insynctechs.com, lindadcouth@gmail.com", "binilmb@gmail.com", string.Empty, _Subject, _strMailBody, true);
+                    sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
                    
 
                     //CommonLogger.Info("Sending mail completed");
