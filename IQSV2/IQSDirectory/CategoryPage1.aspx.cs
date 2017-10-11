@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using IQSDirectory.Helpers;
 using System.Data;
@@ -45,11 +47,12 @@ namespace IQSDirectory
             if(ds!= null)
             {
                 GenerateHeader(ds.Tables[0]);
-                GenerateRelatedCategories(ds.Tables[2]);
-                GenerateProfile(ds.Tables[3]);
-                GenerateAdvertisements(ds.Tables[4]);
-                GenerateIndustryInformation(ds.Tables[6]);
-                GenerateMetaTags(ds.Tables[5]);
+                
+                GenerateRelatedCategories(ds.Tables[1]);
+                GenerateProfile(ds.Tables[2]);
+                GenerateAdvertisements(ds.Tables[3]);
+                GenerateIndustryInformation(ds.Tables[5]);
+                GenerateMetaTagsAndScripts(ds.Tables[4],ds.Tables[6]);
                 DisplayArticles();
             }
         }
@@ -134,23 +137,40 @@ namespace IQSDirectory
             }
         }
 
-        private void GenerateMetaTags(DataTable dt)
+        private void GenerateMetaTagsAndScripts(DataTable dtMeta, DataTable dtScripts)
         {
-            DataRow[] dr = dt.Select("META_TAG_ID = 'TITLE'");
-            if (dr != null)
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image' content = '"+  ConfigurationManager.AppSettings["WebURL"].ToString() +"images /iqs_logo.gif' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:type' content = 'image/gif' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:width' content = '348' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:height' content = '79'/>"));
+            DataRow[] dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
+            if(dr.Length > 0)
             {
                 CategoryTitle = dr[0]["DESCRIPTION"].ToString();
                 CategoryTitle = CategoryTitle.Replace("–", "-");
                 CategoryTitle = CategoryTitle.Replace("&", "&amp;");
+                this.Page.Header.Controls.AddAt(3, new LiteralControl("<title>" + CategoryTitle + "</title>"));
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:title' content = '" + CategoryTitle + "' />"));
+
             }
             else //sj added
                 CategoryTitle = "Category Title";
 
-            dr = dt.Select("META_TAG_ID = 'DESCRIPTION'");
-            if (dr != null)
+            dr = dtMeta.Select("META_TAG_ID = 'DESCRIPTION'");
+            if (dr.Length > 0)
             {
                 MetaDesc = dr[0]["DESCRIPTION"].ToString();
+                this.Page.Header.Controls.AddAt(4, new LiteralControl("<meta name='Description' content='" + MetaDesc + "' />"));
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:description' content = '" + MetaDesc + "' />"));
+
             }
+
+            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta name='Keywords' content='" + dr[0]["DESCRIPTION"].ToString() + "' />"));
+            dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
+            if (dr.Length > 0)
+                this.Page.Header.Controls.AddAt(8, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
         }
 
         private void DisplayArticles()

@@ -108,7 +108,7 @@
         <aside>
             <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
-            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <div id="preview1" class="forpreview" alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>

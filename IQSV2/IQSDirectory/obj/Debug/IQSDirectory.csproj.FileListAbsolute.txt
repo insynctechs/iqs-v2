@@ -123,6 +123,5 @@ D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.DependencyColle
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.WindowsServer.xml
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.Web.xml
-D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.csprojResolveAssemblyReference.cache
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.dll
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.pdb

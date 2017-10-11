@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -100,17 +101,31 @@ namespace IQSDirectory
 
         private void GenerateMetaAndScripts(DataTable dtMeta, DataTable dtScripts, DataTable dtAnalytics, DataTable dtIndexes)
         {
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image' content = '" + ConfigurationManager.AppSettings["WebURL"].ToString() + "images /iqs_logo.gif' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:type' content = 'image/gif' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:width' content = '348' />"));
+            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:height' content = '79'/>"));
+
             DataRow[] dr = dtMeta.Select("META_TAG_ID='TITLE'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(2, new LiteralControl("<title>" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "</title>"));
+            {
+                this.Page.Header.Controls.AddAt(3, new LiteralControl("<title>" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "</title>"));
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:title' content = '" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "' />"));
+
+            }
             dr = dtMeta.Select("META_TAG_ID='DESCRIPTION'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(3, new LiteralControl("<meta name='Description' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "' />"));            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+            {
+                this.Page.Header.Controls.AddAt(4, new LiteralControl("<meta name='Description' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "' />"));
+                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:description' content = '" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text) + "' />"));
+
+            }
+            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(4, new LiteralControl("<meta name='Description' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]",H1Text) + "' />"));
+                this.Page.Header.Controls.AddAt(5, new LiteralControl("<meta name='Keywords' content='" + dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]",H1Text) + "' />"));
             dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(7, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
+                this.Page.Header.Controls.AddAt(6, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
             /*
             DataRow[] drIndex = dtIndexes.Select("state_sk=" + StateSK);
             bool isIndexed = false;            
@@ -127,6 +142,23 @@ namespace IQSDirectory
                     this.Page.Header.Controls.AddAt(1, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
                 else
                     this.Page.Header.Controls.AddAt(1, new LiteralControl("<meta name='robots' content='noindex,follow'>"));
+            }*/
+
+            /*
+            foreach (DataRow dr1 in dtScripts.Rows)
+            {
+                if (dr1["HEAD_SCRIPT"].ToString() != "")
+                {
+                    Head1.Controls.AddAt(6, new LiteralControl(dr1["HEAD_SCRIPT"].ToString()));
+                }
+                if (dr1["BODY_START_SCRIPT"].ToString() != "")
+                {
+                    bodyTopScripts.InnerHtml = dr1["BODY_START_SCRIPT"].ToString();
+                }
+                if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
+                {
+                    bodyBottomScripts.InnerHtml = dr1["BODY_BFR_CLOSE_SCRIPT"].ToString();
+                }
             }*/
 
 

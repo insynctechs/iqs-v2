@@ -14,13 +14,14 @@ namespace IQSCore.Models
 
         public async Task<DataSet> GetCategoryPage1Details(int CategorySK, string WebsiteType)
         {
-            SqlParameter[] sqlParam = new SqlParameter[4];
+            SqlParameter[] sqlParam = new SqlParameter[3];
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
             sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
-            sqlParam[3] = new SqlParameter("@Page2AdsCount", SqlDbType.Int);
+            /*sqlParam[3] = new SqlParameter("@Page2AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
-            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage1AdvertisementDetails", sqlParam));
+            //uspGetPage1AdvertisementDetails*/
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCategoryPage1AdvertisementDetails", sqlParam));
         }
 
         public async Task<DataSet> GetCategoryIdByName(string DisplayName)
@@ -36,9 +37,11 @@ namespace IQSCore.Models
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
             sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
-            sqlParam[3] = new SqlParameter("@Page3AdsCount", SqlDbType.Int);
+            /*sqlParam[3] = new SqlParameter("@Page3AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
-            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetPage2AdvertisementDetails", sqlParam));
+            //uspGetPage2AdvertisementDetails 
+            */
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCategoryPage2AdvertisementDetails", sqlParam));
         }
 
         public async Task<DataSet> GetCategoryStateValidate(string Category, string State)
