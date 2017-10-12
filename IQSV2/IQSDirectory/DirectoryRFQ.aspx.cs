@@ -74,12 +74,12 @@ namespace IQSDirectory
         #region "Load Tracking Scripts"
         private void LoadTrackingScripts()
         {
-            /* sj commented
-            string attrs = "";
             
-            attrs += " return btnSend_click();";
-            btnSend.Attributes.Add("onclick", attrs);
-            */
+            string attrs = "";
+            //sj added javascript validation to button click
+            attrs += " return SetSelectedValues();";
+            btnSubmit.Attributes.Add("onclick", attrs);
+           
         }
         #endregion
 
@@ -253,14 +253,7 @@ namespace IQSDirectory
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             divip_error.Visible = false;
-            if (txtCompanyWeb.Text != "" && txtCompanyWeb.Text != null)
-            {
-                OnSecurityFailure(0);
-            }
-            /* sj commented for testing
-            else
-            {
-                string[] allowedCountries = new string[] { "US", "UM", "CA", "MX" };
+             string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
                 string ipaddress = GetIPAddress();
                 string url = "http://ip-api.com/json/" + ipaddress;
                 string json = new System.Net.WebClient().DownloadString(url);
@@ -272,6 +265,8 @@ namespace IQSDirectory
                     if (Array.IndexOf(allowedCountries, ctr) >= 0)
                     {
                         //Captcha1.CheckEnteredValue();
+                        InsertMethod();
+                        sendMail();
                     }
                     else
                     {
@@ -284,8 +279,8 @@ namespace IQSDirectory
                     divip_error.Visible = true;
                     OnSecurityFailure(2);
                 }
-            }
-            */
+            
+            
             
         }
 
@@ -306,35 +301,7 @@ namespace IQSDirectory
             return context.Request.ServerVariables["REMOTE_ADDR"];
         }
 
-        protected void OnSuccess()
-        {
-            try
-            {
-                
-                InsertMethod();
-                sendMail();
-                
-
-            }
-            /*catch (BaseException bex)
-            {
-                //CommonLogger.Error(bex.Message);
-                //ctrlErrorMessage.SetError(bex.Message.ToString(), "red");
-            }*/
-            catch (Exception ex)
-            {
-                //CommonLogger.Error(ex.Message);
-               // throw new BaseException(ex.Message);
-            }
-        }
-
-        protected void OnFailure()
-        {
-           
-            ClearHiddenFields();
-            LoadCompanyDetails();
-        }
-
+        
         public void OnSecurityFailure(int ischeckbox)
         {
             if (ischeckbox == 1)

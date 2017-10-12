@@ -125,3 +125,4 @@ D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.WindowsServer.x
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\bin\Microsoft.AI.Web.xml
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.dll
 D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.pdb
+D:\Projects_Linda\IQS\iqs-v2\IQSV2\IQSDirectory\obj\Debug\IQSDirectory.csprojResolveAssemblyReference.cache

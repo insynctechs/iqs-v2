@@ -131,13 +131,13 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                             <div class="rfqdivspecattsub">Attachment2 :</div><div><input id="inpAttachment2"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             <div class="rfqdivspecattsub">Attachment3 :</div><div><input id="inpAttachment3"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             
-                            <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"></div>
-                            <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback" />
+                           <!-- <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"></div> -->
+                           <!-- <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback" />-->
                             <!--<div class="rfqdivspecatt">Enter the text as shown in the box.</div>-->
                             <div><%--<uc1:Captcha ID="Captcha1" runat="server" OnSuccess="OnSuccess" OnFailure="OnFailure"/>--%></div>
                             <div id="rfqmessage" runat="server"></div>
                             <div class="rfqbuttonsnew">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Send" CssClass="RFQSend btnIpBlock"  />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Send" CssClass="RFQSend btnIpBlock" onclick="btnSubmit_Click"  />
                                 <input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" />
                                 <input type="hidden" name="val_curip" id="val_curip" value="" runat="server" />
                                 <input type="button" class="RFQSend" value="Reset"  onclick="ResetValues();" />
