@@ -11,5 +11,17 @@ namespace IQSDirectory {
     
     
     public partial class CategoryPage1 {
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new IQSDirectory.SiteMaster Master {
+            get {
+                return ((IQSDirectory.SiteMaster)(base.Master));
+            }
+        }
     }
 }

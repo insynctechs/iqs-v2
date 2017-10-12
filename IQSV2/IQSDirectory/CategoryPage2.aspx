@@ -1,5 +1,5 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage2.aspx.cs" inherits="IQSDirectory.CategoryPage2" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='../Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />

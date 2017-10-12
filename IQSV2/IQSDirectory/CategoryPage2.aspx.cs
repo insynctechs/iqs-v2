@@ -90,19 +90,13 @@ namespace IQSDirectory
 
         private void GenerateMetaTagsAndScripts(DataTable dtMeta, DataTable dtScripts)
         {
-            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image' content = '" + ConfigurationManager.AppSettings["WebURL"].ToString() + "images /iqs_logo.gif' />"));
-            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:type' content = 'image/gif' />"));
-            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:width' content = '348' />"));
-            this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:image:height' content = '79'/>"));
             DataRow[] dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
             if (dr.Length > 0)
             {
                 CategoryTitle = dr[0]["DESCRIPTION"].ToString();
                 CategoryTitle = CategoryTitle.Replace("–", "-");
                 CategoryTitle = CategoryTitle.Replace("&", "&amp;");
-                this.Page.Header.Controls.AddAt(3, new LiteralControl("<title>" + CategoryTitle + "</title>"));
-                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:title' content = '" + CategoryTitle + "' />"));
-
+                this.Master.PageTitle = CategoryTitle;
             }
             else //sj added
                 CategoryTitle = "Category Title";
@@ -111,17 +105,40 @@ namespace IQSDirectory
             if (dr.Length > 0)
             {
                 MetaDesc = dr[0]["DESCRIPTION"].ToString();
-                this.Page.Header.Controls.AddAt(4, new LiteralControl("<meta name='Description' content='" + MetaDesc + "' />"));
-                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta property = 'og:description' content = '" + MetaDesc + "' />"));
-
+                this.Master.PageDescription = MetaDesc;
             }
 
             dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(2, new LiteralControl("<meta name='Keywords' content='" + dr[0]["DESCRIPTION"].ToString() + "' />"));
+                this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString();
             dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
             if (dr.Length > 0)
-                this.Page.Header.Controls.AddAt(8, new LiteralControl(dr[0]["DESCRIPTION"].ToString()));
+                this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+            dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+            if (dr.Length > 0)
+                this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+            else
+                this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.BindMeta();
+            foreach (DataRow dr1 in dtScripts.Rows)
+            {
+                if (dr1["HEAD_SCRIPT"].ToString() != "")
+                {
+                    this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
+                }
+                if (dr1["BODY_START_SCRIPT"].ToString() != "")
+                {
+                    this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
+                }
+                if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
+                {
+                    this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
+                }
+                if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
+                {
+                    this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                }
+            }
         }
 
         public string RootPath { get; set; }
