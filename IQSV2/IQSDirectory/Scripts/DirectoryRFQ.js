@@ -1,18 +1,20 @@
 ﻿// JScript File
 
 $(document).ready(function () {
-    var response = grecaptcha.getResponse();
-    $("#hiddenRecaptcha").val(response);
-
+    //var response = grecaptcha.getResponse();
+    //$("#hiddenRecaptcha").val(response);
+    
     $("#frmRFQ").validate({
         
         rules: {
 
-            txtCompanyName: { required: true, minlength: 2 },
+            txtCompanyName : { required: true, minlength: 2 },
             txtContactName: { required: true, minlength: 2 },
             txtContactEmail: { required: true, emailRule: true },
             txtContactCity: { required: true },
-            txtCompanyWeb: { required: true },            
+            txtCompanyWeb: { required: true }
+            /*
+            ,                        
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -22,6 +24,7 @@ $(document).ready(function () {
                     }
                 }
             }
+            */
             
         },
         messages: {
@@ -31,51 +34,32 @@ $(document).ready(function () {
             txtContactEmail: { required: "Required ", emailRule: "Please input valid email address" },
             txtContactCity: { required: "Required ", minlength: "Must be at least 2 characters" },
             txtCompanyWeb: { required: "Required ", minlength: "Must be at least 2 characters" }
-
+            //hiddenRecaptcha: { required: "Required "}
         },
-        submitHandler: function () {
-            alert("submitted!");
+        submitHandler: function (form) {
+            alert("Thanks LORD");
+            form.submit();
+            return false;
+           //$('#btnSubmit').click();
+            
         }
     });
-   
-    $('#btnSubmit').on('click', function () {
-        
-        
-        $("#frmRFQ").submit();
-        alert($("#frmRFQ").valid() + " -- " + response);
-       
-        if ($("#frmRFQ").valid() == true) {
-            if (response.length == 0) {
-                if (SetSelectedValues()) {
-                    alert("set selected true");
-                    return true;
-                }
-                else {
-                    alert("set selected false");
-                    return false;
-                }
-            }
-            else {
-                alert("captcha failed");
-                return false;
-            }
-        }
-        //else
-        //  alert("form validation failed");
-        
-    });
+
     
     jQuery.validator.addMethod("emailRule", function (value, element) {
         Exp = /\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
         return this.optional(element) || Exp.test(value);
     }, 'Please enter a valid email.');
 
+    
 
 });
 
+
+
 function recaptchaCallback() {
-    $('#hiddenRecaptcha').valid();
-};
+   //$('#hiddenRecaptcha').valid();
+}
 
 var _varCount;
 var _varFlag;
@@ -244,7 +228,22 @@ function SetSelectedValues() {
         }
         document.getElementById('hdnSelectedtext').value = Selectedtext;
         _varFlag = '';
+        
+        //document.getElementById('btnSubmit').click();
+        var response = grecaptcha.getResponse();
+
+        if (response.length == 0) {
+            //reCaptcha not verified
+            _varFlag = false;
+            alert("Please verify that you are not a BOT!");
+            return false;
+        }
+        else {
+
+        }
+
         return true;
+
     }
     else {
         //error(19,'Company Name','');

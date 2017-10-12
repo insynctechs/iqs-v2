@@ -8,11 +8,14 @@
     <meta name="robots" content="noindex, nofollow" />
     <link href="Content/publish_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="Scripts/jquery-1.7.2.min.js" type="text/javascript" ></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script type="text/javascript"  src="Scripts/jquery.validate.js"></script>
+     <!--include jQuery -->  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  
+    type="text/javascript"></script>   
+    <!--include jQuery Validation Plugin-->  
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  
+    type="text/javascript"></script>   
     <script type="text/javascript"  src="Scripts/DirectoryRFQ.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <!--[if IE 5]>
 <style type='text/css'> 
 /* IE 5 does not use the standard box model, so the column widths are overidden to render the page correctly. */
@@ -131,13 +134,13 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                             <div class="rfqdivspecattsub">Attachment2 :</div><div><input id="inpAttachment2"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             <div class="rfqdivspecattsub">Attachment3 :</div><div><input id="inpAttachment3"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             
-                           <!-- <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"></div> -->
-                           <!-- <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback" />-->
+                           <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"></div> 
+                          <!-- <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback" />-->
                             <!--<div class="rfqdivspecatt">Enter the text as shown in the box.</div>-->
                             <div><%--<uc1:Captcha ID="Captcha1" runat="server" OnSuccess="OnSuccess" OnFailure="OnFailure"/>--%></div>
                             <div id="rfqmessage" runat="server"></div>
                             <div class="rfqbuttonsnew">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Send" CssClass="RFQSend btnIpBlock" onclick="btnSubmit_Click"  />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click"  />
                                 <input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" />
                                 <input type="hidden" name="val_curip" id="val_curip" value="" runat="server" />
                                 <input type="button" class="RFQSend" value="Reset"  onclick="ResetValues();" />

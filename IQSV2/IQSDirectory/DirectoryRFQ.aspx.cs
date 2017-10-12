@@ -78,7 +78,7 @@ namespace IQSDirectory
             string attrs = "";
             //sj added javascript validation to button click
             attrs += " return SetSelectedValues();";
-            btnSubmit.Attributes.Add("onclick", attrs);
+            btnSubmit.Attributes.Add("onClick", attrs);
            
         }
         #endregion
@@ -252,6 +252,7 @@ namespace IQSDirectory
         #region " Submit Button Click "
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+           
             divip_error.Visible = false;
              string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
                 string ipaddress = GetIPAddress();
@@ -610,7 +611,7 @@ namespace IQSDirectory
                     _Subject = System.Configuration.ConfigurationManager.AppSettings["RFQSubject"];
                     
                     //sendMailWithAttachment(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
-                    sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
+                    //sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
                    
 
                     //CommonLogger.Info("Sending mail completed");
