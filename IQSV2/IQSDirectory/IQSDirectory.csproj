@@ -188,6 +188,7 @@
     <Content Include="images\newsroom-main.png" />
     <Content Include="images\popup-close.png" />
     <Content Include="images\star.png" />
+    <Content Include="RFQConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\category_page1.js" />
@@ -292,6 +293,10 @@
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Helpers\WebApiHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RFQConfirmation.aspx.cs">
+      <DependentUpon>RFQConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -323,6 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
