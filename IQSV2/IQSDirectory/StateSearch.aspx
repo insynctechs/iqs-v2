@@ -23,11 +23,11 @@
                 Twitter</a></li>
             <li><a class="linkedin" 
                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
-                LinedIn</a></li>
+                LinkedIn</a></li>
             <li><a class="facebook"  href=""
                    onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">
                 Facebook</a></li>
-            <li><a  class="iframe lnkmail mail"
+            <li><a  class="lnkmail mail"
                    href="<%:RootPath %>share-page-email.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">
                 Mail</a></li>
             <li><a href="" class="print" onclick="javascript:window.print();return false;">
@@ -72,7 +72,7 @@
     <h2>Related Categories</h2>
     <ul id="ulRelatedCategories">
         <% foreach (var dr in RelatedCategories)
-                {  %>
+            {  %>
             <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
         <% } %>
     </ul>
@@ -80,13 +80,14 @@
 
     <section id='secadpage' class="adlist_section boxnone">
         <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
-                                  id="lnkRFQ" class="iframe lnkrfq" style="float:left;">Request For Quote</a>
-            <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" class="iframe"
-                style="float:left; ">Go To <%: H1Text %> Home</a></div>
+                                  id="lnkRFQ" class="lnkrfq">Request For Quote</a>
+            <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" >Go To <%: H1Text %> Home</a></div>
         <ul class="adlist_ul">
-            <h2><%: H1Text %> Companies Serving <%: CurrentState %></h2>
-            <% foreach (var stAd in StateAdvertisements)
-                { %>
+            <h2><%: H1Text %> Companies Serving <%: StateName %></h2>
+    <% if (StateAdvertisements.Count > 0)
+    {
+        foreach (var stAd in StateAdvertisements)
+        { %>
             <li>
                 <header>
                     <h3 class='cname'>
@@ -117,7 +118,12 @@
                     </div>
                 </div>
             </li>
-            <% } %>
+            <% }
+    }
+    else
+    { %>
+            <p>No companies under the searched state. You can see below the companies serving under neighboring states.</p>
+     <% } %>
             <% 
                 string scode = "", precode = "";
                 foreach (var nghAd in NeighAdvertisements)
@@ -135,8 +141,6 @@
                         <span><%: nghAd["CITY_STATE"] %></span>
                         <span><%: nghAd["PHONE"] %></span>
                     </h3>
-                    <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: nghAd["CLIENT_SK"] %>' class='btnrfq'
-                            >Request For Quote</a>
                     <a rel='nofollow' class='btncopro'   alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: nghAd["ADDESCRIPTION"] %>

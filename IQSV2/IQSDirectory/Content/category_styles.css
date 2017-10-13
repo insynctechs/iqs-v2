@@ -304,9 +304,10 @@ table, tr, td {max-width:100% !important;}
     /*width:88%;*/
 }
 
-.adlist_section .div_buttons
-{
-    padding-bottom:20px; height:22px; width:100%;
+.adlist_section .div_buttons {
+    padding-bottom: 20px;
+    height: 52px;
+    width: 100%;
 }
 
 .adlist_section .div_buttons a
@@ -322,6 +323,7 @@ table, tr, td {max-width:100% !important;}
     text-decoration: none;
     width: 295px;
     line-height:26px;
+    float:left;
 }
 
 #secaddcomp
@@ -946,7 +948,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     }
     .adlist_section aside
     {
-        width: 47%;
+        width: 43%;
 
     }
 

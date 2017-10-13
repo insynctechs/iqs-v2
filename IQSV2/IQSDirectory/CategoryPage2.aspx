@@ -70,6 +70,8 @@
 
     <% if (TierAdvertisements.Count > 0) { %>
     <section id='secpage2' class="adlist_section">
+        <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
+                                  id="lnkRFQ" class="lnkrfq">Request For Quote</a></div>
         <ul class="adlist_ul">
             <% foreach (var drTAd in TierAdvertisements)
                 {%>
