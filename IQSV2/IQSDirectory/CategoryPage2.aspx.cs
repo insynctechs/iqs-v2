@@ -32,7 +32,7 @@ namespace IQSDirectory
                 url = url.Remove(url.Length - 1);
                 Response.Redirect(url);
             }
-            RootPath = "";
+            RootPath = "../";
             CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
@@ -95,7 +95,7 @@ namespace IQSDirectory
 
             this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
 
-            if (dtMeta != null)
+            if (dtMeta.Rows.Count > 0)
             {
                 dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
 
@@ -134,7 +134,7 @@ namespace IQSDirectory
 
             this.Master.BindMeta();
 
-            if (dtScripts != null)
+            if (dtScripts.Rows.Count > 0)
             {
                 foreach (DataRow dr1 in dtScripts.Rows)
                 {

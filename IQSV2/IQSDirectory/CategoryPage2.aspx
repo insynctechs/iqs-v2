@@ -24,7 +24,7 @@
                 <li><a class="facebook" rel="nofollow" href=""
                     onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
                 <li><a rel="nofollow" class="iframe lnkmail mail"
-                    href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
+                    href="<%:RootPath %>share-page-email.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
                 <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
             </ul>
             <script type="text/javascript">
@@ -68,6 +68,7 @@
         </article>
     </section>
 
+    <% if (TierAdvertisements.Count > 0) { %>
     <section id='secpage2' class="adlist_section">
         <ul class="adlist_ul">
             <% foreach (var drTAd in TierAdvertisements)
@@ -112,14 +113,20 @@
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
+    <% } %>
+
     <script type='text/javascript'>
         $(document).ready(function () {
             $.get('../StateSearch.html', function (data) {
                 $('#secsbox').html(data);
-                $('#txtsearch').val('bolts');
+                $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
-        });
+         });
+
+        $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+        $('.lnkmail').bind('contextmenu', function (e) { return false; });
+
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />

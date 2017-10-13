@@ -145,7 +145,7 @@ namespace IQSDirectory
 
             this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
 
-            if (dtMeta != null)
+            if (dtMeta.Rows.Count > 0)
             {
                 dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
 
@@ -184,7 +184,7 @@ namespace IQSDirectory
 
             this.Master.BindMeta();
 
-            if (dtScripts != null)
+            if (dtScripts.Rows.Count > 0)
             {
                 foreach (DataRow dr1 in dtScripts.Rows)
                 {

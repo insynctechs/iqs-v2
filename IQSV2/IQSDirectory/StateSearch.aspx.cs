@@ -106,7 +106,7 @@ namespace IQSDirectory
 
             this.Master.PageIndex = new HtmlString("<meta name='robots' content='noindex,follow'>");
 
-            if (dtMeta != null)
+            if (dtMeta.Rows.Count > 0)
             {
                 dr = dtMeta.Select("META_TAG_ID='TITLE'");
                 if (dr.Length > 0)
@@ -127,8 +127,8 @@ namespace IQSDirectory
                 if (dr.Length > 0)
                     this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
 
-
-                if (dtIndexes != null)
+                
+                if (dtIndexes.Rows.Count > 0)
                 {
                     DataRow[] drIndex = dtIndexes.Select("state_sk=" + StateSK);
 
@@ -148,7 +148,7 @@ namespace IQSDirectory
 
             this.Master.BindMeta();
 
-            if (dtScripts != null)
+            if (dtScripts.Rows.Count > 0)
             {
                 foreach (DataRow dr1 in dtScripts.Rows)
                 {

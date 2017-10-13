@@ -26,7 +26,7 @@
                 <li><a class="facebook"  href=""
                     onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
                 <li><a class="iframe lnkmail mail"
-                    href="../controls/MailSend.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
+                    href="<%:RootPath %>share-page-email.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
                 <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
             </ul>
             <script type="text/javascript">
@@ -74,6 +74,7 @@
         </ul>
     </section>
 
+     <% if (Tier1Advertisements.Count > 0) { %>
     <section id='sectier1' class="adlist_section">
         <ul class="adlist_ul">
             <% foreach (var drT1Ad in Tier1Advertisements)
@@ -119,7 +120,7 @@
             <img src='images/cardboard-placeholder.jpg' /></div>
         </aside>
     </section>
-
+    <% } %>
 
     <% if (Tier2Advertisements.Count > 0) { %>
     <section id='sectier2' class="adlist_section">
@@ -232,7 +233,10 @@
 
             $('.btnrfq').fancybox({'height':600,'width':800,'onStart':function(){$('body').css('overflow','hidden');},'onClosed':function(){$('body').css('overflow','auto');},'hideOnOverlayClick':false});
             $('.btnrfq').bind('contextmenu', function(e){return false;});
-            $('.btnrfq').css('display','block');
+            $('.btnrfq').css('display', 'block');
+
+            $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+            $('.lnkmail').bind('contextmenu', function (e) { return false; });
         });
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
