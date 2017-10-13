@@ -1,11 +1,9 @@
 ﻿// JScript File
 
 $(document).ready(function () {
-    //var response = grecaptcha.getResponse();
-    //$("#hiddenRecaptcha").val(response);
     
     $("#frmRFQ").validate({
-        
+        //ignore: ".ignore",
         rules: {
 
             txtCompanyName : { required: true, minlength: 2 },
@@ -13,8 +11,7 @@ $(document).ready(function () {
             txtContactEmail: { required: true, emailRule: true },
             txtContactCity: { required: true },
             txtCompanyWeb: { required: true }
-            /*
-            ,                        
+           /*
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -37,11 +34,19 @@ $(document).ready(function () {
             //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
-            alert("Thanks LORD");
             form.submit();
             return false;
-           //$('#btnSubmit').click();
-            
+            /*
+                if (grecaptcha.getResponse()) {
+                    $("#rfqmessage").html("You are not a BOT!");
+                    form.submit();
+                    return false;
+                } else {
+                    $("#rfqmessage").html("Please make sure that you are not a BOT!");
+                   // return false;
+                    
+                }
+            */
         }
     });
 
@@ -58,7 +63,7 @@ $(document).ready(function () {
 
 
 function recaptchaCallback() {
-   //$('#hiddenRecaptcha').valid();
+   $('#hiddenRecaptcha').valid();
 }
 
 var _varCount;
@@ -202,6 +207,7 @@ function CheckAll(ButtonIds) {
 
 
 function SetSelectedValues() {
+    document.getElementById('rfqmessage').innerHTML = "";
     var tblID = document.getElementById('tblCategories');
     var tbllength = tblID.rows.length - 1;
     var tblcount = 0;
@@ -230,25 +236,26 @@ function SetSelectedValues() {
         _varFlag = '';
         
         //document.getElementById('btnSubmit').click();
+        
         var response = grecaptcha.getResponse();
 
         if (response.length == 0) {
             //reCaptcha not verified
             _varFlag = false;
-            alert("Please verify that you are not a BOT!");
+           // alert("Please verify that you are not a BOT!");
+            document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
             return false;
         }
-        else {
-
-        }
-
+       
         return true;
 
     }
     else {
         //error(19,'Company Name','');
         //tblID.rows[tblcount].cells[0].childNodes[0].focus();
-        alert("Please select Company names");
+        //alert("Please select Company names");
+
+        document.getElementById('rfqmessage').innerHTML = "Please select Company names";
         _varFlag = '';
         return false;
     }
