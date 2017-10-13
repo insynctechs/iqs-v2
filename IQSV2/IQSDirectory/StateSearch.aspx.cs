@@ -101,61 +101,73 @@ namespace IQSDirectory
 
         private void GenerateMetaAndScripts(DataTable dtMeta, DataTable dtScripts, DataTable dtAnalytics, DataTable dtIndexes)
         {
-            
-            DataRow[] dr = dtMeta.Select("META_TAG_ID='TITLE'");
-            if (dr.Length > 0)
-            {
-                this.Master.PageTitle = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text);
-                
-            }
-            dr = dtMeta.Select("META_TAG_ID='DESCRIPTION'");
-            if (dr.Length > 0)
-            {
-                this.Master.PageDescription = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text);
-                
-            }
-            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
-            if (dr.Length > 0)
-                this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]",H1Text);
-            dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
-            if (dr.Length > 0)
-                this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
-            
-            DataRow[] drIndex = dtIndexes.Select("state_sk=" + StateSK);
-            bool isIndexed = false;            
-            if (drIndex.Length > 0)
-            {
-                isIndexed = true;
-                this.Master.PageIndex =  new HtmlString("<meta name='robots' content='index,follow'>");
-            }          
+            bool isIndexed = false;
+            DataRow[] dr;
 
-            if (isIndexed == false)
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='noindex,follow'>");
+
+            if (dtMeta != null)
             {
-                dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+                dr = dtMeta.Select("META_TAG_ID='TITLE'");
                 if (dr.Length > 0)
-                    this.Master.PageIndex =  new HtmlString(dr[0]["DESCRIPTION"].ToString());
-                else
-                    this.Master.PageIndex =  new HtmlString("<meta name='robots' content='noindex,follow'>");
-            }
+                {
+                    this.Master.PageTitle = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text);
+
+                }
+                dr = dtMeta.Select("META_TAG_ID='DESCRIPTION'");
+                if (dr.Length > 0)
+                {
+                    this.Master.PageDescription = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text);
+
+                }
+                dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+                if (dr.Length > 0)
+                    this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString().Replace("[state]", StateName).Replace("[keyword]", H1Text);
+                dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
+                if (dr.Length > 0)
+                    this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+
+
+                if (dtIndexes != null)
+                {
+                    DataRow[] drIndex = dtIndexes.Select("state_sk=" + StateSK);
+
+                    if (drIndex.Length > 0)
+                    {
+                        isIndexed = true;
+                        this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+                    }
+                }
+                if (isIndexed == false)
+                {
+                    dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+                    if (dr.Length > 0)
+                        this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                }
+            }                       
 
             this.Master.BindMeta();
-            foreach (DataRow dr1 in dtScripts.Rows)
+
+            if (dtScripts != null)
             {
-                if (dr1["HEAD_SCRIPT"].ToString() != "")
+                foreach (DataRow dr1 in dtScripts.Rows)
                 {
-                    this.Master.HeadScript =  new HtmlString( dr1["HEAD_SCRIPT"].ToString() );
-                }
-                if (dr1["BODY_START_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
-                }
-                if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
-                }
-                if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                    if (dr1["HEAD_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_START_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                    }
                 }
             }
 

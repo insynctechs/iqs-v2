@@ -1,10 +1,11 @@
 ﻿<%@ master language="C#" autoeventwireup="true" codebehind="Site.master.cs" inherits="IQSDirectory.SiteMaster" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />    
+    <meta name="robots" content="noindex, nofollow" />   
+    <meta name='copyright' content='2017 Industrial Quick Search Manufacturing Directory' />
     <title><%: PageTitle %></title>
     <%= PageMeta %>   
     

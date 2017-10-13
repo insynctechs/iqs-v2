@@ -140,59 +140,70 @@ namespace IQSDirectory
 
         private void GenerateMetaTagsAndScripts(DataTable dtMeta, DataTable dtScripts)
         {
-            DataRow[] dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
-            if(dr.Length > 0)
-            {
-                CategoryTitle = dr[0]["DESCRIPTION"].ToString();
-                CategoryTitle = CategoryTitle.Replace("–", "-");
-                CategoryTitle = CategoryTitle.Replace("&", "&amp;");
-                this.Master.PageTitle = CategoryTitle;
-            }
-            else //sj added
-                CategoryTitle = "Category Title";
-            
-            dr = dtMeta.Select("META_TAG_ID = 'DESCRIPTION'");
-            
-            if (dr.Length > 0)
-            {
-                MetaDesc = dr[0]["DESCRIPTION"].ToString();
-                this.Master.PageDescription = MetaDesc;
-               
+                        
+            DataRow[] dr;
 
-            }
-            
-            dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
-            if (dr.Length > 0)
-                this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString();
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
 
-            
-            dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
-            if (dr.Length > 0)
-                this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
-            dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
-            if (dr.Length > 0)
-                this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
-            else
-                this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            if (dtMeta != null)
+            {
+                dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
+
+                if (dr.Length > 0)
+                {
+                    CategoryTitle = dr[0]["DESCRIPTION"].ToString();
+                    CategoryTitle = CategoryTitle.Replace("–", "-");
+                    CategoryTitle = CategoryTitle.Replace("&", "&amp;");
+                    this.Master.PageTitle = CategoryTitle;
+                }
+                else 
+                    CategoryTitle = "IQS Product Categories";
+
+                dr = dtMeta.Select("META_TAG_ID = 'DESCRIPTION'");
+
+                if (dr.Length > 0)
+                {
+                    MetaDesc = dr[0]["DESCRIPTION"].ToString();
+                    this.Master.PageDescription = MetaDesc;
+
+
+                }
+
+                dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+                if (dr.Length > 0)
+                    this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString();
+
+
+                dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
+                if (dr.Length > 0)
+                    this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+                if (dr.Length > 0)
+                    this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+            }
 
             this.Master.BindMeta();
-            foreach (DataRow dr1 in dtScripts.Rows)
+
+            if (dtScripts != null)
             {
-                if (dr1["HEAD_SCRIPT"].ToString() != "")
+                foreach (DataRow dr1 in dtScripts.Rows)
                 {
-                    this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
-                }
-                if (dr1["BODY_START_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
-                }
-                if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
-                }
-                if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
-                {
-                    this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                    if (dr1["HEAD_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_START_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
+                    }
+                    if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
+                    {
+                        this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                    }
                 }
             }
         }
