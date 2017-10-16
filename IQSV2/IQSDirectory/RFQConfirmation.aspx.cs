@@ -20,7 +20,7 @@ namespace IQSDirectory
     {
         //SELECT TOP(1) * FROM dbo.IQS_TRACKING_SCRIPT ORDER BY SCRIPT_PK;
         //ICategoriesService objICategoriesService;
-        string DirectoryWebSiteURL = System.Configuration.ConfigurationManager.AppSettings["DirectoryWebSiteURL"].ToString();
+       // string DirectoryWebSiteURL = System.Configuration.ConfigurationManager.AppSettings["DirectoryWebSiteURL"].ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -29,8 +29,8 @@ namespace IQSDirectory
                 {
                     string CategorySK = string.Empty;
                     string strRequestIP = string.Empty;
-                    if (DirectoryWebSiteURL.Trim().LastIndexOf("/") != DirectoryWebSiteURL.Trim().Length - 1)
-                        DirectoryWebSiteURL = DirectoryWebSiteURL + "/";
+                    //if (DirectoryWebSiteURL.Trim().LastIndexOf("/") != DirectoryWebSiteURL.Trim().Length - 1)
+                      //  DirectoryWebSiteURL = DirectoryWebSiteURL + "/";
                     if (Request.QueryString["CategorySK"] != null)
                     {
                         CategorySK = Request.QueryString["CategorySK"].ToString();
@@ -92,7 +92,7 @@ namespace IQSDirectory
             }
             catch
             {
-                Response.Redirect(DirectoryWebSiteURL);
+                //Response.Redirect(DirectoryWebSiteURL);
             }
         }
         #endregion
