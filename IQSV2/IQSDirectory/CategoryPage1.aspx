@@ -117,7 +117,7 @@
             <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
             -->
             <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='images/cardboard-placeholder.jpg' /></div>
+            <img src='images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
     <% } %>
@@ -162,8 +162,8 @@
             <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
             <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
             -->
-             <div id="preview2" class="forpreview" alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' /></div>
+             <div id="preview2" class="forpreview" > <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
     <% } %>
