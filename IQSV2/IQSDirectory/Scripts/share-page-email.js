@@ -6,7 +6,7 @@ $(document).ready(function () {
         //ignore: ".ignore",
         rules: {
 
-            txtName : { required: true, minlength: 2 },
+            txtName : { required: true},
             txtFrom: { required: true, emailRule: true },
             txtTo: { required: true, multiemails: true },
             
@@ -25,9 +25,9 @@ $(document).ready(function () {
         },
         messages: {
 
-            txtName: { required: "Required ", minlength: "Must be at least 2 characters" },
-            txtFrom: { required: "Required ", emailRule: "Please input valid email address" },
-            txtTo: { required: "Required ", multiemails: "Please input valid email addresses" }
+            txtName: { required: "Required " },
+            txtFrom: { required: "Required ", emailRule: "Invalid" },
+            txtTo: { required: "Required ", multiemails: "Invalid" }
           
             //hiddenRecaptcha: { required: "Required "}
         },
@@ -75,6 +75,22 @@ $(document).ready(function () {
 
 });
 
+function jqClick()
+{
+
+    var response = grecaptcha.getResponse();
+
+    if (response.length == 0) {
+        //reCaptcha not verified
+        _varFlag = false;
+        alert("Please verify that you are not a BOT!");
+        //document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
+        return false;
+    }
+
+    return true;
+
+}
 
 
 function recaptchaCallback() {

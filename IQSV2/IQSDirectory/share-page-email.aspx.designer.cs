@@ -13,6 +13,15 @@ namespace IQSDirectory {
     public partial class share_page_email {
         
         /// <summary>
+        /// divRegForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegForm;
+        
+        /// <summary>
         /// frmShare control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,14 @@ namespace IQSDirectory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtUrl;
+        
+        /// <summary>
+        /// divStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
     }
 }
