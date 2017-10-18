@@ -71,4 +71,35 @@ namespace IQSDirectory
             return Convert.ToBoolean(dt.Rows[0][0]);
         }
     }
+
+    public class CompanyProfileConstraint : IRouteConstraint
+    {
+        WebApiHelper wHelper = new WebApiHelper();
+
+        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            return GetCompanyProfileById(values[parameterName].ToString().ToLower());
+        }
+
+        private bool GetCompanyProfileById(string copro)
+        {
+            if (copro.LastIndexOf('-') > 0)
+            {
+                string Client_SK = copro.Substring(copro.LastIndexOf('-')).Trim('-');
+                var url = string.Format("api/CompanyProfile/GetCompanyProfileById?Client_SK=" + Client_SK);
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        if (dt.Rows[0]["COPRO_URL"].ToString().ToLower().Replace("profile/","").Replace("/","")  == copro.ToLower())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+    }
 }

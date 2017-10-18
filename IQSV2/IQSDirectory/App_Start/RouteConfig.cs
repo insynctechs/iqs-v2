@@ -48,6 +48,14 @@ namespace IQSDirectory
                 new RouteValueDictionary { { "category,state", new StateSearchConstraint() } }
                 );
 
+            routes.MapPageRoute("CompanyProfile",
+                "profile/{copro}",
+                "~/CompanyProfile.aspx",
+                true,
+                null,
+                new RouteValueDictionary { { "copro", new CompanyProfileConstraint() } }
+                );
+
         }
     }
 }
