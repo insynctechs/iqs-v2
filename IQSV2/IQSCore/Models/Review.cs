@@ -36,7 +36,6 @@ namespace IQSCore.Models
             return sqlParam[2].Value.ToString();
         }
         #endregion
-
         
         #region " Get Reviews "
         public async Task<DataSet> GetReviews(int Client_SK, int LastCommentId)
@@ -60,17 +59,17 @@ namespace IQSCore.Models
         #endregion
 
         #region " Get Profanity "
-        public async Task<DataSet> Profanity()
+        public async Task<DataSet> GetProfanity(string word)
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[0] = new SqlParameter("@ProfanityWord", "");
+            sqlParam[0] = new SqlParameter("@ProfanityWord", word);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetProfanity", sqlParam));
 
         }
         #endregion
 
         #region " Insert Commenters "
-        public async Task<string> InsertCommenters(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active)
+        public async Task<string> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active)
         {
             SqlParameter[] sqlParam = new SqlParameter[7];
             sqlParam[0] = new SqlParameter("@DesiredName", DesiredName);
@@ -84,7 +83,7 @@ namespace IQSCore.Models
             await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertCommenters", sqlParam));
             return sqlParam[6].Value.ToString();
         }
-        #endregion
+        #endregion        
 
         #region " Login Commenters "
         public async Task<DataSet> CommentersLogin(string Email,string Password)
@@ -144,8 +143,11 @@ namespace IQSCore.Models
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
             sqlParam[1] = new SqlParameter("@SystemIp", SystemIp);
-            await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertCommenterPriv", sqlParam));
-            return "success";
+            int res = await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertCommenterPriv", sqlParam));
+            if (res > 0)
+                return "success";
+            else
+                return "failure";
         }
         #endregion
 
@@ -165,8 +167,11 @@ namespace IQSCore.Models
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
             sqlParam[1] = new SqlParameter("@UserId", UserId);
-            await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspDisableCommenter", sqlParam));
-            return "success";
+            int res = await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspDisableCommenter", sqlParam));
+            if (res > 0)
+                return "success";
+            else
+                return "failure";
         }
         #endregion
 
@@ -177,7 +182,12 @@ namespace IQSCore.Models
             SqlParameter[] sqlParam = new SqlParameter[1];
             sqlParam[1] = new SqlParameter("@UserId", UserId);
             DataSet ds =  await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCommenterIsActive", sqlParam));
-            return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
+            if (ds.Tables.Count == 0)
+                return -1;
+            else if(ds.Tables[0].Rows.Count == 0)
+                return -1;
+            else 
+                return Convert.ToInt16(ds.Tables[0].Rows[0][0].ToString());
         }
         #endregion
 
