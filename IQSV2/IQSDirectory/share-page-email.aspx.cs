@@ -26,6 +26,12 @@ namespace IQSDirectory
                 txtTitle.Value = Request.QueryString["title"].ToString();
                 txtDescription.Value = Request.QueryString["des"].ToString();
                 txtUrl.Value = Request.QueryString["url"].ToString();
+
+                
+                //string attrs = "";
+                //sj added javascript validation to button click
+                //attrs += " return jqClick();";
+                //btnSubmit.Attributes.Add("onClick", attrs);
             }
       
                 /*
@@ -127,16 +133,25 @@ namespace IQSDirectory
             {
                 try
                 {
-                string _FromAddress = txtFrom.Value.Trim().ToString();
-                string _toAddress = txtTo.Value.Trim().ToString();
+                /*
+                string[] keys = Request.Form.AllKeys;
+                for (int i = 0; i < keys.Length; i++)
+                {
+                    Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
+                }
+                */
+                string _FromAddress = Request.Form["txtFrom"].ToString();                    
+                
+                string _toAddress = Request.Form["txtTo"].Trim().ToString();
                 string _Subject = "[IQS DIRECTORY] - " + txtTitle.Value.ToUpper().Replace("%20", " ");
-                string _strMailBody = "< a href = '" + txtUrl.Value.ToString() + "' > " + txtTitle.Value.Replace(" % 20", " ") + " </ a >";
-                _strMailBody += "<br/><a href='" + txtUrl.Value.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
-                _strMailBody += "<br/> Thanks & Regards <br/>" + txtName.Value.ToString();
+                string _strMailBody = "< a href = '" + txtUrl.Value.ToString() + "' > " + txtTitle.Value.Replace(" % 20", " ") + " </a><br/><br/>";
+                _strMailBody += "<br/><br/>"+txtDescription.Value.ToString();
+                _strMailBody += "<br/><br/><a href='" + txtUrl.Value.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
+                _strMailBody += "<br/><br/> Thanks & Regards <br/>" + Request.Form["txtName"].ToString();
                 sendMailWithAttachment(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
                 //sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
 
-
+                
 
             }
                 catch (Exception ex)
@@ -179,8 +194,8 @@ namespace IQSDirectory
             //Put your own, or your ISPs, mail server name onthis next line
             mailClient.Host = System.Configuration.ConfigurationManager.AppSettings["MailServerIP"];
             mailClient.Send(Email);
-
-
+            divStatus.InnerHtml = "<h1>Mail Succesfully sent.</h1>";
+            divRegForm.Style.Add("display", "none");
         }
         #endregion
 

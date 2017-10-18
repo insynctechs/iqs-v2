@@ -1,0 +1,109 @@
+/* css document */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;outline:0;font-size:100%}
+body{background-color:#f0efed;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px;font-weight:500;margin:0;padding:0;text-align:center;/*min-width:1003px;*/width:100%}
+img,a.img{border:0}
+h1 {color:#374246;font-size:18px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;}
+h2{font-size:13px;color:#f60;font-weight:bold;line-height:14px}
+/*** SJ added for share-page-email **/
+/*Mail Send Form*/
+.mailbody {
+    background-color: #E3E7EA;
+    overflow: hidden;
+}
+
+#divRegForm {
+    height: 350px;
+    margin: 0 0 4px 10px;
+    overflow: visible;
+    line-height: 14px;
+    font-weight: 500;
+    text-align: left;
+
+}
+
+    #divRegForm header {
+        height: auto;
+        margin: 0;
+        overflow: hidden;
+        padding: 6px 0 0;
+    }
+
+    #divRegForm h1 {
+        color: #374246;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        line-height:80px;
+    }
+
+    #divRegForm ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        #divRegForm ul li {
+            color: #000000;
+            font-size: 11px;
+        }
+
+#divSuccess {
+    display: none;
+    height: auto;
+    overflow: hidden;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.commenttextbox {
+    border: 1px solid #AAAAAA;
+    margin: 0 0 10px 0;
+    width: 270px;
+}
+
+.commenttextarea {
+    border: 1px solid #AAAAAA;
+    margin: 0 0 10px 0;
+    width: 270px;
+    height:70px;
+    vertical-align:top;
+    text-align:left;
+ 
+}
+
+.tagsinput {
+    margin: 0 0 10px 0;
+}
+
+.rfqtextboxC {
+    border: 1px solid #AAAAAA;
+    width: 100px;
+    display: block;
+}
+
+.require {
+    color: #FF0000;
+    text-align: left;
+}
+
+.mailsend {
+    display: block;
+    float: left;
+    width: auto;
+    margin-top: 45px;
+    margin-left: 1px;
+    clear: both;
+}
+
+.spanwait {
+    display: none;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 231px;
+    margin-top: 59px;
+    position: absolute;
+    text-align: center;
+}
+/*Mail Send Form*/
+
+.error{ color:red; font-weight:bold; padding-left:0.2em; }
