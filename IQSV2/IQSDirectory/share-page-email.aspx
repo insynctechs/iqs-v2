@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="share-page-email.aspx.cs" Inherits="IQSDirectory.share_page_email" %>
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -31,7 +29,7 @@
                 <li>E-mail Address:<span class="require">* </span></li>
                 <li><input type="text" id="txtFrom" class="commenttextbox" runat="server" /></li>
                 <li>Receiver(s) Mail Address :<span class="require">* </span></li>
-                <li><input type="text" id="txtTo" class="commenttextarea" runat="server" /></li>
+                <li><input type="text" id="txtTo" class="commenttextbox" runat="server" /></li>
                 <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div></li>
                 <li><asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click"  /></li>
                  <!-- <a href="#Close" id="lnkClose"><img src="images/close.png" alt="Close" /></a>-->
