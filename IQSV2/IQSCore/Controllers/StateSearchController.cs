@@ -56,10 +56,10 @@ namespace IQSCore.Controllers
                 dr[0] = "";
                 dr[1] = "All States";
                 ds.Tables[0].Rows.InsertAt(dr, 0);
-                List<object> lo = new List<object>();
+                /*List<object> lo = new List<object>();
                 foreach(DataRow d in ds.Tables[0].Rows)
-                    lo.Add(new object[] { d[0].ToString(), d[1].ToString() });
-                return Json(JsonConvert.SerializeObject(lo));
+                    lo.Add(new object[] { d[0].ToString(), d[1].ToString() });*/
+                return Json(JsonConvert.SerializeObject(ds.Tables[0],Formatting.Indented));
             }
         }
 
@@ -68,6 +68,7 @@ namespace IQSCore.Controllers
         {
             var res = await stateSearch.GetStateSearchResults(Category, State);
             return Ok(res);
+            
         }
 
         [Route("api/StateSearch/GetStateSearchPageDetails")]
@@ -75,6 +76,7 @@ namespace IQSCore.Controllers
         {
             var res = await stateSearch.GetStateSearchPageDetails(Category, State);
             return Ok(res);
+
         }
     }
 }
