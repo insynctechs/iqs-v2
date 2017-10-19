@@ -82,7 +82,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: drT1Ad["FORMATED_NAME"] %>' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', this)"><%: drT1Ad["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', this)"><%: drT1Ad["CLIENT_NAME"] %></a>
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>

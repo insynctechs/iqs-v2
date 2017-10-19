@@ -1,6 +1,7 @@
 ﻿// JScript File
 $(document).ready(function () {    
     $("#frmShare").validate({        
+        ignore: ".ignore",
         rules: {
             txtFirstName: { required: true },
             txtLastName: { required: true },

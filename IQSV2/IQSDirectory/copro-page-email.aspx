@@ -15,7 +15,7 @@
     <script type="text/javascript"  src="Scripts/copro-page-email.js"></script>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
-<body class="mailbody">    
+<body class="mailbody30">    
   <div id="profileForm" class="profilestyle" runat="server">
       <form id="frmShare" runat="server">
           <div id="divTop">
@@ -40,7 +40,7 @@
                 <li>Message :<span class="require">* </span></li>
                 <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
                 <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
-                    <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"   /> <!-- data-callback="recaptchaCallback" -->
+                    <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> <!--  -->
                 </li>                            </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>

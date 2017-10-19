@@ -56,10 +56,10 @@ namespace IQSCore.Controllers
                 dr[0] = "";
                 dr[1] = "All States";
                 ds.Tables[0].Rows.InsertAt(dr, 0);
-                /*List<object> lo = new List<object>();
+                List<object> lo = new List<object>();
                 foreach(DataRow d in ds.Tables[0].Rows)
-                    lo.Add(new object[] { d[0].ToString(), d[1].ToString() });*/
-                return Json(JsonConvert.SerializeObject(ds.Tables[0],Formatting.Indented));
+                    lo.Add(new object[] { d[0].ToString(), d[1].ToString() });
+                return Json(JsonConvert.SerializeObject(lo));
             }
         }
 

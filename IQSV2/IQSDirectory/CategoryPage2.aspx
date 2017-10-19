@@ -78,7 +78,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: drTAd["FORMATED_NAME"] %>' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', this)"><%: drTAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', this)"><%: drTAd["CLIENT_NAME"] %></a>
                         <span><%: drTAd["CITY_STATE"] %></span>
                         <span><%: drTAd["PHONE"] %></span>
                     </h3>
@@ -135,6 +135,10 @@
 
         $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
         $('.lnkmail').bind('contextmenu', function (e) { return false; });
+
+        $('.lnkrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+        $('.lnkrfq').bind('contextmenu', function (e) { return false; });
+        $('.lnkrfq').css('display', 'block');
 
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
