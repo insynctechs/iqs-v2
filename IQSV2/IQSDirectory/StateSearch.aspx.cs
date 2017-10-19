@@ -198,12 +198,43 @@ namespace IQSDirectory
 
             StateAdvertisements = dt.Select("theSTATE = '" + stateCode + "'").AsEnumerable().ToList();
             NeighAdvertisements = dt.Select("theSTATE <> '" + stateCode + "'", "theState").AsEnumerable().ToList();
+            GetClientSkForRating();
         }
 
         private void GenerateOtherAdvertisements(DataTable dt)
         {
             OtherAdvertisements = dt.AsEnumerable().ToList();
         }
+
+        private void GetClientSkForRating()
+        {
+            string ClientSKForRating = "";
+            if (StateAdvertisements.Count > 0)
+            {
+                ClientSKForRating += string.Join(",", StateAdvertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+            }
+            if (NeighAdvertisements.Count > 0)
+            {
+                if (ClientSKForRating != "")
+                    ClientSKForRating += ",";
+                ClientSKForRating += string.Join(",", NeighAdvertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+            }
+            
+            if (ClientSKForRating != "")
+            {
+                var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                if (dt.Rows.Count > 0)
+                {
+                    ClientRatings = dt.Select("SHOW_REVIEWS='Y'").ToList();
+                }
+                else
+                {
+                    ClientRatings = dt.AsEnumerable().ToList();
+                }
+            }
+        }
+
 
         public string RootPath { get; set; }
         public string CategoryName { get; set; }
@@ -225,6 +256,7 @@ namespace IQSDirectory
         public List<DataRow> StateAdvertisements { get; set; }
         public List<DataRow> NeighAdvertisements { get; set; }
         public List<DataRow> OtherAdvertisements { get; set; }
+        public List<DataRow> ClientRatings { get; set; }
         public string ApiPath { get; set; }
     }
 }

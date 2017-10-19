@@ -86,6 +86,29 @@ namespace IQSDirectory
             });
 
             TierAdvertisements = dt.AsEnumerable().ToList();
+            GetClientSkForRating();
+        }
+
+        private void GetClientSkForRating()
+        {
+            string ClientSKForRating = "";
+            if (TierAdvertisements.Count > 0)
+            {
+                ClientSKForRating += string.Join(",", TierAdvertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+            }
+            if (ClientSKForRating != "")
+            {
+                var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                if (dt.Rows.Count > 0)
+                {
+                    ClientRatings = dt.Select("SHOW_REVIEWS='Y'").ToList();
+                }
+                else
+                {
+                    ClientRatings = dt.AsEnumerable().ToList();
+                }
+            }
         }
 
         private void GenerateMetaTagsAndScripts(DataTable dtMeta, DataTable dtScripts)

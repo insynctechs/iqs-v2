@@ -196,6 +196,14 @@
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
 
+            <% foreach (var cr in ClientRatings)
+                {%>
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
+            if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
+            <% } %>
+
             $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
             $('.btnrfq').bind('contextmenu', function (e) { return false; });
             $('.btnrfq').css('display', 'block');

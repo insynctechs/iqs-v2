@@ -113,7 +113,7 @@ namespace IQSDirectory
             }
             if(ClientSKForRating != "")
             {
-                var url = string.Format("api/CompanyRatings/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
+                var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
                 DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt.Rows.Count > 0)
                 {

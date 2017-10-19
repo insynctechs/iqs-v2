@@ -124,6 +124,13 @@
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
             });
+            <% foreach (var cr in ClientRatings)
+                {%>
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
+            if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
+            <% } %>
          });
 
         $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
