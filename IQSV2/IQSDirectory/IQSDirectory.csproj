@@ -138,7 +138,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\category_styles.css" />
-    <Content Include="Content\copro_styles.css" />
     <Content Include="Content\dynamic_styles.css" />
     <Content Include="Content\form_styles.css" />
     <Content Include="Content\jquery-ui.css" />
