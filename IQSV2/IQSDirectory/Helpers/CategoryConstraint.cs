@@ -86,7 +86,7 @@ namespace IQSDirectory
             if (copro.LastIndexOf('-') > 0)
             {
                 string Client_SK = copro.Substring(copro.LastIndexOf('-')).Trim('-');
-                var url = string.Format("api/CompanyProfile/GetCompanyProfileById?Client_SK=" + Client_SK);
+                var url = string.Format("api/Clients/GetCompanyProfileById?Client_SK=" + Client_SK);
                 DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt != null)
                 {

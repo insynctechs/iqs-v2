@@ -23,5 +23,15 @@ namespace IQSCore.Controllers
             else
                 return Ok(res);
         }
+
+        [Route("api/Clients/GetCompanyProfileById")]
+        public async Task<IHttpActionResult> GetCompanyProfileById(int Client_SK, int json = 0)
+        {
+            var cat = await comp.GetCompanyProfileById(Client_SK);
+            if (json == 1)
+                return Json(JsonConvert.SerializeObject(cat, Formatting.Indented));
+            else
+                return Ok(cat);
+        }
     }
 }
