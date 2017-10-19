@@ -6,8 +6,8 @@ $(document).ready(function () {
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true }
-            
+            txtZip: { required: true, zipRule: true },
+            hiddenRecaptcha: { required: true, captchaRule:true }
            /*
             hiddenRecaptcha: {
                 required: function () {
@@ -27,9 +27,8 @@ $(document).ready(function () {
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"}
-          
-            //hiddenRecaptcha: { required: "Required "}
+            txtZip: {required: "Required", zipRule:"Invalid"},
+             hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
             alert("Thanks Lord");
@@ -48,6 +47,16 @@ $(document).ready(function () {
             */
         }
     });
+
+    jQuery.validator.addMethod("captchaRule", function (value, element) {
+        var response = grecaptcha.getResponse();
+        if (response.length == 0)
+            _varFlag = false;
+        else
+            _varFlag = true;
+
+        return this.optional(element) || _varFlag;
+    }, 'Please make sure that you are not a BOT!');
 
     
     jQuery.validator.addMethod("emailRule", function (value, element) {
@@ -83,7 +92,7 @@ $(document).ready(function () {
 
 function jqClick()
 {
-    
+    /*
     var response = grecaptcha.getResponse();
 
     if (response.length == 0) {
@@ -93,7 +102,7 @@ function jqClick()
         //document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
         return false;
     }
-    
+    */
     
     return true;
 

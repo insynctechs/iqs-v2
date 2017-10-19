@@ -33,7 +33,7 @@ namespace IQSDirectory
                 */
                 string ClientSk = "57425";
                 //ClientSk = Request.QueryString["ClientSK"].ToString();
-                var urlGetId = string.Format("api/Companies/GetClientNameEmailById?ClientSk=" + ClientSk);
+                var urlGetId = string.Format("api/Clients/GetClientNameEmailById?ClientSk=" + ClientSk);
                 DataTable dtEmail = wHelper.GetDataTableFromWebApi(urlGetId);
                 clientEmail = dtEmail.Rows[0]["EMAIL_ADDRESS"].ToString();
                 clientName = dtEmail.Rows[0]["NAME"].ToString();
