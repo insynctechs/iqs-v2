@@ -582,7 +582,7 @@ P #googlemapicon{margin-right:5px}
 .page1tbl{display:table;width:100%}
 .page1tbl_td1,.page1tbl_td2,.page1tbl_td3{vertical-align:middle;display:table-cell;text-align:left;padding:15px 0}
 .page1tbl_td1{text-align:center;width:26%;}
-.page1tbl_td2{width:75%;padding-top:14px}
+.page1tbl_td2{width:75%;padding-top:14px}ilestyle
 .viewWebsite{padding-top:3px}
 .viewWebsite1{padding-top:6px;display:block;font-weight:bold;color:#30494e;text-decoration:underline}
 .viewWebsite2{display:block;font-weight:bold;color:#30494e;text-decoration:underline}
@@ -900,6 +900,108 @@ hr{color:#304846;background-color:#304846;height:2px;margin-bottom:15px}
 img{vertical-align:top}
 .pagelink{color:black}
 /**** End of Custom CSS ***/
+
+/*** SJ added for share-page-email **/
+/*Mail Send Form*/
+.mailbody {
+    background-color: #E3E7EA;
+    overflow: hidden;
+}
+
+#divRegForm {
+    height: 350px;
+    margin: 0 0 4px 10px;
+    overflow: visible;
+    line-height: 14px;
+    font-weight: 500;
+    text-align: left;
+
+}
+
+    #divRegForm header {
+        height: auto;
+        margin: 0;
+        overflow: hidden;
+        padding: 6px 0 0;
+    }
+
+    #divRegForm h1 {
+        color: #374246;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        line-height:80px;
+    }
+
+    #divRegForm ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        #divRegForm ul li {
+            color: #000000;
+            font-size: 11px;
+        }
+
+#divSuccess {
+    display: none;
+    height: auto;
+    overflow: hidden;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.commenttextbox {
+    border: 1px solid #AAAAAA;
+    margin: 0 0 10px 0;
+    width: 120px;
+}
+
+.commenttextarea {
+    border: 1px solid #AAAAAA;
+    margin: 0 0 10px 0;
+    width: 230px;
+    height:70px;
+    vertical-align:top;
+
+}
+
+.tagsinput {
+    margin: 0 0 10px 0;
+}
+
+.rfqtextboxC {
+    border: 1px solid #AAAAAA;
+    width: 100px;
+    display: block;
+}
+
+.require {
+    color: #FF0000;
+    text-align: left;
+}
+
+.mailsend {
+    display: block;
+    float: left;
+    width: auto;
+    margin-top: 45px;
+    margin-left: 1px;
+    clear: both;
+}
+
+.spanwait {
+    display: none;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 231px;
+    margin-top: 59px;
+    position: absolute;
+    text-align: center;
+}
+/*Mail Send Form*/
+
 
 /*** Search Box CSS **/
 #outerWrapper #header #searchBarDir{position:absolute;top:5px;right:10px;background-image:url('../commonimages/directorysearch.png');background-position:bottom;background-repeat:no-repeat;height:75px;width:475px;float:right}
