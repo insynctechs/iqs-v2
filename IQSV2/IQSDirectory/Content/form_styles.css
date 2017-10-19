@@ -58,11 +58,11 @@ h2{font-size:13px;color:#f60;font-weight:bold;line-height:14px}
         }
 
 #divStatus {
-   
     height: auto;
     overflow: hidden;
     padding-top: 30px;
     text-align: center;
+    font-size:12px; font-weight:bold;
 }
 
 .commenttextbox {
@@ -291,10 +291,12 @@ h2{font-size:13px;color:#f60;font-weight:bold;line-height:14px}
     text-align:left;
 }
 
-    #profileForm ul li {
+#profileForm ul li {
         color: #000000;
         font-size: 12px;
         font-weight:bold;
         padding-top: 2px;
         text-align: left;
-    }
+}
+#profContInfo{display:block; padding:10px; margin:0 auto;}
+#divTop { display:block; height:70px; }

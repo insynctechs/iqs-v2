@@ -254,17 +254,8 @@ namespace IQSDirectory
         {
            
             divip_error.Visible = false;
-             string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
-                string ipaddress = GetIPAddress();
-                string url = "http://ip-api.com/json/" + ipaddress;
-                string json = new System.Net.WebClient().DownloadString(url);
-                string[] jsplit = json.Split(',');
-                if (jsplit[3] != null)
-                {
-                    string ctrstr = jsplit[3].ToString();
-                    string ctr = ctrstr.Substring(ctrstr.IndexOf(':') + 1).Replace('"', ' ').Trim();
-                    if (Array.IndexOf(allowedCountries, ctr) >= 0)
-                    {
+                    if(Utils.isvalidIpAccess()==true)
+                    { 
                         //Captcha1.CheckEnteredValue();
                         InsertMethod();
                         sendMail();
@@ -274,35 +265,9 @@ namespace IQSDirectory
                         divip_error.Visible = true;
                         OnSecurityFailure(2);
                     }
-                }
-                else
-                {
-                    divip_error.Visible = true;
-                    OnSecurityFailure(2);
-                }
-            
-            
             
         }
 
-        protected string GetIPAddress()
-        {
-            System.Web.HttpContext context = System.Web.HttpContext.Current;
-            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-            if (!string.IsNullOrEmpty(ipAddress))
-            {
-                string[] addresses = ipAddress.Split(',');
-                if (addresses.Length != 0)
-                {
-                    return addresses[0];
-                }
-            }
-
-            return context.Request.ServerVariables["REMOTE_ADDR"];
-        }
-
-        
         public void OnSecurityFailure(int ischeckbox)
         {
             if (ischeckbox == 1)

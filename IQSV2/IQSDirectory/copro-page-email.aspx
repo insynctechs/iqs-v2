@@ -13,40 +13,39 @@
     <!--include jQuery Validation Plugin-->  
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
     <script type="text/javascript"  src="Scripts/copro-page-email.js"></script>
-    <!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
 <body class="mailbody">    
- <div id="divStatus" runat="server" ></div>
- <div id="profileForm" class="profilestyle" runat="server">
+  <div id="profileForm" class="profilestyle" runat="server">
       <form id="frmShare" runat="server">
-               <span class="divLeft"><img src="/images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
+          <div id="divTop">
+               <span class="divLeft"><img src="./images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
                <span class="require divfloatright">* Indicates require Fields</span>
                <span id="divEmailCName" class="divLeft h1txt" runat="server"><!--<h2>Email DAN-LOC Bolt &amp; Gasket</h2>--></span>
-
-          <div class="profContInfo ">
-<div class="ip_error" style="display:none;">The Use of this Form is Restricted - Please Contact IQSDirectory with
-                    Questions.</div>
-<div id="lblErr" style="clear:both;"></div><br />
-<ul>
+</div>
+          <div id="profContInfo">
+                <ul>
                 <li>First Name:<span class="require">* </span></li>
                 <li><input type="text" id="txtFirstName" class="commenttextbox" runat="server" /></li>
                 <li>Last Name:<span class="require">* </span></li>
                 <li><input type="text" id="txtLastName" class="commenttextbox" runat="server" /></li>
-                <li>EMail Address :<span class="require">* </span></li>
+                <li>Email Address :<span class="require">* </span></li>
                 <li><input type="text" id="txtEmailAddress" class="commenttextbox" runat="server" /></li>
                 <li>Company Name :<span class="require">* </span></li>
                 <li><input type="text" id="txtCompanyName" class="commenttextbox" runat="server" /></li>                
                 <li>Zip/Postal Code :<span class="require">* </span></li>
                 <li><input type="text" id="txtZip" class="commenttextbox" runat="server" /></li>                
                 <li>Subject :<span class="require">* </span></li>
-                <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" /></li>
+                <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" runat="server" /></li>
                 <li>Message :<span class="require">* </span></li>
-                <li><textarea id="txtMessage" class="TextCtrlArea width90" Height="64px"  style="height:64px;"></textarea></li>
-                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div></li>                
-            </ul>
-<div style="float:left;padding-left: 25px;padding-top: 31px;" ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
+                <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
+                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                    <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"   /> <!-- data-callback="recaptchaCallback" -->
+                </li>                            </ul>
+<div id="ip_error" class="error" runat="server" ></div>
+              <div id="divStatus" runat="server" ></div>
+<div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
     <asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click" CssClass="buttonBg"  />
-
 </div>
 </div>
 <div class="clearfix" ></div>

@@ -2,12 +2,11 @@
 $(document).ready(function () {    
     $("#frmShare").validate({        
         rules: {
-
             txtFirstName: { required: true },
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true }
+            txtZip: { required: true, zipRule: true }
             
            /*
             hiddenRecaptcha: {
@@ -28,7 +27,7 @@ $(document).ready(function () {
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required"}
+            txtZip: {required: "Required", zipRule:"Invalid"}
           
             //hiddenRecaptcha: { required: "Required "}
         },
@@ -56,6 +55,11 @@ $(document).ready(function () {
         return this.optional(element) || Exp.test(value);
     }, 'Please enter a valid email.');
 
+    jQuery.validator.addMethod("zipRule", function (value, element) {
+        Exp = /^\d{5}$/;
+        return this.optional(element) || Exp.test(value);
+    }, 'Please enter a valid zip.');
+    
     jQuery.validator.addMethod(
         "multiemails",
         function (value, element) {
@@ -79,7 +83,7 @@ $(document).ready(function () {
 
 function jqClick()
 {
-    /*
+    
     var response = grecaptcha.getResponse();
 
     if (response.length == 0) {
@@ -89,9 +93,8 @@ function jqClick()
         //document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
         return false;
     }
-    */
-
-    alert("js executed");
+    
+    
     return true;
 
 }

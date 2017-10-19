@@ -70,6 +70,36 @@ namespace IQSDirectory.Helpers
             }
         }
 
+        /* SJ added profile configs */
+        public string ProfileFromEmailAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileFromEmailAddress"].ToString();
+            }
+        }
+        public string ProfileCCEmailAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
+            }
+        }
+        public string ProfileEmailSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileEmailSubject"].ToString();
+            }
+        }
+        public string ProfileNonExistEmailSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
+            }
+        }
+
 
     }
 }

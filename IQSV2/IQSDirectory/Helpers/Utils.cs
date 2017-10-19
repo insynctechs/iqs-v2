@@ -413,7 +413,63 @@ namespace IQSDirectory.Helpers
             return MailObject;
         }
         #endregion
-        
+
+
+        #endregion
+
+        #region valid_ip_access
+
+        public static bool isvalidIpAccess()
+        {
+            try
+            {
+                string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
+                string ipaddress = GetIPAddress();
+                string url = "http://ip-api.com/json/" + ipaddress;
+                string json = new System.Net.WebClient().DownloadString(url);
+                string[] jsplit = json.Split(',');
+                if (jsplit[3] != null)
+                {
+                    string ctrstr = jsplit[3].ToString();
+                    string ctr = ctrstr.Substring(ctrstr.IndexOf(':') + 1).Replace('"', ' ').Trim();
+                    if (Array.IndexOf(allowedCountries, ctr) >= 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
+        public static string GetIPAddress()
+        {
+            System.Web.HttpContext context = System.Web.HttpContext.Current;
+            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipAddress))
+            {
+                string[] addresses = ipAddress.Split(',');
+                if (addresses.Length != 0)
+                {
+                    return addresses[0];
+                }
+            }
+
+            return context.Request.ServerVariables["REMOTE_ADDR"];
+        }
+
+
 
         #endregion
     }
