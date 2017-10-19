@@ -30,7 +30,9 @@
                 <li><input type="text" id="txtFrom" class="commenttextbox" runat="server" /></li>
                 <li>Receiver(s) Mail Address :<span class="require">* </span></li>
                 <li><input type="text" id="txtTo" class="commenttextbox" runat="server" /></li>
-                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div></li>
+                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> <!--  -->
+                </li>
                 <li><asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click"  /></li>
                  <!-- <a href="#Close" id="lnkClose"><img src="images/close.png" alt="Close" /></a>-->
             </ul>

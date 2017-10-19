@@ -7,9 +7,7 @@ $(document).ready(function () {
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true },
-            hiddenRecaptcha: { required: true, captchaRule:true }
-           /*
+            txtZip: { required: true, zipRule: true },      
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -19,7 +17,7 @@ $(document).ready(function () {
                     }
                 }
             }
-            */
+           
             
         },
         messages: {
@@ -35,27 +33,21 @@ $(document).ready(function () {
             alert("Thanks Lord");
             form.submit();
             return false;
-            /*
-                if (grecaptcha.getResponse()) {
-                    $("#rfqmessage").html("You are not a BOT!");
-                    form.submit();
-                    return false;
-                } else {
-                    $("#rfqmessage").html("Please make sure that you are not a BOT!");
-                   // return false;
-                    
-                }
-            */
+          
         }
     });
 
     jQuery.validator.addMethod("captchaRule", function (value, element) {
+        var _varFlag = false;
+
         var response = grecaptcha.getResponse();
+        $("#hiddenRecaptcha").value(response);
         if (response.length == 0)
             _varFlag = false;
         else
             _varFlag = true;
 
+        alert(_varFlag);
         return this.optional(element) || _varFlag;
     }, 'Please make sure that you are not a BOT!');
 
@@ -93,9 +85,10 @@ $(document).ready(function () {
 
 function jqClick()
 {
+    
+    //var response = grecaptcha.getResponse();
+   // document.getElementById('rfqmessage').innerHTML
     /*
-    var response = grecaptcha.getResponse();
-
     if (response.length == 0) {
         //reCaptcha not verified
         _varFlag = false;
@@ -111,6 +104,7 @@ function jqClick()
 
 
 function recaptchaCallback() {
-   $('#hiddenRecaptcha').valid();
+    $('#hiddenRecaptcha').valid();
+    $("#frmShare").validate();
 }
    

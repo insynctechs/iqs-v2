@@ -9,8 +9,6 @@ $(document).ready(function () {
             txtName : { required: true},
             txtFrom: { required: true, emailRule: true },
             txtTo: { required: true, multiemails: true },
-            
-           /*
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -20,31 +18,20 @@ $(document).ready(function () {
                     }
                 }
             }
-            */
+            
             
         },
         messages: {
 
             txtName: { required: "Required " },
             txtFrom: { required: "Required ", emailRule: "Invalid" },
-            txtTo: { required: "Required ", multiemails: "Invalid" }
-          
-            //hiddenRecaptcha: { required: "Required "}
+            txtTo: { required: "Required ", multiemails: "Invalid" },          
+            hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
             form.submit();
             return false;
-            /*
-                if (grecaptcha.getResponse()) {
-                    $("#rfqmessage").html("You are not a BOT!");
-                    form.submit();
-                    return false;
-                } else {
-                    $("#rfqmessage").html("Please make sure that you are not a BOT!");
-                   // return false;
-                    
-                }
-            */
+            
         }
     });
 
@@ -77,23 +64,13 @@ $(document).ready(function () {
 
 function jqClick()
 {
-
-    var response = grecaptcha.getResponse();
-
-    if (response.length == 0) {
-        //reCaptcha not verified
-        _varFlag = false;
-        alert("Please verify that you are not a BOT!");
-        //document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
-        return false;
-    }
-
-    return true;
+return true;
 
 }
 
 
 function recaptchaCallback() {
-   $('#hiddenRecaptcha').valid();
+    $('#hiddenRecaptcha').valid();
+    $("#frmShare").validate();
 }
    

@@ -8,10 +8,16 @@ h2{font-size:13px;color:#f60;font-weight:bold;line-height:14px}
 /*Mail Send Form*/
 .mailbody {
     background-color: #E3E7EA;
-    overflow: hidden;
-    width:30%;
+    overflow: hidden;    
     text-align:center;
     margin-left:auto;
+}
+.mailbody30 {
+    background-color: #E3E7EA;
+    /*overflow: hidden;*/
+    width: 30%;
+    text-align: center;
+    margin-left: auto;
 }
 .divfloatright {
     float: right;
