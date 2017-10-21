@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
 using IQSCore.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IQSCore.Controllers
 {
@@ -16,7 +14,10 @@ namespace IQSCore.Controllers
 
         Review rev = new Review();
 
+        
+
         [Route("api/Reviews/TagReviewHelpful")]
+        [HttpPut]
         public async Task<IHttpActionResult> TagReviewHelpful(int CommentId, int json=0)
         {
             var res = await rev.TagReviewHelpful(CommentId);
@@ -28,6 +29,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/UpdateReviewRating")]
+        [HttpPut]
         public async Task<IHttpActionResult> UpdateReviewRating(int CommentId, int Rate, int json=0)
         {
             var res = await rev.UpdateReviewRating(CommentId, Rate);
@@ -72,7 +74,8 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/InsertCommenter")]
-        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active, int json = 0)
+        [HttpGet]
+        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
         {
             var res = await rev.InsertCommenter(DesiredName, FullName, Email, Password, SystemIp, Active);
             if (json == 1)
@@ -82,7 +85,24 @@ namespace IQSCore.Controllers
 
         }
 
+        [Route("api/Reviews/AddCommenter")]
+        [HttpPut]
+        public async Task<IHttpActionResult> AddCommenter(JObject jsonData)
+        {
+
+            var res = await rev.InsertCommenter(jsonData[0].ToString(), jsonData[0].ToString(), jsonData[0].ToString(), jsonData[0].ToString(), "", 1);
+            /*if (json == 1)
+                return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
+            else*/
+                return Ok(res);
+
+        }
+
+
+
+
         [Route("api/Reviews/CommentersLogin")]
+        [HttpGet]
         public async Task<IHttpActionResult> CommentersLogin(string Email, string Password, int json = 0)
         {
             var res = await rev.CommentersLogin(Email, Password);
@@ -93,7 +113,8 @@ namespace IQSCore.Controllers
 
         }
 
-        [Route("api/Reviews/InsertCommenter")]
+        [Route("api/Reviews/FBCommentersLogin")]
+        [HttpGet]
         public async Task<IHttpActionResult> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active, int json = 0)
         {
             var res = await rev.FBCommentersLogin(DesiredName, FullName, Email, Password, SystemIp, Active);
@@ -105,6 +126,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/WriteReview")]
+        [HttpPost]
         public async Task<IHttpActionResult> WriteReview(int UserId, int Rating, string Title, string Review, int Client_SK, int json = 0)
         {
             var res = await rev.WriteReview(UserId, Rating, Title, Review, Client_SK);
@@ -116,6 +138,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/WriteReviewReply")]
+        [HttpPost]
         public async Task<IHttpActionResult> WriteReviewReply(int UserId, int CommentId, string Review, string CommentType, int json = 0)
         {
             var res = await rev.WriteReviewReply(UserId, CommentId, Review, CommentType);
@@ -127,6 +150,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/InsertSystemIp")]
+        [HttpPost]
         public async Task<IHttpActionResult> InsertSystemIp(string SystemIp, int json = 0)
         {
             var res = await rev.InsertSystemIp(SystemIp);

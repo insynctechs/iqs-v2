@@ -46,6 +46,21 @@ namespace IQSDirectory.Helpers
             return 0;
         }
 
+        public string GetExecuteNonQueryStringResFromWebApi(string path)
+        {
+            var url = string.Format(path);
+            HttpResponseMessage response = Utils.Client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var res = response.Content.ReadAsStringAsync().Result;
+                string ret = JsonConvert.DeserializeObject<string>(res);
+                return ret;
+            }
+            else 
+            return "Error";// + response.StatusCode.ToString();
+        }
+
+
         public string ApiUrl
         {
             get

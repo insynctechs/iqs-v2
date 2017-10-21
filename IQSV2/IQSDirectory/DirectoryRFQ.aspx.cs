@@ -254,17 +254,17 @@ namespace IQSDirectory
         {
            
             divip_error.Visible = false;
-                    if(Utils.isvalidIpAccess()==true)
-                    { 
-                        //Captcha1.CheckEnteredValue();
-                        InsertMethod();
-                        sendMail();
-                    }
-                    else
-                    {
-                        divip_error.Visible = true;
-                        OnSecurityFailure(2);
-                    }
+            if(Utils.isvalidIpAccess()==true)
+            { 
+                //Captcha1.CheckEnteredValue();
+                InsertMethod();
+                sendMail();
+            }
+            else
+            {
+                divip_error.Visible = true;
+                OnSecurityFailure(2);
+            }
             
         }
 

@@ -69,7 +69,7 @@ namespace IQSCore.Models
         #endregion
 
         #region " Insert Commenters "
-        public async Task<string> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active)
+        public async Task<string> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active)
         {
             SqlParameter[] sqlParam = new SqlParameter[7];
             sqlParam[0] = new SqlParameter("@DesiredName", DesiredName);
