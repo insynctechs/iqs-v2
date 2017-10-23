@@ -14,7 +14,7 @@
     
     <div id='content_wrapper'>
         <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
-        <h1 itemprop="name"><%: ClientName %></h1>
+        <h1 itemprop="name"><%= ClientName %></h1>
         <% if (ShowReviews == "Y")
             { %>
         <div class='divratingnew'><span  id='spanTopRate' class='spanratingclient'>
@@ -36,15 +36,19 @@
         </div>
         <div class='cleardiv'></div>
         <div class="col1">
-            <div id="divImage"><img class="clogo" src="" alt="Brooks
-             Instrument" title="Brooks Instrument" itemprop="logo"></div>
-            <div id="divVideo" <%: VideoStyle %> >
+             <% if (LogoLink != "")
+                 { %>
+            <div id="divImage"><img class="clogo" src="<%= LogoLink %>" alt="<%: ClientNameFormatted %>" title="<%: ClientNameFormatted %>" itemprop="logo"></div>
+            <% } %>
+            <% if (VideoLink.ToString() != "" && VideoLink.ToString() != "#")
+                { %>
+            <div id="divVideo" >
 
                 <div id="divYoutube" class="container" <%: YoutubeStyle %> >
                     <img src="<%:RootPath %>images/coproplay.png" alt="Play Video" title="Play Video">
                 </div>
                 <a  id="lnkViewVideo" href="<%: VideoLink %>" >View Video</a>
-                <script language="javascript" type="text/javascript">
+                <script type="text/javascript">
                     $(document).ready(function () {
                         $('#divYoutube').live('click', function () {
                             $('#lnkViewVideo').trigger('click');
@@ -68,13 +72,19 @@
                 </script>
 
             </div>
-            <div id="divCompUrls"><a rel="nofollow" alt="Brooks Instrument" title="Brooks Instrument" href="http://www.brooksinstrument.com/" class="DPFCompanyResource1" target="_blank">www.brooksinstrument.com</a><meta itemprop="url" content="http://www.brooksinstrument.com"></div>
-            <div id="divPhone" ><b>Phone: </b>888-554-3569<br>
-                <b>Fax: </b>215-362-3745
+            <% } %>
+            <div id="divCompUrls"><%= WebsiteLink %></div>
+            <div id="divPhone" >
+                <% if(Phone != "") { %>
+                <b>Phone: </b><%= Phone %><br>
+                <% } %>
+                <% if(Fax != "") { %>
+                <b>Fax: </b><%= Fax %>
+                <% } %>
             </div>
             <div id="divAddress">
                 <img src="<%:RootPath %>/images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
-                <div id="lblAddress">407 West Vine Street<br>Hatfield, PA 19440
+                <div id="lblAddress"><%= Address %>
                 <br>
                 <a href="http://www.iqsdirectory.com/controls/copromap.htm?address=407%20West%20Vine%20Street,Hatfield,PA,19440&amp;comp=Brooks%20Instrument" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
                 </div>
@@ -96,8 +106,8 @@
             </div>
         </div>
 
-        <div itemprop="description" <%: DescClass %> >
-            <p><%: ClientDesc %></p>
+        <div itemprop="description" >
+            <p><%= ClientDesc %></p>
         </div>
 
         <div class="cleardiv"></div>
@@ -258,61 +268,35 @@
                     }
                 </script>
             </div>
+            <% if (RelatedCompaniesList != "")
+                     { %>
             <div id="divRelated" class="rightbox clearfix" >
-                <span>Find Related Manufacturers</span>
-                <ul><li><a href="http://www.iqsdirectory.com/profile/b-and-d-cold-headed-products-68780/" target="_blank">B &amp; D Cold Headed Products</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/wayne-bolt-and-nut-67299/" target="_blank">Wayne Bolt &amp; Nut Company</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/affordable-fastener-supply-73818/" target="_blank">Affordable Fastener Supply Co.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/assembly-products-55422/" target="_blank">Assembly Products, Inc.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/associated-fastening-products-55428/" target="_blank">Associated Fastening Products, Inc.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/dan-loc-bolt-and-gasket-57425/" target="_blank">DAN-LOC Bolt &amp; Gasket</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/dyson-70108/" target="_blank">Dyson Corporation</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/engineered-components-64082/" target="_blank">Engineered Components Company</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/ford-fasteners-67787/" target="_blank">Ford Fasteners, Inc.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/ken-forging-60829/" target="_blank">Ken Forging</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/sc-fastening-systems-72612/" target="_blank">SC Fastening Systems, LLC.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/southern-fasteners-and-supply-77748/" target="_blank">Southern Fasteners &amp; Supply, Inc.</a></li>
-                        <li><a href="http://www.iqsdirectory.com/profile/stalcop-65498/" target="_blank">Stalcop</a></li>
-                    </ul>
+                <span><%= RelatedCompaniesHead %></span>
+                <ul><%= RelatedCompaniesList %></ul>
                 <div class="clearfix"></div>
             </div>
+            <% } %>
+            <% if (RelatedCategories.Count > 0)
+                     { %>
             <div id="divAddInfo" class="rightbox clearfix" >
                 <span>This Company Can Be Found On</span>
 
                 <div class="col">
-                    <ul id="ulAddLeft"><li><a href="http://www.iqsdirectory.com/bolts/" target="_blank">Bolts</a></li>
-                        <li><a href="http://www.iqsdirectory.com/fasteners/" target="_blank">Fasteners</a></li>
-                        <li><a href="http://www.iqsdirectory.com/hex-bolts/" target="_blank">Hex Bolts</a></li>
-                        <li><a href="http://www.iqsdirectory.com/nut-manufacturers/" target="_blank">Nut Manufacturers</a></li>
-                        <li><a href="http://www.iqsdirectory.com/screw-manufacturers/" target="_blank">Screw Manufacturers</a></li>
+                    <ul class="twocols">
+                        <% foreach (var dr in RelatedCategories)
+                     {  %>
+                        <li><a href="http://<%: dr["CATEGORY_URL"].ToString() %>" target="_blank"><%: dr["NAME"].ToString() %></a></li>
+                   
+                    <% } %>    
                     </ul>
                 </div>
-                <div class="col">
-                    <ul id="ulAddRight"><li><a href="http://www.iqsdirectory.com/cold-headed-parts/" target="_blank">Cold Headed Parts</a></li>
-                        <li><a href="http://www.iqsdirectory.com/carriage-bolts/" target="_blank">Carriage Bolts</a></li>
-                        <li><a href="http://www.iqsdirectory.com/metal-fasteners/" target="_blank">Metal Fasteners</a></li>
-                        <li><a href="http://www.iqsdirectory.com/rivet-manufacturers/" target="_blank">Rivet Manufacturers</a></li>
-                        <li><a href="http://www.iqsdirectory.com/thru-bolts/" target="_blank">Thru-Bolts</a></li>
-                    </ul>
-                </div>
+                
                 <div class="clearfix"></div>
             </div>
-            <div id="divTradeNames" class="rightbox clearfix" style="display:none;">
-                <span>Tradenames</span>
-                <div class="col">
-                    <ul id="ulTradeLeft">
-
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul id="ulTradeRight">
-
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+            <% } %>
+           
+            <div id="divEmail"></div>
         </div>
-        <div id="divEmail"></div>
     </section>
 </div>
 

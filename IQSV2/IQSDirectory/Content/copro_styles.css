@@ -92,7 +92,12 @@ div.rightbox ul { padding-left: 20px; display: block;
     -webkit-padding-start: 40px; }
 div.rightbox ul li {color: #000; font-weight: bold; line-height: 19px;}
 div.rightbox ul li a {color: #000;font-weight: bold;}
-div.rightbox .col {float:left; width:46%; margin-right: 2%; height: auto; overflow: hidden;}
+div.rightbox ul.twocols li {
+    float: left;
+    width: 46%;
+    margin-right: 2%;
+}
+div.rightbox .col { height: auto; overflow: hidden;}
 .review_main{width:100%;}
 .review_main_left{width:36%; text-align:center;float:left; display:block;}
 .review_main_left_inner{padding-top:5px;display: inline-block;}

@@ -279,15 +279,11 @@
                 <span>This Company Can Be Found On</span>
 
                 <div class="col">
-                    <ul id="ulAddLeft"><li><a href="http://www.iqsdirectory.com/bolts/" target="_blank">Bolts</a></li>
+                    <ul class="twocols"><li><a href="http://www.iqsdirectory.com/bolts/" target="_blank">Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/fasteners/" target="_blank">Fasteners</a></li>
                         <li><a href="http://www.iqsdirectory.com/hex-bolts/" target="_blank">Hex Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/nut-manufacturers/" target="_blank">Nut Manufacturers</a></li>
                         <li><a href="http://www.iqsdirectory.com/screw-manufacturers/" target="_blank">Screw Manufacturers</a></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul id="ulAddRight"><li><a href="http://www.iqsdirectory.com/cold-headed-parts/" target="_blank">Cold Headed Parts</a></li>
                         <li><a href="http://www.iqsdirectory.com/carriage-bolts/" target="_blank">Carriage Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/metal-fasteners/" target="_blank">Metal Fasteners</a></li>
                         <li><a href="http://www.iqsdirectory.com/rivet-manufacturers/" target="_blank">Rivet Manufacturers</a></li>
