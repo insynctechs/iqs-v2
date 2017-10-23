@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="IQSDirectory.CompanyProfile" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="<%:RootPath %>Content/copro_styles.css" rel="stylesheet" />
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
@@ -10,9 +11,12 @@
     <script src='<%:RootPath %>Scripts/category_page1.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
 
+    
     <div id='content_wrapper'>
         <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
-        <h1 itemprop="name">Brooks Instrument</h1>
+        <h1 itemprop="name"><%: ClientName %></h1>
+        <% if (ShowReviews == "Y")
+            { %>
         <div class='divratingnew'><span  id='spanTopRate' class='spanratingclient'>
                         <input name='topstar' type='radio' class='topcommentstar' value='1' title='1'/>
                         <input name='topstar' type='radio' class='topcommentstar' value='2' title='2'/>
@@ -21,11 +25,12 @@
                         <input name='topstar' type='radio' class='topcommentstar' value='5' title='5'/>
                         </span><span id='spanRateNum' class='spanratingnumnew'>5/5</span>
         </div>
+            <% } %>
         <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="http://schema.org/AggregateRating">
             <meta itemprop="bestRating" content="5"/>
             <meta itemprop="worstRating" content="1"/>
-            <meta itemprop="ratingValue" content='0'/>
-            <meta itemprop="ratingCount" content='0'/>
+            <meta itemprop="ratingValue" content='<%: CompRating %>'/>
+            <meta itemprop="ratingCount" content='<%: CompCount %>'/>
             <!--<meta itemprop="reviewCount" content='0'/>-->
 
         </div>
@@ -33,15 +38,15 @@
         <div class="col1">
             <div id="divImage"><img class="clogo" src="" alt="Brooks
              Instrument" title="Brooks Instrument" itemprop="logo"></div>
-            <div id="divVideo">
+            <div id="divVideo" <%: VideoStyle %> >
 
-                <div id="divyoutube" class="container" style="background-image:url(http://img.youtube.com/vi/jZdyKt4CbyY/0.jpg); background-size:100% auto;">
-                    <img src="images/coproplay.png" alt="Play Video" title="Play Video">
+                <div id="divYoutube" class="container" <%: YoutubeStyle %> >
+                    <img src="<%:RootPath %>images/coproplay.png" alt="Play Video" title="Play Video">
                 </div>
-                <a href="http://www.iqsdirectory.com/controls/coprovideo.htm?v=jZdyKt4CbyY&amp;comp=Brooks%20Instrument" id="lnkViewVideo" >View Video</a>
+                <a  id="lnkViewVideo" href="<%: VideoLink %>" >View Video</a>
                 <script language="javascript" type="text/javascript">
                     $(document).ready(function () {
-                        $('#divyoutube').live('click',function(){
+                        $('#divYoutube').live('click', function () {
                             $('#lnkViewVideo').trigger('click');
                         });
                         $('#lnkViewVideo').fancybox({
@@ -53,11 +58,11 @@
                             'centerOnScroll': false,
                             'titleShow': false,
                             'autoScale': false,
-                            'width':900,
-                            'height':585,
-                            'hideOnContentClick':false,
-                            'transitionIn' : 'none',
-                            'transitionOut' : 'none'
+                            'width': 900,
+                            'height': 585,
+                            'hideOnContentClick': false,
+                            'transitionIn': 'none',
+                            'transitionOut': 'none'
                         });
                     });
                 </script>
@@ -68,32 +73,31 @@
                 <b>Fax: </b>215-362-3745
             </div>
             <div id="divAddress">
-                <img src="./Brooks Instrument_files/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
+                <img src="<%:RootPath %>/images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
                 <div id="lblAddress">407 West Vine Street<br>Hatfield, PA 19440
                 <br>
                 <a href="http://www.iqsdirectory.com/controls/copromap.htm?address=407%20West%20Vine%20Street,Hatfield,PA,19440&amp;comp=Brooks%20Instrument" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
                 </div>
                     <script language="javascript" type="text/javascript">
-                    $(document).ready(function () {
-                        $('#lnkViewMap').fancybox({
-                            'padding': 0,
-                            'showCloseButton': true,
-                            'modal': true,
-                            'titleShow': false,
-                            'autoScale': false,
-                            'width': 406,
-                            'height': 366,
-                            'transitionIn': 'none',
-                            'transitionOut': 'none'
+                        $(document).ready(function () {
+                            $('#lnkViewMap').fancybox({
+                                'padding': 0,
+                                'showCloseButton': true,
+                                'modal': true,
+                                'titleShow': false,
+                                'autoScale': false,
+                                'width': 406,
+                                'height': 366,
+                                'transitionIn': 'none',
+                                'transitionOut': 'none'
+                            });
                         });
-                    });
                 </script>
             </div>
         </div>
 
-        <div class="col2" itemprop="description">
-            <p>Our customers look to us for solutions to meet the needs for their flow meters! We offer flow meter solutions for a wide variety of industries, including oil and gas, solar, chemical processing, medical devices, semiconductors, and bio pharmaceuticals! We have a huge variety of flow meter products that rank at the top of their categories for reliability, accuracy, user preference and affordability! Visit our website to learn more about our company and products. We would love to help you today!</p><br><p></p><br><p></p><small>Find more flow solutions at <a title="Key Instruments" href="http://www.keyinstruments.com/" target="_blank">www.KeyInstruments.com</a></small>
-            <p></p>
+        <div itemprop="description" <%: DescClass %> >
+            <p><%: ClientDesc %></p>
         </div>
 
         <div class="cleardiv"></div>
@@ -125,26 +129,33 @@
                     <h2>Company Reviews</h2>
                     <div class="review_main_left">
                         <div class="review_main_left_inner" id="divCompReview">
-                            <div>
-                                <div class="star-rating-control star-rating-readonly"><div class="rating-cancel" style="display: none;">
-                                    <a title="Cancel Rating"></a></div><div
-                                        class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="1">1</a></div><div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="2">2</a></div><div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="3">3</a></div><div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="4">4</a></div><div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="5">5</a></div></div>
-                                <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="1" title="1" style="display: none;" disabled="disabled">
-                                <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="2" title="2" style="display: none;" disabled="disabled">
-                                <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="3" title="3" style="display: none;" disabled="disabled">
-                                <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="4" title="4" style="display: none;" disabled="disabled">
-                                <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="5" title="5" style="display: none;" checked="checked" disabled="disabled">
+                            <div class="star-rating-control star-rating-readonly">
+                                <div class="rating-cancel" style="display: none;">
+                                    <a title="Cancel Rating"></a>
+                                </div>
+
+                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="1">1</a></div>
+                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="2">2</a></div>
+                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="3">3</a></div>
+                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="4">4</a></div>
+                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="5">5</a></div>
                             </div>
+                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="1" title="1" style="display: none;" disabled="disabled">
+                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="2" title="2" style="display: none;" disabled="disabled">
+                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="3" title="3" style="display: none;" disabled="disabled">
+                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="4" title="4" style="display: none;" disabled="disabled">
+                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="5" title="5" style="display: none;" checked="checked" disabled="disabled">
+
                         </div>
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
                     <div class="review_main_right">
-                        <a href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#WriteReview" id="lnkWriteReview"><img src="./Elgin Fastener Group_files/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
+                        <a href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#WriteReview" id="lnkWriteReview"><img src="<%:RootPath %>images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
                         <br>
                         <div id="divLogout"><a href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Logout" id="lnkLogout">Logout</a></div>
                         <div id="divWriteReviewErr" class="requireD"></div>
                     </div>
-
+                    <div class="cleardiv"></div>
                     <hr/>
                     <section id="divCommentDisp">
                         <div class="divComments" id="divCommentid" ><input type="hidden" id="hdCommentId" value="123"><input type="hidden" id="hdCommenter" value="TSA">
@@ -172,8 +183,8 @@
                             <div class="clearfix"></div>
                             <div class="review_content_wrapper">With EFG you get great engineering experience to get the right fastener for your application. EFG’s recent growth through multi-company acquisitions has them on pace to become the leading domestic manufacturer of specialty fasteners in North America.</div>
                             <div id="divCom123" class="review_action_wrapper">
-                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Helpful"><img alt="Yes" src="./Elgin Fastener Group_files/helpful_button.png"></a></span>
-                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Reply"><img alt="Yes" src="./Elgin Fastener Group_files/reply_button.png"></a></span>
+                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Helpful"><img alt="Yes" src="<%:RootPath %>images/helpful_button.png"></a></span>
+                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Reply"><img alt="Yes" src="<%:RootPath %>images/reply_button.png"></a></span>
                                 <div id="divReply123" style="padding-left:30px;"></div>
                             </div>
                         </div>
@@ -186,7 +197,6 @@
                     <input type="hidden" id="hidRootPath" value="../../">
                 </section>
                 <div style="display:block;">
-
                     <a id="lnkRegBox" href="http://www.iqsdirectory.com/controls/registercommenter.aspx?p=../../" title="Login">Login</a>
                     <a id="lnkReviewBox" href="http://www.iqsdirectory.com/controls/writecomment.aspx?p=../../" title="WriteAReview">Write A Review</a>
                     <a id="lnkReplyBox" href="http://www.iqsdirectory.com/controls/writesubcomment.aspx?p=../../" title="ReplyReview"></a>
@@ -219,9 +229,9 @@
                 </ul>
                 <script type="text/javascript">
                     function popupwindow(url, title, w, h) {
-                        var left = (screen.width/2)-(w/2);
-                        var top = (screen.height/2)-(h/2);
-                        window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+                        var left = (screen.width / 2) - (w / 2);
+                        var top = (screen.height / 2) - (h / 2);
+                        window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
                     }
                     FB.init({
                         appId: '221653014637602',
@@ -305,12 +315,12 @@
         <div id="divEmail"></div>
     </section>
 </div>
+
     <script type='text/javascript'>
         $(document).ready(function () {
             $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
-                $('#txtsearch').val('<%: DisplayName %>');
-                $('#txtsearch').attr('class', 'txtsearchsel');
+
             });
         });
     </script>

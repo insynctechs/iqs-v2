@@ -1,17 +1,4 @@
 h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;outline:0;font-size:100%;}
-h1, {
-    color: #374246;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: Arial,Helvetica,sans-serif;
-}
-
-h2 {
-    font-size: 13px;
-    color: #f60;
-    font-weight: bold;
-    line-height: 14px
-}
 #content_wrapper{width:80%;margin-left:auto;margin-right:auto;}
 .row1{width:100%;margin-top:5px; height: auto; overflow: hidden; min-height: 200px;}
 .row1 h1{margin:30px 20px 15px 0; font-size:20px; line-height:26px; float: left; width: auto; height: auto; overflow: hidden;}
@@ -147,66 +134,10 @@ h3.main_review_count{}
 .write_comment_review .p2{padding-right:12px; padding-top:72px; float:right;}
 .write_comment_review textarea{width:375px; height:85px;}
 .hide_elem{display: none;}
-.requireD {
-    color: #f00;
-    text-align: left
-}
-
-.rfqtextbox {
-    width: 200px;
-    border: 1px #aaaaaa solid;
-    margin-left: 4px
-}
-/*dbdbdb*/
-.rfqtextboxsub {
-    width: 320px;
-    border: 1px #aaaaaa solid;
-    margin-left: 4px
-}
-
-.commenttextbox {
-    width: 230px;
-    border: 1px #aaaaaa solid;
-    margin-left: 4px
-}
-
-.rfqtextboxC {
-    width: 100px;
-    border: 1px #aaaaaa solid;
-    margin-left: 4px
-}
-
-.lisTextbox {
-    width: 200px;
-    border: 1px #aaaaaa solid
-}
-
-.TextCtrlArea {
-    width: 345px;
-    border: 1px #aaaaaa solid;
-    height: 100px;
-    margin-left: 4px
-}
-
-.FileCtrlArea {
-    width: 345px;
-    border: 1px #aaaaaa solid;
-    height: 20px;
-    margin-left: 4px;
-    background-color: #fff
-}
-#divLogin p { font-family:Arial, Helvetica, sans-serif; font-size:11px; }
 /************************** End of Comments Popup ******************/
+
 /**** Custom Rating ****/
-.spanratingnumnew {
-    display: none;
-    float: left;
-    padding-left: 10px;
-    font-size: 12px;
-    padding-top: 2px;
-    font-weight: bold;
-    color: #374246
-}
+.spanratingnumnew{display:none;float:left;padding-left:10px;font-size:12px;padding-top:2px;font-weight:bold;color:#374246}
 .divratingnew{float:left;width:auto}
 .divagrating{float:left;width:auto;padding-left:20px;color:#f0efed;overflow:hidden}
 .rating{display:inline;overflow:hidden;width:auto;color:#f0efed}
