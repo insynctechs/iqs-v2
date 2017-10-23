@@ -54,6 +54,7 @@ namespace IQSDirectory
                     if(ds.Tables[5].Rows.Count > 0)
                     GenerateOtherCompanies(ds.Tables[5], ds.Tables[0].Rows[0]["CTYPE"].ToString());
                     //GenerateTradeNames(ds.Tables[0].Rows[0]);
+                    //GenerateArticles();
                 }
             }
         }
@@ -288,6 +289,42 @@ namespace IQSDirectory
             
         }
 
+        private void GenerateArticles()
+        {
+            var urlClientInfo = string.Format("api/Articles/GetArticlesByClientId?Client_SK=" + ClientSK);
+            DataSet ds = wHelper.GetDataSetFromWebApi(urlClientInfo);
+            if (ds != null)
+            {
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+
+                        DataTable dt = ds.Tables[0];
+
+                        dt.AcceptChanges();
+                        dt.Columns.Add("URL");
+                        dt.Columns.Add("DATE");
+                       
+                        dt.Columns.Add("DISPLAYDESC");
+                        foreach (DataRow drN in dt.Rows)
+                        {
+                            if (drN["EXTERNAL_URL"].ToString() == "")
+                                drN["URL"] = wHelper.NewsDirectory + drN["ARTICLE_CATEGORY_SK"] + "/" + drN["ARTICLE_SK"].ToString();
+                            else
+                                drN["URL"] = drN["EXTERNAL_URL"].ToString().ToLower().StartsWith("http://") ? drN["EXTERNAL_URL"].ToString() : "http://" + drN["EXTERNAL_URL"].ToString();
+                            drN["DATE"] = Convert.ToDateTime(drN["DATE_CREATED"].ToString()).ToString("MMMM dd, yyyy");
+                            drN["DESC"] = Utils.FirstWords(Regex.Replace(drN["DESCRIPTION"].ToString(), "<.*?>", string.Empty).Trim().Replace("\r\n", "").Replace("\t", " "), 90) + "...";
+                        }
+                        Articles = dt.AsEnumerable().ToList();                      
+
+
+                    }
+                }
+            }
+        }
+
         public string RootPath { get; set; }
         public string DisplayName { get; set; }
         public string CategorySK { get; set; }
@@ -313,6 +350,8 @@ namespace IQSDirectory
 
         public List<DataRow> RelatedCategories { get; set; }
         public List<DataRow> RelatedCompanies { get; set; }
+        public List<DataRow> Articles { get; set; }
+
         public List<string> TradeNames { get; set; }
 
     }

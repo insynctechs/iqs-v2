@@ -19,5 +19,12 @@ namespace IQSCore.Controllers
             var art = await articles.GetLatestArticles(CategoryName);
             return Ok(art);
         }
+
+        [Route("api/Articles/GetArticlesByClientId")]
+        public async Task<IHttpActionResult> GetArticlesByClientId(string Client_SK)
+        {
+            var art = await articles.GetArticlesByClientId(Convert.ToInt32(Client_SK));
+            return Ok(art);
+        }
     }
 }

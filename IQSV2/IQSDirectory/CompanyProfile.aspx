@@ -116,23 +116,28 @@
     </section>
     <section class="row2">
         <div class="col1">
+            <%-- if (Articles.Count > 0)
+                { %>
             <hr/>
             <section id="secarticles">
                 <h2>Articles and Press Releases</h2>
                 <ul>
+                    <% foreach (var dr in Articles)
+                { %>
                     <li>
                         <h3>
-                            <a href="http://news.iqsdirectory.com/Press-Releases/new-mt3809-variable-area-flow-meter-delivers-supreme-performance-in-extreme-conditions">New MT3809 Variable Area Flow Meter Delivers Supreme Performance in Extreme Conditions</a></h3>
+                            <a href="<%=dr["URL"]%>" target="_blank"><%= dr["HEADING"]%></a></h3>
                         <aside>
-                            April 25, 2013 - Press Releases
+                            <%=dr["DATE"]%> - <%=dr["NAME"]%>
                         </aside>
                         <p>
-                            <b>The MT3809 provides unprecedented</b> flexibility to use a single flow meter regardless of application, process configuration or flow rate...
-                            <br><br>
+                            <%=dr["DESC"]%>
                         </p>
                     </li>
+                    <% } %>
                 </ul>
             </section>
+            <% } --%> -->
             <hr/>
             <div id="commentForm">
                 <section id="secreviews">
