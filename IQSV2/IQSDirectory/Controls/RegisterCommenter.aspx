@@ -1,17 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RegisterCommenter.aspx.cs" Inherits="IQSDirectory.RegisterCommenter" %>
 <!DOCTYPE html>
 <html lang="en-US">
-<head runat="server">
-    <title>Commenter Registration Form</title>
+<head>
+    <title>IQSDirectory::User Registration Form</title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
     <style type="text/css">        
-        #divLogin p { margin:12px 0px; }
-    </style>
-    <script type="text/javascript" defer src="../Scripts/register_commenter.js">
         
-
-    </script>
+    </style>
+    <script type="text/javascript" defer async src="Scripts/register_commenter.js"></script>
 </head>
 <body>
 
@@ -37,7 +34,7 @@
             <input type="hidden" id="hidIp" value="<%=UserIP %>" />
         </p>
           <p >
-              <a href="#Register" id="lnkRegister" class="register_btn"><img src="<%=RootPath %>images/registerbutton.jpg" alt="Register"
+              <a href="#Register" id="lnkRegister" class="register_btn" ><img src="<%=RootPath %>images/registerbutton.jpg" alt="Register"
            /></a>
 
           </p>
@@ -89,8 +86,9 @@
     <br />
     <br />
       <h2>User Registration Successfull !!!</h2><br />
-      <h2>Your login details have been sent to your email address.</h2><br />
-      <h2>Please login using your email address and password to post your reviews and comments.</h2><br /><br />
+      <p>Your login details have been sent to your email address.</p>
+      <p>Please login using your email address and password to post your reviews and comments.</p>
+    <p>&nbsp;</p>
       <a href="#Login" id="lnkRegLogin"><img src="<%=RootPath %>images/loginbutton.jpg" alt="Login" /></a>
 </div>
 

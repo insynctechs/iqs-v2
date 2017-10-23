@@ -1,0 +1,15 @@
+﻿Dear [FullName], 
+
+Thank you for registering with IQS.
+    
+Your login details for posting comments and reviews with us are: 
+
+Email address: [toEmail]
+Password: [Password]
+    
+Please keep this email as it contains your login details.
+    
+    
+Thanks and Regards
+IQS Directory Team
+    

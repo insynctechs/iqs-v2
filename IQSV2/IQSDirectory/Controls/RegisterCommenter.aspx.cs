@@ -10,17 +10,17 @@ namespace IQSDirectory
 {
     public partial class RegisterCommenter : System.Web.UI.Page
     {
-        public static string RootPath = "";
-        public string UserIP;
+        
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            RootPath = "../"; //Request.QueryString["p"].ToString();
+            RootPath = "./"; //Request.QueryString["p"].ToString();
             UserIP = HttpContext.Current.Request.UserHostAddress.ToString();
 
         }
-        protected void btnRegister_Click(object sender, EventArgs e)
-        {
-            Response.Write("Register Button Clicked");
-        }
+
+        public string RootPath { get; set; }
+        public string UserIP { get; set; }
+
     }
 }

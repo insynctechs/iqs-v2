@@ -41,7 +41,7 @@ namespace IQSDirectory
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/SiteMasterScripts").Include(
-                "~/Scripts/jquery-1.7.2.min.js",
+                "~/Scripts/jquery-1.7.2.min.js",                
                 "~/Scripts/jquery-ui.js"
                 ));
 

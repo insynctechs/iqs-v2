@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.Data;
 using System.Net.Http;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace IQSDirectory.Helpers
 {
@@ -46,6 +48,7 @@ namespace IQSDirectory.Helpers
             return 0;
         }
 
+        
         public string GetExecuteNonQueryStringResFromWebApi(string path)
         {
             var url = string.Format(path);
@@ -56,8 +59,8 @@ namespace IQSDirectory.Helpers
                 string ret = JsonConvert.DeserializeObject<string>(res);
                 return ret;
             }
-            else 
-            return "Error";// + response.StatusCode.ToString();
+            else
+                return "Error";// + response.StatusCode.ToString();
         }
 
 

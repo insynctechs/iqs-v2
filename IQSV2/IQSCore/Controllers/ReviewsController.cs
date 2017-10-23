@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using IQSCore.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Mail;
+using IQSCore.Helpers;
+
 
 namespace IQSCore.Controllers
 {
@@ -14,7 +17,12 @@ namespace IQSCore.Controllers
 
         Review rev = new Review();
 
-        
+        public class RootObject
+        {
+            public List<string> list { get; set; }
+            public string doaction { get; set; }
+            public string returntype { get; set; }
+        }
 
         [Route("api/Reviews/TagReviewHelpful")]
         [HttpPut]
@@ -75,9 +83,11 @@ namespace IQSCore.Controllers
 
         [Route("api/Reviews/InsertCommenter")]
         [HttpGet]
-        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
+        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, string doaction, int json = 0)
         {
             var res = await rev.InsertCommenter(DesiredName, FullName, Email, Password, SystemIp, Active);
+            if (res == "success" && doaction == "yes")
+                ReviewActions.SendRegistrationMail(FullName, Email, Password);
             if (json == 1)
                 return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
             else
@@ -86,16 +96,22 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/AddCommenter")]
-        [HttpPut]
-        public async Task<IHttpActionResult> AddCommenter(JObject jsonData)
+        [HttpPost]
+        public async Task<IHttpActionResult> AddCommenter([FromBody] JObject jData)
         {
+            RootObject obj = JsonConvert.DeserializeObject<RootObject>(jData.ToString());
+            object[] objData = obj.list.ToArray();
+            var res = await rev.InsertCommenter(objData[0].ToString(), objData[1].ToString(), objData[2].ToString(), objData[3].ToString(), objData[4].ToString(), 1);
+            if (res == "success")
+            {
+                if (obj.doaction == "yes")
+                    ReviewActions.SendRegistrationMail(objData[1].ToString(), objData[2].ToString(), objData[3].ToString());
 
-            var res = await rev.InsertCommenter(jsonData[0].ToString(), jsonData[0].ToString(), jsonData[0].ToString(), jsonData[0].ToString(), "", 1);
-            /*if (json == 1)
+            }
+            if(obj.returntype == "json")
                 return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
-            else*/
+            else
                 return Ok(res);
-
         }
 
 
@@ -115,7 +131,7 @@ namespace IQSCore.Controllers
 
         [Route("api/Reviews/FBCommentersLogin")]
         [HttpGet]
-        public async Task<IHttpActionResult> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active, int json = 0)
+        public async Task<IHttpActionResult> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
         {
             var res = await rev.FBCommentersLogin(DesiredName, FullName, Email, Password, SystemIp, Active);
             if (json == 1)
@@ -226,6 +242,11 @@ namespace IQSCore.Controllers
                 return Ok(res);
 
         }
+
+        
+        
+
+
 
 
 

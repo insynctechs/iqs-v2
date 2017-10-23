@@ -1,5 +1,5 @@
 h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;outline:0;font-size:100%;}
-h1, {
+h1{
     color: #374246;
     font-size: 18px;
     font-weight: bold;
@@ -29,7 +29,6 @@ h2 {
 #divAddress, #divAddress {margin:12px 0 12px 15px;overflow:hidden;height:auto;}
 #divAddress img { float: left; margin-right:10px; }
 #divAddress div { float: left; }
-#divAddress a {  }
 #divResources { display: none;}
 .row2{width:100%;margin-top:5px; height: auto; overflow: hidden; min-height: 200px;}
 .row2 .col1{width:57%;margin-right:3%;margin-top:5px; float: left;}
@@ -45,7 +44,6 @@ hr{color:#304846;background-color:#304846;height:2px;margin-bottom:15px}
 #secarticles h3  a, #secarticles h3  a:visited {color: #30494E;}
 #secarticles h3  a:hover {color: orange;}
 #secarticles ul li aside {color: #777; font-size: 11px; margin-bottom: 12px;}
-#secarticles p {}
 
 
 div#social, div.rightbox{border: 1px solid #000;  margin: 10px 8px 10px 0;  width: 100%; height: auto; overflow: hidden; }
@@ -100,7 +98,6 @@ div.rightbox .col {float:left; width:46%; margin-right: 2%; height: auto; overfl
 .review_main_left_inner{padding-top:5px;display: inline-block;}
 .review_main_right{text-align:right; float:right; display:block; width:55%;}
 .review_main_right a { display: block; height: auto; width: auto;}
-h3.main_review_count{}
 .review_title_wrapper{width: 80%; float: left;}
 .review_title_wrapper h2{color:#374246; font-size:15px;font-weight:bold;margin:0  0 3px 0; padding:0; line-height:20px; text-transform: none !important; }
 .review_meta_wrapper{padding: 10px 0;}
@@ -134,7 +131,10 @@ h3.main_review_count{}
 .register_checkbox_wrapper{display: inline-block;padding-top: 5px;text-align: left;vertical-align: top;width: 124px;}
 .register_forgot_wrapper{display:none;}
 .register_forgot_btn_wrapper{text-align:right; padding-right:23px}
-.register_success{display:none;padding-top:80px;}
+.register_success{display:none;padding-top:80px; margin:0 20px; text-align:center; color:#000; font-size:13px;}
+.register_success h2 {
+    font-size:15px;
+}
 .register_forgot_success{display:none;padding-top:80px;}
 .write_comment_wrapper{width:495px; height:310px; overflow:auto; border: 1px solid black;}
 .write_comment_captcha_wrapper p {  margin:12px 0px;}
@@ -147,6 +147,9 @@ h3.main_review_count{}
 .write_comment_review .p2{padding-right:12px; padding-top:72px; float:right;}
 .write_comment_review textarea{width:375px; height:85px;}
 .hide_elem{display: none;}
+#divLogin p {
+    margin: 12px 0px;
+}
 .requireD {
     color: #f00;
     text-align: left
@@ -209,7 +212,7 @@ h3.main_review_count{}
 }
 .divratingnew{float:left;width:auto}
 .divagrating{float:left;width:auto;padding-left:20px;color:#f0efed;overflow:hidden}
-.rating{display:inline;overflow:hidden;width:auto;color:#f0efed}
+.rating{display:block;overflow:hidden;width:auto;color:#f0efed}
 .divratingclientmain{display:none;cursor:default}
 .divratingclient{height:auto;overflow:hidden;float:left;margin-top:-4px}
 .spanreadreviews{padding-right:7px;color:#30494e;font-weight:bold;float:left;font-size:10px}

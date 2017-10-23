@@ -8,15 +8,22 @@ using System.Text;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Net.Mail;
-using System.Text;
 using System.Text.RegularExpressions;
 using IQSDirectory.Helpers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IQSDirectory
 {
     public partial class ReviewManager : System.Web.UI.Page
     {
 
+        public class RootObject
+        {
+            public List<string> list { get; set; }
+            public string doaction { get; set; }
+            public string returntype { get; set; }
+        }
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -51,7 +58,8 @@ namespace IQSDirectory
                 string FullName = list[1];
                 string Email = list[2];
                 string Password = list[3];*/
-                WebApiHelper wHelper = new WebApiHelper();
+                //WebApiHelper wHelper = new WebApiHelper();
+                
 
                 //var url = string.Format("api/Reviews/InsertCommenter?DesiredName=" + DesiredName + "&FullName=" + FullName + "&Email=" + Email + "&Password=" + Password + "&SystemIp=" + HttpContext.Current.Request.UserHostAddress + "&Active=1");
 
@@ -64,7 +72,7 @@ namespace IQSDirectory
                     //string ipStat = objCommentService.InsertSystemIp(new object[] { HttpContext.Current.Request.UserHostAddress });
                 }
                 return RetVal;*/
-                HttpContext.Current.Response.Write("Test");
+                //HttpContext.Current.Response.Write("Test");
                 return "test";
             }
             catch (Exception ex)
@@ -108,6 +116,46 @@ namespace IQSDirectory
             }
         }
 
-        
+        [WebMethod(EnableSession = true)]
+        public static string userlogin(List<string> list)
+        {
+            try
+            {
+                //RootObject obj = JsonConvert.DeserializeObject<RootObject>(jData.ToString());
+                //object[] data = obj.list.ToArray();
+                
+                string Email = list[0].ToString();
+                string Password = list[1].ToString();
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/CommentersLogin?Email=" + Email + "&Password=" + Password + "&json=0");
+                DataSet ds = wHelper.GetDataSetFromWebApi(url);
+                //return "Dataset";
+                if (ds != null)
+                {
+                    if (ds.Tables.Count == 0)
+                    {
+                        return "Invalid";
+                    }
+                    else if (ds.Tables[0].Rows.Count == 0)
+                    {
+                        return "Invalid";
+                    }
+                    else
+                    {
+                        HttpContext.Current.Session["CommenterId"] = ds.Tables[0].Rows[0]["UserId"].ToString();
+                        HttpContext.Current.Session["CommenterName"] = ds.Tables[0].Rows[0]["DesiredName"].ToString();
+                        return "Success";
+                    }
+                    
+                }
+                return "Invalid";
+            }
+            catch (Exception ex)
+            {
+                return "error";// ex.Message.ToString();
+            }
+        }
+
+
     }
 }

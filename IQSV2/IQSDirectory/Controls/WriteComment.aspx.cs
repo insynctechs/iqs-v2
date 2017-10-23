@@ -9,11 +9,16 @@ namespace IQSDirectory
 
     public partial class WriteComment : System.Web.UI.Page
     {
-        public static string rootPath = "";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            rootPath = Request.QueryString["p"].ToString();
+            RootPath = "./";
+            UserIP = HttpContext.Current.Request.UserHostAddress.ToString();
+            //Request.QueryString["p"].ToString();
             //CaptchaReview1.UrlPath = rootDirPath;
         }
+
+        public string RootPath { get; set; }
+        public string UserIP { get; set; }
     }
 }

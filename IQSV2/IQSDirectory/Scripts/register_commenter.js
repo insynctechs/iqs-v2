@@ -1,7 +1,7 @@
 ﻿if (are_cookies_enabled()) {
     var cookieName = 'profilelogin';
     var cookie = $.cookie(cookieName);
-    if (cookie != null) {
+    if (cookie !== null) {
         var list = cookie.split("|| ||");
         var acomp = new Array();
         $.each(list, function (key, val) {
@@ -10,7 +10,7 @@
         });
         if (list.length > 0) {
             var lastval = list[list.length - 2];
-            if (lastval != null) {
+            if (lastval !== null) {
                 var lval = lastval.toString().split("| |");
                 $('#txtEmail').val(lval[0]);
                 $('#txtPassword').val(lval[1]);
@@ -28,7 +28,7 @@
                         return false;
                     }
                 });
-                if (pass != "") {
+                if (pass !== "") {
                     $('#txtPassword').val(pass);
                     $('#chkRemember').attr('checked', 'checked');
                 }
@@ -129,7 +129,7 @@ $("#lnkForgotSubmit").click(function () {
                 });
                 return false;
             }
-            else if (msg == "Invalid") {
+            else if (msg === "Invalid") {
                 alert("Email Address You Entered Does Not Exists !!");
                 $('#txtForgotEmail').focus();
             }
@@ -166,15 +166,16 @@ $('#lnkLogin').click(function () {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg == "Success") {
+
+            if (msg == "Success" || msg.d=="Success") {
                 if (are_cookies_enabled()) {
                     var cookieOptions = { expires: 30, path: '/' };
                     var newval = '';
-                    if (cookie != null) {
+                    if (cookie !== null) {
                         var nlist = cookie.split("|| ||");
                         $.each(nlist, function (key, val) {
                             var nvl = val.split("| |");
-                            if (nvl[0] != $('#txtEmail').val()) {
+                            if (nvl[0] !== $('#txtEmail').val()) {
                                 newval += val + '|| ||';
                             }
                         });
@@ -198,7 +199,7 @@ $('#lnkLogin').click(function () {
                 $('#divLogout').show();
                 return false;
             }
-            else if (msg == "Invalid") {
+            else if (msg == "Invalid" || msg.d == "Invalid") {
                 alert("Invalid Username / Password !!");
             }
             else {
@@ -251,13 +252,16 @@ $('#lnkRegister').click(function () {
 
 
     var list = [$('#txtRegDName').val(), $('#txtRegName').val(), $('#txtRegEmail').val(), $('#txtRegPass').val(), $('#hidIp').val()];
-    var jsonText = JSON.stringify({ list: list });
+    
+    var jsonText = JSON.stringify({ list: list, doaction: "yes", returntype : '' });
+    
     $.ajax({
         type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager/registercommenter",
+        url: $('#hdnApiPath').val() + "api/Reviews/AddCommenter",
+        //url: $('#hdnApiPath').val() + "controls/reviewmanager/registercommenter",
         data: jsonText,
         contentType: "application/json; charset=utf-8",
-        dataType: "text",
+        dataType: "json",
         async: true,
         cache: false,
         success: function (msg) {
@@ -279,6 +283,7 @@ $('#lnkRegister').click(function () {
                 alert(msg);
             }
         },
+
         failure: function () {
             alert('Request Failed. Try Again.');
         }
