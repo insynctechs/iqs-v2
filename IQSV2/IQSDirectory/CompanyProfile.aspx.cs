@@ -54,7 +54,7 @@ namespace IQSDirectory
                     if(ds.Tables[5].Rows.Count > 0)
                     GenerateOtherCompanies(ds.Tables[5], ds.Tables[0].Rows[0]["CTYPE"].ToString());
                     //GenerateTradeNames(ds.Tables[0].Rows[0]);
-                    //GenerateArticles();
+                    GenerateArticles();
                 }
             }
         }
@@ -63,9 +63,9 @@ namespace IQSDirectory
         {
             ClientSK = dr["CLIENT_SK"].ToString();
             ClientName = Utils.ReplaceContent(dr["NAME"].ToString(),1);
-            ClientNameFormatted = Utils.FormatCompanyWebsiteLink(dr["NAME"].ToString());            
-            CompRating = dr["RATINGAVG"].ToString(); ;
-            CompCount = dr["RATINGCOUNT"].ToString(); ;
+            ClientNameFormatted = Utils.FormatCompanyWebsiteLink(dr["NAME"].ToString());
+            CompRating = (Convert.ToInt32(dr["RATINGAVG"].ToString()) - 1).ToString();
+            CompCount = dr["RATINGCOUNT"].ToString(); 
             ShowReviews = dr["SHOW_REVIEWS"].ToString();
             ClientDesc = Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
             if (dr["COPRO_VIDEO"].ToString() != "")
@@ -300,26 +300,18 @@ namespace IQSDirectory
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-
                         DataTable dt = ds.Tables[0];
 
-                        dt.AcceptChanges();
                         dt.Columns.Add("URL");
                         dt.Columns.Add("DATE");
-                       
-                        dt.Columns.Add("DISPLAYDESC");
-                        foreach (DataRow drN in dt.Rows)
-                        {
-                            if (drN["EXTERNAL_URL"].ToString() == "")
-                                drN["URL"] = wHelper.NewsDirectory + drN["ARTICLE_CATEGORY_SK"] + "/" + drN["ARTICLE_SK"].ToString();
-                            else
-                                drN["URL"] = drN["EXTERNAL_URL"].ToString().ToLower().StartsWith("http://") ? drN["EXTERNAL_URL"].ToString() : "http://" + drN["EXTERNAL_URL"].ToString();
-                            drN["DATE"] = Convert.ToDateTime(drN["DATE_CREATED"].ToString()).ToString("MMMM dd, yyyy");
-                            drN["DESC"] = Utils.FirstWords(Regex.Replace(drN["DESCRIPTION"].ToString(), "<.*?>", string.Empty).Trim().Replace("\r\n", "").Replace("\t", " "), 90) + "...";
-                        }
+                        dt.Columns.Add("DESC");
+
+                        dt.AsEnumerable().ToList().ForEach(r => {
+                            r["URL"] = r["EXTERNAL_URL"].ToString() == "" ? wHelper.NewsDirectory + r["ARTICLE_CATEGORY_SK"] + "/" + r["ARTICLE_SK"].ToString() :r["EXTERNAL_URL"].ToString().ToLower().StartsWith("http://") ? r["EXTERNAL_URL"].ToString() : "http://" + r["EXTERNAL_URL"].ToString();
+                            r["DATE"] = Convert.ToDateTime(r["DATE_CREATED"].ToString()).ToString("MMMM dd, yyyy");
+                            r["DESC"] = Utils.FirstWords(Regex.Replace(r["DESCRIPTION"].ToString(), "<.*?>", string.Empty).Trim().Replace("\r\n", "").Replace("\t", " "), 90) + "...";
+                        });
                         Articles = dt.AsEnumerable().ToList();                      
-
-
                     }
                 }
             }

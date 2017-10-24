@@ -23,8 +23,17 @@
                         <input name='topstar' type='radio' class='topcommentstar' value='3' title='3'/>
                         <input name='topstar' type='radio' class='topcommentstar' value='4' title='4'/>
                         <input name='topstar' type='radio' class='topcommentstar' value='5' title='5'/>
-                        </span><span id='spanRateNum' class='spanratingnumnew'>5/5</span>
+                        </span><span id='spanRateNum' class='spanratingnumnew'><%: CompRating %>/5</span>
         </div>
+            <script type='text/javascript'>
+                $(document).ready(function () {
+                    $('input[type=radio].topcommentstar').rating({ required: true });
+                    $('input[type=radio].topcommentstar').rating('enable');
+                    $('input[type=radio].topcommentstar').rating('select', 0, false);
+                    $('input[type=radio].topcommentstar').rating('disable');
+                    if (parseInt(<%: CompRating %>) > -1) { $('#spanTopRate').show(); }
+                });
+             </script>
             <% } %>
         <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="http://schema.org/AggregateRating">
             <meta itemprop="bestRating" content="5"/>
@@ -47,7 +56,7 @@
                 <div id="divYoutube" class="container" <%: YoutubeStyle %> >
                     <img src="<%:RootPath %>images/coproplay.png" alt="Play Video" title="Play Video">
                 </div>
-                <a  id="lnkViewVideo" href="<%: VideoLink %>" >View Video</a>
+                <a  id="lnkViewVideo" href="<%: VideoLink %>" class="iframe coproviewvideo ">View Video</a>
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('#divYoutube').live('click', function () {
@@ -116,14 +125,14 @@
     </section>
     <section class="row2">
         <div class="col1">
-            <%-- if (Articles.Count > 0)
-                { %>
+            <%if (Articles != null) { if (Articles.Count > 0)
+            { %>
             <hr/>
             <section id="secarticles">
                 <h2>Articles and Press Releases</h2>
                 <ul>
                     <% foreach (var dr in Articles)
-                { %>
+                    { %>
                     <li>
                         <h3>
                             <a href="<%=dr["URL"]%>" target="_blank"><%= dr["HEADING"]%></a></h3>
@@ -137,7 +146,7 @@
                     <% } %>
                 </ul>
             </section>
-            <% } --%> -->
+            <% } } %>
             <hr/>
             <div id="commentForm">
                 <section id="secreviews">
@@ -309,8 +318,8 @@
         $(document).ready(function () {
             $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
-
             });
+
         });
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
