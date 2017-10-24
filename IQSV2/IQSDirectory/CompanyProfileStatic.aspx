@@ -40,7 +40,7 @@
                 <div id="divyoutube" class="container" style="background-image:url(http://img.youtube.com/vi/jZdyKt4CbyY/0.jpg); background-size:100% auto;">
                     <img src="./images/coproplay.png" alt="Play Video" title="Play Video">
                 </div>
-                <a href="http://www.iqsdirectory.com/controls/coprovideo.htm?v=jZdyKt4CbyY&amp;comp=Brooks%20Instrument" id="lnkViewVideo" >View Video</a>
+                <a href="./coprovideo.html?v=jZdyKt4CbyY&comp=Brooks Instrument" id="lnkViewVideo" class="iframe coproviewvideo" >View Video</a>
                 <script language="javascript" type="text/javascript">
                     $(document).ready(function () {
                         $('#divyoutube').live('click',function(){
@@ -73,7 +73,7 @@
                 <img src="images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
                 <div id="lblAddress">407 West Vine Street<br>Hatfield, PA 19440
                 <br>
-                <a href="http://www.iqsdirectory.com/controls/copromap.htm?address=407%20West%20Vine%20Street,Hatfield,PA,19440&amp;comp=Brooks%20Instrument" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
+                <a href="./copro-map.html?address=407%20West%20Vine%20Street,Hatfield,PA,19440&amp;comp=Brooks%20Instrument" id="lnkViewMap" class="coproviewmap">View Map</a>
                 </div>
                     <script language="javascript" type="text/javascript">
                     $(document).ready(function () {

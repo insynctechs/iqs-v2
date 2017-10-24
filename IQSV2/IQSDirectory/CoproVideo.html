@@ -3,24 +3,26 @@
 <head>
     <title>Company Profile Videos</title>
 
-    <script src='Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script src='./Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
     <script type='text/javascript'>
         $(document).ready(function () {
+            
             var vid = getParameterByName('v');
             var comp = getParameterByName('comp');
+            
             document.title = 'Video of ' + comp;
             $('meta[name="description"]').attr('content', 'Watch video of ' + comp + ' listed in IQSDirectory');
             $('meta[name="keywords"]').attr('content', comp + ' company video at IQSDirectory, Company Video, Video of Companies listed in IQSDirectory');
             $('#tagh1').html(comp);
-            var htm = '<iframe width="854" height="480" src="https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+            var htm = '<iframe width="854" height="480" src="http://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>';
             $('#divvideo').html(htm);
         });
 
         function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");            
             var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(window.location.href);
+            var regex = new RegExp(regexS);            
+            var results = regex.exec(window.location.href);            
             if (results == null)
                 return "";
             else
@@ -41,6 +43,7 @@
             margin-right: 12px;
             margin-top: 82px;
             background-color: Black;
+            width:900px; height:500px;
         }
 
         @media only screen and (max-width: 767px) {
@@ -50,7 +53,7 @@
             }
         }
     </style>
-    <link href='../Css/publish_styles.css' type="text/css" />
+    
 </head>
 <body>
     <h1 id='tagh1'></h1>

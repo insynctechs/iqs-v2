@@ -303,6 +303,18 @@ namespace IQSDirectory
 
                         DataTable dt = ds.Tables[0];
 
+                        DataTable dtNews = new DataTable();
+                        dtNews.Columns.Add("HEADING");
+                        dtNews.Columns.Add("DESCRIPTION");
+                        dtNews.Columns.Add("DATE_CREATED");
+                        dtNews.Columns.Add("ARTICLE_CATEGORY_SK");
+                        dtNews.Columns.Add("ARTICLE_SK");
+                        dtNews.Columns.Add("NAME");
+                        dtNews.Columns.Add("ATYPE");
+                        dtNews.AcceptChanges();
+
+
+
                         dt.AcceptChanges();
                         dt.Columns.Add("URL");
                         dt.Columns.Add("DATE");
