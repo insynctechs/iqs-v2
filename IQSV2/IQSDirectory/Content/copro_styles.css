@@ -13,7 +13,7 @@ h2 {
     line-height: 14px
 }
 #content_wrapper{width:80%;margin-left:auto;margin-right:auto;}
-.row1{width:100%;margin-top:5px; height: auto; overflow: hidden; min-height: 200px;}
+.row1{width:100%;margin-top:5px; height: auto; overflow:scroll; min-height: 600px;}
 .row1 h1{margin:30px 20px 15px 0; font-size:20px; line-height:26px; float: left; width: auto; height: auto; overflow: hidden;}
 .ie6 .row1{width:98%;margin-right:2%}
 .cleardiv{clear:both}
