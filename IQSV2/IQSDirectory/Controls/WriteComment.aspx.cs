@@ -12,7 +12,7 @@ namespace IQSDirectory
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            RootPath = "./";
+            RootPath = Request.QueryString["p"].ToString();
             UserIP = HttpContext.Current.Request.UserHostAddress.ToString();
             //Request.QueryString["p"].ToString();
             //CaptchaReview1.UrlPath = rootDirPath;

@@ -8,7 +8,7 @@
     <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/category_page1.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
 
     

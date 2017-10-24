@@ -1,8 +1,8 @@
-﻿/*
+﻿
 if (are_cookies_enabled()) {
     var cookieName = 'profilelogin';
     var cookie = $.cookie(cookieName);
-    if (cookie !== null) {
+    /*if (cookie !== null) {
         var list = cookie.split("|| ||");
         var acomp = new Array();
         $.each(list, function (key, val) {
@@ -35,8 +35,8 @@ if (are_cookies_enabled()) {
                 }
             }
         });
-    }
-}*/
+    }*/
+}
 
 $('#txtRegPass').bind('cut copy paste', function (event) {
     event.preventDefault();
