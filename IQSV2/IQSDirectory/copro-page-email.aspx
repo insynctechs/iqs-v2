@@ -6,9 +6,7 @@
      <meta name="robots" content="noindex, nofollow" />
     <link href="Content/form_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />    
-    <!-- <link href="Content/styler.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />   
-     <!--include jQuery -->  
+    <!--include jQuery -->  
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   
     <!--include jQuery Validation Plugin-->  
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
