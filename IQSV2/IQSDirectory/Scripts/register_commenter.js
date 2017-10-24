@@ -1,4 +1,5 @@
-﻿if (are_cookies_enabled()) {
+﻿/*
+if (are_cookies_enabled()) {
     var cookieName = 'profilelogin';
     var cookie = $.cookie(cookieName);
     if (cookie !== null) {
@@ -35,7 +36,8 @@
             }
         });
     }
-}
+}*/
+
 $('#txtRegPass').bind('cut copy paste', function (event) {
     event.preventDefault();
 });
@@ -62,11 +64,7 @@ $("#txtForgotEmail").keyup(function (event) {
     }
 });
 
-/*$("#Captcha1_txtCaptcha").keyup(function (event) {
-    if (event.keyCode == 13) {
-        $("#lnkRegister").click();
-    }
-});*/
+
 
 $('#lnkClose').click(function () {
     $('#fancybox-close').trigger('click');
@@ -92,7 +90,7 @@ $('#lnkRegLogin').click(function () {
     $('#txtRegEmail').val('');
     $('#txtRegPass').val('');
     $('#txtRegVerify').val('');
-    $('#Captcha1_txtCaptcha').val('');
+    
     $('#divSuccess').slideUp('slow', function () {
         $('#divRegForm').slideDown();
     });

@@ -34,7 +34,9 @@ namespace IQSDirectory
             RootPath = "../../";
             ApiPath = wHelper.ApiUrl;
             CategorySK = "0";
-            
+            ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
+            DirectoryURL = HttpContext.Current.Request.Url.Authority;
+
             string url = HttpContext.Current.Request.Url.AbsolutePath;
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
@@ -54,7 +56,7 @@ namespace IQSDirectory
                     if(ds.Tables[5].Rows.Count > 0)
                     GenerateOtherCompanies(ds.Tables[5], ds.Tables[0].Rows[0]["CTYPE"].ToString());
                     //GenerateTradeNames(ds.Tables[0].Rows[0]);
-                    //GenerateArticles();
+                    GenerateArticles();
                 }
             }
         }
@@ -63,9 +65,9 @@ namespace IQSDirectory
         {
             ClientSK = dr["CLIENT_SK"].ToString();
             ClientName = Utils.ReplaceContent(dr["NAME"].ToString(),1);
-            ClientNameFormatted = Utils.FormatCompanyWebsiteLink(dr["NAME"].ToString());            
-            CompRating = dr["RATINGAVG"].ToString(); ;
-            CompCount = dr["RATINGCOUNT"].ToString(); ;
+            ClientNameFormatted = Utils.FormatCompanyWebsiteLink(dr["NAME"].ToString());
+            CompRating = (Convert.ToInt32(dr["RATINGAVG"].ToString()) - 1).ToString();
+            CompCount = dr["RATINGCOUNT"].ToString(); 
             ShowReviews = dr["SHOW_REVIEWS"].ToString();
             ClientDesc = Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
             if (dr["COPRO_VIDEO"].ToString() != "")
@@ -122,6 +124,8 @@ namespace IQSDirectory
             Address = (dr["STATE"].ToString() != "") ? Address.Trim() + ", " + dr["STATE"].ToString() : dr["STATE"].ToString();
             if (dr["ADDRESS"].ToString() != "")
                 Address = dr["ADDRESS"].ToString().Trim() + "<br/>" + Address;
+            MapAddress  = dr["Address"].ToString() + "," + dr["CITY"].ToString() + "," + dr["STATE"].ToString() + "," + dr["ZIP"].ToString();
+
         }
 
         private void AddMetaTag(DataRow dr, DataTable dtScripts)
@@ -300,26 +304,18 @@ namespace IQSDirectory
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-
                         DataTable dt = ds.Tables[0];
 
-                        dt.AcceptChanges();
                         dt.Columns.Add("URL");
                         dt.Columns.Add("DATE");
-                       
-                        dt.Columns.Add("DISPLAYDESC");
-                        foreach (DataRow drN in dt.Rows)
-                        {
-                            if (drN["EXTERNAL_URL"].ToString() == "")
-                                drN["URL"] = wHelper.NewsDirectory + drN["ARTICLE_CATEGORY_SK"] + "/" + drN["ARTICLE_SK"].ToString();
-                            else
-                                drN["URL"] = drN["EXTERNAL_URL"].ToString().ToLower().StartsWith("http://") ? drN["EXTERNAL_URL"].ToString() : "http://" + drN["EXTERNAL_URL"].ToString();
-                            drN["DATE"] = Convert.ToDateTime(drN["DATE_CREATED"].ToString()).ToString("MMMM dd, yyyy");
-                            drN["DESC"] = Utils.FirstWords(Regex.Replace(drN["DESCRIPTION"].ToString(), "<.*?>", string.Empty).Trim().Replace("\r\n", "").Replace("\t", " "), 90) + "...";
-                        }
+                        dt.Columns.Add("DESC");
+
+                        dt.AsEnumerable().ToList().ForEach(r => {
+                            r["URL"] = r["EXTERNAL_URL"].ToString() == "" ? wHelper.NewsDirectory + r["ARTICLE_CATEGORY_SK"] + "/" + r["ARTICLE_SK"].ToString() :r["EXTERNAL_URL"].ToString().ToLower().StartsWith("http://") ? r["EXTERNAL_URL"].ToString() : "http://" + r["EXTERNAL_URL"].ToString();
+                            r["DATE"] = Convert.ToDateTime(r["DATE_CREATED"].ToString()).ToString("MMMM dd, yyyy");
+                            r["DESC"] = Utils.FirstWords(Regex.Replace(r["DESCRIPTION"].ToString(), "<.*?>", string.Empty).Trim().Replace("\r\n", "").Replace("\t", " "), 90) + "...";
+                        });
                         Articles = dt.AsEnumerable().ToList();                      
-
-
                     }
                 }
             }
@@ -336,7 +332,9 @@ namespace IQSDirectory
         public string ClientDesc { get; set; }
         public string ShowReviews { get; set; }
         public string ApiPath { get; set; }
-       
+        public string ShareURL { get; set; }
+        public string DirectoryURL { get; set; }
+
         public IHtmlString YoutubeStyle { get; set; }
         public IHtmlString VideoLink { get; set; }
 
@@ -347,6 +345,7 @@ namespace IQSDirectory
         public string WebsiteLink { get; set; }
         public string RelatedCompaniesList { get; set; }
         public string RelatedCompaniesHead { get; set; }
+        public string MapAddress { get; set; }
 
         public List<DataRow> RelatedCategories { get; set; }
         public List<DataRow> RelatedCompanies { get; set; }
