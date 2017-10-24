@@ -13,8 +13,8 @@
     <script type="text/javascript"  src="Scripts/copro-page-email.js"></script>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
-<body class="mailbody30">    
-  <div id="profileForm" class="profilestyle" runat="server">
+<body class="mailbody80">    
+ <div id="profileForm1" class="profilestyle" runat="server">
       <form id="frmShare" runat="server">
           <div id="divTop">
                <span class="divLeft"><img src="./images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
@@ -37,9 +37,9 @@
                 <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" runat="server" /></li>
                 <li>Message :<span class="require">* </span></li>
                 <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
-                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
-                    <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> <!--  -->
-                </li>                            </ul>
+               <!-- <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                    <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
+                </li>-->                            </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />

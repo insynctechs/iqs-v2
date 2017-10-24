@@ -7,28 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IQSDirectory {
+namespace IQSDirectory.Controls {
     
     
     public partial class copro_page_email {
-        
-        /// <summary>
-        /// profileForm1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profileForm1;
-        
-        /// <summary>
-        /// frmShare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmShare;
         
         /// <summary>
         /// divEmailCName control.

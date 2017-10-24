@@ -98,9 +98,16 @@ function jqClick()
         return false;
     }
     */
-    
+    alert("thx lord");
+    document.getElementById('iscontrolForm').value = "true";
     return true;
 
+}
+
+function SetSource(SourceID) {
+    var hidSourceID =
+        document.getElementById("<%=hidSourceID.ClientID%>");
+    hidSourceID.value = SourceID;
 }
 
 
