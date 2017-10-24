@@ -132,14 +132,14 @@
       <div class="write_comment_captcha_wrapper">
 
       <p>
-      <uc1:CaptchaReview ID="CaptchaReview1" EnableViewState="false" class="write_comment_captcha" runat="server"/>
+      
       </p>
       </div>
       <div class="write_comment_review">
       <p class="p1">Review (Required):<br />
       <textarea id="txtReview" ></textarea></p>
       <p class="p2">
-      <a href="#SubmitSubComment" id="lnkSubmitSubComment"><img src="<%=rootDirPath %>images/submit_button.png" alt="Login" /></a>
+      <a href="#SubmitSubComment" id="lnkSubmitSubComment"><img src="<%=RootPath %>images/submit_button.png" alt="Login" /></a>
       </p>
       </div>
     </div>

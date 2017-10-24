@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Company Profile Videos</title>
+
+    <script src='Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            var vid = getParameterByName('v');
+            var comp = getParameterByName('comp');
+            document.title = 'Video of ' + comp;
+            $('meta[name="description"]').attr('content', 'Watch video of ' + comp + ' listed in IQSDirectory');
+            $('meta[name="keywords"]').attr('content', comp + ' company video at IQSDirectory, Company Video, Video of Companies listed in IQSDirectory');
+            $('#tagh1').html(comp);
+            var htm = '<iframe width="854" height="480" src="https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+            $('#divvideo').html(htm);
+        });
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+    <style type="text/css">
+        #tagh1 {
+            position: absolute;
+            color: #000;
+            left: 25px;
+            top: 0px;
+            font-family: Arial,Helvetica,sans-serif;
+        }
+
+        #divvideo {
+            margin-left: 12px;
+            margin-right: 12px;
+            margin-top: 82px;
+            background-color: Black;
+        }
+
+        @media only screen and (max-width: 767px) {
+            #divvideo iframe {
+                width: 95% !important;
+                height: 480px !important;
+            }
+        }
+    </style>
+    <link href='../Css/publish_styles.css' type="text/css" />
+</head>
+<body>
+    <h1 id='tagh1'></h1>
+    <div id='divvideo' style=""></div>
+</body>
+</html>

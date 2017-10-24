@@ -8,11 +8,15 @@ namespace IQSDirectory
 
     public partial class WriteSubComment : System.Web.UI.Page
     {
-        public static string rootDirPath = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            rootDirPath = Request.QueryString["p"].ToString();
+            RootPath = "./";
+            UserIP = HttpContext.Current.Request.UserHostAddress.ToString();
+            //Request.QueryString["p"].ToString();
             //CaptchaReview1.UrlPath = rootDirPath;
         }
+
+        public string RootPath { get; set; }
+        public string UserIP { get; set; }
     }
 }

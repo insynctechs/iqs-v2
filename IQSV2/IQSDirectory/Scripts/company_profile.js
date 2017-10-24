@@ -9,7 +9,7 @@
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg == "true") {
+            if (msg === "true") {
                 $('#divLogout').show();
             }
         },
@@ -84,7 +84,7 @@
         $('#hidCommentId').val(cid);
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divCom' + cid);
-        if (divToAppend.children('#divReply' + cid).length == 0) {
+        if (divToAppend.children('#divReply' + cid).length === 0) {
             $(divToAppend).append('<div id="divReply' + cid + '" style="padding-left:30px;"></div>');
         }
         $.ajax({
@@ -96,7 +96,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "false") {
+                if (msg === "false") {
                     $('#lnkRegBox').trigger('click');
                     return false;
                 }
@@ -119,7 +119,7 @@
         $('#hidCommentId').val(cid);
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divSubCom' + cid);
-        if (divToAppend.children('#divSubReply' + cid).length == 0) {
+        if (divToAppend.children('#divSubReply' + cid).length === 0) {
             $(divToAppend).append('<div id="divSubReply' + cid + '" style="padding-left:30px;"></div>');
         }
         $.ajax({
@@ -131,7 +131,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "false") {
+                if (msg === "false") {
                     $('#lnkRegBox').trigger('click');
                     return false;
                 }
@@ -157,7 +157,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "success") {
+                if (msg === "success") {
                     alert("You have successfully logged out");
                     $('#divLogout').hide();
                     return false;
@@ -189,7 +189,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Invalid") {
+                if (msg === "Invalid") {
                     spnHelp.html("Was this helpful? <a class='lnkHelpful' href='#Helpful'><img alt='Yes' src='" + $('#hdnRootPath').val() + "images/helpful_button.png' style='vertical-align:middle;'></a>");
                     alert('Request Failed. Try Again.');
                 }
@@ -205,7 +205,7 @@
         return false;
     });
     var scrollFunction = function () {
-        if ($('#hidLastRecord').val() == '0') {
+        if ($('#hidLastRecord').val() === '0') {
             var docHeightChk = $(document).height() - $(window).height() - 70;
             var divHeightChk = $('#divCommentDisp').height() - $('#divCommentDisp').position().top;
             if (($(window).scrollTop() >= docHeightChk) || ($(window).scrollTop() >= divHeightChk)) {
@@ -244,7 +244,7 @@ function UpdateReviewRating(ratectrl, rateval) {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg == "Success") {
+            if (msg === "Success") {
                 $(ratectrl).rating('disable');
             }
             else {
@@ -271,7 +271,7 @@ function LoadCompanyTotalRating() {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg != "Invalid") {
+            if (msg !== "Invalid") {
                 var result = JSON.parse(msg);
                 $('input[type=radio].topcommentstar').rating('enable');
                 $('input[type=radio].topcommentstar').rating('select', parseInt(result[0]), false);
@@ -312,7 +312,7 @@ function LoadComments(clientsk, id) {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg == "Invalid") {
+            if (msg === "Invalid") {
                 $('#divCommentDisp').text('Problem Fetching Data. Please Refresh(F5).');
             }
             else if (msg == "LastRecord") {
@@ -351,7 +351,7 @@ function LoadSubComments(commentid, divToAppend) {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg != "") {
+            if (msg !== "") {
                 var result = JSON.parse(msg);
                 $(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');
             }

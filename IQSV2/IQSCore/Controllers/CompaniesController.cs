@@ -33,5 +33,15 @@ namespace IQSCore.Controllers
             else
                 return Ok(cat);
         }
+
+        [Route("api/Clients/GetClientProfileDetails")]
+        public async Task<IHttpActionResult> GetClientProfileDetails(int Client_SK, int json = 0)
+        {
+            var cat = await comp.GetClientProfileDetails(Client_SK);
+            if (json == 1)
+                return Json(JsonConvert.SerializeObject(cat, Formatting.Indented));
+            else
+                return Ok(cat);
+        }
     }
 }

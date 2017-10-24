@@ -77,8 +77,8 @@ namespace IQSCore.Models
             sqlParam[2] = new SqlParameter("@Email", Email);
             sqlParam[3] = new SqlParameter("@Password", Password);
             sqlParam[4] = new SqlParameter("@SystemIp", SystemIp);
-            sqlParam[5] = new SqlParameter("@Active", Active);
-            sqlParam[6] = new SqlParameter("@RetVal", SqlDbType.VarChar);
+            sqlParam[5] = new SqlParameter("@Active", Convert.ToBoolean(Active));
+            sqlParam[6] = new SqlParameter("@RetVal", SqlDbType.VarChar, 200);
             sqlParam[6].Direction = ParameterDirection.Output;
             await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertCommenters", sqlParam));
             return sqlParam[6].Value.ToString();
@@ -88,7 +88,7 @@ namespace IQSCore.Models
         #region " Login Commenters "
         public async Task<DataSet> CommentersLogin(string Email,string Password)
         {
-            SqlParameter[] sqlParam = new SqlParameter[1];
+            SqlParameter[] sqlParam = new SqlParameter[2];
             sqlParam[0] = new SqlParameter("@Email", Email);
             sqlParam[1] = new SqlParameter("@Password", Password);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspCommentersLogin", sqlParam));
@@ -97,7 +97,7 @@ namespace IQSCore.Models
         #endregion
 
         #region " Login FB Commenters "
-        public async Task<DataSet> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, bool Active)
+        public async Task<DataSet> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active)
         {
             SqlParameter[] sqlParam = new SqlParameter[6];
             sqlParam[0] = new SqlParameter("@DesiredName", DesiredName);

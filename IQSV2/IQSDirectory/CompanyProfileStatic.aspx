@@ -38,7 +38,7 @@
             <div id="divVideo">
 
                 <div id="divyoutube" class="container" style="background-image:url(http://img.youtube.com/vi/jZdyKt4CbyY/0.jpg); background-size:100% auto;">
-                    <img src="images/coproplay.png" alt="Play Video" title="Play Video">
+                    <img src="./images/coproplay.png" alt="Play Video" title="Play Video">
                 </div>
                 <a href="http://www.iqsdirectory.com/controls/coprovideo.htm?v=jZdyKt4CbyY&amp;comp=Brooks%20Instrument" id="lnkViewVideo" >View Video</a>
                 <script language="javascript" type="text/javascript">
@@ -148,7 +148,7 @@
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
                     <div class="review_main_right">
-                        <a href="#WriteReview" id="lnkWriteReview"><img src="images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
+                        <a href="#WriteReview" id="lnkWriteReview"><img src="./images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
                         <br>
                         <div id="divLogout"><a href="#Logout" id="lnkLogout">Logout</a></div>
                         <div id="divWriteReviewErr" class="requireD"></div>
@@ -181,8 +181,8 @@
                             <div class="clearfix"></div>
                             <div class="review_content_wrapper">With EFG you get great engineering experience to get the right fastener for your application. EFG’s recent growth through multi-company acquisitions has them on pace to become the leading domestic manufacturer of specialty fasteners in North America.</div>
                             <div id="divCom123" class="review_action_wrapper">
-                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Helpful"><img alt="Yes" src="../images/helpful_button.png"></a></span>
-                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Reply"><img alt="Yes" src="../images/reply_button.png"></a></span>
+                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Helpful"><img alt="Yes" src="./images/helpful_button.png"></a></span>
+                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Reply"><img alt="Yes" src="./images/reply_button.png"></a></span>
                                 <div id="divReply123" style="padding-left:30px;"></div>
                             </div>
                         </div>
@@ -279,15 +279,11 @@
                 <span>This Company Can Be Found On</span>
 
                 <div class="col">
-                    <ul id="ulAddLeft"><li><a href="http://www.iqsdirectory.com/bolts/" target="_blank">Bolts</a></li>
+                    <ul class="twocols"><li><a href="http://www.iqsdirectory.com/bolts/" target="_blank">Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/fasteners/" target="_blank">Fasteners</a></li>
                         <li><a href="http://www.iqsdirectory.com/hex-bolts/" target="_blank">Hex Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/nut-manufacturers/" target="_blank">Nut Manufacturers</a></li>
                         <li><a href="http://www.iqsdirectory.com/screw-manufacturers/" target="_blank">Screw Manufacturers</a></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul id="ulAddRight"><li><a href="http://www.iqsdirectory.com/cold-headed-parts/" target="_blank">Cold Headed Parts</a></li>
                         <li><a href="http://www.iqsdirectory.com/carriage-bolts/" target="_blank">Carriage Bolts</a></li>
                         <li><a href="http://www.iqsdirectory.com/metal-fasteners/" target="_blank">Metal Fasteners</a></li>
                         <li><a href="http://www.iqsdirectory.com/rivet-manufacturers/" target="_blank">Rivet Manufacturers</a></li>
@@ -316,11 +312,11 @@
 </div>
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
+            /*$.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
-                $('#txtsearch').val('<%: DisplayName %>');
+                $('#txtsearch').val('');
                 $('#txtsearch').attr('class', 'txtsearchsel');
-            });
+            });*/
                     });
 
 
