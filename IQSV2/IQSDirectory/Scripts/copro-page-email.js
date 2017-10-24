@@ -7,7 +7,8 @@ $(document).ready(function () {
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true },      
+            txtZip: { required: true, zipRule: true }
+            /*,      
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -17,7 +18,7 @@ $(document).ready(function () {
                     }
                 }
             }
-           
+           */
             
         },
         messages: {
@@ -26,8 +27,8 @@ $(document).ready(function () {
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"},
-             hiddenRecaptcha: { required: "Required "}
+            txtZip: {required: "Required", zipRule:"Invalid"}
+             //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
             alert("Thanks Lord");
@@ -104,7 +105,7 @@ function jqClick()
 
 
 function recaptchaCallback() {
-    $('#hiddenRecaptcha').valid();
+    //$('#hiddenRecaptcha').valid();
     $("#frmShare").validate();
 }
    

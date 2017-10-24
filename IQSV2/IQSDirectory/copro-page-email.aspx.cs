@@ -132,6 +132,7 @@ namespace IQSDirectory
                     //Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com",string.Empty, _Subject, strEmailContent.ToString(), true);
                     //Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
                     divStatus.InnerHtml = "Email sent succesfully";
+
                     txtFirstName.Value = "";
                     txtLastName.Value = "";
                     txtEmailAddress.Value = "";
@@ -139,6 +140,8 @@ namespace IQSDirectory
                     txtZip.Value = "";
                     txtSubject.Value = "";
                     txtMessage.Value = "";
+                    Response.Write("<script>window.open('copro-page-email-thanku.aspx', 'popup', 'top=0,left=0,width=500,height=400,scrollbars=no,menubar=no,toolbar=no,resizable=no,location=no,titlebar=no');</script>");
+                    
                 }
                 else  //invalid ip access
                 {
