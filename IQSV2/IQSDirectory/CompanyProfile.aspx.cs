@@ -34,7 +34,9 @@ namespace IQSDirectory
             RootPath = "../../";
             ApiPath = wHelper.ApiUrl;
             CategorySK = "0";
-            
+            ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
+            DirectoryURL = HttpContext.Current.Request.Url.Authority;
+
             string url = HttpContext.Current.Request.Url.AbsolutePath;
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
@@ -122,6 +124,8 @@ namespace IQSDirectory
             Address = (dr["STATE"].ToString() != "") ? Address.Trim() + ", " + dr["STATE"].ToString() : dr["STATE"].ToString();
             if (dr["ADDRESS"].ToString() != "")
                 Address = dr["ADDRESS"].ToString().Trim() + "<br/>" + Address;
+            MapAddress  = dr["Address"].ToString() + "," + dr["CITY"].ToString() + "," + dr["STATE"].ToString() + "," + dr["ZIP"].ToString();
+
         }
 
         private void AddMetaTag(DataRow dr, DataTable dtScripts)
@@ -328,7 +332,9 @@ namespace IQSDirectory
         public string ClientDesc { get; set; }
         public string ShowReviews { get; set; }
         public string ApiPath { get; set; }
-       
+        public string ShareURL { get; set; }
+        public string DirectoryURL { get; set; }
+
         public IHtmlString YoutubeStyle { get; set; }
         public IHtmlString VideoLink { get; set; }
 
@@ -339,6 +345,7 @@ namespace IQSDirectory
         public string WebsiteLink { get; set; }
         public string RelatedCompaniesList { get; set; }
         public string RelatedCompaniesHead { get; set; }
+        public string MapAddress { get; set; }
 
         public List<DataRow> RelatedCategories { get; set; }
         public List<DataRow> RelatedCompanies { get; set; }

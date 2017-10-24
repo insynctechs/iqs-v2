@@ -14,7 +14,7 @@ namespace IQSDirectory
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            RootPath = "./"; //Request.QueryString["p"].ToString();
+            RootPath = Request.QueryString["p"].ToString();
             UserIP = HttpContext.Current.Request.UserHostAddress.ToString();
 
         }

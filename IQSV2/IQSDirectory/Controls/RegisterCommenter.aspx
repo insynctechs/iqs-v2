@@ -8,7 +8,7 @@
     <style type="text/css">        
         
     </style>
-    <script type="text/javascript" defer async src="Scripts/register_commenter.js"></script>
+    <script type="text/javascript" defer async src="<%:RootPath %>Scripts/register_commenter.js"></script>
 </head>
 <body>
 

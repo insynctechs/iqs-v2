@@ -95,9 +95,9 @@
                 <img src="<%:RootPath %>/images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
                 <div id="lblAddress"><%= Address %>
                 <br>
-                <a href="http://www.iqsdirectory.com/controls/copromap.htm?address=407%20West%20Vine%20Street,Hatfield,PA,19440&amp;comp=Brooks%20Instrument" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
+                <a href="<%:RootPath %>copro-map.html?address=<%=MapAddress %>&comp=<%=ClientName %>" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
                 </div>
-                    <script language="javascript" type="text/javascript">
+                    <script type="text/javascript">
                         $(document).ready(function () {
                             $('#lnkViewMap').fancybox({
                                 'padding': 0,
@@ -174,9 +174,9 @@
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
                     <div class="review_main_right">
-                        <a href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#WriteReview" id="lnkWriteReview"><img src="<%:RootPath %>images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
+                        <a href="#WriteReview" id="lnkWriteReview"><img src="<%:RootPath %>images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
                         <br>
-                        <div id="divLogout"><a href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Logout" id="lnkLogout">Logout</a></div>
+                        <div id="divLogout"><a href="#Logout" id="lnkLogout">Logout</a></div>
                         <div id="divWriteReviewErr" class="requireD"></div>
                     </div>
                     <div class="cleardiv"></div>
@@ -221,9 +221,9 @@
                     <input type="hidden" id="hidRootPath" value="../../">
                 </section>
                 <div style="display:block;">
-                    <a id="lnkRegBox" href="http://www.iqsdirectory.com/controls/registercommenter.aspx?p=../../" title="Login">Login</a>
-                    <a id="lnkReviewBox" href="http://www.iqsdirectory.com/controls/writecomment.aspx?p=../../" title="WriteAReview">Write A Review</a>
-                    <a id="lnkReplyBox" href="http://www.iqsdirectory.com/controls/writesubcomment.aspx?p=../../" title="ReplyReview"></a>
+                    <a id="lnkRegBox" href="<%:RootPath %>controls/registercommenter.aspx?p=<%:RootPath %>" title="Login">Login</a>
+                    <a id="lnkReviewBox" href="<%:RootPath %>controls/writecomment.aspx?p=<%:RootPath %>" title="WriteAReview">Write A Review</a>
+                    <a id="lnkReplyBox" href="<%:RootPath %>controls/writesubcomment.aspx?p=<%:RootPath %>" title="ReplyReview"></a>
 
                 </div>
             </div>
@@ -234,19 +234,19 @@
                 <ul>
                     <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
                     <li><a class="google" rel=nofollow
-                           href="https://plus.google.com/share?url=http://www.iqsdirectory.com/metal-stampings" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
+                           href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
                         Google</a></li>
                     <li><a class="twitter" rel=nofollow
-                           href="https://twitter.com/share?url=http://www.iqsdirectory.com/metal-stampings&text=%23Top 10 Metal Stampings Companies + Services [2017 Updated]. Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized." onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
+                           href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: Master.PageTitle %>. <%: Master.PageDescription %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
                         Twitter</a></li>
                     <li><a class="linkedin" rel=nofollow
-                           href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.iqsdirectory.com/metal-stampings&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&summary=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&source=http://www.iqsdirectory.com/" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
+                           href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%= Master.PageTitle %>&summary=<%: Master.PageDescription %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
                         LinedIn</a></li>
                     <li><a class="facebook" rel=nofollow href=""
-                           onclick="javascript:postToFeed('Top 10 Metal Stampings Companies + Services [2017 Updated]','http://www.iqsdirectory.com/','Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.');return false;">
+                           onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
                         Facebook</a></li>
                     <li><a rel=nofollow class="lnkmail mail"
-                           href="../controls/MailSend.aspx?p=../&title=Top 10 Metal Stampings Companies + Services [2017 Updated]&des=Easily locate 10 metal stampings companies. Complex, requirements, fast rfq, design, experience, iso certified, drawings, quick, quote, customized.&url=http://www.iqsdirectory.com/metal-stampings">
+                           href="../controls/MailSend.aspx?p=../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
                         Mail</a></li>
                     <li><a href="" class="print" onclick="javascript:window.print();return false;">
                         Print</a></li>
@@ -282,7 +282,7 @@
                     }
                 </script>
             </div>
-            <% if (RelatedCompaniesList != "")
+            <% if (RelatedCompaniesList != "" && RelatedCompaniesList != null)
                      { %>
             <div id="divRelated" class="rightbox clearfix" >
                 <span><%= RelatedCompaniesHead %></span>
@@ -321,6 +321,41 @@
             });
 
         });
+
+        $(document).ready(function () {
+            $('#hidRootPath').val($('#hdnSrhRootPath').val());
+
+            $('#lnkRegBox').fancybox({
+                'padding': 0,
+                'showCloseButton': true,
+                'modal': true,
+                'titleShow': false
+            });
+            $('#lnkReviewBox').fancybox({
+                'padding': 0,
+                'showCloseButton': true,
+                'modal': true,
+                'titleShow': false
+            });
+            $('#lnkReplyBox').fancybox({
+                'padding': 0,
+                'showCloseButton': true,
+                'modal': true,
+                'titleShow': false
+            });
+
+
+
+            $('#lnkWriteReview').live('click', function () {
+                $('#hidCommentType').val('Review');
+                $('#lnkRegBox').trigger('click');
+
+            });
+
+
+
+        });
+
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
