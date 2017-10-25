@@ -14,7 +14,7 @@
 
 <div id="divLogin" class="register_popup">
 <form id="frmRegCommeter" runat="server">
-     
+     <h2 class="pophead">USER REGISTRATION / LOGIN</h2>
 <div id="divRegForm" class="register_form_wrapper" >
       <div class="register_popup_left">
       <p></p>

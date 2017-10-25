@@ -228,7 +228,7 @@
                     <input type="hidden" id="hidCommentedBy" value="">
                     <input type="hidden" id="hidRootPath" value="../../">
                 </section>
-                <div style="display:block;">
+                <div style="display:none;">
                     <a id="lnkRegBox" href="<%:RootPath %>controls/registercommenter.aspx?p=<%:RootPath %>" title="Login">Login</a>
                     <a id="lnkReviewBox" href="<%:RootPath %>controls/writecomment.aspx?p=<%:RootPath %>" title="WriteAReview">Write A Review</a>
                     <a id="lnkReplyBox" href="<%:RootPath %>controls/writesubcomment.aspx?p=<%:RootPath %>" title="ReplyReview"></a>
