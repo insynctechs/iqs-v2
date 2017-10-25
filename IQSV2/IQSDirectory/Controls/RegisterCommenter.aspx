@@ -34,8 +34,7 @@
             <input type="hidden" id="hidIp" value="<%=UserIP %>" />
         </p>
           <p >
-              <a href="#Register" id="lnkRegister" class="register_btn" ><img src="<%=RootPath %>images/registerbutton.jpg" alt="Register"
-           /></a>
+              <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
           </p>
           
@@ -61,7 +60,7 @@
       </p>
       <p class="register_login_bot_wrapper">
       <span class="register_checkbox_wrapper"><input type="checkbox" id="chkRemember" /> Remember me?</span>
-      <a href="#Login" id="lnkLogin"><img src="<%=RootPath %>images/loginbutton.jpg" alt="Login" /></a><br />
+      <a href="#Login" id="lnkLogin large">Login</a><br />
       <a href="#ForgotPassword" id="lnkForgotPassword">Forgot Password?</a>
           
       </p>
@@ -73,7 +72,7 @@
           <input type="text" id="txtForgotEmail" class="commenttextbox" />
           </p>
           <p class="register_forgot_btn_wrapper">
-        <a href="#ForgotSubmit" id="lnkForgotSubmit"><img src="<%=RootPath %>images/submit_button.png" alt="Login" /></a>
+        <a href="#ForgotSubmit" id="lnkForgotSubmit" class="large">Get Password</a>
       </p>
       </div>
       <div class="cleardiv"></div>
@@ -89,7 +88,7 @@
       <p>Your login details have been sent to your email address.</p>
       <p>Please login using your email address and password to post your reviews and comments.</p>
     <p>&nbsp;</p>
-      <a href="#Login" id="lnkRegLogin"><img src="<%=RootPath %>images/loginbutton.jpg" alt="Login" /></a>
+      <a href="#Login" id="lnkRegLogin" class="large">Login</a>
 </div>
 
 <div id="divSuccessForgot" class="register_success">
@@ -98,7 +97,7 @@
     <br />
       <h2>Your request has been processed successfully !</h2><br />
       <h2>The password has been emailed to your registered email address.</h2><br /><br />
-      <a href="#Close" id="lnkClose"><img src="<%=RootPath %>images/close.png" alt="Close" /></a>
+      <a href="#Close" id="lnkClose">Close</a>
 </div>
 
  </form>

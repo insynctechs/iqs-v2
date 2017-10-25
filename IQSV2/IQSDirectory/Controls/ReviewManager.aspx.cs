@@ -164,9 +164,8 @@ namespace IQSDirectory
                     Title = Title.Replace("iqsdirectory.com", "");
                     Review = Review.Replace("iqsdirectory.com", "");
                     url = string.Format("api/Reviews/WriteReview?UserId=" + CommenterId + "&Rating=" + Rating + "&Title="+ Title+"&Review="+ Review + "&Client_SK="+ ClientSk +"&json=0");
-                    string disable_res = wHelper.GetExecuteNonQueryStringResFromWebApi(url);
-                    /*object[] objParam = new object[] { CommenterId, Rating, Title, Review, ClientSk };
-                    DataTable dt = objCommentService.WriteReview(objParam);
+                    DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                    
                     if (dt == null)
                     {
                         return "Invalid";
@@ -231,9 +230,9 @@ namespace IQSDirectory
                         }
                         string mailStat = SendReviewMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["CDate"].ToString(), dt.Rows[0]["Rating"].ToString(), dt.Rows[0]["Title"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail);
                         return json;
-                    }*/
+                    }
                 }
-                
+                                
             }
             catch (Exception ex)
             {
@@ -241,39 +240,7 @@ namespace IQSDirectory
             }
         }
 
-        public static string SendRegistrationMail(string FullName, string toEmail, string Password)
-        {
-            try
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                sb.AppendLine("Dear " + FullName + ", ");
-                sb.AppendLine("<br/><br/>");
-                sb.AppendLine("Thank you for registering with IQS.");
-                sb.AppendLine("<br/><br/>");
-                sb.AppendLine("Your login details for posting comments and reviews with us are: ");
-                sb.AppendLine("<br/>");
-                sb.AppendLine("Email address: " + toEmail + "<br/>");
-                sb.AppendLine("Password: " + Password + "<br/>");
-                sb.AppendLine("<br/>");
-                sb.AppendLine("Please keep this email as it contains your login details.");
-                sb.AppendLine("<br/><br/>");
-
-                sb.AppendLine("Thanks and Regards");
-                sb.AppendLine("<br/>");
-                sb.AppendLine("IQS Directory Administrator");
-                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
-                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
-                Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
-                //IQS.Utility.Utils.SendMail(_fromAddress, toEmail, "njerry@iforceproservices.com", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
-                return sb.ToString();
-                
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
-        }
-
+        
         [WebMethod(EnableSession = true)]
         public static string userlogin(List<string> list)
         {
@@ -432,6 +399,81 @@ namespace IQSDirectory
             finally
             {
                
+            }
+        }
+
+
+        public static string SendRegistrationMail(string FullName, string toEmail, string Password)
+        {
+            try
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.AppendLine("Dear " + FullName + ", ");
+                sb.AppendLine("<br/><br/>");
+                sb.AppendLine("Thank you for registering with IQS.");
+                sb.AppendLine("<br/><br/>");
+                sb.AppendLine("Your login details for posting comments and reviews with us are: ");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Email address: " + toEmail + "<br/>");
+                sb.AppendLine("Password: " + Password + "<br/>");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Please keep this email as it contains your login details.");
+                sb.AppendLine("<br/><br/>");
+
+                sb.AppendLine("Thanks and Regards");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("IQS Directory Administrator");
+                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
+                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
+                Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
+                //IQS.Utility.Utils.SendMail(_fromAddress, toEmail, "njerry@iforceproservices.com", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
+                return sb.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
+
+        public static string SendReviewMail(string CName, string CEmail, string CDate, string Rating, string Title, string Review, string Company, string ClientEmail)
+        {
+            try
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.AppendLine("Hi, ");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("New review for " + Company);
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Posted by : " + CName + " (" + CEmail + ")");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Posted date : " + CDate);
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Title : " + Title);
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Rating : " + Rating);
+                sb.AppendLine("<br/>");
+                sb.AppendLine("Review : " + Review);
+                sb.AppendLine("<br/><br/>");
+                sb.AppendLine("Thanks and Regards");
+                sb.AppendLine("<br/>");
+                sb.AppendLine("IQS Directory Administrator");
+                
+                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
+                string _toAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
+                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
+                string _bccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
+                Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                //IQS.Utility.Utils.SendMail(_fromAddress, "njerry@iforceproservices.com", "", "njerry@iforceproservices.com,mbbinil@iforceproservices.com", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                if (ClientEmail != "")
+                    Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                //Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                return "mail sent";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
             }
         }
     }

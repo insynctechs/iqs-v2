@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head runat="server">
-    <title>Form for Writing Review Comments</title>
+    <title>IQSDirectory: Post Reviews and Ratings</title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <script type="text/javascript" defer async src="<%:RootPath %>Scripts/write_commenter.js"></script>   
     
@@ -41,18 +41,11 @@
       <p class="p1">Review (Required):<br />
       <textarea id="txtReview" ></textarea></p>
       <p class="p2">
-      <a href="#SubmitComment" id="lnkSubmitComment"><img src="<%=RootPath %>images/submit_button.png" alt="Login" /></a>
+      <a href="#SubmitComment" id="lnkSubmitComment" class="large">Submit</a>
       </p>
       </div>
     </div>
-    <div id="divSuccess" class="hide_elem">
-    <p></p>
-        <br />
-        <br />
-          <h2>User Registration Successfull !!!</h2><br />
-          <h2>Your Password has been sent to your email.</h2><br /><br />
-          <a href="#Close" id="lnkClose"><img src="<%=RootPath %>images/close.png" alt="Close" /></a>
-    </div>
+    
     </form>
 </div>
 </body>

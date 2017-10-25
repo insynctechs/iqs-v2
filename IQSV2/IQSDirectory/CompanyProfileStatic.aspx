@@ -148,7 +148,7 @@
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
                     <div class="review_main_right">
-                        <a href="#WriteReview" id="lnkWriteReview"><img src="./images/write_a_review_button.png" alt="Write A Review" title="Write A Review"></a>
+                        <a href="#WriteReview" id="lnkWriteReview" class="large">Write A Review</a>
                         <br>
                         <div id="divLogout"><a href="#Logout" id="lnkLogout">Logout</a></div>
                         <div id="divWriteReviewErr" class="requireD"></div>
@@ -181,8 +181,8 @@
                             <div class="clearfix"></div>
                             <div class="review_content_wrapper">With EFG you get great engineering experience to get the right fastener for your application. EFG’s recent growth through multi-company acquisitions has them on pace to become the leading domestic manufacturer of specialty fasteners in North America.</div>
                             <div id="divCom123" class="review_action_wrapper">
-                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Helpful"><img alt="Yes" src="./images/helpful_button.png"></a></span>
-                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="http://www.iqsdirectory.com/profile/elgin-fastener-group-58208/#Reply"><img alt="Yes" src="./images/reply_button.png"></a></span>
+                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful small" href="#Helpful">Yes</a></span>
+                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply small" href="#Reply">Reply</a></span>
                                 <div id="divReply123" style="padding-left:30px;"></div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                     <input type="hidden" id="hidCommentedBy" value="">
                     <input type="hidden" id="hidRootPath" value="<%: RootPath %>">
                 </section>
-                <div style="display:block;">
+                <div style="display:none;">
 
                     <a id="lnkRegBox" href="controls/registercommenter" title="Login">Login</a>
                     <a id="lnkReviewBox" href="controls/writecomment" title="WriteAReview">Write A Review</a>

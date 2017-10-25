@@ -124,9 +124,45 @@ div.rightbox .col { height: auto; overflow: hidden;}
 #divVideo{margin-top:15px;}
 .ip_error{color:#f00; font-size:14px; font-weight:bold; margin:10px 0px; line-height:16px; display:none;}
 .clearfix{clear: both;}
-
+a.small, a.large {
+    width: auto !important;
+    height: auto !important;
+    background: #f06000; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#f06000, #ffaf7a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f06000, #ffaf7a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f06000, #ffaf7a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f06000, #ffaf7a); /* Standard syntax */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: #000 groove 1px;
+    
+}
+a.small{
+    font-size:12px; padding:5px 10px; display:inline-block;
+}
+a.large {
+    font-size: 15px;
+    padding: 11px 9px;
+    display:inline-block;
+}
+a:hover.large {
+    box-shadow: 2px 2px 2px #888888;
+}
+a:hover.small {
+    box-shadow: 1px 1px 1px #888888;
+}
 /**************** Comment Popup ********************************/
-.register_popup{width:620px; min-height:420px; height: 420px; height: auto !important; overflow:auto; border: 1px solid black; position:relative; margin:0px;}
+.register_popup {
+    width: 620px;
+    min-height: 420px;
+    height: 420px;
+    height: auto !important;
+    overflow: auto;
+    border: 1px solid black;
+    position: relative;
+    margin: 0px;
+}
 .register_form_wrapper{width:100%;min-height:420px; height: 420px; height: auto !important; overflow:hidden; text-align: left; }
 .register_popup_left{float:left; margin-top: 15px; margin-bottom: 15px; display:block; width:310px; height:420px; height: auto !important; overflow: hidden; padding-left:15px; border-right:1px solid black; text-align:left;}
 .register_popup_right{width:260px; padding-top: 25px; text-align:center;float:left; display:block; padding-left:15px; text-align:left;}

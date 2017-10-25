@@ -1,10 +1,6 @@
 ﻿$(document).ready(function () {
-    $('input[type=radio].writereviewstar').rating({
-        required: true,
-        callback: function (value, link) {
-            $('#txtRating').val(value);
-        }
-    });
+    //alert($('#hidCommentId').val());
+    //alert($('#hidCommentType').val());
     $.ajax({
         type: "POST",
         url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/getloginusername",
@@ -23,7 +19,9 @@
             alert('Request Failed. Try Again.');
         }
     });
-    $('#lnkSubmitComment').click(function () {
+    $('#txtTopic').val($('#hidCommentedBy').val());
+
+    $('#lnkSubmitSubComment').click(function () {
         var list = [$('#txtUserId').val()];
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
@@ -46,19 +44,11 @@
                 return false;
             }
         });
+
+        var cid = $('#hidCommentId').val();
         if ($.trim($('#txtName').val()) == '') {
             alert('Please Enter Name');
             $('#txtName').focus();
-            return false;
-        }
-        if ($.trim($('#txtRating').val()) == '') {
-            alert('Please Rate the Company');
-            $('#txtRating').focus();
-            return false;
-        }
-        if ($.trim($('#txtTitle').val()) == '') {
-            alert('Please Enter Title');
-            $('#txtTitle').focus();
             return false;
         }
         if ($.trim($('#txtReview').val()) == '') {
@@ -66,13 +56,17 @@
             $('#txtReview').focus();
             return false;
         }
-               
+        if ($.trim($('#CaptchaReview1_txtCaptcha').val()) == '') {
+            alert('Please Enter Code');
+            $('#CaptchaReview1_txtCaptcha').focus();
+            return false;
+        }
 
-        list = [$('#txtUserId').val(), $('#txtRating').val(), $('#txtTitle').val(), $('#txtReview').val(), $('#hdnProfileClientSk').val(), $('#hidRootPath').val()];
+        list = [$('#txtUserId').val(), cid, $('#txtReview').val(), $('#hidCommentType').val(), $('#CaptchaReview1_txtCaptcha').val(), $('#txtTopic').val(), $('#hidRootPath').val()];
         jsonText = JSON.stringify({ list: list });
         $.ajax({
             type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/writereview",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/writesubreview",
             data: jsonText,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -92,14 +86,18 @@
                 }
                 else {
                     var result = JSON.parse(msg);
-                    alert("Review Posted Successfully");
+                    alert("Reply Posted Successfully");
                     $('#fancybox-close').trigger('click');
-                    $(result).prependTo($('#divCommentDisp')).hide().slideDown('slow');
-                    LoadCompanyTotalRating();
+                    if ($('#hidCommentType').val() == 'SubReply') {
+                        $(result).appendTo($('#divSubReply' + cid)).hide().slideDown('slow');
+                    }
+                    else {
+                        $(result).appendTo($('#divReply' + cid)).hide().slideDown('slow');
+                    }
                 }
             },
             failure: function () {
-                $('#divWriteReviewErr').text('Request Failed. Try Again.');
+                alert('Request Failed. Try Again.');
             }
         });
         return false;
