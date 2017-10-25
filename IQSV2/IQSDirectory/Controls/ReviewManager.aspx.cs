@@ -82,7 +82,165 @@ namespace IQSDirectory
             }
         }
 
-        
+        [WebMethod(EnableSession = true)]
+        public static string getloginusername()
+        {
+            string[] str = { HttpContext.Current.Session["CommenterId"].ToString(), HttpContext.Current.Session["CommenterName"].ToString() };
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string json = jss.Serialize(str);
+            return json;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string checkcommenteractive(List<string> list)
+        {
+            try
+            {
+                string UserId = list[0];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetCommenterActiveValue?UserId=" + UserId + "&json=0");
+                int status = wHelper.GetExecuteNonQueryResFromWebApi(url);
+                if (status == 0)
+                {
+                    HttpContext.Current.Session.RemoveAll();
+                    HttpContext.Current.Session.Clear();
+                    return "Invalid";
+                }
+                else
+                {
+                    return "Success";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string writereview(List<string> list)
+        {
+            try
+            {
+                string CommenterId = list[0];
+                string Rating = list[1];
+                string Title = list[2];
+                string Review = list[3];
+                string ClientSk = list[4];
+                string rootDirPath = list[5];
+
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetProfanity?word=" + "&json=0");
+                DataTable dtProfanity = wHelper.GetDataTableFromWebApi(url);
+
+                bool wordFound = false;
+                string TitlePadded = " " + Title + " ";
+                string ReviewPadded = " " + Review + " ";
+                foreach (DataRow dr in dtProfanity.Rows)
+                {
+                    //if (Title.ToLower().Contains(dr["ProfanityWord"].ToString().ToLower()))
+                    if (Regex.IsMatch(TitlePadded, @"[^a-zA-Z]" + dr["ProfanityWord"].ToString() + @"[^a-zA-Z]", RegexOptions.Multiline | RegexOptions.IgnoreCase) == true)
+                    {
+                        wordFound = true;
+                        break;
+                    }
+                    //if (Review.ToLower().Contains(dr["ProfanityWord"].ToString().ToLower()))
+                    if (Regex.IsMatch(ReviewPadded, @"[^a-zA-Z]" + dr["ProfanityWord"].ToString() + @"[^a-zA-Z]", RegexOptions.Multiline | RegexOptions.IgnoreCase) == true)
+                    {
+                        wordFound = true;
+                        break;
+                    }
+                }
+                if (wordFound == true)
+                {
+                    HttpContext.Current.Session.Remove("CommenterId");
+                    HttpContext.Current.Session.Remove("CommenterName");
+                    url = string.Format("api/Reviews/DisableCommenter?UserId=" + CommenterId + "&json=0");
+                    string disable_res = wHelper.GetExecuteNonQueryStringResFromWebApi(url);
+                    return "Foul Word";
+                }
+                else
+                {
+                    Title = Title.Replace("iqsdirectory.com", "");
+                    Review = Review.Replace("iqsdirectory.com", "");
+                    url = string.Format("api/Reviews/WriteReview?UserId=" + CommenterId + "&Rating=" + Rating + "&Title="+ Title+"&Review="+ Review + "&Client_SK="+ ClientSk +"&json=0");
+                    string disable_res = wHelper.GetExecuteNonQueryStringResFromWebApi(url);
+                    /*object[] objParam = new object[] { CommenterId, Rating, Title, Review, ClientSk };
+                    DataTable dt = objCommentService.WriteReview(objParam);
+                    if (dt == null)
+                    {
+                        return "Invalid";
+                    }
+                    else if (dt.Rows.Count == 0)
+                    {
+                        return "Invalid";
+                    }
+                    else
+                    {
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append("<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + dt.Rows[0]["CommentId"].ToString() + "' />");
+                        sb.Append("<input type='hidden' id='hdCommenter' value='" + dt.Rows[0]["CName"].ToString() + "' />");
+                        sb.Append("<div class='review_title_wrapper'>");
+                        sb.Append("<h2>" + dt.Rows[0]["Title"].ToString() + "</h2>");
+                        sb.Append("<div class='review_meta_wrapper'><h3>By <span>" + dt.Rows[0]["CName"].ToString() + "</span>- <span>" + dt.Rows[0]["CDate"].ToString() + "</span></h3></div>");
+                        sb.Append("</div>");
+                        sb.Append("<span class='review_rating_wrapper'>");
+                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='1' title='1'/>");
+                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='2' title='2'/>");
+                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='3' title='3'/>");
+                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='4' title='4'/>");
+                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='5' title='5'/>");
+                        sb.Append("</span>");
+                        sb.Append("<div style='clear:both;'></div>");
+                        sb.Append("<div class='review_content_wrapper'>" + dt.Rows[0]["Review"].ToString() + "</div>");
+                        sb.Append("<div id='divCom" + dt.Rows[0]["CommentId"].ToString() + "' class='review_action_wrapper'>");
+                        sb.Append("<span class='spnHelpful'>Was this helpful? ");
+                        sb.Append("<a class='lnkHelpful' href='#Helpful'>");
+                        sb.Append("<img alt='Yes' src='" + rootDirPath + "images/helpful_button.png' >");
+                        sb.Append("</a>");
+                        sb.Append("</span>");
+                        sb.Append("<span class='spnHelpCount' >");
+                        sb.Append(dt.Rows[0]["Helpful"].ToString() + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful");
+                        sb.Append("</span>");
+                        sb.Append("<span>");
+                        sb.Append("<a class='lnkReply' href='#Reply'>");
+                        sb.Append("<img alt='Yes' src='" + rootDirPath + "images/reply_button.png' >");
+                        sb.Append("</a>");
+                        sb.Append("</span>");
+                        sb.Append("</div>");
+                        sb.Append("<script language='javascript' type='text/javascript'>");
+                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating({");
+                        sb.Append("required: true");
+                        sb.Append("});");
+                        //int Rating = Convert.ToInt16(dt.Rows[0]["Rating"].ToString());
+                        //if (RatingReceived > 0)
+                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating('select', " + (Convert.ToInt16(dt.Rows[0]["Rating"].ToString()) - 1).ToString() + ", false);");
+                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating('disable');");
+                        sb.Append("</script>");
+                        //if(RatingReceived>0)
+                        sb.Append("</div>");
+                        JavaScriptSerializer jss = new JavaScriptSerializer();
+                        string json = jss.Serialize(sb.ToString());
+                        string clientEmail = "";
+                        if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
+                        {
+                            if (dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "" && dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "N/A")
+                            {
+                                clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
+                            }
+                        }
+                        string mailStat = SendReviewMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["CDate"].ToString(), dt.Rows[0]["Rating"].ToString(), dt.Rows[0]["Title"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail);
+                        return json;
+                    }*/
+                    return null;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
 
         public static string SendRegistrationMail(string FullName, string toEmail, string Password)
         {
@@ -128,7 +286,7 @@ namespace IQSDirectory
                 string Email = list[0].ToString();
                 string Password = list[1].ToString();
                 WebApiHelper wHelper = new WebApiHelper();
-                var url = string.Format("api/Reviews/CommentersLogin?Email=" + Email + "&Password=" + Password + "&json=0");
+                var url = string.Format("api/Reviews/GetCommentersLogin?Email=" + Email + "&Password=" + Password + "&json=0");
                 DataSet ds = wHelper.GetDataSetFromWebApi(url);
                 //return "Dataset";
                 if (ds != null)

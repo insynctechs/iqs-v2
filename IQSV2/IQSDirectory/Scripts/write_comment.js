@@ -66,13 +66,9 @@
                     $('#txtReview').focus();
                     return false;
                 }
-                if ($.trim($('#CaptchaReview1_txtCaptcha')) == '') {
-                    alert('Please Enter Code');
-                    $('#CaptchaReview1_txtCaptcha').focus();
-                    return false;
-                }
+               
 
-                list = [$('#txtUserId').val(), $('#txtRating').val(), $('#txtTitle').val(), $('#txtReview').val(), $('#hdnProfileClientSk').val(), $('#CaptchaReview1_txtCaptcha').val(), $('#hidRootPath').val()];
+                list = [$('#txtUserId').val(), $('#txtRating').val(), $('#txtTitle').val(), $('#txtReview').val(), $('#hdnProfileClientSk').val(), $('#hidRootPath').val()];
                 jsonText = JSON.stringify({ list: list });
                 $.ajax({
                     type: "POST",
