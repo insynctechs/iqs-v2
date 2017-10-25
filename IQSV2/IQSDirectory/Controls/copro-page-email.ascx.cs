@@ -25,10 +25,10 @@ namespace IQSDirectory.Controls
                 clientEmail = dtEmail.Rows[0]["EMAIL_ADDRESS"].ToString();
                 clientName = dtEmail.Rows[0]["NAME"].ToString();
                 divEmailCName.InnerHtml = "<h2>Email " + clientName + "</h2>";
-                string attrs = "";
+                //string attrs = "";
                 //sj added javascript validation to button click
-                attrs += " return jqClick();";
-                btnSubmit.Attributes.Add("onClick", attrs);
+               // attrs += " return jqClick();";
+                //btnSubmit.Attributes.Add("onClick", attrs);
 
             }
         }

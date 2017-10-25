@@ -24,7 +24,7 @@
 <body>
     <article class="<%: WebURL %>"></article>
     <%--<%= BodyOpenScript %> --%>
-    <form runat="server">
+     <form runat="server" id="frmMaster" > 
         <header id='head'>
             <a id='logo' title='IQSDirectory' href='http://www.iqsdirectory.com/'>IQSDirectory
             </a>
@@ -111,7 +111,7 @@
         
         <input type="hidden" id="hdnRootPath" value="<%: ApiPath %>" />
         <input type="hidden" id="hdnWebURL" value="<%: WebURL %>" />
-    </form>
+    </form> 
     <%: BodyCloseScript %>
 </body>
 </html>
