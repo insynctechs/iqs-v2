@@ -86,7 +86,7 @@ namespace IQSCore.Models
         #endregion        
 
         #region " Login Commenters "
-        public async Task<DataSet> CommentersLogin(string Email,string Password)
+        public async Task<DataSet> GetCommentersLogin(string Email,string Password)
         {
             SqlParameter[] sqlParam = new SqlParameter[2];
             sqlParam[0] = new SqlParameter("@Email", Email);
@@ -176,7 +176,7 @@ namespace IQSCore.Models
         #endregion
 
         #region " Commenter Active Check "
-        public async Task<int> CommenterActiveCheck(int UserId)
+        public async Task<int> GetCommenterActiveValue(int UserId)
         {
 
             SqlParameter[] sqlParam = new SqlParameter[1];

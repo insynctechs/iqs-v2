@@ -150,11 +150,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\styler.css" />
     <Content Include="Content\stylerprint.css" />
+    <Content Include="copro-page-email-thanku.aspx" />
+    <Content Include="Scripts\write_comment.js" />
     <Content Include="Controls\RegisterCommenter.aspx" />
     <Content Include="Controls\ReviewManager.aspx" />
     <Content Include="Controls\WriteComment.aspx" />
     <Content Include="Controls\WriteSubComment.aspx" />
+    <Content Include="copro-map.html" />
     <Content Include="copro-page-email.aspx" />
+    <Content Include="CoproVideo.html" />
     <Content Include="Default.aspx" />
     <Content Include="DirectoryRFQ.aspx" />
     <Content Include="DirectorySearch.aspx" />
@@ -210,6 +214,8 @@
     <Content Include="images\star.png" />
     <Content Include="images\submit_button.png" />
     <Content Include="images\write_a_review_button.png" />
+    <Content Include="MailTemplates\RegistrationMailToUser.html" />
+    <Content Include="MailTemplates\RegistrationMailToUser.txt" />
     <Content Include="RFQConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -221,6 +227,7 @@
     <Content Include="Scripts\fb.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cookie.js" />
@@ -258,8 +265,12 @@
     <Content Include="StateSearch.aspx" />
     <Content Include="StateSearch.html" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
-    <Content Include="Bundle.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +333,13 @@
     <Compile Include="Controls\WriteSubComment.aspx.cs">
       <DependentUpon>WriteSubComment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="copro-page-email-thanku.aspx.cs">
+      <DependentUpon>copro-page-email-thanku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="copro-page-email-thanku.aspx.designer.cs">
+      <DependentUpon>copro-page-email-thanku.aspx</DependentUpon>
     </Compile>
     <Compile Include="copro-page-email.aspx.cs">
       <DependentUpon>copro-page-email.aspx</DependentUpon>
