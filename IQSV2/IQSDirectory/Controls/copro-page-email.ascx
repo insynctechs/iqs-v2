@@ -51,7 +51,7 @@ $(document).ready(function () {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
                             type: 'iframe',
-                            href: $('#hdnRootPath').val() +'thankyouemail.aspx'
+                            href: $('#hdnRootPath').val() +'copro-page-email-thankyou.aspx'
                         });
                         $('#txtFirstName').val('');
                         $('#txtLastName').val('');

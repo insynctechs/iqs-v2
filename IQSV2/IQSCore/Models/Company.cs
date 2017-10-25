@@ -48,7 +48,8 @@ namespace IQSCore.Models
             sqlParam[12] = new SqlParameter("@RETURNVALUE", SqlDbType.Int);
             sqlParam[12].Direction = ParameterDirection.Output;
             sqlParam[12].Size = 10;
-            return await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertDirectoryProfileEmailDetails", sqlParam));
+            await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertDirectoryProfileEmailDetails", sqlParam));
+            return Convert.ToInt32(sqlParam[12].Value);
         }
         #endregion
     }
