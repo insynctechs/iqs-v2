@@ -25,6 +25,7 @@ namespace IQSDirectory
             public string returntype { get; set; }
         }
 
+        WebApiHelper wHelper = new WebApiHelper();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -312,6 +313,125 @@ namespace IQSDirectory
             }
         }
 
+        [WebMethod(EnableSession = true)]
+        public string copropageemail(List<string> list)
+        {
+        
+             try
+                {
+              
 
+                if (Utils.isvalidIpAccess()== true )
+                {
+                    
+                    string FirstName = list[0];
+                    string LastName = list[1];
+                    string EmailAddress = list[2];
+                    string CompanyName = list[3];
+                    string Zip = list[4];
+                    string Subject = list[5];
+                    string Message = list[6];
+                    string ClientSk = list[7];
+                   
+
+                    string _RequestIP = System.Web.HttpContext.Current.Request.UserHostAddress;
+
+                    //insert profile request into form
+                    var urlGetId = string.Format("api/Clients/InsertDirectoryProfileEmailDetails?FirstName=" + FirstName+"&LastName="+LastName+"&EmailAddress="+EmailAddress+"&CompanyName="+CompanyName+"&Zip="+Zip+"&Subject="+Subject+"&Message="+Message+"&ClientSk="+ClientSk+"&RequestIp="+_RequestIP);
+                    int intIsSucess = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId);
+
+                    if (intIsSucess != 0)
+                    {
+                        StringBuilder strEmailContent = new StringBuilder();
+                        strEmailContent.AppendLine("<table width='100%' align='center'>");
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Address:</b>");
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("<td align='left' width='80%'>");
+                        strEmailContent.AppendLine(FirstName + " " + LastName + ", " + EmailAddress + ", " + Zip + " <BR>");
+                        strEmailContent.AppendLine("</td></tr>");
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Subject:</b>");
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("<td align='left' width='80%'>");
+                        strEmailContent.AppendLine(Subject + "<BR>");
+                        strEmailContent.AppendLine("</td></tr>");
+
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Message:</b>");
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("<td align='left' width='80%'>");
+                        strEmailContent.AppendLine(Message + "<BR>");
+                        strEmailContent.AppendLine("</td></tr>");
+
+
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Additional Info:</b>");
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("<td align='left' width='80%'>");
+
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>RequestIP:</b>");
+                        strEmailContent.AppendLine("<td>");
+                        strEmailContent.AppendLine(_RequestIP);//changes on FEB/17/2010 to display the Request host IP
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("</tr>");
+
+                        strEmailContent.AppendLine("<tr>");
+                        strEmailContent.AppendLine("<td align='left' width='100%' colspan='2'><br>");
+                        strEmailContent.AppendLine("Best Regards,<br>");
+                        //strEmailContent.AppendLine(System.Configuration.ConfigurationManager.AppSettings["IQSEmployeeName"].ToString() + "<br>");
+                        strEmailContent.AppendLine(FirstName + " " + LastName + "<br>");
+                        strEmailContent.AppendLine("</td>");
+                        strEmailContent.AppendLine("</tr>");
+                        strEmailContent.AppendLine("</table>");
+
+                        string _toAddress = string.Empty;
+                        string _ccAddress = string.Empty;
+                        string _FromAddress = string.Empty;
+                        string _Subject = string.Empty;
+                        _FromAddress = EmailAddress;
+                        /*
+                        if (clientEmail != null && clientEmail != "N/A")
+                        {
+                            _toAddress = clientEmail;
+                            _ccAddress = wHelper.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
+                            _Subject = wHelper.ProfileEmailSubject; // System.Configuration.ConfigurationManager.AppSettings["ProfileEmailSubject"].ToString();
+                            //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + dsEmail.Tables[0].Rows[0]["EMAIL_ADDRESS"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                        }
+                        else
+                        {
+                            _toAddress = wHelper.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
+                            _Subject = wHelper.ProfileNonExistEmailSubject; //System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
+                            //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                        }
+                        */
+                        Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com", string.Empty, _Subject, strEmailContent.ToString(), true);
+                        //Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
+                        return "Success";
+                    }
+                    else
+                        return "Error";
+                }
+                else  //invalid ip access
+                {
+                    //ip_error.InnerText = "The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.";
+                    //ip_error.InnerHtml = "The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.";
+                    return "Country";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                    CommonLogger.Error("sendMail", ex);
+                    throw new BaseException(ex.Message);*/
+                return "Error";
+            }
+            finally
+            {
+               
+            }
+        }
     }
 }

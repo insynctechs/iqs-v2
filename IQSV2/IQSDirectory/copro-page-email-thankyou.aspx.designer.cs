@@ -10,27 +10,15 @@
 namespace IQSDirectory {
     
     
-    public partial class CompanyProfile {
+    public partial class copro_page_email_thanku {
         
         /// <summary>
-        /// copropageemail control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::IQSDirectory.Controls.copro_page_email copropageemail;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new IQSDirectory.SiteMaster Master {
-            get {
-                return ((IQSDirectory.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

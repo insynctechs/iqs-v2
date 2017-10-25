@@ -51,7 +51,7 @@ $(document).ready(function () {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
                             type: 'iframe',
-                            href: 'http://localhost:31489//thankyouemail.aspx'
+                            href: $('#hdnRootPath').val() +'copro-page-email-thankyou.aspx'
                         });
                         $('#txtFirstName').val('');
                         $('#txtLastName').val('');
@@ -169,7 +169,7 @@ function recaptchaCallback() {
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
-    <asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click" OnClientClick = "SetSource(this.id)"  CssClass="buttonBg"  />
+    <asp:Button ID="btnSubmit" runat="server" Text="Send"   CssClass="buttonBg"  /> <!-- onclick="btnSubmit_Click" OnClientClick = "SetSource(this.id)" -->
 </div>
 </div>
 <div class="clearfix" ></div>

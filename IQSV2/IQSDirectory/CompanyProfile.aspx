@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="IQSDirectory.CompanyProfile" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
+<%@ register src="~/Controls/copro-page-email.ascx" tagprefix="uc1" tagname="copropageemail" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="<%:RootPath %>Content/copro_styles.css" rel="stylesheet" />
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
@@ -309,7 +311,9 @@
             </div>
             <% } %>
            
-            <div id="divEmail"></div>
+            <div id="divEmail">
+                <uc1:copropageemail runat="server" id="copropageemail" />
+            </div>
         </div>
     </section>
 </div>
