@@ -264,5 +264,3 @@ paket-files/
 __pycache__/
 *.pyc
 /IQSV2/IQSCore/*.config
-/IQSV2/IQSDirectory/IQSDirectory.csproj
-/IQSV2/IQSDirectory/IQSDirectory.csproj.user

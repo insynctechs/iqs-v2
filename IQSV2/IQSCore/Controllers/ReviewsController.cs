@@ -119,9 +119,9 @@ namespace IQSCore.Controllers
 
         [Route("api/Reviews/CommentersLogin")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetCommentersLogin(string Email, string Password, int json = 0)
+        public async Task<IHttpActionResult> CommentersLogin(string Email, string Password, int json = 0)
         {
-            var res = await rev.GetCommentersLogin(Email, Password);
+            var res = await rev.CommentersLogin(Email, Password);
             if (json == 1)
                 return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
             else
@@ -200,9 +200,9 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/CommenterActiveCheck")]
-        public async Task<IHttpActionResult> GetCommenterActiveValue(int UserId, int json = 0)
+        public async Task<IHttpActionResult> CommenterActiveCheck(int UserId, int json = 0)
         {
-            var res = await rev.GetCommenterActiveValue(UserId);
+            var res = await rev.CommenterActiveCheck(UserId);
             if (json == 1)
                 return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
             else

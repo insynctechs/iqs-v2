@@ -191,8 +191,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ApiUtils.cs" />
-    <Compile Include="Helpers\ReviewActions.cs" />
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\CategoryPages.cs" />
     <Compile Include="Models\Company.cs" />
