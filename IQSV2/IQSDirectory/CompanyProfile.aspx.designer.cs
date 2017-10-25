@@ -13,6 +13,15 @@ namespace IQSDirectory {
     public partial class CompanyProfile {
         
         /// <summary>
+        /// copropageemail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::IQSDirectory.Controls.copro_page_email copropageemail;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
