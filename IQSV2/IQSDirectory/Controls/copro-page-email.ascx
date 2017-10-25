@@ -47,6 +47,7 @@
                 async: true,
                 cache: false,
                 success: function (msg) {
+                    alert(msg);
                     if (msg == "Success") {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
