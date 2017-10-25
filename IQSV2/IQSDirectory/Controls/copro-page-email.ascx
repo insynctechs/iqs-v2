@@ -1,7 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="copro-page-email.ascx.cs" Inherits="IQSDirectory.Controls.copro_page_email" %>
-<script language="javascript" type="text/javascript">
-$(document).ready(function () {    
-    $("#frmShare").validate({        
+<script type="text/javascript">
+    $(document).ready(function () { 
+        
+    $("#frmMaster").validate({        
         ignore: ".ignore",
         rules: {
             txtFirstName: { required: true },
@@ -50,7 +51,7 @@ $(document).ready(function () {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
                             type: 'iframe',
-                            href: $('#hdnRootPath').val() +'copro-page-email-thankyou.aspx'
+                            href: $('#hdnRootPath').val() + 'copro-page-email-thankyou.aspx'
                         });
                         $('#txtFirstName').val('');
                         $('#txtLastName').val('');
@@ -61,7 +62,8 @@ $(document).ready(function () {
                         $('#txtSubject').val('');
                         $('#txtMessage').val('');
                     }
-                
+                }
+            });
         }
     });
 
@@ -107,7 +109,10 @@ $(document).ready(function () {
 
         jQuery.validator.messages.multiemails
     );
-
+    $('#btnSend').on('click', function () {
+        alert("thx Lord");
+        $("#frmMaster").valid();
+    });
 
 });
 
@@ -130,14 +135,11 @@ function jqClick()
     return true;
 
 }
-function btn_click()
-{
-    $("#frmShare").validate();
-}
+
 
 function recaptchaCallback() {
     $('#hiddenRecaptcha').valid();
-    $("#frmShare").validate();
+    $("#frmShare").valid();
 }
 </script>
 <% if (false) { %>
@@ -145,28 +147,28 @@ function recaptchaCallback() {
     
 <% } %>
 <div id="profileForm" class="profilestyle">
-      <form id="frmShare">
+     <!-- <form id="frmShare"> -->
           <div id="divTop">
-               <span class="divLeft"><img src="./images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
+               <span class="divLeft"><img src="../../images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
                <span class="require divfloatright">* Indicates require Fields</span>
                <span id="divEmailCName" class="divLeft h1txt" runat="server"><!--<h2>Email DAN-LOC Bolt &amp; Gasket</h2>--></span>
 </div>
           <div id="profContInfo">
                 <ul>
                 <li>First Name:<span class="require">* </span></li>
-                <li><input type="text" id="txtFirstName" class="commenttextbox" runat="server" /></li>
+                <li><input type="text" id="txtFirstName" name="txtFirstName" class="commenttextbox"  /></li>
                 <li>Last Name:<span class="require">* </span></li>
-                <li><input type="text" id="txtLastName" class="commenttextbox" runat="server" /></li>
+                <li><input type="text" id="txtLastName" name="txtLastName" class="commenttextbox"  /></li>
                 <li>Email Address :<span class="require">* </span></li>
-                <li><input type="text" id="txtEmailAddress" class="commenttextbox" runat="server" /></li>
+                <li><input type="text" id="txtEmailAddress" name="txtEmailAddress" class="commenttextbox"  /></li>
                 <li>Company Name :<span class="require">* </span></li>
-                <li><input type="text" id="txtCompanyName" class="commenttextbox" runat="server" /></li>                
+                <li><input type="text" id="txtCompanyName"  name="txtCompanyName" class="commenttextbox"  /></li>                
                 <li>Zip/Postal Code :<span class="require">* </span></li>
-                <li><input type="text" id="txtZip" class="commenttextbox" runat="server" /></li>                
+                <li><input type="text" id="txtZip" name="txtZip" class="commenttextbox"  /></li>                
                 <li>Subject :</li>
-                <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" runat="server" /></li>
+                <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
                 <li>Message :</li>
-                <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
+                <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
               <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
                 </li>                      
@@ -175,8 +177,8 @@ function recaptchaCallback() {
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
-    <!--<asp:Button ID="btnSubmit" runat="server" Text="Send"   CssClass="buttonBg" OnClientClick="btn_click"  /> <!-- onclick="btnSubmit_Click" OnClientClick = "SetSource(this.id)" -->
-    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send" />
+    
+    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send" onclick="btn_click()" />
 </div>
 </div>
 <div class="clearfix" ></div>
@@ -187,5 +189,5 @@ function recaptchaCallback() {
 </div>   
 </div>
  -->
-</form>
+
 </div>

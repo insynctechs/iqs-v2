@@ -3,7 +3,10 @@
 <%@ register src="~/Controls/copro-page-email.ascx" tagprefix="uc1" tagname="copropageemail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />     -->
+    
+    
     <link href="<%:RootPath %>Content/copro_styles.css" rel="stylesheet" />
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
@@ -13,8 +16,10 @@
     <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
+   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
+    <script src='//www.google.com/recaptcha/api.js' async defer></script>
 
-    
     <div id='content_wrapper'>
         <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
         <h1 itemprop="name"><%= ClientName %></h1>
