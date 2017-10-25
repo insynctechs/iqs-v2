@@ -11,9 +11,11 @@ namespace IQSDirectory.Controls
         WebApiHelper wHelper = new WebApiHelper();
         string clientEmail = "";
         string clientName = "";
+        public string RootPath { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)             
             {
                 string ClientSk = "57425";

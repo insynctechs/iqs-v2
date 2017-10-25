@@ -8,8 +8,7 @@ $(document).ready(function () {
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true }
-            /*,      
+            txtZip: { required: true, zipRule: true },
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -19,7 +18,7 @@ $(document).ready(function () {
                     }
                 }
             }
-           */
+           
             
         },
         messages: {
@@ -28,8 +27,8 @@ $(document).ready(function () {
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"}
-             //hiddenRecaptcha: { required: "Required "}
+            txtZip: {required: "Required", zipRule:"Invalid"},
+            hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
             /*alert("Thanks Lord");
@@ -131,13 +130,20 @@ function jqClick()
     return true;
 
 }
-    
+function btn_click()
+{
+    $("#frmShare").validate();
+}
 
 function recaptchaCallback() {
     $('#hiddenRecaptcha').valid();
     $("#frmShare").validate();
 }
 </script>
+<% if (false) { %>
+    <link rel="Stylesheet" type="text/css" href="../../Content/form_styles.css" />
+    
+<% } %>
 <div id="profileForm" class="profilestyle">
       <form id="frmShare">
           <div id="divTop">
@@ -161,15 +167,16 @@ function recaptchaCallback() {
                 <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" runat="server" /></li>
                 <li>Message :</li>
                 <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
-               <!-- <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+              <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
                 </li>                      
-                    -->
+              
                 </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
-    <asp:Button ID="btnSubmit" runat="server" Text="Send"   CssClass="buttonBg"  /> <!-- onclick="btnSubmit_Click" OnClientClick = "SetSource(this.id)" -->
+    <!--<asp:Button ID="btnSubmit" runat="server" Text="Send"   CssClass="buttonBg" OnClientClick="btn_click"  /> <!-- onclick="btnSubmit_Click" OnClientClick = "SetSource(this.id)" -->
+    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send" />
 </div>
 </div>
 <div class="clearfix" ></div>
