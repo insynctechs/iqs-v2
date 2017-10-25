@@ -161,6 +161,14 @@ a:hover.small {
 .fb-login-button {
     padding: 9px 0;
 }
+h2.pophead {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0px;
+    text-align: center;
+    display: block;
+    background-color: #30494e;
+}
 /**************** Comment Popup ********************************/
 .register_popup {
     width: 620px;
