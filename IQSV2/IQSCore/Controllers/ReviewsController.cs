@@ -117,7 +117,7 @@ namespace IQSCore.Controllers
 
 
 
-        [Route("api/Reviews/CommentersLogin")]
+        [Route("api/Reviews/GetCommentersLogin")]
         [HttpGet]
         public async Task<IHttpActionResult> GetCommentersLogin(string Email, string Password, int json = 0)
         {
@@ -129,9 +129,9 @@ namespace IQSCore.Controllers
 
         }
 
-        [Route("api/Reviews/FBCommentersLogin")]
+        [Route("api/Reviews/GetFBCommentersLogin")]
         [HttpGet]
-        public async Task<IHttpActionResult> FBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
+        public async Task<IHttpActionResult> GetFBCommentersLogin(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
         {
             var res = await rev.FBCommentersLogin(DesiredName, FullName, Email, Password, SystemIp, Active);
             if (json == 1)
@@ -199,7 +199,7 @@ namespace IQSCore.Controllers
 
         }
 
-        [Route("api/Reviews/CommenterActiveCheck")]
+        [Route("api/Reviews/GetCommenterActiveCheck")]
         public async Task<IHttpActionResult> GetCommenterActiveValue(int UserId, int json = 0)
         {
             var res = await rev.GetCommenterActiveValue(UserId);

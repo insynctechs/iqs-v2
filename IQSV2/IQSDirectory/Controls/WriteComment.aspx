@@ -10,12 +10,12 @@
 </head>
 <body>
 <div id="divLogin" class="write_comment_wrapper">
+    <h2 class="pophead">Write a Review</h2>
 <form id="form1" runat="server">
     <div id="divRegForm">
+        
       <div class="write_comment_inner">
-      <br />
-      <h2>Write a Review</h2>
-      <p>
+       <p>
       Display Name:<br />
       <input type="text" id="txtName" class="commenttextbox" readonly="readonly" />
       <input type="hidden" id="txtUserId" class="commenttextbox" class="hide_elem" />
