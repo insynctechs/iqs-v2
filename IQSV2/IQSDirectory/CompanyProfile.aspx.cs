@@ -53,7 +53,8 @@ namespace IQSDirectory
                     AddCompanyDetails(ds.Tables[0].Rows[0], ds.Tables[1], ds.Tables[2]);
                     AddMetaTag(ds.Tables[0].Rows[0], ds.Tables[7]);
                     GenerateRelatedCategories(ds.Tables[4]);
-                    if(ds.Tables[5].Rows.Count > 0)
+                    
+                    if (ds.Tables[5].Rows.Count > 0)
                     GenerateOtherCompanies(ds.Tables[5], ds.Tables[0].Rows[0]["CTYPE"].ToString());
                     //GenerateTradeNames(ds.Tables[0].Rows[0]);
                     GenerateArticles();
@@ -125,6 +126,7 @@ namespace IQSDirectory
             if (dr["ADDRESS"].ToString() != "")
                 Address = dr["ADDRESS"].ToString().Trim() + "<br/>" + Address;
             MapAddress  = dr["Address"].ToString() + "," + dr["CITY"].ToString() + "," + dr["STATE"].ToString() + "," + dr["ZIP"].ToString();
+            AddCompanyUrls(dtUrl, dr);
 
         }
 

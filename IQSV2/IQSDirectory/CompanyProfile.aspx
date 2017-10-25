@@ -122,8 +122,8 @@
                 </script>
             </div>
         </div>
-
-        <div itemprop="description" >
+        
+        <div class="col2" itemprop="description" >
             <p><%= ClientDesc %></p>
         </div>
 
@@ -182,7 +182,7 @@
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
                     <div class="review_main_right">
-                        <a href="#WriteReview" id="lnkWriteReview">Write A Review</a>
+                        <a href="#WriteReview" id="lnkWriteReview" class="large">Write A Review</a>
                         <br>
                         <div id="divLogout"><a href="#Logout" id="lnkLogout">Logout</a></div>
                         <div id="divWriteReviewErr" class="requireD"></div>
@@ -216,7 +216,7 @@
                             <div class="review_content_wrapper">With EFG you get great engineering experience to get the right fastener for your application. EFG’s recent growth through multi-company acquisitions has them on pace to become the leading domestic manufacturer of specialty fasteners in North America.</div>
                             <div id="divCom123" class="review_action_wrapper">
                                 <span class="spnHelpful">Was this helpful? <a class="lnkHelpful small" href="#Helpful">Yes</a></span>
-                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply" href="#Reply">Reply</a></span>
+                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply small" href="#Reply">Reply</a></span>
                                 <div id="divReply123" style="padding-left:30px;"></div>
                             </div>
                         </div>

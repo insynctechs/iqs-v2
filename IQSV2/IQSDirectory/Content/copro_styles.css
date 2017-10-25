@@ -12,7 +12,12 @@ h2 {
     font-weight: bold;
     line-height: 14px
 }
-#content_wrapper{width:80%;margin-left:auto;margin-right:auto;}
+a:link, a:visited {
+    color:coral;
+    text-decoration: none;
+}
+a:hover{color:#f06000; text-decoration:underline;}
+#content_wrapper{width:80%;margin-left:auto;margin-right:auto; text-align:left;}
 .row1{width:100%;margin-top:5px; height: auto; overflow:hidden; min-height: 200px;}
 .row1 h1{margin:30px 20px 15px 0; font-size:20px; line-height:26px; float: left; width: auto; height: auto; overflow: hidden;}
 .ie6 .row1{width:98%;margin-right:2%}
@@ -42,7 +47,7 @@ hr{color:#304846;background-color:#304846;height:2px;margin-bottom:15px}
 #secarticles ul li { list-style: none; margin:15px 0; padding: 0; }
 #secarticles h3 {color: #FF6600;font-size: 15px;font-weight: bold; line-height: 18px; margin: 20px 0 5px;}
 #secarticles h3  a, #secarticles h3  a:visited {color: #30494E;}
-#secarticles h3  a:hover {color: orange;}
+#secarticles h3  a:hover {color: #f06000;}
 #secarticles ul li aside {color: #777; font-size: 11px; margin-bottom: 12px;}
 
 
@@ -92,17 +97,18 @@ div.rightbox ul { padding-left: 20px; display: block;
     -webkit-padding-start: 40px; }
 div.rightbox ul li {color: #000; font-weight: bold; line-height: 19px;}
 div.rightbox ul li a {color: #000;font-weight: bold;}
+div.rightbox ul li a:hover {color: #f06000;}
 div.rightbox ul.twocols li {
     float: left;
     width: 46%;
-    margin-right: 2%;
+    margin-right: 2%; text-align:left;
 }
 div.rightbox .col { height: auto; overflow: hidden;}
 .review_main{width:100%;}
 .review_main_left{width:36%; text-align:center;float:left; display:block;}
 .review_main_left_inner{padding-top:5px;display: inline-block;}
 .review_main_right{text-align:right; float:right; display:block; width:55%;}
-.review_main_right a { display: block; height: auto; width: auto;}
+.review_main_right a { height: auto; width: auto;}
 .review_title_wrapper{width: 80%; float: left;}
 .review_title_wrapper h2{color:#374246; font-size:15px;font-weight:bold;margin:0  0 3px 0; padding:0; line-height:20px; text-transform: none !important; }
 .review_meta_wrapper{padding: 10px 0;}
@@ -152,6 +158,9 @@ a:hover.large {
 a:hover.small {
     box-shadow: 1px 1px 1px #888888;
 }
+.fb-login-button {
+    padding: 9px 0;
+}
 /**************** Comment Popup ********************************/
 .register_popup {
     width: 620px;
@@ -163,6 +172,7 @@ a:hover.small {
     position: relative;
     margin: 0px;
 }
+.register_popup h2{margin:4px 0px; }
 .register_form_wrapper{width:100%;min-height:420px; height: 420px; height: auto !important; overflow:hidden; text-align: left; }
 .register_popup_left{float:left; margin-top: 15px; margin-bottom: 15px; display:block; width:310px; height:420px; height: auto !important; overflow: hidden; padding-left:15px; border-right:1px solid black; text-align:left;}
 .register_popup_right{width:260px; padding-top: 25px; text-align:center;float:left; display:block; padding-left:15px; text-align:left;}
@@ -211,7 +221,7 @@ a:hover.small {
 .commenttextbox {
     width: 230px;
     border: 1px #aaaaaa solid;
-    margin-left: 4px
+    margin-left:0  0 5px 4px;
 }
 
 .rfqtextboxC {

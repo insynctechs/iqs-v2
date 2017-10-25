@@ -60,7 +60,7 @@
       </p>
       <p class="register_login_bot_wrapper">
       <span class="register_checkbox_wrapper"><input type="checkbox" id="chkRemember" /> Remember me?</span>
-      <a href="#Login" id="lnkLogin large">Login</a><br />
+      <a href="#Login" id="lnkLogin" class="large">Login</a><br />
       <a href="#ForgotPassword" id="lnkForgotPassword">Forgot Password?</a>
           
       </p>
