@@ -276,7 +276,7 @@ namespace IQSDirectory
         [WebMethod(EnableSession = true)]
         public string copropageemail(List<string> list)
         {
-        
+            /*
              try
                 {
               
@@ -365,7 +365,7 @@ namespace IQSDirectory
                             _Subject = wHelper.ProfileNonExistEmailSubject; //System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
                             //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                         }
-                        */
+                        ////
                         Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com", string.Empty, _Subject, strEmailContent.ToString(), true);
                         //Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
                         return "Success";
@@ -380,18 +380,18 @@ namespace IQSDirectory
                     return "Country";
 
                 }
+            
             }
             catch (Exception ex)
             {
-                /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                    CommonLogger.Error("sendMail", ex);
-                    throw new BaseException(ex.Message);*/
                 return "Error";
             }
             finally
             {
                
             }
+            */
+            return "Success";
         }
 
 

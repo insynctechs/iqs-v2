@@ -9,7 +9,8 @@
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true },
+            txtZip: { required: true, zipRule: true }
+            /*,
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -20,7 +21,7 @@
                 }
             }
            
-            
+            */
         },
         messages: {
 
@@ -28,42 +29,11 @@
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"},
-            hiddenRecaptcha: { required: "Required "}
+            txtZip: {required: "Required", zipRule:"Invalid"}//,
+            //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
-            /*alert("Thanks Lord");
-            form.submit();
-            return false;
-            */
-            list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val(), $('#ctrlProfSendEmail_Captcha1_txtCaptcha').val()];
-            jsonText = JSON.stringify({ list: list });
-            $.ajax({
-                type: "POST",
-                url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
-                data: jsonText,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
-                cache: false,
-                success: function (msg) {
-                    if (msg == "Success") {
-                        alert("Mail has been sent sucessfully");
-                        $.fancybox({
-                            type: 'iframe',
-                            href: $('#hdnRootPath').val() + 'copro-page-email-thankyou.aspx'
-                        });
-                        $('#txtFirstName').val('');
-                        $('#txtLastName').val('');
-                        $('#txtEmailAddress').val('');
-                        $('#txtCompanyName').val('');
-                        $('#txtZip').val('');
-                        //$('#ctrlProfSendEmail_Captcha1_txtCaptcha').val('');
-                        $('#txtSubject').val('');
-                        $('#txtMessage').val('');
-                    }
-                }
-            });
+          
         }
     });
 
@@ -110,32 +80,54 @@
         jQuery.validator.messages.multiemails
     );
     $('#btnSend').on('click', function () {
-        alert("thx Lord");
-        $("#frmMaster").valid();
+        
+        if ($("#frmMaster").valid())
+        {
+            alert("Thanks Lord - submit ");
+            //form.submit();
+            //return false;
+
+            list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val(), $('#ctrlProfSendEmail_Captcha1_txtCaptcha').val()];
+            jsonText = JSON.stringify({ list: list });
+            $.ajax({
+                type: "POST",
+                //url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
+                //url: "http://216.250.147.171/IQSDirectory/controls/reviewmanager/coprosendemail",
+                url: "../../controls/reviewmanager/coprosendemail",
+                data: jsonText,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (msg) {
+                    alert(msg);
+                    if (msg == "Success") {
+                        alert("Mail has been sent sucessfully");
+                        $.fancybox({
+                            type: 'iframe',
+                            href: $('#hdnRootPath').val() + 'copro-page-email-thankyou.aspx'
+                        });
+                        $('#txtFirstName').val('');
+                        $('#txtLastName').val('');
+                        $('#txtEmailAddress').val('');
+                        $('#txtCompanyName').val('');
+                        $('#txtZip').val('');
+                        //$('#ctrlProfSendEmail_Captcha1_txtCaptcha').val('');
+                        $('#txtSubject').val('');
+                        $('#txtMessage').val('');
+                    }
+                },
+                
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('error' + textStatus + "--" + errorThrown);
+                }         
+            });
+
+        }
+
     });
 
 });
-
-function jqClick()
-{
-    
-    //var response = grecaptcha.getResponse();
-   // document.getElementById('rfqmessage').innerHTML
-    /*
-    if (response.length == 0) {
-        //reCaptcha not verified
-        _varFlag = false;
-        alert("Please verify that you are not a BOT!");
-        //document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
-        return false;
-    }
-    */
-    alert("thx lord");
-    document.getElementById('iscontrolForm').value = "true";
-    return true;
-
-}
-
 
 function recaptchaCallback() {
     $('#hiddenRecaptcha').valid();
@@ -169,16 +161,16 @@ function recaptchaCallback() {
                 <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
                 <li>Message :</li>
                 <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
-              <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+              <!--<li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-                </li>                      
+                </li>               -->       
               
                 </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
     
-    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send" onclick="btn_click()" />
+    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send"  />
 </div>
 </div>
 <div class="clearfix" ></div>
