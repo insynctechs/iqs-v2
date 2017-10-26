@@ -593,7 +593,161 @@ namespace IQSDirectory
             }
         }
 
-        
+
+        #region Mail Component
+
+        #region Sending Mail 
+        public static bool SendMail(string strFromAddress, string strToAddress, string strCCAddress, string strBCCAddress, string strSubject, string strBodyContent, bool IsBodyHtml)
+        {
+            try
+            {
+                if (ValidateMailAddress(ref strFromAddress) & ValidateMailAddress(ref strToAddress) & ValidateMailAddress(ref strSubject) & ValidateMailAddress(ref strBodyContent))
+                {
+                    string strUsername = System.Configuration.ConfigurationManager.AppSettings["MailServerUsername"];
+                    string strPassword = System.Configuration.ConfigurationManager.AppSettings["MailServerpassword"];
+                    //Create a new MailMessage object and specify the"From" and "To" addresses
+                    MailMessage Email = new System.Net.Mail.MailMessage();
+                    Email.From = new MailAddress(strFromAddress.ToString());
+                    Email = EmailAddressCollection(strToAddress.ToString(), "TO", ref Email);
+
+                    if (ValidateMailAddress(ref strCCAddress))
+                        Email = EmailAddressCollection(strCCAddress.ToString(), "CC", ref Email);
+                    if (ValidateMailAddress(ref strBCCAddress))
+                        Email = EmailAddressCollection(strBCCAddress.ToString(), "BCC", ref Email);
+                    Email.Subject = strSubject.ToString();
+                    Email.Body = strBodyContent.ToString();
+                    Email.IsBodyHtml = IsBodyHtml;
+
+                    System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient();
+
+                    if (strUsername.Trim().Length > 0 & strPassword.Trim().Length > 0)
+                    {
+                        //This object stores the authentication values
+                        System.Net.NetworkCredential basicAuthenticationInfo = new System.Net.NetworkCredential(strUsername, strPassword);
+                        mailClient.UseDefaultCredentials = false;
+                        mailClient.Credentials = basicAuthenticationInfo;
+                    }
+                    //Put your own, or your ISPs, mail server name onthis next line
+                    mailClient.Host = System.Configuration.ConfigurationManager.AppSettings["MailServerIP"];
+                    mailClient.Send(Email);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //CommonLogger.Info("Failed to send a Mail for Following MailAddress: From :" + strFromAddress + "  ToAddress :");
+                //CommonLogger.Error("Failed to send a Mail fro following reason" + ex.StackTrace);
+                return false;
+            }
+        }
+        #endregion
+
+        #region ValidateMailAddress
+        private static bool ValidateMailAddress(ref string mailaddress)
+        {
+            return (string.IsNullOrEmpty(mailaddress) ? false : true);
+        }
+        #endregion
+
+        #region MailAddressCollection 
+        private static MailMessage EmailAddressCollection(string EmailAddress, string type, ref MailMessage MailObject)
+        {
+            char[] _MailSeparator = new char[] { Convert.ToChar(System.Configuration.ConfigurationManager.AppSettings["MailAddressSeparator"]) };
+            switch (type.ToUpper())
+            {
+                case "TO":
+                    {
+                        string[] _address = EmailAddress.Split(_MailSeparator);
+                        foreach (string _MailID in _address)
+                        {
+                            if (_MailID != "")
+                                MailObject.To.Add(new MailAddress(_MailID));
+                        }
+                        break;
+                    }
+                case "CC":
+                    {
+                        string[] _address = EmailAddress.Split(_MailSeparator);
+                        foreach (string _MailID in _address)
+                        {
+                            if (_MailID != "")
+                                MailObject.CC.Add(new MailAddress(_MailID));
+                        }
+                        break;
+                    }
+                case "BCC":
+                    {
+                        string[] _address = EmailAddress.Split(_MailSeparator);
+                        foreach (string _MailID in _address)
+                        {
+                            if (_MailID != "")
+                                MailObject.Bcc.Add(new MailAddress(_MailID));
+                        }
+                        break;
+                    }
+            }
+            return MailObject;
+        }
+        #endregion
+
+
+        #endregion
+
+        #region valid_ip_access
+
+        public static bool isvalidIpAccess()
+        {
+            try
+            {
+                string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
+                string ipaddress = GetIPAddress();
+                string url = "http://ip-api.com/json/" + ipaddress;
+                string json = new System.Net.WebClient().DownloadString(url);
+                string[] jsplit = json.Split(',');
+                if (jsplit[3] != null)
+                {
+                    string ctrstr = jsplit[3].ToString();
+                    string ctr = ctrstr.Substring(ctrstr.IndexOf(':') + 1).Replace('"', ' ').Trim();
+                    if (Array.IndexOf(allowedCountries, ctr) >= 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
+        public static string GetIPAddress()
+        {
+            System.Web.HttpContext context = System.Web.HttpContext.Current;
+            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipAddress))
+            {
+                string[] addresses = ipAddress.Split(',');
+                if (addresses.Length != 0)
+                {
+                    return addresses[0];
+                }
+            }
+
+            return context.Request.ServerVariables["REMOTE_ADDR"];
+        }
+
+
+
+        #endregion
 
         [WebMethod(EnableSession = true)]
         public static string sendcoproemail(List<string> list)
@@ -602,7 +756,7 @@ namespace IQSDirectory
                 {
                 WebApiHelper wHelper = new WebApiHelper();
                    
-                if (Utils.isvalidIpAccess()== true )
+                if (isvalidIpAccess()== true )
                 {
                     
                     string FirstName = list[0];
@@ -687,7 +841,7 @@ namespace IQSDirectory
                             //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                         }
                         */
-                        Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com", string.Empty, _Subject, strEmailContent.ToString(), true);
+                        SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com", string.Empty, _Subject, strEmailContent.ToString(), true);
                         //Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
                         return "Success";
                     }
