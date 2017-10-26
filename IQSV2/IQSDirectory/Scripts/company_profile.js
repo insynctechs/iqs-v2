@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    $('#hidRootPath').val($('#hdnRootPath').val());
+    $('#hidRootPath').val($('#hdnSrhRootPath').val());
     $.ajax({
         type: "POST",
-        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -49,32 +49,7 @@
     $('#lnkWriteReview').live('click', function () {
         $('#hidCommentType').val('Review');
         $('#lnkRegBox').trigger('click');
-
-        /*$.ajax({
-            type: "POST",
-            url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            cache: false,
-            success: function (msg) {
-                if (msg == "false") {
-                    $('#divLogout').hide();
-                    $('#lnkRegBox').trigger('click');
-                    return false;
-                }
-                else {
-                    $('#divLogout').show();
-                    $('#lnkReviewBox').trigger('click');
-                    return false;
-                }
-            },
-            failure: function () {
-                $('#divWriteReviewErr').text('Request Failed. Try Again.');
-            }
-        });
-        return false;*/
+       
     });
 
     $('.lnkReply').live('click', function () {
@@ -215,14 +190,7 @@
                     if ($('#hidLastFetchId').val() > 0) {
                         LoadComments($('#hdnProfileClientSk').val(), $('#hidLastFetchId').val());
                         $(window).scroll(scrollFunction);
-                        //                            setTimeout(function () {
-                        //                                if ($('#divCommentDisp').height() < $('#googlemap').position().top - $('.divComments:last').height()) {
-                        //                                    scrollFunction();
-                        //                                }
-                        //                                else {
-                        //                                    $(window).scroll(scrollFunction);
-                        //                                }
-                        //                            }, 1000);
+                       
                     }
                 }, 1000);
             }
@@ -264,7 +232,7 @@ function LoadCompanyTotalRating() {
 
     $.ajax({
         type: "POST",
-        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/getcompanytotalrating",
+        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/getcompanytotalrating",
         data: jsonText,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -300,28 +268,36 @@ function LoadCompanyTotalRating() {
 }
 
 function LoadComments(clientsk, id) {
-    var list = [clientsk, id, $('#hdnRootPath').val()];
+    var list = [clientsk, id];
     var jsonText = JSON.stringify({ list: list });
     var result;
     $.ajax({
         type: "POST",
-        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/fetchcomments",
+        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchcomments",
         data: jsonText,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg === "Invalid") {
+            if (msg.d === "Invalid") {
                 $('#divCommentDisp').text('Problem Fetching Data. Please Refresh(F5).');
             }
-            else if (msg == "LastRecord") {
+            else if (msg.d == "LastRecord") {
                 $('#hidLastRecord').val('1');
                 $('.loadingdiv').remove();
             }
             else {
-                result = JSON.parse(msg);
-                $(result).appendTo($('#divCommentDisp')).hide().slideDown('slow');
+                result = JSON.parse(msg.d);
+                // let's make a table out of the first element for fun
+
+                var dis = $('#divCommentDisp');
+                $.each(result.row, function (index, value) {
+                    //- extract target value like zipCode
+                    dis.append($("<li></li>").text(value.Title));
+
+                });
+                //$(result).appendTo($('#divCommentDisp')).hide().slideDown('slow');
             }
             $('.loadingdiv').remove();
             $(result).siblings('.divComments').each(function () {
@@ -340,11 +316,11 @@ function LoadSubComments(commentid, divToAppend) {
     if ($(divToAppend).children('#divReply' + commentid).length == 0) {
         $(divToAppend).append('<div id="divReply' + commentid + '" style="padding-left:30px;"></div>');
     }
-    var list = [commentid, $('#hdnRootPath').val()];
+    var list = [commentid];
     var jsonText = JSON.stringify({ list: list });
     $.ajax({
         type: "POST",
-        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/fetchsubcomments",
+        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchsubcomments",
         data: jsonText,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
