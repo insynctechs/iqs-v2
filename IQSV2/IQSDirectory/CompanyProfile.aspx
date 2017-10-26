@@ -369,5 +369,6 @@
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
+    <input type='hidden' id='hdnProfileClientSk' value="<%: ClientSK %>" />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
 </asp:Content>
