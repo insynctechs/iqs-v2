@@ -162,23 +162,11 @@
                     <h2>Company Reviews</h2>
                     <div class="review_main_left">
                         <div class="review_main_left_inner" id="divCompReview">
-                            <div class="star-rating-control star-rating-readonly">
-                                <div class="rating-cancel" style="display: none;">
-                                    <a title="Cancel Rating"></a>
-                                </div>
-
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="1">1</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="2">2</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="3">3</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="4">4</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="5">5</a></div>
-                            </div>
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="1" title="1" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="2" title="2" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="3" title="3" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="4" title="4" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="5" title="5" style="display: none;" checked="checked" disabled="disabled">
-
+                            <input name="star1" type="radio" class="totalreviewstar" value="1" title="1"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="2" title="2"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="3" title="3"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="4" title="4"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="5" title="5"/>
                         </div>
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
@@ -193,10 +181,10 @@
                     <section id="divCommentDisp">
                         
                     </section>
-                    <input type="hidden" id="hidLastFetchId" value="123">
-                    <input type="hidden" id="hidLastRecord" value="1">
+                    <input type="hidden" id="hidLastFetchId" value="">
+                    <input type="hidden" id="hidLastRecord" value="">
                     <input type="hidden" id="hidCommentType" value="">
-                    <input type="hidden" id="hidCommentId" value="0">
+                    <input type="hidden" id="hidCommentId" value="">
                     <input type="hidden" id="hidCommentedBy" value="">
                     <input type="hidden" id="hidRootPath" value="<%:RootPath %>">
                 </section>

@@ -126,6 +126,13 @@ div.rightbox .col { height: auto; overflow: hidden;}
 .divSubComments .span2{text-align:right;float: right;padding-right: 69px;}
 .divSubComments img{vertical-align: middle;}
 .divSubReply{padding-left:30px;}
+.divComments {
+    margin: 20px 0px;
+    height: auto;
+    overflow: hidden;
+    background-color: #e5e4e4;
+    padding: 10px;
+}
 #divLogout{text-align:right;display:block; padding-right:50px; }
 #divVideo{margin-top:15px;}
 .ip_error{color:#f00; font-size:14px; font-weight:bold; margin:10px 0px; line-height:16px; display:none;}
@@ -275,7 +282,7 @@ h2.pophead {
     font-weight: bold;
     color: #374246
 }
-.divratingnew{float:left;width:auto}
+.divratingnew{float:left;width:auto; margin-top:30px;}
 .divagrating{float:left;width:auto;padding-left:20px;color:#f0efed;overflow:hidden}
 .rating{display:block;overflow:hidden;width:auto;color:#f0efed}
 .divratingclientmain{display:none;cursor:default}

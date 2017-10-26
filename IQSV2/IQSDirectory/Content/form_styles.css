@@ -15,7 +15,8 @@
 }
 .divfloatright {
     float: right;
-    margin-right: 7px
+    margin-right: 7px;
+    margin-top:10px;
 }
 .divLeft {
     float: left
@@ -130,10 +131,10 @@
 
 /* copro mail send form*/
 #profileForm {
-    margin-right: 10px;
+    
     border: 1px solid #30494e;
-    background-color: #dcebf9; /*faf9e5*/
-    padding: 5%;
+    /*background-color: #dcebf9; 
+    padding: 5%;*/
     margin-bottom: 10px;
     height: auto;
     overflow: hidden;
@@ -189,14 +190,26 @@
         line-height: 20px
     }
 
-    #profileForm .h1txt h1, #profileForm .h1txt h2 {
-        margin-right: 2px;
+    #profileForm .h1txt h1 {
+        
         font-size: 16px;
-        color: #374246;
+        color: #fff;
         font-weight: bold;
         padding: 0;
         width: 100%;
         padding-bottom: 15px;
+        line-height: 20px;
+        margin:0 ;
+    }
+
+    #profileForm .h1txt h2 {
+        margin-right: 2px;
+        font-size: 16px;
+        color: #fff;
+        font-weight: bold;
+        padding: 0; margin:0;
+        width: 100%;
+       
         line-height: 20px
     }
 
@@ -300,5 +313,10 @@
         padding-top: 2px;
         text-align: left;
 }
-#profContInfo{display:block; padding:10px; margin:0 auto;}
-#divTop { display:block; height:70px; }
+#profContInfo{display:block; padding:6%; margin:0 auto;}
+#divTop {
+    display: block;
+    height: 70px;
+    padding: 5px;
+    background-color: #30494e;
+}
