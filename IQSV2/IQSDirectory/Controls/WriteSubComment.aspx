@@ -4,15 +4,16 @@
 <head id="Head1" runat="server">
     <title>IQSDirectory: Post Review Reply</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <script type="text/javascript" defer async src="<%:RootPath %>Scripts/write_commenter.js"></script>
+    <script type="text/javascript" defer async src="<%:RootPath %>Scripts/write_subcomment.js"></script>
 </head>
 <body>
 <div id="divLogin" class="write_comment_wrapper">
+    <h2 class="pophead">Post Reply To a Review</h2>
 <form id="form1" runat="server">
     <div id="divRegForm">
       <div class="write_comment_inner">
-      <br />
-      <h2>Reply to Review</h2>
+      
+      
       <p>
       Display Name:<br />
       <input type="text" id="txtName" class="commenttextbox" readonly="readonly" />
@@ -25,9 +26,6 @@
       </div>  		
       <div class="write_comment_captcha_wrapper">
 
-      <p>
-      
-      </p>
       </div>
       <div class="write_comment_review">
       <p class="p1">Review (Required):<br />

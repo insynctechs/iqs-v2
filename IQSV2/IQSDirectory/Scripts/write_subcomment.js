@@ -10,8 +10,8 @@
         async: true,
         cache: false,
         success: function (msg) {
-            var commenter = msg;
-            commenter = $.parseJSON(commenter);
+            var commenter = msg.d;
+            commenter = JSON.parse(commenter);
             $('#txtName').val(commenter[1]);
             $('#txtUserId').val(commenter[0]);
         },
@@ -33,7 +33,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Invalid") {
+                if (msg.d == "Invalid") {
                     $('#divLogout').hide();
                     alert("Your account is disabled.");
                     return false;
