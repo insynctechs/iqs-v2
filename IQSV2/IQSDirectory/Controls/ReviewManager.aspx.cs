@@ -373,54 +373,9 @@ namespace IQSDirectory
                 }
                 else
                 {
-                    
-                    //System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     DataTable dt = ds.Tables[0];
                     string JSONString = JsonConvert.SerializeObject(dt);
-                    return JSONString;
-                    /*for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        sb.Append("<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + dt.Rows[i]["CommentId"].ToString() + "' />");
-                        sb.Append("<input type='hidden' id='hdCommenter' value='" + dt.Rows[i]["CName"].ToString() + "' />");
-                        sb.Append("<div class='review_title_wrapper'>");
-                        sb.Append("<h2>" + dt.Rows[i]["Title"].ToString() + "</h2>");
-                        sb.Append("<div class='review_meta_wrapper'><h3>By <span>" + dt.Rows[i]["CName"].ToString() + "</span>- <span>" + dt.Rows[i]["CDate"].ToString() + "</span></h3></div>");
-                        sb.Append("</div>");
-                        sb.Append("<span class='review_rating_wrapper'>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[i]["CommentId"].ToString() + "' value='1' title='1'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[i]["CommentId"].ToString() + "' value='2' title='2'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[i]["CommentId"].ToString() + "' value='3' title='3'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[i]["CommentId"].ToString() + "' value='4' title='4'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[i]["CommentId"].ToString() + "' value='5' title='5'/>");
-                        sb.Append("</span>");
-                        sb.Append("<div style='clear:both;'></div>");
-                        sb.Append("<div class='review_content_wrapper'>" + dt.Rows[i]["Review"].ToString() + "</div>");
-
-                        sb.Append("<div id='divCom" + dt.Rows[i]["CommentId"].ToString() + "' class='review_action_wrapper'>");
-                        sb.Append("<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>");
-                        sb.Append("<span class='spnHelpCount' >");
-                        sb.Append(dt.Rows[i]["Helpful"].ToString() + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful");
-                        sb.Append("</span>");
-                        sb.Append("<span><a class='lnkReply small' href='#Reply'>Reply</a></span>");
-                        sb.Append("</div>");
-                        sb.Append("<script language='javascript' type='text/javascript'>");
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[i]["CommentId"].ToString() + "').rating({");
-                        sb.Append("required: true");
-                        sb.Append("});");
-                        //int RatingReceived = Convert.ToInt16(dt.Rows[i]["RatingReceived"].ToString());
-                        //if(RatingReceived > 0)
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[i]["CommentId"].ToString() + "').rating('select', " + (Convert.ToInt16(dt.Rows[i]["Rating"].ToString()) - 1).ToString() + ", false);");
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[i]["CommentId"].ToString() + "').rating('disable');");
-                        if (i == dt.Rows.Count - 1)
-                            sb.Append("$('#hidLastFetchId').val(" + dt.Rows[i]["CommentId"].ToString() + ");");
-                        sb.Append("</script>");
-                        //if (RatingReceived > 0)
-                        sb.Append("</div>");
-                    }*/
-                    /*JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(sb.ToString());
-                    return json;*/
-                    //return sb.ToString();
+                    return JSONString;                    
                 }
             }
             catch (Exception ex)
@@ -507,11 +462,10 @@ namespace IQSDirectory
         {
             try
             {
-                /*string ClientSk = list[0];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                object[] objParam = new object[] { ClientSk };
-                DataTable dt = objCommentService.CompanyTotalRating(objParam);
+                string ClientSK = list[0];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetCompanyTotalRating?ClientSK=" + ClientSK  + "&json=0");
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt == null)
                 {
                     return "Invalid";
@@ -526,8 +480,8 @@ namespace IQSDirectory
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     string json = jss.Serialize(str);
                     return json;
-                }*/
-                return "totalrate";
+                }
+                //return "totalrate";
             }
             catch (Exception ex)
             {
