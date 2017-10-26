@@ -180,7 +180,7 @@ namespace IQSCore.Models
         {
 
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@UserId", UserId);
+            sqlParam[0] = new SqlParameter("@UserId", UserId);
             DataSet ds =  await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCommenterIsActive", sqlParam));
             if (ds.Tables.Count == 0)
                 return -1;

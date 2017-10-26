@@ -87,13 +87,13 @@
             //form.submit();
             //return false;
 
-            list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val(), $('#ctrlProfSendEmail_Captcha1_txtCaptcha').val()];
+            list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val()];
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
                 //url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
                 //url: "http://216.250.147.171/IQSDirectory/controls/reviewmanager/coprosendemail",
-                url: "../../controls/reviewmanager/coprosendemail",
+                url: "../../controls/reviewmanager.aspx/coprosendemail",
                 data: jsonText,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

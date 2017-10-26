@@ -142,7 +142,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/WriteReview")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> WriteReview(int UserId, int Rating, string Title, string Review, int Client_SK, int json = 0)
         {
             var res = await rev.WriteReview(UserId, Rating, Title, Review, Client_SK);
@@ -154,7 +154,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/WriteReviewReply")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> WriteReviewReply(int UserId, int CommentId, string Review, string CommentType, int json = 0)
         {
             var res = await rev.WriteReviewReply(UserId, CommentId, Review, CommentType);
@@ -166,7 +166,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/InsertSystemIp")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> InsertSystemIp(string SystemIp, int json = 0)
         {
             var res = await rev.InsertSystemIp(SystemIp);
@@ -199,7 +199,7 @@ namespace IQSCore.Controllers
 
         }
 
-        [Route("api/Reviews/GetCommenterActiveCheck")]
+        [Route("api/Reviews/GetCommenterActiveValue")]
         public async Task<IHttpActionResult> GetCommenterActiveValue(int UserId, int json = 0)
         {
             var res = await rev.GetCommenterActiveValue(UserId);
