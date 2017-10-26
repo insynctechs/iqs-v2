@@ -82,11 +82,8 @@
     $('#btnSend').on('click', function () {
         
         if ($("#frmMaster").valid())
-        {
-            alert("Thanks Lord - submit ");
-            //form.submit();
-            //return false;
-
+        {           
+            $(this).prop('disabled', 'disabled');
             list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val()];
             jsonText = JSON.stringify({ list: list });
             $.ajax({
@@ -100,7 +97,7 @@
                 async: true,
                 cache: false,
                 success: function (msg) {
-                    alert(msg);
+                    //alert(msg);
                     if (msg.d == "Success") {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
@@ -116,15 +113,26 @@
                         $('#txtSubject').val('');
                         $('#txtMessage').val('');
                     }
+                    else if (msg == "country") {
+                        alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
+                    }
+                    else {
+                        alert("Unexpected Error Occured. Try Again!!");
+                    }
+                    $('#btnSend').removeAttr('disabled');
+
                 },
                 
+                failure: function () {
+                    alert('Request Failed. Try Again.');
+                },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert('error' + textStatus + "--" + errorThrown);
                 }         
             });
 
         }
-
+        return false;
     });
 
 });
