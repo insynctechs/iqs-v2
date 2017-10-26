@@ -10,7 +10,7 @@
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
             txtZip: { required: true, zipRule: true }
-            /*,
+            ,
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -21,7 +21,7 @@
                 }
             }
            
-            */
+           
         },
         messages: {
 
@@ -29,8 +29,8 @@
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"}//,
-            //hiddenRecaptcha: { required: "Required "}
+            txtZip: {required: "Required", zipRule:"Invalid"},
+            hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
           
@@ -88,9 +88,8 @@
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
-                //url: $('#hdnSrhRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
-                //url: "http://216.250.147.171/IQSDirectory/controls/reviewmanager/coprosendemail",
-                url: "../../controls/reviewmanager.aspx/sendcoproemail",
+                url: $('#hdnSrhRootPath').val() + "controls/reviewmanager/coprosendemail",
+                //url: "../../controls/reviewmanager.aspx/sendcoproemail",
                 data: jsonText,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -113,7 +112,7 @@
                         $('#txtSubject').val('');
                         $('#txtMessage').val('');
                     }
-                    else if (msg == "country") {
+                    else if (msg == "Country") {
                         alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
                     }
                     else {
@@ -147,8 +146,7 @@ function recaptchaCallback() {
     
 <% } %>
 <div id="profileForm" class="profilestyle">
-     <!-- <form id="frmShare"> -->
-          <div id="divTop">
+              <div id="divTop">
                <span class="divLeft"><img src="../../images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
                <span class="require divfloatright">* Indicates require Fields</span>
                <span id="divEmailCName" class="divLeft h1txt" runat="server"><!--<h2>Email DAN-LOC Bolt &amp; Gasket</h2>--></span>
@@ -181,13 +179,10 @@ function recaptchaCallback() {
     <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send"  />
 </div>
 </div>
-<div class="clearfix" ></div>
-          <!--
+<div class="clearfix" ></div>        
 <div class="reqText">
 <div class="ProfilewarnTextRFQ">
     <p><span class="requireD">WARNING: This form is not to be used for solicitation. </span> Solicitation is a violation of the <a href="http://www.iqsdirectory.com/DirectoryTermsConditions.htm"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. </p><br /> 
 </div>   
 </div>
- -->
-
 </div>
