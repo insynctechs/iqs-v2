@@ -15,7 +15,8 @@
         cache: false,
         success: function (msg) {
             var commenter = msg.d;
-            commenter = $.parseJSON(commenter);
+            var ms = commenter.replace(/\\/g, '\\');
+            commenter = JSON.parse(ms);
             $('#txtName').val(commenter[1]);
             $('#txtUserId').val(commenter[0]);
         },
@@ -91,10 +92,10 @@
                     alert("The code you entered was not correct.");
                 }
                 else {
-                    var result = JSON.parse(msg);
+                    
                     alert("Review Posted Successfully");
                     $('#fancybox-close').trigger('click');
-                    $(result).prependTo($('#divCommentDisp')).hide().slideDown('slow');
+                    DisplayComments(msg.d);
                     LoadCompanyTotalRating();
                 }
             },

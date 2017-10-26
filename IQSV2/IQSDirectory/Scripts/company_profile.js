@@ -9,7 +9,7 @@
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg === "true") {
+            if (msg.d === "true") {
                 $('#divLogout').show();
             }
         },
@@ -64,14 +64,14 @@
         }
         $.ajax({
             type: "POST",
-            url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
             data: "{}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg === "false") {
+                if (msg.d === "false") {
                     $('#lnkRegBox').trigger('click');
                     return false;
                 }
@@ -99,14 +99,14 @@
         }
         $.ajax({
             type: "POST",
-            url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
             data: "{}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg === "false") {
+                if (msg.d === "false") {
                     $('#lnkRegBox').trigger('click');
                     return false;
                 }
@@ -125,14 +125,14 @@
     $('#lnkLogout').live('click', function () {
         $.ajax({
             type: "POST",
-            url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/logoutsession",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/logoutsession",
             data: "{}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg === "success") {
+                if (msg.d === "success") {
                     alert("You have successfully logged out");
                     $('#divLogout').hide();
                     return false;
@@ -157,19 +157,19 @@
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
             type: "POST",
-            url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/submithelpful",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/submithelpful",
             data: jsonText,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg === "Invalid") {
-                    spnHelp.html("Was this helpful? <a class='lnkHelpful' href='#Helpful'><img alt='Yes' src='" + $('#hdnRootPath').val() + "images/helpful_button.png' style='vertical-align:middle;'></a>");
+                if (msg.d === "Invalid") {
+                    spnHelp.html("Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a>");
                     alert('Request Failed. Try Again.');
                 }
                 else {
-                    spnHelp.next().text(msg);
+                    spnHelp.next().text(msg.d);
                     spnHelp.text('Thank you for your feedback.');
                 }
             },
@@ -205,14 +205,14 @@ function UpdateReviewRating(ratectrl, rateval) {
     var jsonText = JSON.stringify({ list: list });
     $.ajax({
         type: "POST",
-        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/updatereviewrating",
+        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/updatereviewrating",
         data: jsonText,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg === "Success") {
+            if (msg.d === "Success") {
                 $(ratectrl).rating('disable');
             }
             else {
@@ -292,54 +292,7 @@ function LoadComments(clientsk, id) {
                 $('.loadingdiv').remove();
             }
             else {
-                var result = [];
-                var ms = msg.d;
-                ms = ms.replace(/\\/g, '\\');
-                result = JSON.parse(ms);
-                var str = "";
-                for (i in result)
-                {
-                    
-                    var rate = parseInt(result[i].Rating) - 1;
-                   
-                    str += "<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + result[i].CommentId + "' />";
-                    str += "<input type='hidden' id='hdCommenter' value='" + result[i].CName + "' />";
-                    str += "<div class='review_title_wrapper'>";
-                    str += "<h2>" + result[i].Title + "</h2>";
-                    str += "<div class='review_meta_wrapper'><h3>By <span>" + result[i].CName + "</span>- <span>" + result[i].CDate + "</span></h3></div>";
-                    str += "</div>";
-                    str += "<span class='review_rating_wrapper'>";
-                    str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='1' title='1'/>";
-                    str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='2' title='2'/>";
-                    str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='3' title='3'/>";
-                    str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='4' title='4'/>";
-                    str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='5' title='5'/>";
-                    str += "</span>";
-                    str += "<div style='clear:both;'></div>";
-                    str += "<div class='review_content_wrapper'>" + result[i].Review + "</div>";
-
-                    str += "<div id='divCom" + result[i].CommentId + "' class='review_action_wrapper'>";
-                    str += "<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>";
-                    str += "<span class='spnHelpCount' >";
-                    str += result[i].Helpful + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful";
-                    str += "</span>";
-                    str += "<span><a class='lnkReply small' href='#Reply'>Reply</a></span>";
-                    str += "</div>";
-                    str += "<script type='text/javascript'>";
-                    str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating({required: true});";
-                    str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('select',"+rate+", false);";
-                    str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('disable');";
-                    if (i == result.length-1)
-                        str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
-                    str += "</script>";
-                    //if (RatingReceived > 0)
-                    str += "</div>";
-                }
-                
-                $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
-                /*$("#divCommentDisp").find("script").each(function (i) {
-                    eval($(this).text());
-                });*/
+                DisplayComments(msg.d);
             }
             $('.loadingdiv').remove();
             $(result).siblings('.divComments').each(function () {
@@ -378,4 +331,59 @@ function LoadSubComments(commentid, divToAppend) {
             $(divToAppend).append('Problem Fetching Data. Please Refresh(F5).');
         }
     });
+}
+
+function DisplayComments(cmtjson)
+{
+    var result = [];
+    ms = cmtjson.replace(/\\/g, '\\');
+    result = JSON.parse(ms);
+    var str = "";
+    for (i in result) {
+
+        var rate = parseInt(result[i].Rating) - 1;
+
+        str += "<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + result[i].CommentId + "' />";
+        str += "<input type='hidden' id='hdCommenter' value='" + result[i].CName + "' />";
+        str += "<div class='review_title_wrapper'>";
+        str += "<h2>" + result[i].Title + "</h2>";
+        str += "<div class='review_meta_wrapper'><h3>By <span>" + result[i].CName + "</span>- <span>" + result[i].CDate + "</span></h3></div>";
+        str += "</div>";
+        str += "<span class='review_rating_wrapper'>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='1' title='1'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='2' title='2'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='3' title='3'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='4' title='4'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='5' title='5'/>";
+        str += "</span>";
+        str += "<div style='clear:both;'></div>";
+        str += "<div class='review_content_wrapper'>" + result[i].Review + "</div>";
+
+        str += "<div id='divCom" + result[i].CommentId + "' class='review_action_wrapper'>";
+        str += "<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>";
+        str += "<span class='spnHelpCount' >";
+        str += result[i].Helpful + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful";
+        str += "</span>";
+        str += "<span><a class='lnkReply small' href='#Reply'>Reply</a></span>";
+        str += "</div>";
+        str += "<script type='text/javascript'>";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating({required: true});";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('select'," + rate + ", false);";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('disable');";
+        if (i == result.length - 1)
+            str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
+        str += "</script>";
+        //if (RatingReceived > 0)
+        str += "</div>";
+    }
+
+    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
+                /*$("#divCommentDisp").find("script").each(function (i) {
+                    eval($(this).text());
+                });*/
+}
+
+function DisplaySubComments()
+{
+    
 }

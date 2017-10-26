@@ -176,42 +176,8 @@ namespace IQSDirectory
                     }
                     else
                     {
-                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                        sb.Append("<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + dt.Rows[0]["CommentId"].ToString() + "' />");
-                        sb.Append("<input type='hidden' id='hdCommenter' value='" + dt.Rows[0]["CName"].ToString() + "' />");
-                        sb.Append("<div class='review_title_wrapper'>");
-                        sb.Append("<h2>" + dt.Rows[0]["Title"].ToString() + "</h2>");
-                        sb.Append("<div class='review_meta_wrapper'><h3>By <span>" + dt.Rows[0]["CName"].ToString() + "</span>- <span>" + dt.Rows[0]["CDate"].ToString() + "</span></h3></div>");
-                        sb.Append("</div>");
-                        sb.Append("<span class='review_rating_wrapper'>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='1' title='1'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='2' title='2'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='3' title='3'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='4' title='4'/>");
-                        sb.Append("<input name='star1' type='radio' class='commentstar" + dt.Rows[0]["CommentId"].ToString() + "' value='5' title='5'/>");
-                        sb.Append("</span>");
-                        sb.Append("<div style='clear:both;'></div>");
-                        sb.Append("<div class='review_content_wrapper'>" + dt.Rows[0]["Review"].ToString() + "</div>");
-                        sb.Append("<div id='divCom" + dt.Rows[0]["CommentId"].ToString() + "' class='review_action_wrapper'>");
-                        sb.Append("<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful' href='#Helpful' class='small'>Yes</a></span>");
-                        sb.Append("<span class='spnHelpCount' >");
-                        sb.Append(dt.Rows[0]["Helpful"].ToString() + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful");
-                        sb.Append("</span>");
-                        sb.Append("<span><a class='lnkReply' href='#Reply' class='small'>Reply</a></span>");
-                        sb.Append("</div>");
-                        sb.Append("<script language='javascript' type='text/javascript'>");
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating({");
-                        sb.Append("required: true");
-                        sb.Append("});");
-                        //int Rating = Convert.ToInt16(dt.Rows[0]["Rating"].ToString());
-                        //if (RatingReceived > 0)
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating('select', " + (Convert.ToInt16(dt.Rows[0]["Rating"].ToString()) - 1).ToString() + ", false);");
-                        sb.Append("$('input[type=radio].commentstar" + dt.Rows[0]["CommentId"].ToString() + "').rating('disable');");
-                        sb.Append("</script>");
-                        //if(RatingReceived>0)
-                        sb.Append("</div>");
-                        /*JavaScriptSerializer jss = new JavaScriptSerializer();
-                        string json = jss.Serialize(sb.ToString());*/
+                        
+                        string JSONString = JsonConvert.SerializeObject(dt);
                         string clientEmail = "";
                         if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
                         {
@@ -221,7 +187,7 @@ namespace IQSDirectory
                             }
                         }
                         string mailStat = SendReviewMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["CDate"].ToString(), dt.Rows[0]["Rating"].ToString(), dt.Rows[0]["Title"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail);
-                        return sb.ToString();
+                        return JSONString;
                     }
                 }
                                 
@@ -393,6 +359,32 @@ namespace IQSDirectory
         {
             try
             {
+                string CommentId = list[0];
+                string lastid = list[1];
+
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetReviewReplies?CommentId=" + CommentId + "&json=0");
+                DataSet ds = wHelper.GetDataSetFromWebApi(url);
+                if (ds == null)
+                {
+                    return "Invalid";
+                }
+                else if (ds.Tables.Count == 0)
+                {
+                    return "LastRecord";
+                }
+                else if (ds.Tables[0].Rows.Count == 0)
+                {
+                    return "LastRecord";
+                }
+                else
+                {
+                    DataTable dt = ds.Tables[0];
+                    DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
+                    string JSONString = JsonConvert.SerializeObject(drSubComments);
+                    return JSONString;
+                }
+
                 /*string CommentId = list[0];
                 string rootDirPath = list[1];
                 ICommentService objCommentService;
@@ -494,11 +486,11 @@ namespace IQSDirectory
         {
             try
             {
-                /*string ClientSkArray = list[0];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                DataTable dt = objCommentService.GetCompanyTotalRatingByArray(ClientSkArray);
-                if (dt == null)
+                string ClientSK = list[0];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSK + "&json=0");
+                DataTable dt = wHelper.GetDataTableFromWebApi(url); 
+                if(dt == null)
                 {
                     return "Invalid";
                 }
@@ -511,11 +503,12 @@ namespace IQSDirectory
                     List<object> lo = new List<object>();
                     foreach (DataRow dr in dt.Rows)
                         lo.Add(new object[] { dr[0].ToString(), (Convert.ToInt16(dr[1].ToString()) - 1).ToString(), dr[2].ToString() });
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    return JsonConvert.SerializeObject(lo);
+                    /*JavaScriptSerializer jss = new JavaScriptSerializer();
                     string json = jss.Serialize(lo);
-                    return json;
-                }*/
-                return "totalratearray";
+                    return json;*/
+                }
+
             }
             catch (Exception ex)
             {
@@ -528,11 +521,10 @@ namespace IQSDirectory
         {
             try
             {
-                /*string CommentId = list[0];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                object[] objParam = new object[] { CommentId };
-                DataTable dt = objCommentService.SubmitHelpful(objParam);
+                string CommentId = list[0];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/TagReviewHelpful?CommentId=" + CommentId + "&json=0");
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt == null)
                 {
                     return "Invalid";
@@ -544,8 +536,8 @@ namespace IQSDirectory
                 else
                 {
                     return dt.Rows[0][0].ToString();
-                }*/
-                return "helpful";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -558,14 +550,12 @@ namespace IQSDirectory
         {
             try
             {
-                /*string CommentId = list[0];
+                string CommentId = list[0];
                 string RateReceived = list[1];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                object[] objParam = new object[] { CommentId, RateReceived };
-                string RetVal = objCommentService.UpdateReviewRating(objParam);
-                return RetVal;*/
-                return "reviewupdate";
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/UpdateReviewRating?CommentId=" + CommentId + "&Rate=" + RateReceived+ "&json=0");
+                string res= wHelper.GetExecuteNonQueryStringResFromWebApi(url);
+                return res;
             }
             catch (Exception ex)
             {
@@ -578,11 +568,10 @@ namespace IQSDirectory
         {
             try
             {
-                /*string Email = list[0];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                object[] objParam = new object[] { Email };
-                DataTable dt = objCommentService.GetCommenterByEmail(objParam);
+                string Email = list[0];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetCommenterByEmail?Email=" + Email + "&json=0");
+                DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt == null)
                 {
                     return "Invalid";
@@ -595,8 +584,7 @@ namespace IQSDirectory
                 {
                     string mailStat = SendForgotPasswordMail(dt.Rows[0]["FullName"].ToString(), Email, dt.Rows[0]["Password"].ToString());
                     return "Success";
-                }*/
-                return "forgotpassword";
+                }
 
             }
             catch (Exception ex)
