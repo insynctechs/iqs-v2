@@ -91,9 +91,9 @@
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
-                //url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
+                //url: $('#hdnSrhRootPath').val() + "controls/reviewmanager.aspx/coprosendemail",
                 //url: "http://216.250.147.171/IQSDirectory/controls/reviewmanager/coprosendemail",
-                url: "../../controls/reviewmanager.aspx/coprosendemail",
+                url: "../../controls/reviewmanager.aspx/sendcoproemail",
                 data: jsonText,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -101,11 +101,11 @@
                 cache: false,
                 success: function (msg) {
                     alert(msg);
-                    if (msg == "Success") {
+                    if (msg.d == "Success") {
                         alert("Mail has been sent sucessfully");
                         $.fancybox({
                             type: 'iframe',
-                            href: $('#hdnRootPath').val() + 'copro-page-email-thankyou.aspx'
+                            href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'
                         });
                         $('#txtFirstName').val('');
                         $('#txtLastName').val('');
