@@ -214,7 +214,7 @@
                            onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
                         Facebook</a></li>
                     <li><a rel=nofollow class="lnkmail mail"
-                           href="../controls/MailSend.aspx?p=../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
+                           href="<%:RootPath %>share-page-email.aspx?p=../../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
                         Mail</a></li>
                     <li><a href="" class="print" onclick="javascript:window.print();return false;">
                         Print</a></li>
