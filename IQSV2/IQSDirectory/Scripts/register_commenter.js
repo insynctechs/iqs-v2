@@ -141,74 +141,93 @@ $("#lnkForgotSubmit").click(function () {
     });
     return false;
 });
+$("#frmRegCommenter").validate({
+    ignore: ".ignore",
+    rules: {
+        txtRegName: { required: true },
+        txtRegEmail: { required: true, emailRule: true},
+        txtRegPass: { required: true },
+        txtRegVerify: { equalTo: "#txtRegPass" },
+        hiddenRecaptcha: {
+            required: function () {
+                if (grecaptcha.getResponse() == '') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    },
+    messages: {
+        txtRegName: { required: "Required " },
+        txtRegEmail: { required: "Required ", emailRule: "Invalid" },
+        txtRegPass: { required: "Required " },
+        txtRegVerify: {equalTo: "Verify Password Same as Password" },       
+        hiddenRecaptcha: { required: "Required " }
+    },
+    submitHandler: function (form) { }
+});
 
 $('#lnkLogin').click(function () {
-    if ($.trim($('#txtEmail').val()) == '') {
-        alert("Please Enter Email");
-        $('#txtEmail').focus();
-        return false;
-    }
-    if ($.trim($('#txtPassword').val()) == '') {
-        alert('Please Enter Password');
-        $('#txtPassword').focus();
-        return false;
-    }
-    var list = [$('#txtEmail').val(), $('#txtPassword').val()];
-    var jsonText = JSON.stringify({ list: list });
-    $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/userlogin",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
-        success: function (msg) {
+    if ($("#frmRegCommenter").valid()) {
+        var list = [$('#txtEmail').val(), $('#txtPassword').val()];
+        var jsonText = JSON.stringify({ list: list });
+        $.ajax({
+            type: "POST",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/userlogin",
+            data: jsonText,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (msg) {
 
-            if (msg == "Success" || msg.d=="Success") {
-                if (are_cookies_enabled()) {
-                    var cookieOptions = { expires: 30, path: '/' };
-                    var newval = '';
-                    if (cookie !== null) {
-                        var nlist = cookie.split("|| ||");
-                        $.each(nlist, function (key, val) {
-                            var nvl = val.split("| |");
-                            if (nvl[0] !== $('#txtEmail').val()) {
-                                newval += val + '|| ||';
-                            }
-                        });
-                    }
-                    if ($('#chkRemember').is(':checked')) {
-                        var val = $('#txtEmail').val() + '| |' + $('#txtPassword').val();
-                        newval += val + '|| ||';
-                        $.cookie(cookieName, newval, cookieOptions);
+                if (msg == "Success" || msg.d == "Success") {
+                    if (are_cookies_enabled()) {
+                        var cookieOptions = { expires: 30, path: '/' };
+                        var newval = '';
+                        if (cookie !== null) {
+                            var nlist = cookie.split("|| ||");
+                            $.each(nlist, function (key, val) {
+                                var nvl = val.split("| |");
+                                if (nvl[0] !== $('#txtEmail').val()) {
+                                    newval += val + '|| ||';
+                                }
+                            });
+                        }
+                        if ($('#chkRemember').is(':checked')) {
+                            var val = $('#txtEmail').val() + '| |' + $('#txtPassword').val();
+                            newval += val + '|| ||';
+                            $.cookie(cookieName, newval, cookieOptions);
+                        }
+                        else {
+                            $.cookie(cookieName, newval, cookieOptions);
+                        }
                     }
                     else {
-                        $.cookie(cookieName, newval, cookieOptions);
+                        if ($('#chkRemember').is(':checked')) {
+                            alert("Your browser cookies are disabled. Please enable it.");
+                        }
                     }
+                    $('#fancybox-close').trigger('click');
+                    window.setTimeout('openreviewbox()', 600);
+                    $('#divLogout').show();
+                    return false;
+                }
+                else if (msg == "Invalid" || msg.d == "Invalid") {
+                    alert("Invalid Username / Password !!");
                 }
                 else {
-                    if ($('#chkRemember').is(':checked')) {
-                        alert("Your browser cookies are disabled. Please enable it.");
-                    }
+                    alert("Unexpected Error Occured. Try Again!!");
                 }
-                $('#fancybox-close').trigger('click');
-                window.setTimeout('openreviewbox()', 600);
-                $('#divLogout').show();
-                return false;
+            },
+            failure: function () {
+                alert('Request Failed. Try Again.');
             }
-            else if (msg == "Invalid" || msg.d == "Invalid") {
-                alert("Invalid Username / Password !!");
-            }
-            else {
-                alert("Unexpected Error Occured. Try Again!!");
-            }
-        },
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
-    });
-    return false;
+        });
+
+        return false;
+    }
 });
 function openreviewbox() {
     if ($('#hidCommentType').val() == 'Review') {
