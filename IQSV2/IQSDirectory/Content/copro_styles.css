@@ -133,7 +133,7 @@ div.rightbox .col { height: auto; overflow: hidden;}
     background-color: #e5e4e4;
     padding: 10px;
 }
-#divLogout{text-align:right;display:block; padding-right:50px; }
+#divLogout{text-align:right;display:none; padding-right:50px; }
 #divVideo{margin-top:15px;}
 .ip_error{color:#f00; font-size:14px; font-weight:bold; margin:10px 0px; line-height:16px; display:none;}
 .clearfix{clear: both;}

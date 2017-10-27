@@ -25,7 +25,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/TagReviewHelpful")]
-        [HttpPut]
+        [HttpGet]
         public async Task<IHttpActionResult> TagReviewHelpful(int CommentId, int json=0)
         {
             var res = await rev.TagReviewHelpful(CommentId);
@@ -37,7 +37,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Reviews/UpdateReviewRating")]
-        [HttpPut]
+        [HttpGet]
         public async Task<IHttpActionResult> UpdateReviewRating(int CommentId, int Rate, int json=0)
         {
             var res = await rev.UpdateReviewRating(CommentId, Rate);

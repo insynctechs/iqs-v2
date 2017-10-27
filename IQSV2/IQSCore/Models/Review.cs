@@ -9,17 +9,12 @@ namespace IQSCore.Models
     public class Review
     {
         #region " Tag A Review Comment as Helpful "
-        public async Task<string> TagReviewHelpful(int CommentId)
+        public async Task<DataSet> TagReviewHelpful(int CommentId)
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
             sqlParam[0] = new SqlParameter("@CommentId", CommentId);
-            DataSet ds = await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspUpdateCommentHelpful", sqlParam));
-            if (ds.Tables.Count == 0)
-                return "invalid";
-            else if (ds.Tables[0].Rows.Count == 0)
-                return "invalid";
-            else
-                return ds.Tables[0].Rows[0][0].ToString();
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspUpdateCommentHelpful", sqlParam));
+            
 
         }
         #endregion
@@ -142,7 +137,7 @@ namespace IQSCore.Models
         public async Task<string> InsertSystemIp(string SystemIp)
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@SystemIp", SystemIp);
+            sqlParam[0] = new SqlParameter("@SystemIp", SystemIp);
             int res = await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertCommenterPriv", sqlParam));
             if (res > 0)
                 return "success";
@@ -156,7 +151,7 @@ namespace IQSCore.Models
         {
            
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@SystemIp", SystemIp);
+            sqlParam[0] = new SqlParameter("@SystemIp", SystemIp);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCommenterPriv", sqlParam));
 
         }
@@ -166,7 +161,7 @@ namespace IQSCore.Models
         public async Task<string> DisableCommenter(int UserId)
         {
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@UserId", UserId);
+            sqlParam[0] = new SqlParameter("@UserId", UserId);
             int res = await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspDisableCommenter", sqlParam));
             if (res > 0)
                 return "success";
@@ -196,7 +191,7 @@ namespace IQSCore.Models
         {
 
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@Email", Email);
+            sqlParam[0] = new SqlParameter("@Email", Email);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCommenterByEmail", sqlParam));
            
         }
@@ -207,7 +202,7 @@ namespace IQSCore.Models
         {
 
             SqlParameter[] sqlParam = new SqlParameter[1];
-            sqlParam[1] = new SqlParameter("@ClientSK", ClientSK);
+            sqlParam[0] = new SqlParameter("@ClientSK", ClientSK);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCompanyTotalRating", sqlParam));
 
         }
