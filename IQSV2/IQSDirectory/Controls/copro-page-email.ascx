@@ -9,7 +9,7 @@
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true, zipRule: true }
+            txtZip: { required: true }
             ,
             hiddenRecaptcha: {
                 required: function () {
@@ -29,7 +29,7 @@
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
-            txtZip: {required: "Required", zipRule:"Invalid"},
+            txtZip: {required: "Required"},
             hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
@@ -98,7 +98,7 @@
                 success: function (msg) {
                     //alert(msg);
                     if (msg.d == "Success") {
-                        alert("Mail has been sent sucessfully!!!");
+                        //alert("Mail has been sent sucessfully!!!");
                         $.fancybox({
                             type: 'iframe',
                             href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'
@@ -116,7 +116,7 @@
                         alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
                     }
                     else if (msg.d == "Error1") {
-                        alert("Try Catch Error");
+                        alert("Unexpected Error Occured. Please contact IQSDirectory");
                     }
                     else if (msg.d == "MailError") {
                         alert("Error sending in email");

@@ -388,55 +388,7 @@ namespace IQSDirectory
                     DataTable dt = ds.Tables[0];
                     string JSONString = JsonConvert.SerializeObject(dt);
                     return JSONString;
-                }
-                /*DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
-                    
-                    foreach (DataRow dr in drSubComments)
-                    {
-                        CommentObj.Add(new object[]
-                                        { dr["SubCommentId"].ToString(),
-                                            dr["ParentSubCommentId"].ToString(),
-                                            dr["CName"].ToString(),
-                                            dr["Review"].ToString(),
-                                            dr["CDate"].ToString(),
-                                            createsubcomments(dr["SubCommentId"].ToString(),dt,ref CommentObj)
-                                        });
-                    }*/
-
-                /*string CommentId = list[0];
-                string rootDirPath = list[1];
-                ICommentService objCommentService;
-                objCommentService = DelegateFactory.Current.CommentService;
-                object[] objParam = new object[] { CommentId };
-                DataTable dt = objCommentService.GetSubReview(objParam);
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                if (dt == null)
-                {
-                    return "";
-                }
-                else
-                {
-                    DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
-                    foreach (DataRow dr in drSubComments)
-                    {
-                        sb.Append("<div class='divSubComments'>");
-                        sb.Append("<input type='hidden' id='hdSubCommentId' value='" + dr["SubCommentId"].ToString() + "' />");
-                        sb.Append("<input type='hidden' id='hdCommenter' value='" + dr["CName"].ToString() + "' />");
-                        sb.Append("<div class='commentText'>" + dr["Review"].ToString() + "</div>");
-                        sb.Append("<div id='divSubCom" + dr["SubCommentId"].ToString() + "'><span class='span1'><h3>by " + dr["CName"].ToString() + " - " + dr["SCDate"].ToString() + "</h3></span>");
-                        sb.Append("<span class='span2'>");
-                        sb.Append("<a class='lnkSubReply' href='#SubReply'>");
-                        sb.Append("<img alt='Yes' src='" + rootDirPath + "images/reply_button.png' >");
-                        sb.Append("</a>");
-                        sb.Append("</span>");
-                        createsubcomments(dr["SubCommentId"].ToString(), dt, ref sb, rootDirPath);
-                        sb.Append("</div>");
-                        sb.Append("</div>");
-                    }
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(sb.ToString());
-                    return json;
-                }*/
+                }                
 
             }
             catch (Exception ex)
@@ -445,43 +397,7 @@ namespace IQSDirectory
             }
         }
 
-        [WebMethod(EnableSession = true)]
-        public static List<Object> createsubcomments(string SubCommentId, DataTable dt, ref List<object> CommentObj)
-        {
-            DataRow[] drSubReply = (DataRow[])dt.Select("CommentId IS NULL AND ParentSubCommentId= '" + SubCommentId + "'");
-            foreach (DataRow dr in drSubReply)
-            {
-                CommentObj.Add(new object[]
-                                        { dr["SubCommentId"].ToString(),
-                                            dr["ParentSubCommentId"].ToString(),
-                                            dr["CName"].ToString(),
-                                            dr["Review"].ToString(),
-                                            dr["CDate"].ToString(),
-                                            createsubcomments(dr["SubCommentId"].ToString(),dt,ref CommentObj)
-                                        });
-               
-            }
-            return CommentObj;
-            /*sb.Append("<div id='divSubReply" + SubCommentId + "' class='divSubReply' >");
-                //dt.Select("CommentId IS NULL AND ParentSubCommentId= '" + SubCommentId + "'").
-                foreach (DataRow dr in drSubReply)
-                {
-                    sb.Append("<div class='divSubComments'>");
-
-                    sb.Append("<input type='hidden' id='hdSubCommentId' value='" + dr["SubCommentId"].ToString() + "' />");
-                    sb.Append("<input type='hidden' id='hdCommenter' value='" + dr["CName"].ToString() + "' />");
-                    sb.Append("<div class='commentText'>" + dr["Review"].ToString() + "</div>");
-                    sb.Append("<div id='divSubCom" + dr["SubCommentId"].ToString() + "'><span class='span1'><h3>by " + dr["CName"].ToString() + " - " + dr["SCDate"].ToString() + "</h3></span>");
-                    sb.Append("<span class='span2'>");
-                    sb.Append("<a class='lnkSubReply small' href='#SubReply'>Reply</a>");
-                    sb.Append("</span>");
-                    createsubcomments(dr["SubCommentId"].ToString(), dt, ref sb, rootDirPath);
-                    sb.Append("</div>");
-                    sb.Append("</div>");
-                }
-                sb.Append("</div>");*/
-
-        }
+        
 
         [WebMethod(EnableSession = true)]
         public static string getcompanytotalrating(List<string> list)
@@ -649,13 +565,13 @@ namespace IQSDirectory
                     string _RequestIP = System.Web.HttpContext.Current.Request.UserHostAddress;
 
                     //insert profile request into form
-                    /*
+                    
                     var urlGetId = string.Format("api/Clients/InsertDirectoryProfileEmailDetails?FirstName=" + FirstName+"&LastName="+LastName+"&EmailAddress="+EmailAddress+"&CompanyName="+CompanyName+"&Zip="+Zip+"&Subject="+Subject+"&Message="+Message+"&ClientSk="+ClientSk+"&RequestIp="+_RequestIP);
                     int intIsSucess = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId);
 
                     if (intIsSucess != 0)
                     {
-                    */
+                    
                         StringBuilder strEmailContent = new StringBuilder();
                         strEmailContent.AppendLine("<table width='100%' align='center'>");
                         strEmailContent.AppendLine("<tr>");
@@ -705,7 +621,13 @@ namespace IQSDirectory
                         string _FromAddress = string.Empty;
                         string _Subject = string.Empty;
                         _FromAddress = EmailAddress;
-                        /*
+
+                        urlGetId = string.Format("api/Clients/GetClientNameEmailById?ClientSk=" + ClientSk );
+                        DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
+                        string clientEmail = dt.Rows[0]["EMAILADDRESS"].ToString();
+
+                        clientEmail = "";
+
                         if (clientEmail != null && clientEmail != "N/A")
                         {
                             _toAddress = clientEmail;
@@ -719,16 +641,16 @@ namespace IQSDirectory
                             _Subject = wHelper.ProfileNonExistEmailSubject; //System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
                             //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                         }
-                        */
-                        bool mailstatus = Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com,linda@insynctechs.com", "sumiajit@gmail.com", string.Empty, _Subject, strEmailContent.ToString(), true);
-                    //Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
-                    if (mailstatus == true)
-                        return "Success";
+                        
+                        //bool mailstatus = Utils.SendMail("admin@industrialquicksearch.com", "sumi@insynctechs.com", "linda@insynctechs.com", string.Empty, _Subject, strEmailContent.ToString(), true);
+                        bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
+                        if (mailstatus == true)
+                             return "Success";
+                         else
+                             return "MailError";
+                    }
                     else
-                        return "MailError";
-                    //}
-                    //else
-                      //  return "Error";
+                      return "Error";
                 }
                 else  //invalid ip access
                 {
@@ -773,9 +695,9 @@ namespace IQSDirectory
                 sb.AppendLine("IQS Directory Administrator");
                 string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
                 string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
-                Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
+                bool res = Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
                 //IQS.Utility.Utils.SendMail(_fromAddress, toEmail, "njerry@iforceproservices.com", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
-                return sb.ToString();
+                return res.ToString();
 
             }
             catch (Exception ex)

@@ -95,7 +95,7 @@
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divSubCom' + cid);
         if (divToAppend.children('#divSubReply' + cid).length === 0) {
-            $(divToAppend).append('<div id="divSubReply' + cid + '" class="nest"></div>');
+            $(divToAppend).append('<div id="divSubReply' + cid + '" class="nest clearfix"></div>');
         }
         $.ajax({
             type: "POST",
@@ -405,11 +405,18 @@ function GetSubCommentHTML(cmtjson) {
         str += "<div id='divSubCom" + result[i].SubCommentId + "'><span class='span1'><h3>By " + result[i].CName + " - " + result[i].SCDate + "</h3></span>";
         str += "<span class='span2'>";
         str += "<a class='lnkSubReply small' href='#SubReply'>Reply</a>";
-        str += "</span><div id='divSubReply" + result[i].SubCommentId + "' class='nest' >";
-        //if(result.Parent)
+        str += "</span><div id='divSubReply" + result[i].SubCommentId + "' class='nest clearfix' >";       
         str += "</div ></div ></a > ";
         str += "</div>";
-        html += str;
+        if (parseInt(result[i].ParentSubCommentId) > 0 && html!="") {
+
+            var div = "<div id='divSubReply" + result[i].ParentSubCommentId + "' class='nest clearfix' >";
+            html = html.replace(div, div + str);
+        }
+        else {
+            html += str;
+        }
+       
 
         
     }

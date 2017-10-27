@@ -51,5 +51,7 @@ namespace IQSCore.Controllers
             var cat = await comp.InsertDirectoryProfileEmailDetails(FirstName, LastName, EmailAddress, CompanyName, Zip, Subject, Message, ClientSk, RequestIp);
             return Ok(cat);
         }
+
+        
     }
 }
