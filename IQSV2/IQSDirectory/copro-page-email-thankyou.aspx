@@ -4,8 +4,8 @@
 <head runat="server">
     <title>RFQ Confirmation</title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <link href="css/form_styles.css" rel="stylesheet" type="text/css" />
-     <script src='js/jquery-1.7.2.min.js' type='text/javascript' ></script>
+    <link href="Content/form_styles.css" rel="stylesheet" />
+     <script src='Scripts/jquery-1.7.2.min.js' type='text/javascript' ></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#btnclose').click(function () {
