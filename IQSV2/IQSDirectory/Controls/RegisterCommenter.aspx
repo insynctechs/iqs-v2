@@ -3,15 +3,12 @@
 <html lang="en-US">
 <head>
     <title>IQSDirectory::User Registration Form</title>
-    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    
-    <style type="text/css">        
-        
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">    
+    <style type="text/css">                
     </style>
     <script type="text/javascript" defer async src="<%:RootPath %>Scripts/register_commenter.js"></script>
 </head>
 <body>
-
 <div id="divLogin" class="register_popup">
 <form id="frmRegCommeter" runat="server">
      <h2 class="pophead">USER REGISTRATION / LOGIN</h2>
@@ -33,7 +30,12 @@
             <input type="password" id="txtRegVerify" class="commenttextbox" maxlength="15" />
             <input type="hidden" id="hidIp" value="<%=UserIP %>" />
         </p>
-          <p >
+         
+              <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+          <p>
+              <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
+          </p>
+        <p>
               <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
           </p>

@@ -646,13 +646,13 @@ namespace IQSDirectory
                     string _RequestIP = System.Web.HttpContext.Current.Request.UserHostAddress;
 
                     //insert profile request into form
-                    /*
+                    
                     var urlGetId = string.Format("api/Clients/InsertDirectoryProfileEmailDetails?FirstName=" + FirstName+"&LastName="+LastName+"&EmailAddress="+EmailAddress+"&CompanyName="+CompanyName+"&Zip="+Zip+"&Subject="+Subject+"&Message="+Message+"&ClientSk="+ClientSk+"&RequestIp="+_RequestIP);
                     int intIsSucess = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId);
 
                     if (intIsSucess != 0)
                     {
-                    */
+                    
                         StringBuilder strEmailContent = new StringBuilder();
                         strEmailContent.AppendLine("<table width='100%' align='center'>");
                         strEmailContent.AppendLine("<tr>");
@@ -723,9 +723,9 @@ namespace IQSDirectory
                         return "Success";
                     else
                         return "MailError";
-                    //}
-                    //else
-                      //  return "Error";
+                    }
+                    else
+                        return "Error";
                 }
                 else  //invalid ip access
                 {
