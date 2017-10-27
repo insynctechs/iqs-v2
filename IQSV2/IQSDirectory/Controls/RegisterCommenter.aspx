@@ -39,9 +39,10 @@
               <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
           </p>
-          
+          <p>test</p>
           <!-- <div id="divErr" style="clear:both;text-align: right;color:Red; display:none;"></div>-->
       </div>
+    
       <div id="divRegChild" class="register_popup_right" >
       <div>
       <h2>You can Log-in with Facebook</h2>

@@ -9,8 +9,7 @@ using System.Web.UI.HtmlControls;
 namespace IQSDirectory
 {
     public partial class RegisterCommenter : System.Web.UI.Page
-    {
-        
+    {      
         
         protected void Page_Load(object sender, EventArgs e)
         {
