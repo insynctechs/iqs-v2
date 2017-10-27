@@ -120,10 +120,10 @@ div.rightbox .col { height: auto; overflow: hidden;}
 .review_action_wrapper .spnHelpful{vertical-align:middle;display: inline-block;}
 .review_action_wrapper .spnHelpCount{padding-left:35px;}
 .review_action_wrapper .spnHelpCountDesc{display: inline-block; padding-right: 3px;}
-.divSubComments{padding-top: 10px; padding-left: 0px;}
-.divSubComments .commentText{padding-right:50px;}
+.divSubComments{padding:10px 0; overflow:hidden; height:auto; border-bottom:#fff solid 1px;}
+.divSubComments .commentText{ margin-bottom:5px;}
 .divSubComments .span1{display:inline-block;}
-.divSubComments .span2{text-align:right;float: right;padding-right: 69px;}
+.divSubComments .span2{text-align:right;float: right;padding-right: 20px;}
 .divSubComments img{vertical-align: middle;}
 .divSubReply{padding-left:30px;}
 .divComments {
@@ -176,6 +176,8 @@ h2.pophead {
     display: block;
     background-color: #30494e; text-transform:uppercase;
 }
+.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; padding:2%; background-color:lavender;}
+.nest h3{color:#aaa; font-size:11px;}
 /**************** Comment Popup ********************************/
 .register_popup {
     width: 620px;

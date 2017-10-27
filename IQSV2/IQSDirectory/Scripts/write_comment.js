@@ -95,7 +95,8 @@
                     
                     alert("Review Posted Successfully");
                     $('#fancybox-close').trigger('click');
-                    DisplayComments(msg.d);
+                    str = GetCommentsHTML(msg.d);
+                    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
                     LoadCompanyTotalRating();
                 }
             },

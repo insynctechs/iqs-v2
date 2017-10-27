@@ -81,14 +81,14 @@
                     alert("The code you entered was not correct.");
                 }
                 else {
-                    var result = JSON.parse(msg);
                     alert("Reply Posted Successfully");
                     $('#fancybox-close').trigger('click');
+                    var str = GetSubCommentHTML(msg.d);
                     if ($('#hidCommentType').val() == 'SubReply') {
-                        //$(result).appendTo($('#divSubReply' + cid)).hide().slideDown('slow');
+                        $(str).appendTo($('#divSubReply' + cid)).hide().slideDown('slow');
                     }
                     else {
-                        //$(result).appendTo($('#divReply' + cid)).hide().slideDown('slow');
+                        $(str).appendTo($('#divReply' + cid)).hide().slideDown('slow');
                     }
                 }
             },
