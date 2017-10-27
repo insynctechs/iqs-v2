@@ -83,12 +83,12 @@
         
         if ($("#frmMaster").valid())
         {           
-            $(this).prop('disabled', 'disabled');
+            //$(this).prop('disabled', 'disabled');
             list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val()];
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
-                url: $('#hdnSrhRootPath').val() + "controls/reviewmanager/coprosendemail",
+                url: $('#hdnSrhRootPath').val() + "controls/reviewmanager.aspx/sendcoproemail",
                 //url: "../../controls/reviewmanager.aspx/sendcoproemail",
                 data: jsonText,
                 contentType: "application/json; charset=utf-8",
@@ -98,7 +98,7 @@
                 success: function (msg) {
                     //alert(msg);
                     if (msg.d == "Success") {
-                        alert("Mail has been sent sucessfully");
+                        alert("Mail has been sent sucessfully!!!");
                         $.fancybox({
                             type: 'iframe',
                             href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'
@@ -115,10 +115,16 @@
                     else if (msg == "Country") {
                         alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
                     }
+                    else if (msg.d == "Error1") {
+                        alert("Try Catch Error");
+                    }
+                    else if (msg.d == "MailError") {
+                        alert("Error sending in email");
+                    }
                     else {
                         alert("Unexpected Error Occured. Try Again!!");
                     }
-                    $('#btnSend').removeAttr('disabled');
+                    //$('#btnSend').removeAttr('disabled');
 
                 },
                 
@@ -167,9 +173,9 @@ function recaptchaCallback() {
                 <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
                 <li>Message :</li>
                 <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
-              <!--<li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-                </li>               -->       
+                </li>
               
                 </ul>
 <div id="ip_error" class="error" runat="server" ></div>

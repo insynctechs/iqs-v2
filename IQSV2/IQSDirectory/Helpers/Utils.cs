@@ -354,8 +354,11 @@ namespace IQSDirectory.Helpers
                     //Put your own, or your ISPs, mail server name onthis next line
                     mailClient.Host = System.Configuration.ConfigurationManager.AppSettings["MailServerIP"];
                     mailClient.Send(Email);
+                    return true;
                 }
-                return true;
+                else
+                    return false;
+                
             }
             catch (Exception ex)
             {
