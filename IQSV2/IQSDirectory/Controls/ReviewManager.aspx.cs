@@ -285,16 +285,8 @@ namespace IQSDirectory
                 }
                 else
                 {
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.Append("<div  class='divSubComments'>");
-                    sb.Append("<input type='hidden' id='hdSubCommentId' value='" + dt.Rows[0]["SubCommentId"].ToString() + "' />");
-                    sb.Append("<input type='hidden' id='hdCommenter' value='" + dt.Rows[0]["CName"].ToString() + "' />");
-                    sb.Append("<div class='commentText'>" + dt.Rows[0]["Review"].ToString() + "</div>");
-                    sb.Append("<div id='divSubCom" + dt.Rows[0]["SubCommentId"].ToString() + "'><span class='span1'><h3>By " + dt.Rows[0]["CName"].ToString() + " - " + dt.Rows[0]["SCDate"].ToString() + "</h3></span>");
-                    sb.Append("<span class='span2'>");
-                    sb.Append("<a class='lnkSubReply small' href='#SubReply'>Yes</a>");
-                    sb.Append("</span></div>");
-                    sb.Append("</div>");
+                    /*System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     string json = jss.Serialize(sb.ToString());
                     string clientEmail = "";
@@ -307,7 +299,18 @@ namespace IQSDirectory
                     }
                     string mailStat = SendReviewReplyMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["SCDate"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail, ReplyTo);
                     //return json;
-                    return sb.ToString();
+                    return sb.ToString();*/
+                    string JSONString = JsonConvert.SerializeObject(dt);
+                    string clientEmail = "";
+                    if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
+                    {
+                        if (dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "" && dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "N/A")
+                        {
+                            clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
+                        }
+                    }
+                    string mailStat = SendReviewReplyMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["SCDate"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail, ReplyTo);
+                    return JSONString;
                 }
             }
             catch (Exception ex)
@@ -362,7 +365,7 @@ namespace IQSDirectory
             try
             {
                 string CommentId = list[0];
-                string lastid = list[1];
+               
                 List<object> CommentObj = new List<object>();
 
                 WebApiHelper wHelper = new WebApiHelper();
@@ -383,7 +386,10 @@ namespace IQSDirectory
                 else
                 {
                     DataTable dt = ds.Tables[0];
-                    DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
+                    string JSONString = JsonConvert.SerializeObject(dt);
+                    return JSONString;
+                }
+                /*DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
                     
                     foreach (DataRow dr in drSubComments)
                     {
@@ -395,10 +401,7 @@ namespace IQSDirectory
                                             dr["CDate"].ToString(),
                                             createsubcomments(dr["SubCommentId"].ToString(),dt,ref CommentObj)
                                         });
-                    }
-                    string JSONString = JsonConvert.SerializeObject(CommentObj);
-                    return JSONString;
-                }
+                    }*/
 
                 /*string CommentId = list[0];
                 string rootDirPath = list[1];
@@ -434,7 +437,7 @@ namespace IQSDirectory
                     string json = jss.Serialize(sb.ToString());
                     return json;
                 }*/
-                
+
             }
             catch (Exception ex)
             {
@@ -809,11 +812,13 @@ namespace IQSDirectory
                 string _toAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
                 string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
                 string _bccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
-                Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                /*Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
                 //IQS.Utility.Utils.SendMail(_fromAddress, "njerry@iforceproservices.com", "", "njerry@iforceproservices.com,mbbinil@iforceproservices.com", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
                 if (ClientEmail != "")
                     Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
                 //Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
+                
+                */
                 return "mail sent";
             }
             catch (Exception ex)
@@ -846,10 +851,11 @@ namespace IQSDirectory
                 string _toAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
                 string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
                 string _bccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
-                Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
+                /*Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
                 //IQS.Utility.Utils.SendMail(_fromAddress, "njerry@iforceproservices.com", "", "njerry@iforceproservices.com,mbbinil@iforceproservices.com", "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
                 if (ClientEmail != "")
                     Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
+                */
                 return "mail sent";
             }
             catch (Exception ex)

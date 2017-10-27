@@ -95,7 +95,7 @@
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divSubCom' + cid);
         if (divToAppend.children('#divSubReply' + cid).length === 0) {
-            $(divToAppend).append('<div id="divSubReply' + cid + '" style="padding-left:30px;"></div>');
+            $(divToAppend).append('<div id="divSubReply' + cid + '" class="nest"></div>');
         }
         $.ajax({
             type: "POST",
@@ -284,6 +284,7 @@ function LoadComments(clientsk, id) {
         async: true,
         cache: false,
         success: function (msg) {
+            var str = "";
             if (msg.d === "Invalid") {
                 $('#divCommentDisp').text('Problem Fetching Data. Please Refresh(F5).');
             }
@@ -292,10 +293,11 @@ function LoadComments(clientsk, id) {
                 $('.loadingdiv').remove();
             }
             else {
-                DisplayComments(msg.d);
+                str = GetCommentsHTML(msg.d);
+                $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
             }
             $('.loadingdiv').remove();
-            $(result).siblings('.divComments').each(function () {
+            $(str).siblings('.divComments').each(function () {
                 var commentid = $(this).children('#hdCommentId').val();
                 var divcom = '#divCom' + commentid;
                 LoadSubComments(commentid, divcom);
@@ -309,7 +311,7 @@ function LoadComments(clientsk, id) {
 
 function LoadSubComments(commentid, divToAppend) {
     if ($(divToAppend).children('#divReply' + commentid).length == 0) {
-        $(divToAppend).append('<div id="divReply' + commentid + '" style="padding-left:30px;"></div>');
+        $(divToAppend).append('<div id="divReply' + commentid + '" class="nest"></div>');
     }
     var list = [commentid];
     var jsonText = JSON.stringify({ list: list });
@@ -323,8 +325,9 @@ function LoadSubComments(commentid, divToAppend) {
         cache: false,
         success: function (msg) {
             if (msg.d !== "") {
-                var result = JSON.parse(msg.d);
-                //$(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');
+                
+                var result = GetSubCommentHTML(msg.d);
+                $(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');
             }
         },
         failure: function () {
@@ -333,7 +336,7 @@ function LoadSubComments(commentid, divToAppend) {
     });
 }
 
-function DisplayComments(cmtjson)
+function GetCommentsHTML(cmtjson)
 {
     var result = [];
     ms = cmtjson.replace(/\\/g, '\\');
@@ -376,59 +379,40 @@ function DisplayComments(cmtjson)
         //if (RatingReceived > 0)
         str += "</div>";
     }
-
-    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
+    return str;
+    
                 /*$("#divCommentDisp").find("script").each(function (i) {
                     eval($(this).text());
                 });*/
 }
+function GetSubComments()
+{
 
-function DisplaySubComments(cmtjson) {
+}
+function GetSubCommentHTML(cmtjson) {
     var result = [];
     ms = cmtjson.replace(/\\/g, '\\');
     result = JSON.parse(ms);
-    var str = "";
+    
+    var html = "";
     for (i in result) {
 
-        /*var rate = parseInt(result[i].Rating) - 1;
-
-        str += "<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + result[i].CommentId + "' />";
+        var str = "";
+        str += "<div class='divSubComments'>";
+        str += "<input type='hidden' id='hdSubCommentId' value='" + result[i].SubCommentId + "' />";
         str += "<input type='hidden' id='hdCommenter' value='" + result[i].CName + "' />";
-        str += "<div class='review_title_wrapper'>";
-        str += "<h2>" + result[i].Title + "</h2>";
-        str += "<div class='review_meta_wrapper'><h3>By <span>" + result[i].CName + "</span>- <span>" + result[i].CDate + "</span></h3></div>";
+        str += "<div class='commentText'>" + result[i].Review + "</div>";
+        str += "<div id='divSubCom" + result[i].SubCommentId + "'><span class='span1'><h3>By " + result[i].CName + " - " + result[i].SCDate + "</h3></span>";
+        str += "<span class='span2'>";
+        str += "<a class='lnkSubReply small' href='#SubReply'>Reply</a>";
+        str += "</span><div id='divSubReply" + result[i].SubCommentId + "' class='nest' >";
+        //if(result.Parent)
+        str += "</div ></div ></a > ";
         str += "</div>";
-        str += "<span class='review_rating_wrapper'>";
-        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='1' title='1'/>";
-        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='2' title='2'/>";
-        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='3' title='3'/>";
-        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='4' title='4'/>";
-        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='5' title='5'/>";
-        str += "</span>";
-        str += "<div style='clear:both;'></div>";
-        str += "<div class='review_content_wrapper'>" + result[i].Review + "</div>";
+        html += str;
 
-        str += "<div id='divCom" + result[i].CommentId + "' class='review_action_wrapper'>";
-        str += "<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>";
-        str += "<span class='spnHelpCount' >";
-        str += result[i].Helpful + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful";
-        str += "</span>";
-        str += "<span><a class='lnkReply small' href='#Reply'>Reply</a></span>";
-        str += "</div>";
-        str += "<script type='text/javascript'>";
-        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating({required: true});";
-        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('select'," + rate + ", false);";
-        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('disable');";
-        if (i == result.length - 1)
-            str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
-        str += "</script>";
-        //if (RatingReceived > 0)
-        str += "</div>";
-        */
+        
     }
 
-    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
-    /*$("#divCommentDisp").find("script").each(function (i) {
-        eval($(this).text());
-    });*/
+    return html;
 }
