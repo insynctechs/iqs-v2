@@ -56,32 +56,28 @@
             $('#txtReview').focus();
             return false;
         }
-        if ($.trim($('#CaptchaReview1_txtCaptcha').val()) == '') {
-            alert('Please Enter Code');
-            $('#CaptchaReview1_txtCaptcha').focus();
-            return false;
-        }
+        
 
-        list = [$('#txtUserId').val(), cid, $('#txtReview').val(), $('#hidCommentType').val(), $('#CaptchaReview1_txtCaptcha').val(), $('#txtTopic').val(), $('#hidRootPath').val()];
+        list = [$('#txtUserId').val(), cid, $('#txtReview').val(), $('#hidCommentType').val(), $('#txtTopic').val()];
         jsonText = JSON.stringify({ list: list });
         $.ajax({
             type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/writesubreview",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/writereviewreply",
             data: jsonText,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Invalid") {
+                if (msg.d == "Invalid") {
                     alert("Unexpected Error Occured. Try Again!!");
                 }
-                else if (msg == "Foul Word") {
+                else if (msg.d == "Foul Word") {
                     $('#divLogout').hide();
                     alert("You have used foul word(s).\nYour review/comment has been removed and session terminated.");
                     $('#fancybox-close').trigger('click');
                 }
-                else if (msg == "Code") {
+                else if (msg.d == "Code") {
                     alert("The code you entered was not correct.");
                 }
                 else {
@@ -89,10 +85,10 @@
                     alert("Reply Posted Successfully");
                     $('#fancybox-close').trigger('click');
                     if ($('#hidCommentType').val() == 'SubReply') {
-                        $(result).appendTo($('#divSubReply' + cid)).hide().slideDown('slow');
+                        //$(result).appendTo($('#divSubReply' + cid)).hide().slideDown('slow');
                     }
                     else {
-                        $(result).appendTo($('#divReply' + cid)).hide().slideDown('slow');
+                        //$(result).appendTo($('#divReply' + cid)).hide().slideDown('slow');
                     }
                 }
             },

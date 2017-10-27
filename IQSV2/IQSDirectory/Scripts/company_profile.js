@@ -383,7 +383,52 @@ function DisplayComments(cmtjson)
                 });*/
 }
 
-function DisplaySubComments()
-{
-    
+function DisplaySubComments(cmtjson) {
+    var result = [];
+    ms = cmtjson.replace(/\\/g, '\\');
+    result = JSON.parse(ms);
+    var str = "";
+    for (i in result) {
+
+        /*var rate = parseInt(result[i].Rating) - 1;
+
+        str += "<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + result[i].CommentId + "' />";
+        str += "<input type='hidden' id='hdCommenter' value='" + result[i].CName + "' />";
+        str += "<div class='review_title_wrapper'>";
+        str += "<h2>" + result[i].Title + "</h2>";
+        str += "<div class='review_meta_wrapper'><h3>By <span>" + result[i].CName + "</span>- <span>" + result[i].CDate + "</span></h3></div>";
+        str += "</div>";
+        str += "<span class='review_rating_wrapper'>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='1' title='1'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='2' title='2'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='3' title='3'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='4' title='4'/>";
+        str += "<input name='star1' type='radio' class='commentstar" + result[i].CommentId + "' value='5' title='5'/>";
+        str += "</span>";
+        str += "<div style='clear:both;'></div>";
+        str += "<div class='review_content_wrapper'>" + result[i].Review + "</div>";
+
+        str += "<div id='divCom" + result[i].CommentId + "' class='review_action_wrapper'>";
+        str += "<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>";
+        str += "<span class='spnHelpCount' >";
+        str += result[i].Helpful + "</span><span class='spnHelpCountDesc'>&nbsp;people found this review useful";
+        str += "</span>";
+        str += "<span><a class='lnkReply small' href='#Reply'>Reply</a></span>";
+        str += "</div>";
+        str += "<script type='text/javascript'>";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating({required: true});";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('select'," + rate + ", false);";
+        str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('disable');";
+        if (i == result.length - 1)
+            str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
+        str += "</script>";
+        //if (RatingReceived > 0)
+        str += "</div>";
+        */
+    }
+
+    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
+    /*$("#divCommentDisp").find("script").each(function (i) {
+        eval($(this).text());
+    });*/
 }

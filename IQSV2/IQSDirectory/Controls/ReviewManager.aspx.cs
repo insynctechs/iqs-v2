@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 using IQSDirectory.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
+using System.Linq;
 
 namespace IQSDirectory
 {
@@ -271,7 +273,7 @@ namespace IQSDirectory
                     return "Foul Word";
                 }
                 SubReview = SubReview.Replace("iqsdirectory.com", "");
-                url = string.Format("api/Reviews/WriteReviewReply?UserId=" + CommenterId + "&CommentId=" + CommentId + " & Review=" + SubReview + "&CommentType=" + CommentType + "&json=0");
+                url = string.Format("api/Reviews/WriteReviewReply?UserId=" + CommenterId + "&CommentId=" + CommentId + " &Review=" + SubReview + "&CommentType=" + CommentType + "&json=0");
                 DataTable dt = wHelper.GetDataTableFromWebApi(url);
                 if (dt == null)
                 {
@@ -361,6 +363,7 @@ namespace IQSDirectory
             {
                 string CommentId = list[0];
                 string lastid = list[1];
+                List<object> CommentObj = new List<object>();
 
                 WebApiHelper wHelper = new WebApiHelper();
                 var url = string.Format("api/Reviews/GetReviewReplies?CommentId=" + CommentId + "&json=0");
@@ -381,7 +384,19 @@ namespace IQSDirectory
                 {
                     DataTable dt = ds.Tables[0];
                     DataRow[] drSubComments = (DataRow[])dt.Select("ParentSubCommentId IS NULL");
-                    string JSONString = JsonConvert.SerializeObject(drSubComments);
+                    
+                    foreach (DataRow dr in drSubComments)
+                    {
+                        CommentObj.Add(new object[]
+                                        { dr["SubCommentId"].ToString(),
+                                            dr["ParentSubCommentId"].ToString(),
+                                            dr["CName"].ToString(),
+                                            dr["Review"].ToString(),
+                                            dr["CDate"].ToString(),
+                                            createsubcomments(dr["SubCommentId"].ToString(),dt,ref CommentObj)
+                                        });
+                    }
+                    string JSONString = JsonConvert.SerializeObject(CommentObj);
                     return JSONString;
                 }
 
@@ -419,7 +434,7 @@ namespace IQSDirectory
                     string json = jss.Serialize(sb.ToString());
                     return json;
                 }*/
-                return "reviewreply";
+                
             }
             catch (Exception ex)
             {
@@ -428,25 +443,41 @@ namespace IQSDirectory
         }
 
         [WebMethod(EnableSession = true)]
-        public static void createsubcomments(string SubCommentId, DataTable dt, ref System.Text.StringBuilder sb, string rootDirPath)
+        public static List<Object> createsubcomments(string SubCommentId, DataTable dt, ref List<object> CommentObj)
         {
             DataRow[] drSubReply = (DataRow[])dt.Select("CommentId IS NULL AND ParentSubCommentId= '" + SubCommentId + "'");
-            sb.Append("<div id='divSubReply" + SubCommentId + "' class='divSubReply' >");
             foreach (DataRow dr in drSubReply)
             {
-                sb.Append("<div class='divSubComments'>");
-                sb.Append("<input type='hidden' id='hdSubCommentId' value='" + dr["SubCommentId"].ToString() + "' />");
-                sb.Append("<input type='hidden' id='hdCommenter' value='" + dr["CName"].ToString() + "' />");
-                sb.Append("<div class='commentText'>" + dr["Review"].ToString() + "</div>");
-                sb.Append("<div id='divSubCom" + dr["SubCommentId"].ToString() + "'><span class='span1'><h3>by " + dr["CName"].ToString() + " - " + dr["SCDate"].ToString() + "</h3></span>");
-                sb.Append("<span class='span2'>");
-                sb.Append("<a class='lnkSubReply small' href='#SubReply'>Reply</a>");
-                sb.Append("</span>");
-                createsubcomments(dr["SubCommentId"].ToString(), dt, ref sb, rootDirPath);
-                sb.Append("</div>");
-                sb.Append("</div>");
+                CommentObj.Add(new object[]
+                                        { dr["SubCommentId"].ToString(),
+                                            dr["ParentSubCommentId"].ToString(),
+                                            dr["CName"].ToString(),
+                                            dr["Review"].ToString(),
+                                            dr["CDate"].ToString(),
+                                            createsubcomments(dr["SubCommentId"].ToString(),dt,ref CommentObj)
+                                        });
+               
             }
-            sb.Append("</div>");
+            return CommentObj;
+            /*sb.Append("<div id='divSubReply" + SubCommentId + "' class='divSubReply' >");
+                //dt.Select("CommentId IS NULL AND ParentSubCommentId= '" + SubCommentId + "'").
+                foreach (DataRow dr in drSubReply)
+                {
+                    sb.Append("<div class='divSubComments'>");
+
+                    sb.Append("<input type='hidden' id='hdSubCommentId' value='" + dr["SubCommentId"].ToString() + "' />");
+                    sb.Append("<input type='hidden' id='hdCommenter' value='" + dr["CName"].ToString() + "' />");
+                    sb.Append("<div class='commentText'>" + dr["Review"].ToString() + "</div>");
+                    sb.Append("<div id='divSubCom" + dr["SubCommentId"].ToString() + "'><span class='span1'><h3>by " + dr["CName"].ToString() + " - " + dr["SCDate"].ToString() + "</h3></span>");
+                    sb.Append("<span class='span2'>");
+                    sb.Append("<a class='lnkSubReply small' href='#SubReply'>Reply</a>");
+                    sb.Append("</span>");
+                    createsubcomments(dr["SubCommentId"].ToString(), dt, ref sb, rootDirPath);
+                    sb.Append("</div>");
+                    sb.Append("</div>");
+                }
+                sb.Append("</div>");*/
+
         }
 
         [WebMethod(EnableSession = true)]
