@@ -37,9 +37,9 @@
                 <li><input type="text" id="txtSubject" class="rfqtextboxsub width90" maxlength="200" runat="server" /></li>
                 <li>Message :<span class="require">* </span></li>
                 <li><textarea id="txtMessage" class="TextCtrlArea width90" style="height:64px;" runat="server" ></textarea></li>
-               <!-- <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+               <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-                </li>-->                            </ul>
+                </li>                            </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
 <div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />

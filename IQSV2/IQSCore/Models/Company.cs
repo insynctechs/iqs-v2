@@ -45,7 +45,7 @@ namespace IQSCore.Models
             sqlParam[9] = new SqlParameter("@REQUEST_TYPE_SK", 0);
             sqlParam[10] = new SqlParameter("@WEBSITE_TYPE", "DIRECTORY");
             sqlParam[11] = new SqlParameter("@REQUESTIP", RequestIp);
-            sqlParam[12] = new SqlParameter("@RETURNVALUE", SqlDbType.Int);
+            sqlParam[12] = new SqlParameter("@OutParam", SqlDbType.Int);
             sqlParam[12].Direction = ParameterDirection.Output;
             sqlParam[12].Size = 10;
             await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertDirectoryProfileEmailDetails", sqlParam));

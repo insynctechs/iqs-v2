@@ -120,13 +120,20 @@ div.rightbox .col { height: auto; overflow: hidden;}
 .review_action_wrapper .spnHelpful{vertical-align:middle;display: inline-block;}
 .review_action_wrapper .spnHelpCount{padding-left:35px;}
 .review_action_wrapper .spnHelpCountDesc{display: inline-block; padding-right: 3px;}
-.divSubComments{padding-top: 10px; padding-left: 0px;}
-.divSubComments .commentText{padding-right:50px;}
+.divSubComments{padding:10px 0; overflow:hidden; height:auto; }
+.divSubComments .commentText{ margin-bottom:5px;}
 .divSubComments .span1{display:inline-block;}
-.divSubComments .span2{text-align:right;float: right;padding-right: 69px;}
+.divSubComments .span2{text-align:right;float: right;padding-right: 20px;}
 .divSubComments img{vertical-align: middle;}
-.divSubReply{padding-left:30px;}
-#divLogout{text-align:right;display:block; padding-right:50px; }
+.divSubReply{padding-left:20px;}
+.divComments {
+    margin: 20px 0px;
+    height: auto;
+    overflow: hidden;
+    background-color: #e5e4e4;
+    padding: 10px;
+}
+#divLogout{text-align:right;display:none; padding-right:50px; }
 #divVideo{margin-top:15px;}
 .ip_error{color:#f00; font-size:14px; font-weight:bold; margin:10px 0px; line-height:16px; display:none;}
 .clearfix{clear: both;}
@@ -164,11 +171,13 @@ a:hover.small {
 h2.pophead {
     font-size: 16px;
     width: 100%;
-    padding: 10px 0px;
+    padding: 20px 0px;
     text-align: center;
     display: block;
-    background-color: #30494e;
+    background-color: #30494e; text-transform:uppercase;
 }
+.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; padding:2%; background-color:lavender;}
+.nest h3{color:#aaa; font-size:11px;}
 /**************** Comment Popup ********************************/
 .register_popup {
     width: 620px;
@@ -180,7 +189,7 @@ h2.pophead {
     position: relative;
     margin: 0px;
 }
-.register_popup h2{margin:4px 0px; }
+.register_popup h2{margin:0px; }
 .register_form_wrapper{width:100%;min-height:420px; height: 420px; height: auto !important; overflow:hidden; text-align: left; }
 .register_popup_left{float:left; margin-top: 15px; margin-bottom: 15px; display:block; width:310px; height:420px; height: auto !important; overflow: hidden; padding-left:15px; border-right:1px solid black; text-align:left;}
 .register_popup_right{width:260px; padding-top: 25px; text-align:center;float:left; display:block; padding-left:15px; text-align:left;}
@@ -195,16 +204,22 @@ h2.pophead {
     font-size:15px;
 }
 .register_forgot_success{display:none;padding-top:80px;}
-.write_comment_wrapper{width:495px; height:310px; overflow:auto; border: 1px solid black;}
+.write_comment_wrapper{width:495px; height:auto; overflow:hidden; border: 1px solid black;}
 .write_comment_captcha_wrapper p {  margin:12px 0px;}
-.write_comment_inner{height:166px; width:260px; text-align:center;float:left; display:block; padding-left:15px; text-align:left;}
+.write_comment_inner{height:auto; width:auto; overflow:hidden; display:block; padding-left:15px; text-align:left;}
 .write_comment_rating{display: inline-block;}
-.write_comment_captcha_wrapper{float:left; display:block; width:186px; height:160px; padding-left:15px; padding-top:30px; text-align:left;}
-.write_comment_captcha{float: left;}
-.write_comment_review{clear:both; padding-left:15px; display:block; height:123px;text-align:left;}
-.write_comment_review .p1{float: left;}
-.write_comment_review .p2{padding-right:12px; padding-top:72px; float:right;}
-.write_comment_review textarea{width:375px; height:85px;}
+.write_comment_captcha_wrapper {
+    display: block;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    padding-left: 15px;
+    text-align: left;
+}
+.write_comment_review{padding-left:15px; display:block; height:123px;text-align:left;}
+.write_comment_review .p1{}
+.write_comment_review .p2{}
+.commentTextArea{width:375px; height:85px;}
 .hide_elem{display: none;}
 #divLogin p {
     margin: 12px 0px;
@@ -269,7 +284,7 @@ h2.pophead {
     font-weight: bold;
     color: #374246
 }
-.divratingnew{float:left;width:auto}
+.divratingnew{float:left;width:auto; margin-top:30px;}
 .divagrating{float:left;width:auto;padding-left:20px;color:#f0efed;overflow:hidden}
 .rating{display:block;overflow:hidden;width:auto;color:#f0efed}
 .divratingclientmain{display:none;cursor:default}

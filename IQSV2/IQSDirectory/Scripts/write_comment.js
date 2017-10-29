@@ -14,8 +14,9 @@
         async: true,
         cache: false,
         success: function (msg) {
-            var commenter = msg;
-            commenter = $.parseJSON(commenter);
+            var commenter = msg.d;
+            var ms = commenter.replace(/\\/g, '\\');
+            commenter = JSON.parse(ms);
             $('#txtName').val(commenter[1]);
             $('#txtUserId').val(commenter[0]);
         },
@@ -35,7 +36,7 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Invalid") {
+                if (msg.d == "Invalid") {
                     $('#divLogout').hide();
                     alert("Your account is disabled.");
                     return false;
@@ -79,22 +80,23 @@
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Invalid") {
+                if (msg.d == "Invalid") {
                     alert("Unexpected Error Occured. Try Again!!");
                 }
-                else if (msg == "Foul Word") {
+                else if (msg.d == "Foul Word") {
                     $('#divLogout').hide();
                     alert("You have used foul word(s).\nYour review/comment has been removed and session terminated.");
                     $('#fancybox-close').trigger('click');
                 }
-                else if (msg == "Code") {
+                else if (msg.d == "Code") {
                     alert("The code you entered was not correct.");
                 }
                 else {
-                    var result = JSON.parse(msg);
+                    
                     alert("Review Posted Successfully");
                     $('#fancybox-close').trigger('click');
-                    $(result).prependTo($('#divCommentDisp')).hide().slideDown('slow');
+                    str = GetCommentsHTML(msg.d);
+                    $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
                     LoadCompanyTotalRating();
                 }
             },

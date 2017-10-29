@@ -15,6 +15,7 @@
     <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
+    <script src='<%:RootPath %>Scripts/company_profile.js' type='text/javascript' ></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
@@ -161,23 +162,11 @@
                     <h2>Company Reviews</h2>
                     <div class="review_main_left">
                         <div class="review_main_left_inner" id="divCompReview">
-                            <div class="star-rating-control star-rating-readonly">
-                                <div class="rating-cancel" style="display: none;">
-                                    <a title="Cancel Rating"></a>
-                                </div>
-
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="1">1</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="2">2</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="3">3</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="4">4</a></div>
-                                <div class="star-rating rater-0 totalreviewstar star-rating-applied star-rating-live star-rating-on"><a title="5">5</a></div>
-                            </div>
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="1" title="1" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="2" title="2" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="3" title="3" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="4" title="4" style="display: none;" disabled="disabled">
-                            <input name="star1" type="radio" class="totalreviewstar star-rating-applied star-rating-readonly" value="5" title="5" style="display: none;" checked="checked" disabled="disabled">
-
+                            <input name="star1" type="radio" class="totalreviewstar" value="1" title="1"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="2" title="2"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="3" title="3"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="4" title="4"/>
+    <input name="star1" type="radio" class="totalreviewstar" value="5" title="5"/>
                         </div>
                         <h3 class="main_review_count"><span id="divTotalReviewCount">1</span> reviews</h3>
                     </div>
@@ -190,45 +179,16 @@
                     <div class="cleardiv"></div>
                     <hr/>
                     <section id="divCommentDisp">
-                        <div class="divComments" id="divCommentid" ><input type="hidden" id="hdCommentId" value="123"><input type="hidden" id="hdCommenter" value="TSA">
-                            <div class="review_title_wrapper">
-                                <h2>Great engineering experience</h2>
-                                <div class="review_meta_wrapper">
-                                    <h3>By <span>TSA</span>- <span>07/19/12</span></h3>
-                                </div>
-                            </div>
-                            <div class="review_rating_wrapper">
-                                <div class="star-rating-control star-rating-readonly">
-                                    <div class="rating-cancel" style="display: none;"><a title="Cancel Rating"></a></div>
-                                    <div class="star-rating rater-0 commentstar123 star-rating-applied star-rating-live star-rating-on"><a title="1">1</a></div>
-                                    <div class="star-rating rater-0 commentstar123 star-rating-applied star-rating-live star-rating-on"><a title="2">2</a></div>
-                                    <div class="star-rating rater-0 commentstar123 star-rating-applied star-rating-live star-rating-on"><a title="3">3</a></div>
-                                    <div class="star-rating rater-0 commentstar123 star-rating-applied star-rating-live star-rating-on"><a title="4">4</a></div>
-                                    <div class="star-rating rater-0 commentstar123 star-rating-applied star-rating-live star-rating-on"><a title="5">5</a></div>
-                                </div>
-                                <input name="star1" type="radio" class="commentstar123 star-rating-applied star-rating-readonly" value="1" title="1" disabled="disabled" style="display: none;">
-                                <input name="star1" type="radio" class="commentstar123 star-rating-applied star-rating-readonly" value="2" title="2" disabled="disabled" style="display: none;">
-                                <input name="star1" type="radio" class="commentstar123 star-rating-applied star-rating-readonly" value="3" title="3" disabled="disabled" style="display: none;">
-                                <input name="star1" type="radio" class="commentstar123 star-rating-applied star-rating-readonly" value="4" title="4" disabled="disabled" style="display: none;">
-                                <input name="star1" type="radio" class="commentstar123 star-rating-applied star-rating-readonly" value="5" title="5" checked="checked" disabled="disabled" style="display: none;">
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="review_content_wrapper">With EFG you get great engineering experience to get the right fastener for your application. EFG’s recent growth through multi-company acquisitions has them on pace to become the leading domestic manufacturer of specialty fasteners in North America.</div>
-                            <div id="divCom123" class="review_action_wrapper">
-                                <span class="spnHelpful">Was this helpful? <a class="lnkHelpful small" href="#Helpful">Yes</a></span>
-                                <span class="spnHelpCount">2</span><span class="spnHelpCountDesc">&nbsp;people found this review useful</span><span><a class="lnkReply small" href="#Reply">Reply</a></span>
-                                <div id="divReply123" style="padding-left:30px;"></div>
-                            </div>
-                        </div>
+                        
                     </section>
-                    <input type="hidden" id="hidLastFetchId" value="123">
-                    <input type="hidden" id="hidLastRecord" value="1">
+                    <input type="hidden" id="hidLastFetchId" value="">
+                    <input type="hidden" id="hidLastRecord" value="">
                     <input type="hidden" id="hidCommentType" value="">
-                    <input type="hidden" id="hidCommentId" value="0">
+                    <input type="hidden" id="hidCommentId" value="">
                     <input type="hidden" id="hidCommentedBy" value="">
-                    <input type="hidden" id="hidRootPath" value="../../">
+                    <input type="hidden" id="hidRootPath" value="<%:RootPath %>">
                 </section>
-                <div style="display:block;">
+                <div style="display:none;">
                     <a id="lnkRegBox" href="<%:RootPath %>controls/registercommenter.aspx?p=<%:RootPath %>" title="Login">Login</a>
                     <a id="lnkReviewBox" href="<%:RootPath %>controls/writecomment.aspx?p=<%:RootPath %>" title="WriteAReview">Write A Review</a>
                     <a id="lnkReplyBox" href="<%:RootPath %>controls/writesubcomment.aspx?p=<%:RootPath %>" title="ReplyReview"></a>
@@ -254,7 +214,7 @@
                            onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
                         Facebook</a></li>
                     <li><a rel=nofollow class="lnkmail mail"
-                           href="../controls/MailSend.aspx?p=../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
+                           href="<%:RootPath %>share-page-email.aspx?p=../../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
                         Mail</a></li>
                     <li><a href="" class="print" onclick="javascript:window.print();return false;">
                         Print</a></li>
@@ -330,44 +290,11 @@
                 $('#secsbox').html(data);
             });
 
-        });
-
-        $(document).ready(function () {
-            $('#hidRootPath').val($('#hdnSrhRootPath').val());
-
-            $('#lnkRegBox').fancybox({
-                'padding': 0,
-                'showCloseButton': true,
-                'modal': true,
-                'titleShow': false
-            });
-            $('#lnkReviewBox').fancybox({
-                'padding': 0,
-                'showCloseButton': true,
-                'modal': true,
-                'titleShow': false
-            });
-            $('#lnkReplyBox').fancybox({
-                'padding': 0,
-                'showCloseButton': true,
-                'modal': true,
-                'titleShow': false
-            });
-
-
-
-            $('#lnkWriteReview').live('click', function () {
-                $('#hidCommentType').val('Review');
-                $('#lnkRegBox').trigger('click');
-
-            });
-
-
-
-        });
+        });        
 
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
+    <input type='hidden' id='hdnProfileClientSk' value="<%: ClientSK %>" />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
 </asp:Content>

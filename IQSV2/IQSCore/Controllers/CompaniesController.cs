@@ -45,10 +45,13 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/Clients/InsertDirectoryProfileEmailDetails")]
+        [HttpGet]
         public async Task<IHttpActionResult> InsertDirectoryProfileEmailDetails(String FirstName, String LastName, String EmailAddress, string CompanyName, string Zip, string Subject, string Message, int ClientSk, string RequestIp)
         {
             var cat = await comp.InsertDirectoryProfileEmailDetails(FirstName, LastName, EmailAddress, CompanyName, Zip, Subject, Message, ClientSk, RequestIp);
             return Ok(cat);
         }
+
+        
     }
 }
