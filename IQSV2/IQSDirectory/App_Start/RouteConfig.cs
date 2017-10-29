@@ -56,6 +56,21 @@ namespace IQSDirectory
                 new RouteValueDictionary { { "copro", new CompanyProfileConstraint() } }
                 );
 
+            routes.MapPageRoute("SearchWithState",
+                "search/{query}/{page}/{state}",
+                "~/DirectorySearch.aspx",
+                true,
+                null,
+                null
+                );
+
+            routes.MapPageRoute("SearchWithoutState",
+                "search/{query}/{page}",
+                "~/DirectorySearch.aspx",
+                true,
+                null,
+                null
+                );
         }
     }
 }

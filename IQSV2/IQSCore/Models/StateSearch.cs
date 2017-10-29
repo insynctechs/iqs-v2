@@ -42,5 +42,15 @@ namespace IQSCore.Models
             sqlParam[3] = new SqlParameter("@COUNTRYNAME", "Canada");
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetStateSearchPageDetails", sqlParam));
         }
+
+        public async Task<DataSet> GetSearchResultsDetails(string SrhStr, string Start, string Count, string State)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[4];
+            sqlParam[0] = new SqlParameter("@SrhStr", SrhStr);
+            sqlParam[1] = new SqlParameter("@Start", Start);
+            sqlParam[2] = new SqlParameter("@Count", Count);
+            sqlParam[3] = new SqlParameter("@State", State);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetSearchResultsDetails", sqlParam));
+        }
     }
 }

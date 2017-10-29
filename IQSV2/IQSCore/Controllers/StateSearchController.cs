@@ -78,5 +78,13 @@ namespace IQSCore.Controllers
             return Ok(res);
 
         }
+
+        [Route("api/StateSearch/GetSearchResultsDetails")]
+        public async Task<IHttpActionResult> GetSearchResultsDetails(string SrhStr, string Start, string Count, string State)
+        {
+            var res = await stateSearch.GetSearchResultsDetails(SrhStr, Start, Count, State);
+            return Ok(res);
+
+        }
     }
 }
