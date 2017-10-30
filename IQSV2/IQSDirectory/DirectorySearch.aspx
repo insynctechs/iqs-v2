@@ -4,12 +4,6 @@
     <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
     <link href="<%:RootPath %>Content/publish_styles.css" rel="stylesheet" />
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
-
-    <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
     <div class='searchdivtop'>
         <div id="divSearchMain">
@@ -103,6 +97,7 @@
                         <%} %>
                     <% } %>
                 </div>
+
                 <script type='text/javascript'>
                     $(document).ready(function () {
                         $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
@@ -115,5 +110,8 @@
             </div>
         </div>
     </div>
+     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
+    <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
+      <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
 </asp:Content>
 

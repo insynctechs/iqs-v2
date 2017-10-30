@@ -88,6 +88,14 @@ namespace IQSDirectory.Helpers
             }
         }
 
+        public string WebUrl
+        { 
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["WebURL"].ToString();
+            }
+        }
+
         /* SJ added profile configs */
         public string ProfileFromEmailAddress
         {

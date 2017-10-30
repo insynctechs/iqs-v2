@@ -30,11 +30,12 @@
             <input type="password" id="txtRegVerify" class="commenttextbox" maxlength="15" />
             <input type="hidden" id="hidIp" value="<%=UserIP %>" />
         </p>
-         
+         <!--
               <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
           <p>
               <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-          </p>
+          </p>-->
+          <div id="recaptcha3"></div>
         <p>
               <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
@@ -105,7 +106,12 @@
 
  </form>
 	</div>
-   
+   <script type='text/javascript'>
+       // $(document).ready(function () {
+            captchaCallBack();
+        //});        
+
+    </script>
     
 </body>
 </html>

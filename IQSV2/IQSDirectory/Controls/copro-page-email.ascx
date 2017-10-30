@@ -9,16 +9,15 @@
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true }
-            ,
-            hiddenRecaptcha: {
-                required: function () {
-                    if (grecaptcha.getResponse() == '') {
+            txtZip: { required: true }            ,
+            hiddenRecaptcha1: { required: true
+                /*required: function () {
+                    if (grecaptcha.getResponse(recaptcha1) == '') {
                         return true;
                     } else {
                         return false;
                     }
-                }
+                }*/
             }
            
            
@@ -30,7 +29,7 @@
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
             txtZip: {required: "Required"},
-            hiddenRecaptcha: { required: "Required "}
+            hiddenRecaptcha1: { required: "Required "}
         },
         submitHandler: function (form) {
           
@@ -142,9 +141,11 @@
 
 });
 
-function recaptchaCallback() {
-    $('#hiddenRecaptcha').valid();
-    $("#frmShare").valid();
+    function verify_callback1(response) {
+        alert("Email Callback");
+        //$('#hiddenRecaptcha1').val(response);
+   $('#hiddenRecaptcha1').val(response);
+    //$("#frmShare").valid();
 }
 </script>
 <% if (false) { %>
@@ -173,8 +174,12 @@ function recaptchaCallback() {
                 <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
                 <li>Message :</li>
                 <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
-                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                <li><!--<div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
+                -->
+                    <div id="recaptcha1"></div>
+                    <input type="hidden" class="hiddenRecaptcha1 required" name="hiddenRecaptcha1" id="hiddenRecaptcha1"  data-callback="verify_callback1"  /> 
+  
                 </li>
               
                 </ul>

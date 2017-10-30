@@ -19,7 +19,7 @@
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
-    <script src='//www.google.com/recaptcha/api.js' async defer></script>
+    <input type='hidden' id='hdnEmailCaptcha' value="no" />
 
     <div id='content_wrapper'>
         <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
@@ -213,8 +213,8 @@
                     <li><a class="facebook" rel=nofollow href=""
                            onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
                         Facebook</a></li>
-                    <li><a rel=nofollow class="lnkmail mail"
-                           href="<%:RootPath %>share-page-email.aspx?p=../../&title=<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
+                    <li><a rel=nofollow onclick="" class="lnkmail mail"
+                           href="<%:RootPath %>copro-share-page-email.aspx?p=../../&title=<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
                         Mail</a></li>
                     <li><a href="" class="print" onclick="javascript:window.print();return false;">
                         Print</a></li>
@@ -279,11 +279,42 @@
            
             <div id="divEmail">
                 <uc1:copropageemail runat="server" id="copropageemail" />
+                
             </div>
+            <!--<div id="recaptcha2"></div>-->
         </div>
     </section>
 </div>
-
+    <script type='text/javascript'>
+                    var recaptcha1;
+                    var recaptcha2;
+                    var captchaReg;
+        var captchaCallBack = function () {
+            alert("thx lord jesus" + $("#hdnEmailCaptcha").val());
+            if ($("#hdnEmailCaptcha").val() != 'yes') {
+                alert("inside if");
+                recaptcha1 = grecaptcha.render('recaptcha1', {
+                    'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
+                    'theme': 'light',
+                    'callback':verify_callback1
+                });
+                $("#hdnEmailCaptcha").val('yes');
+            }
+            if ($("#recaptcha2").length > 0) {
+                recaptcha2 = grecaptcha.render('recaptcha2', {
+                    'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
+                    'theme': 'light',
+                    'callback': verify_callback2
+                });
+            }
+            if ($("#recaptcha3").length > 0) {
+                captchaReg = grecaptcha.render('recaptcha3', {
+                    'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
+                    'theme': 'light'
+                });
+            }
+        }
+    </script>
     <script type='text/javascript'>
         $(document).ready(function () {
             $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
@@ -293,11 +324,20 @@
             $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
             $('.lnkmail').bind('contextmenu', function (e) { return false; });
 
-        });        
+           
 
+        });        
+        function verify_callback2(response) {
+            alert("Captcha 2="+response);
+            $('#hiddenRecaptcha2').val(response);
+            $("#frmShare").valid();
+        }
     </script>
+    
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnProfileClientSk' value="<%: ClientSK %>" />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+    
+    <script src="https://www.google.com/recaptcha/api.js?onload=captchaCallBack&render=explicit" async defer></script>
 </asp:Content>

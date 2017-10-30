@@ -19,11 +19,14 @@ namespace IQSDirectory
         WebApiHelper wHelper = new WebApiHelper();
         protected void Page_Load(object sender, EventArgs e)
         {
+            ApiPath = wHelper.ApiUrl;
             if (ValidatePage() == false)
             {
-                Response.Redirect("~");
+                Response.Redirect(RootPath);
             }
+
             CheckStateSearch();
+
             if (!IsPostBack)
             {
                 int start = 1;
@@ -69,8 +72,17 @@ namespace IQSDirectory
                 }
                 return true;
             }
-            else
+            else if (queryVals.Length == 1)
             {
+                CurQuery = queryVals[0].ToString();
+                CurPage = "1";
+                CurState = "";
+                RootPath = "../";
+                return true;
+            }
+            else 
+            {
+                RootPath = "../";
                 return false;
             }
 
@@ -119,7 +131,7 @@ namespace IQSDirectory
 
             dt.Columns.Add("FORMATED_TITLE");
             dt.AsEnumerable().ToList().ForEach(dr => {
-                dr["URL"] = wHelper.NewsDirectory + dr["URL"].ToString().Replace("\\", "/");
+                dr["URL"] = wHelper.WebUrl + dr["URL"].ToString().Replace("\\", "/");
                 dr["MDESC"] = dr["MDESC"].ToString().IndexOf(". ") > 0 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().IndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
                 dr["FORMATED_TITLE"] = Utils.FormatCompanyWebsiteLink(dr["TITLE"].ToString());
             });
@@ -146,8 +158,9 @@ namespace IQSDirectory
             CompanyList = drComp.AsEnumerable().ToList();
 
             OtherList = dt.Select("NORDER <> 1 AND NORDER <> 2").AsEnumerable().ToList();
+            TotalCount = Convert.ToInt32(dt.Rows[0]["TCOUNT"].ToString());
 
-            PageCount = Math.Ceiling(Convert.ToDouble(dt.Rows[0]["TCOUNT"].ToString()) / RecCount);
+            PageCount = Math.Ceiling(Convert.ToDouble(TotalCount) / RecCount);
             PgSrhUrl = RootPath + "search/" + CurQuery + "/";
             if (StartPage != 1)
             {
@@ -293,10 +306,11 @@ namespace IQSDirectory
         public string PgNxtURl { get; set; }
         public string PgSrhUrl { get; set; }
         public double PageCount { get; set; }
+        public int TotalCount { get; set; }
         public List<DataRow> ProductList { get; set; }
         public List<DataRow> CompanyList { get; set; }
         public List<DataRow> OtherList { get; set; }
         public string CategorySK { get; set; }
-    
+        public string ApiPath { get; set; }
     }
 }
