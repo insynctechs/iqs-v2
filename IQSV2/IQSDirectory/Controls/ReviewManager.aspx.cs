@@ -672,6 +672,52 @@ namespace IQSDirectory
             
         }
 
+        [WebMethod(EnableSession = true)]
+        public static string coprosharepage_email(List<string> list)
+        {
+            try
+            {
+                WebApiHelper wHelper = new WebApiHelper();
+                if (Utils.isvalidIpAccess() == true)
+                {
+                    string _FromName = list[0];
+                    string _FromAddress = list[1];
+                    string _toAddress = list[2];
+                    string _title = list[3];
+                    string _url = list[4];
+                    string _description = list[5];
+
+                    string _Subject = "[IQS DIRECTORY] - " + _title.ToUpper().Replace("%20", " ");
+                    string _strMailBody = "<a href = '" + _url.ToString() + "' > " + _title.Replace(" % 20", " ") + "</a><br/><br/>";
+                    _strMailBody += "<br/><br/>" + _description.ToString();
+                    _strMailBody += "<br/><br/><a href='" + _url.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
+                    _strMailBody += "<br/><br/> Thanks & Regards <br/>" + _FromName.ToString();
+                    //sendMailWithAttachment(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
+                    bool mailstatus = Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
+                        if (mailstatus == true)
+                            return "Success";
+                        else
+                            return "MailError";
+                    
+                }
+                else  //invalid ip access
+                {
+                    //ip_error.InnerText = "The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.";
+                    //ip_error.InnerHtml = "The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.";
+                    return "Country";
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return "Error1";
+            }
+            finally
+            {
+
+            }
+        }
 
         public static string SendRegistrationMail(string FullName, string toEmail, string Password)
         {

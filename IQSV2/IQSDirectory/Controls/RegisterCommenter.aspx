@@ -6,6 +6,7 @@
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">    
     <style type="text/css">                
     </style>
+     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
     <script type="text/javascript" defer async src="<%:RootPath %>Scripts/register_commenter.js"></script>
 </head>
 <body>
@@ -18,23 +19,26 @@
       <h2>Fill in the info below to register.</h2><br />
       <p>
       Display Name (If left empty Name will be used):<br />
-            <input type="text" id="txtRegDName" class="commenttextbox" /></p>
+            <input type="text" id="txtRegDName" name="txtRegDName" class="commenttextbox" /></p>
           <p>
         Name:<span class="requireD">* </span><br />
-            <input type="text" id="txtRegName" class="commenttextbox" /></p>
+            <input type="text" id="txtRegName" name="txtRegName" class="commenttextbox" /></p>
         <p>E-mail Address:<span class="requireD">* </span><br />
-            <input type="text" id="txtRegEmail" class="commenttextbox" /></p>
+            <input type="text" id="txtRegEmail" name="txtRegEmail" class="commenttextbox" /></p>
         <p>Password (Min 5 characters):<span class="requireD">* </span><br />
-            <input type="password" id="txtRegPass" class="commenttextbox" maxlength="15" /></p>
+            <input type="password" id="txtRegPass" name="txtRegPass"  class="commenttextbox" maxlength="15" /></p>
         <p>Verify Password:<span class="requireD">* </span><br />
-            <input type="password" id="txtRegVerify" class="commenttextbox" maxlength="15" />
+            <input type="password" id="txtRegVerify" name="txtRegVerify" class="commenttextbox" maxlength="15" />
             <input type="hidden" id="hidIp" value="<%=UserIP %>" />
         </p>
-         
+         <!--
               <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
           <p>
               <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-          </p>
+          </p>-->
+          <div id="recaptcha3"></div>
+          <input type="hidden" class="hiddenRecaptcha3 required" name="hiddenRecaptcha3" id="hiddenRecaptcha3"  data-callback="verify_callback3"  /> 
+         
         <p>
               <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
@@ -105,7 +109,10 @@
 
  </form>
 	</div>
-   
+   <script type='text/javascript'>
+           //this will insert recaptcha in the form
+            captchaCallBack();       
+    </script>
     
 </body>
 </html>

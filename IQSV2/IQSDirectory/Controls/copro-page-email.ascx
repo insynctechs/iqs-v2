@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="copro-page-email.ascx.cs" Inherits="IQSDirectory.Controls.copro_page_email" %>
 <script type="text/javascript">
-    $(document).ready(function () { 
-        
+    $(document).ready(function () {         
     $("#frmMaster").validate({        
         ignore: ".ignore",
         rules: {
@@ -9,28 +8,23 @@
             txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
             txtCompanyName: { required: true },
-            txtZip: { required: true }
-            ,
-            hiddenRecaptcha: {
-                required: function () {
-                    if (grecaptcha.getResponse() == '') {
+            txtZip: { required: true }            ,
+            hiddenRecaptcha1: { required: function () {
+                    if (grecaptcha.getResponse(recaptcha1) == '') {
                         return true;
                     } else {
                         return false;
                     }
                 }
             }
-           
-           
         },
         messages: {
-
             txtFirstName: { required: "Required " },
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
             txtCompanyName: { required: "Required " },
             txtZip: {required: "Required"},
-            hiddenRecaptcha: { required: "Required "}
+            hiddenRecaptcha1: { required: "Required "}
         },
         submitHandler: function (form) {
           
@@ -89,7 +83,6 @@
             $.ajax({
                 type: "POST",
                 url: $('#hdnSrhRootPath').val() + "controls/reviewmanager.aspx/sendcoproemail",
-                //url: "../../controls/reviewmanager.aspx/sendcoproemail",
                 data: jsonText,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -101,14 +94,13 @@
                         //alert("Mail has been sent sucessfully!!!");
                         $.fancybox({
                             type: 'iframe',
-                            href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'
+                            href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'                            
                         });
                         $('#txtFirstName').val('');
                         $('#txtLastName').val('');
                         $('#txtEmailAddress').val('');
                         $('#txtCompanyName').val('');
-                        $('#txtZip').val('');
-                        //$('#ctrlProfSendEmail_Captcha1_txtCaptcha').val('');
+                        $('#txtZip').val('');                       
                         $('#txtSubject').val('');
                         $('#txtMessage').val('');
                     }
@@ -142,9 +134,9 @@
 
 });
 
-function recaptchaCallback() {
-    $('#hiddenRecaptcha').valid();
-    $("#frmShare").valid();
+function verify_callback1(response) {        
+   $('#hiddenRecaptcha1').val(response);
+   $("#frmMaster").valid();
 }
 </script>
 <% if (false) { %>
@@ -173,8 +165,12 @@ function recaptchaCallback() {
                 <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
                 <li>Message :</li>
                 <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
-                <li><div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+                <li><!--<div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
+                -->
+                    <div id="recaptcha1"></div>
+                    <input type="hidden" class="hiddenRecaptcha1 required" name="hiddenRecaptcha1" id="hiddenRecaptcha1"  data-callback="verify_callback1"  /> 
+  
                 </li>
               
                 </ul>

@@ -148,9 +148,9 @@ $("#frmRegCommenter").validate({
         txtRegEmail: { required: true, emailRule: true},
         txtRegPass: { required: true },
         txtRegVerify: { equalTo: "#txtRegPass" },
-        hiddenRecaptcha: {
+        hiddenRecaptcha3: {
             required: function () {
-                if (grecaptcha.getResponse() == '') {
+                if (grecaptcha.getResponse(recaptcha3) == '') {
                     return true;
                 } else {
                     return false;
@@ -163,13 +163,13 @@ $("#frmRegCommenter").validate({
         txtRegEmail: { required: "Required ", emailRule: "Invalid" },
         txtRegPass: { required: "Required " },
         txtRegVerify: {equalTo: "Verify Password Same as Password" },       
-        hiddenRecaptcha: { required: "Required " }
+        hiddenRecaptcha3: { required: "Required " }
     },
     submitHandler: function (form) { }
 });
 
 $('#lnkLogin').click(function () {
-    if ($("#frmRegCommenter").valid()) {
+    
         var list = [$('#txtEmail').val(), $('#txtPassword').val()];
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
@@ -225,9 +225,8 @@ $('#lnkLogin').click(function () {
                 alert('Request Failed. Try Again.');
             }
         });
-
         return false;
-    }
+       
 });
 function openreviewbox() {
     if ($('#hidCommentType').val() == 'Review') {
@@ -238,73 +237,46 @@ function openreviewbox() {
     }
 }
 $('#lnkRegister').click(function () {
+    if ($("#frmRegCommenter").valid()) {
+        var list = [$('#txtRegDName').val(), $('#txtRegName').val(), $('#txtRegEmail').val(), $('#txtRegPass').val(), $('#hidIp').val()];
 
-    if ($.trim($('#txtRegName').val()) == '') {
-        alert('Please Enter Name');
-        $('#txtRegName').focus();
+        var jsonText = JSON.stringify({ list: list, doaction: "yes", returntype: '' });
+
+        $.ajax({
+            type: "POST",
+            url: $('#hdnApiPath').val() + "api/Reviews/AddCommenter",
+            //url: $('#hdnApiPath').val() + "controls/reviewmanager/registercommenter",
+            data: jsonText,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (msg) {
+                if (msg == "Success") {
+                    $('#divRegForm').slideUp('slow', function () {
+                        $('#divSuccess').slideDown();
+                    });
+                }
+                else if (msg == "Exists") {
+                    alert("Email Address You Entered Already Exists!!");
+                }
+                else if (msg == "IP") {
+                    alert("You have exceeded maximum (5) registration from this IP");
+                }
+                else if (msg == "") {
+                    alert("Unexpected Error Occured. Try Again!!");
+                }
+                else {
+                    alert(msg);
+                }
+            },
+
+            failure: function () {
+                alert('Request Failed. Try Again.');
+            }
+        });
         return false;
     }
-    if ($.trim($('#txtRegEmail').val()) == '') {
-        alert('Please Enter Email');
-        $('#txtRegEmail').focus();
-        return false;
-    }
-    if (!isValidEmailAddress($('#txtRegEmail').val())) {
-        alert('Enter a Valid Email');
-        $('#txtRegEmail').focus();
-        return false;
-    }
-
-    if ($('#txtRegPass').val().length < 5) {
-        alert('Password Should be Atleast 5 Characters');
-        $('#txtRegPass').focus();
-        return false;
-    }
-
-    if ($('#txtRegPass').val() != $('#txtRegVerify').val()) {
-        alert('Confirm Password did not Match');
-        $('#txtRegVerify').focus();
-        return false;
-    }
-
-
-    var list = [$('#txtRegDName').val(), $('#txtRegName').val(), $('#txtRegEmail').val(), $('#txtRegPass').val(), $('#hidIp').val()];
-    
-    var jsonText = JSON.stringify({ list: list, doaction: "yes", returntype : '' });
-    
-    $.ajax({
-        type: "POST",
-        url: $('#hdnApiPath').val() + "api/Reviews/AddCommenter",
-        //url: $('#hdnApiPath').val() + "controls/reviewmanager/registercommenter",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
-        success: function (msg) {
-            if (msg == "Success") {
-                $('#divRegForm').slideUp('slow', function () {
-                    $('#divSuccess').slideDown();
-                });
-            }
-            else if (msg == "Exists") {
-                alert("Email Address You Entered Already Exists!!");
-            }
-            else if (msg == "IP") {
-                alert("You have exceeded maximum (5) registration from this IP");
-            }
-            else if (msg == "") {
-                alert("Unexpected Error Occured. Try Again!!");
-            }
-            else {
-                alert(msg);
-            }
-        },
-
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
-    });
     return false;
 });
 function isValidEmailAddress(emailAddress) {

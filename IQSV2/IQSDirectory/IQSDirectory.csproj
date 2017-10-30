@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="bin\IQSDirectory.dll" />
+    <Content Include="bin\IQSDirectory.pdb" />
     <Content Include="CategoryPage1.aspx" />
     <Content Include="CategoryPage2.aspx" />
     <Content Include="CompanyProfile.aspx" />
@@ -150,11 +152,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\styler.css" />
     <Content Include="Content\stylerprint.css" />
+    <Content Include="Controls\copro-page-email.ascx" />
     <Content Include="Controls\RegisterCommenter.aspx" />
     <Content Include="Controls\ReviewManager.aspx" />
     <Content Include="Controls\WriteComment.aspx" />
     <Content Include="Controls\WriteSubComment.aspx" />
+    <Content Include="copro-page-email-thankyou.aspx" />
     <Content Include="copro-page-email.aspx" />
+    <Content Include="copro-share-page-email.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DirectoryRFQ.aspx" />
     <Content Include="DirectorySearch.aspx" />
@@ -210,6 +215,8 @@
     <Content Include="images\star.png" />
     <Content Include="images\submit_button.png" />
     <Content Include="images\write_a_review_button.png" />
+    <Content Include="MailTemplates\RegistrationMailToUser.html" />
+    <Content Include="MailTemplates\RegistrationMailToUser.txt" />
     <Content Include="RFQConfirmation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -217,6 +224,7 @@
     <Content Include="Scripts\category_page2.js" />
     <Content Include="Scripts\company_profile.js" />
     <Content Include="Scripts\copro-page-email.js" />
+    <Content Include="Scripts\copro-share-page-email.js" />
     <Content Include="Scripts\DirectoryRFQ.js" />
     <Content Include="Scripts\fb.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -253,6 +261,8 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\write_comment.js" />
+    <Content Include="Scripts\write_subcomment.js" />
     <Content Include="share-page-email.aspx" />
     <Content Include="Site.Master" />
     <Content Include="StateSearch.aspx" />
@@ -307,6 +317,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\copro-page-email.ascx.cs">
+      <DependentUpon>copro-page-email.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\copro-page-email.ascx.designer.cs">
+      <DependentUpon>copro-page-email.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RegisterCommenter.aspx.cs">
       <DependentUpon>RegisterCommenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -323,12 +340,26 @@
       <DependentUpon>WriteSubComment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="copro-page-email-thankyou.aspx.cs">
+      <DependentUpon>copro-page-email-thankyou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="copro-page-email-thankyou.aspx.designer.cs">
+      <DependentUpon>copro-page-email-thankyou.aspx</DependentUpon>
+    </Compile>
     <Compile Include="copro-page-email.aspx.cs">
       <DependentUpon>copro-page-email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="copro-page-email.aspx.designer.cs">
       <DependentUpon>copro-page-email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="copro-share-page-email.aspx.cs">
+      <DependentUpon>copro-share-page-email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="copro-share-page-email.aspx.designer.cs">
+      <DependentUpon>copro-share-page-email.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -400,7 +431,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
