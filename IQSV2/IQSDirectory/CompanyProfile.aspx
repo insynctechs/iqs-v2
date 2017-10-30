@@ -290,9 +290,9 @@
                     var recaptcha2;
                     var captchaReg;
         var captchaCallBack = function () {
-            alert("thx lord jesus" + $("#hdnEmailCaptcha").val());
+            //alert("thx lord jesus" + $("#hdnEmailCaptcha").val());
             if ($("#hdnEmailCaptcha").val() != 'yes') {
-                alert("inside if");
+                //alert("inside if");
                 recaptcha1 = grecaptcha.render('recaptcha1', {
                     'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
                     'theme': 'light',

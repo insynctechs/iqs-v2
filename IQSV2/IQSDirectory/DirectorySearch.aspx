@@ -46,7 +46,7 @@
                                     
                                         <% if (cl["NORDER"].ToString() == "2")
                                             { %>
-                                        <a class='btnrfq iframe' href='directoryrfq.aspx?ClientSK=<%: cl["CID"].ToString() %>' >Request For Quote</a>
+                                        <a class='btnrfq iframe' href='<%=RootPath %>directoryrfq.aspx?ClientSK=<%: cl["CID"].ToString() %>' >Request For Quote</a>
                                         <% } %>
                                     
                                     <a href='<%: cl["URL"].ToString() %>' title='<%: cl["FORMATED_TITLE"].ToString() %> Profile' alt='<%: cl["TITLE"].ToString() %> Profile' class='lnkviewcopro'>View Company Profile</a>
