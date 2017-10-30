@@ -2,80 +2,79 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
-    <link href="<%:RootPath %>Content/publish_styles.css" rel="stylesheet" />
+    <link href="<%:RootPath %>Content/search_styles.css" rel="stylesheet" />
     <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
+    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />    
+    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
-    <div class='searchdivtop'>
-        <div id="divSearchMain">
-            <h1><%: PageTitle %></h1>
-            <div class="searchdivmain">
-
-                <div id="divResults" runat="server">
+    <div id='content_wrapper'>
+            <h1><%= PageTitle %></h1>
+            
+                <section id="Results" runat="server">
                     <% if (ProductList.Count() > 0)
                         { %>
-                    <div class='searchsubtitle'>PRODUCT/SERVICE CATEGORIES</div>
+                    <h2>PRODUCT/SERVICE CATEGORIES</h2>
+                    <ul class="prodlist">
                     <% foreach (var pl in ProductList)
                         { %>
-                    <div class='searchdivinner'>
-                        <div class='searchdivtitle'><a href='<%: pl["URL"].ToString() %>'><%: pl["TITLE"].ToString() %></a></div>
-                        <div class='searchdivdesc'><%: pl["MDESC"].ToString()  %></div>
-                        <div><a class='searchdivlink' href='<%: pl["URL"].ToString() %>'><%: pl["URL"].ToString() %></a></div>
-                    </div>
-                    <% } %>
+                    <li>
+                        <h3><a href='<%: pl["URL"].ToString() %>'><%: pl["TITLE"].ToString() %></a></h3>
+                        <p><%: pl["MDESC"].ToString()  %></p>
+                        <a href='<%: pl["URL"].ToString() %>'><%: pl["URL"].ToString() %></a>
+                    </li>
+                    <% } %></ul>
                     <% } %>
                     <% if (CompanyList.Count() > 0)
                         { %>
-                    <div class='searchsubtitlecomp'>COMPANY ADVERTISERS</div>
+                    <h2>COMPANY ADVERTISERS</h2>
+                    <ul class="complist">
                     <% foreach (var cl in CompanyList)
                         { %>
-                    <div class='searchdivinnercomp'>
-                        <div class='listResults clearfix'>
-                            <div class='clearfix'>
-                                <div class='viewdivsearch clearfix'>
-                                    <div class='divLeft listingPage1LeftInsearch lnkurl'>
+                    <li>
+                        
+                            
+                                
+                                        <h3>
                                         <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' alt='<%: cl["TITLE"].ToString() %>'><%: cl["TITLE"].ToString() %></a><br>
-                                        <div><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></div>
-                                        <div><%: cl["PHONE"].ToString() %></div>
-                                    </div>
-                                    <div class='listingPage1RightIn'><%: cl["MDESC"].ToString() %></div>
-                                </div>
-                                <div class='viewdivsearch clearfix'>
-                                    <div class='divLeft listingPage1LeftInsearch rfqlink linkBold'>
+                                        </h3>
+                                        <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>>
+                                        <span><%: cl["PHONE"].ToString() %></span></div>
+                                    
+                                    <p><%: cl["MDESC"].ToString() %></p>
+                               
+                                <div class='buttons'>
+                                    
                                         <% if (cl["NORDER"].ToString() == "2")
                                             { %>
-                                        <a class='lnkviewrfq iframe lnkrfq' href='directoryrfq.aspx?ClientSK=<%: cl["CID"].ToString() %>' style='display: block;'>Request For Quote</a>
+                                        <a class='btnrfq iframe' href='directoryrfq.aspx?ClientSK=<%: cl["CID"].ToString() %>' >Request For Quote</a>
                                         <% } %>
+                                    
+                                    <a href='<%: cl["URL"].ToString() %>' title='<%: cl["FORMATED_TITLE"].ToString() %> Profile' alt='<%: cl["TITLE"].ToString() %> Profile' class='lnkviewcopro'>View Company Profile</a>
+                                        
                                     </div>
-                                    <div class='listingPage1RightIn viewWebsite linkBold'>
-                                        <span class='spanviewcompanyprofile'>
-                                            <h6><a href='<%: cl["URL"].ToString() %>' title='<%: cl["FORMATED_TITLE"].ToString() %> Profile' alt='<%: cl["TITLE"].ToString() %> Profile' class='lnkviewcopro'>View Company Profile</a></h6>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
+                                
+                    </li>
+                    <% } %></ul>
                     <% } %>
                     <% if (OtherList.Count() > 0)
                         { %>
-                    <div class='searchsubtitlecomp'>OTHER COMPANIES</div>
+                    <h2>OTHER COMPANIES</h2><ul class="complist">
                     <% foreach (var ol in OtherList)
                         { %>
-                    <div class='searchdivinner'>
-                        <div class='searchdivtitle'><a href='<%: ol["URL"].ToString() %>'><%: ol["TITLE"].ToString() %></a></div>
-                        <div class='searchdivdesc'><%: ol["MDESC"].ToString()  %></div>
-                        <div><a class='searchdivlink' href='<%: ol["URL"].ToString() %>'><%: ol["URL"].ToString() %></a></div>
-                    </div>
+                    <li>
+                        <h3><a href='<%: ol["URL"].ToString() %>'><%: ol["TITLE"].ToString() %></a></h3>
+                        <p><%: ol["MDESC"].ToString()  %></p>
+                        <a class='searchdivlink' href='<%: ol["URL"].ToString() %>'><%: ol["URL"].ToString() %></a>
+                    </li>
+                    <% } %></ul>
                     <% } %>
-                    <% } %>
-                </div>
-                <div class="searchdivpaging" id="divPaging" >
+                </section>
+                <section class="paging" >
                     <% if (PageCount > 1)
                         { %>
                         <% if (StartPage != 1)
                             { %>
-                            <span><a href='<%: PgPreURl %>'><<</a></span>
+                            <a href='<%: PgPreURl %>'><<</a>
                         <% } %>
                         <% for (int i = 0; i < PageCount; i++)
                             { %>
@@ -87,29 +86,32 @@
                                 {
                                     var cUrl = PgSrhUrl + (i + 1).ToString();
                                     %>
-                                <span><a href='<%: cUrl %>'> <%= (i + 1).ToString() %></a></span>
+                                <a href='<%: cUrl %>'> <%= (i + 1).ToString() %></a>
                             <%} %>
                             
                         <% } %>
                         <% if (StartPage != PageCount)
                             { %>
-                            <span><a href='<%: PgNxtURl %>'>>></a></span>
+                            <a href='<%: PgNxtURl %>'>>></a>
                         <%} %>
                     <% } %>
-                </div>
+                </section>
 
                 <script type='text/javascript'>
                     $(document).ready(function () {
                         $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                             $('#secsbox').html(data);
                         });
+                        $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+                        $('.btnrfq').bind('contextmenu', function (e) { return false; });
+                        
 
                     });
 
     </script>
             </div>
-        </div>
-    </div>
+        
+    
      <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
       <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
