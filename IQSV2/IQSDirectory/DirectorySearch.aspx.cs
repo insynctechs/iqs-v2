@@ -27,6 +27,7 @@ namespace IQSDirectory
             if (!IsPostBack)
             {
                 int start = 1;
+                CategorySK = "0";
                 if (CurPage != null)
                 {
                     if (int.TryParse(CurPage, out start))
@@ -295,5 +296,7 @@ namespace IQSDirectory
         public List<DataRow> ProductList { get; set; }
         public List<DataRow> CompanyList { get; set; }
         public List<DataRow> OtherList { get; set; }
+        public string CategorySK { get; set; }
+    
     }
 }

@@ -120,8 +120,10 @@ div.rightbox .col { height: auto; overflow: hidden;}
 .review_action_wrapper .spnHelpful{vertical-align:middle;display: inline-block;}
 .review_action_wrapper .spnHelpCount{padding-left:35px;}
 .review_action_wrapper .spnHelpCountDesc{display: inline-block; padding-right: 3px;}
-.divSubComments{padding:10px 0; overflow:hidden; height:auto; }
-.divSubComments .commentText{ margin-bottom:5px;}
+.divSubComments{padding:10px 0; overflow:hidden; height:auto; border-top:#ddddd solid 1px; }
+.review_content_wrapper > .divSubComments:first-child {
+    border: none !important;
+}
 .divSubComments .span1{display:inline-block;}
 .divSubComments .span2{text-align:right;float: right;padding-right: 20px;}
 .divSubComments img{vertical-align: middle;}

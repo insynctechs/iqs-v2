@@ -214,7 +214,7 @@
                            onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
                         Facebook</a></li>
                     <li><a rel=nofollow class="lnkmail mail"
-                           href="<%:RootPath %>share-page-email.aspx?p=../../<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
+                           href="<%:RootPath %>share-page-email.aspx?p=../../&title=<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
                         Mail</a></li>
                     <li><a href="" class="print" onclick="javascript:window.print();return false;">
                         Print</a></li>
@@ -289,6 +289,9 @@
             $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
             });
+
+            $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+            $('.lnkmail').bind('contextmenu', function (e) { return false; });
 
         });        
 

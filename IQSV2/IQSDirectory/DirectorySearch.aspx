@@ -103,8 +103,17 @@
                         <%} %>
                     <% } %>
                 </div>
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
+                            $('#secsbox').html(data);
+                        });
 
+                    });
+
+    </script>
             </div>
         </div>
     </div>
 </asp:Content>
+
