@@ -19,11 +19,14 @@ namespace IQSDirectory
         WebApiHelper wHelper = new WebApiHelper();
         protected void Page_Load(object sender, EventArgs e)
         {
+            ApiPath = wHelper.ApiUrl;
             if (ValidatePage() == false)
             {
-                Response.Redirect("~");
+                Response.Redirect(RootPath);
             }
+
             CheckStateSearch();
+
             if (!IsPostBack)
             {
                 int start = 1;
@@ -69,8 +72,17 @@ namespace IQSDirectory
                 }
                 return true;
             }
-            else
+            else if (queryVals.Length == 1)
             {
+                CurQuery = queryVals[0].ToString();
+                CurPage = "1";
+                CurState = "";
+                RootPath = "../";
+                return true;
+            }
+            else 
+            {
+                RootPath = "../";
                 return false;
             }
 
@@ -81,8 +93,7 @@ namespace IQSDirectory
             Int16 RecCount = 10;
             TextInfo tInfo = new CultureInfo("en-US", false).TextInfo;
             this.Title = "IQS Directory - " + tInfo.ToTitleCase(CurQuery).ToString() + " Results";
-            PageTitle = tInfo.ToTitleCase(CurQuery).ToString() + " Results";
-            string json = "", citycode = "";
+             string json = "", citycode = "";
             try
             {
                 citycode = getIPState("https://freegeoip.net/json/");
@@ -119,7 +130,7 @@ namespace IQSDirectory
 
             dt.Columns.Add("FORMATED_TITLE");
             dt.AsEnumerable().ToList().ForEach(dr => {
-                dr["URL"] = wHelper.NewsDirectory + dr["URL"].ToString().Replace("\\", "/");
+                dr["URL"] = wHelper.WebUrl + dr["URL"].ToString().Replace("\\", "/");
                 dr["MDESC"] = dr["MDESC"].ToString().IndexOf(". ") > 0 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().IndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
                 dr["FORMATED_TITLE"] = Utils.FormatCompanyWebsiteLink(dr["TITLE"].ToString());
             });
@@ -146,9 +157,12 @@ namespace IQSDirectory
             CompanyList = drComp.AsEnumerable().ToList();
 
             OtherList = dt.Select("NORDER <> 1 AND NORDER <> 2").AsEnumerable().ToList();
+            TotalCount = Convert.ToInt32(dt.Rows[0]["TCOUNT"].ToString());
 
-            PageCount = Math.Ceiling(Convert.ToDouble(dt.Rows[0]["TCOUNT"].ToString()) / RecCount);
+            PageCount = Math.Ceiling(Convert.ToDouble(TotalCount) / RecCount);
             PgSrhUrl = RootPath + "search/" + CurQuery + "/";
+            PageTitle = "Search Found <strong> " + TotalCount.ToString() + " </strong> Result(s) matching the word - <span> " + tInfo.ToTitleCase(CurQuery).ToString() + " </span>";
+
             if (StartPage != 1)
             {
                 PgPreURl = PgSrhUrl + (StartPage -1).ToString();
@@ -159,68 +173,7 @@ namespace IQSDirectory
                 PgNxtURl = PgSrhUrl + (StartPage + 1).ToString();
             }
 
-            //        if (dr["CTYPE"].ToString() == "COMPANY")
-            //        {
-            //            sb.AppendLine("<div class='searchdivinnercomp'>");
-            //            sb.AppendLine("<div class='listResults clearfix'><div class='clearfix'>");
-            //            string[] csite = dr["WEBSITE"].ToString().Split(',');
-            //            if (csite.Length > 0)
-            //            {
-            //                if (csite[0].Trim().StartsWith("http://"))
-            //                    compsite = csite[0].Trim();
-            //                else
-            //                    compsite = "http://" + csite[0].Trim();
-            //            }
-
-                //            string desctext = dr["MDESC"].ToString();
-                //            if (desctext.Length > 300)
-                //                desctext = desctext.Substring(0, 300);
-                //            desctext = desctext.Substring(0, desctext.LastIndexOf(' '));
-                //            sb.AppendLine("<div class='viewdivsearch clearfix'><div class='divLeft listingPage1LeftInsearch lnkurl'><a href='" + compsite + "' target='_blank' title='" + dr["TITLE"].ToString() + "' alt='" + dr["TITLE"].ToString() + "'>" + dr["TITLE"].ToString() + "</a><br>");
-                //            sb.AppendLine("<div>" + dr["CCITY"].ToString() + ", " + dr["CSTATE"].ToString() + "</div><div>");
-                //            sb.AppendLine(dr["PHONE"].ToString() + "</div></div>");
-                //            sb.AppendLine("<div class='listingPage1RightIn'>" + desctext + "..</div>");
-                //            sb.AppendLine("</div>");
-                //            sb.AppendLine("<div class='viewdivsearch clearfix'>");
-                //            sb.AppendLine("<div class='divLeft listingPage1LeftInsearch rfqlink linkBold'>");
-                //            if (dr["NORDER"].ToString() == "2")
-                //                sb.AppendLine("<a class='lnkviewrfq iframe lnkrfq' href='directoryrfq.aspx?ClientSK=" + dr["CID"].ToString() + "' style='display: block;'>Request For Quote</a>");
-                //            sb.AppendLine("&nbsp;</div>");
-                //            sb.AppendLine("<div class='listingPage1RightIn viewWebsite linkBold'>");
-                //            sb.AppendLine("<span class='spanviewcompanyprofile'>");
-                //            sb.AppendLine("<h6><a href='" + url + "' title='" + FormatCompanyWebsiteLink(dr["TITLE"].ToString()) + " Profile' alt='" + dr["TITLE"].ToString() + " Profile' class='lnkviewcopro'>View Company Profile</a></h6>");
-                //            sb.AppendLine("</span>");
-                //            sb.AppendLine("</div></div></div></div>");
-                //            sb.AppendLine("</div>");
-
-                //        }
-
-                //    divResults.InnerHtml = sb.ToString();
-                //    double pageCount = Math.Ceiling(Convert.ToDouble(dt.Rows[0]["TCOUNT"].ToString()) / recCount);
-                //    if (pageCount > 1)
-                //    {
-                //        url = "directorysearch.aspx?q=" + p + "&s=";
-                //        sb = new StringBuilder();
-                //        if (start != 1)
-                //            sb.Append("<span><a href='" + url + (start - 1).ToString() + "'><<</a></span>");
-                //        for (int i = 0; i < pageCount; i++)
-                //        {
-                //            if (start.ToString() == (i + 1).ToString())
-                //                sb.Append("<span>" + (i + 1).ToString() + "</span>");
-                //            else
-                //                sb.Append("<span><a href='" + url + (i + 1).ToString() + "'>" + (i + 1).ToString() + "</a></span>");
-                //            if (((i + 1) % 25 == 0) && (i > 1))
-                //                sb.Append("<br/>");
-                //        }
-                //        if (start != pageCount)
-                //            sb.Append("<span><a href='" + url + (start + 1).ToString() + "'>>></a></span>");
-                //        divPaging.InnerHtml = sb.ToString();
-                //    }
-                //}
-                //else
-                //{
-                //    divResults.InnerHtml = "<div class='searchdivinner searchdivtitle'><a>No Results Found</a></div>";
-                //}
+            
         }
 
         private void CheckStateSearch()
@@ -293,10 +246,11 @@ namespace IQSDirectory
         public string PgNxtURl { get; set; }
         public string PgSrhUrl { get; set; }
         public double PageCount { get; set; }
+        public int TotalCount { get; set; }
         public List<DataRow> ProductList { get; set; }
         public List<DataRow> CompanyList { get; set; }
         public List<DataRow> OtherList { get; set; }
         public string CategorySK { get; set; }
-    
+        public string ApiPath { get; set; }
     }
 }

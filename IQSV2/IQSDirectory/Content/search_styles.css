@@ -1,0 +1,249 @@
+/* css document */
+
+/**** IQS Main Styles ***/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%
+}
+
+.smaller {
+    font-weight: bold
+}
+
+#mapimageicon img:hover {
+    cursor: pointer
+}
+
+body {
+    background-color: #f0efed;
+    color: #000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    text-align: center; /*min-width:1003px;*/
+    width: 100%
+}
+
+img, a.img {
+    border: 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+}
+
+h1 {
+    color: #374246;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial,Helvetica,sans-serif;
+    margin: 35px 0 25px 0;
+}
+
+h2 {
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #FFFFFF;
+    font-weight: normal;
+    color: #000;
+    border-bottom: #333 solid 1px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+h3 {
+    color: #30494E;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+ul.prodlist, ul.complist, ul.paging {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.prodlist li, ul.complist li, ul.othercomplist li {
+margin: 15px 0;
+padding: 0;
+list-style: none;
+height: auto;
+overflow: hidden;
+}
+
+ul.prodlist li h3 {
+color: #30494E;
+font-size: 18px;
+font-weight: normal;
+}
+
+ul.prodlist li h3 a {
+color: #30494E;
+font-size: 18px;
+text-decoration: none;
+font-weight: normal;
+}
+
+ul.prodlist li h3 a:hover, ul.othercomplist li h3 a:hover {
+    color: #f06000;
+    text-decoration: underline;
+}
+
+ul.prodlist li p, ul.othercomplist li p {
+margin: 5px 0;
+font-size: 13px;
+}
+
+ul.complist li h3 {
+font-size: 14px;
+font-weight: normal;
+}
+
+ul.complist li h3 a {
+color: #30494E;
+font-size: 14px;
+text-decoration: none;
+font-weight: bold;
+}
+
+ul.complist li div.contact {
+margin-top: 2px;
+height: auto;
+overflow: hidden;
+}
+
+ul.complist li div.contact span {
+float: left;
+margin-right: 50px;
+color: #333;
+}
+
+ul.complist li p {
+clear: both;
+margin: 10px 0;
+font-size: 13px;
+}
+
+ul.complist li .buttons a {
+width: auto;
+padding: 10px;
+display: inline-block;
+margin-right: 20px;
+background-color: #474747;
+border: 1px outset #DDDDDD;
+color: #FB9622;
+;
+font-weight: bold;
+text-decoration: none;
+}
+
+ul.complist li .buttons a:hover {
+background-color: #676767;
+text-decoration: none;
+}
+ul.othercomplist li h3 {
+color: #30494E;
+font-size: 14px;
+font-weight: normal;
+}
+
+ul.othercomplist li h3 a {
+color: #30494E;
+font-size: 14px;
+text-decoration: none;
+font-weight: normal;
+}
+section.paging {
+text-align: center;
+margin: 30px 0;
+font-weight: bold;
+font-size: 14px;
+}
+
+section.paging a {
+margin: 0 6px;
+display: inline-block;
+font-weight: bold;
+color: coral;
+}
+
+section.paging a:hover {
+color: #f06000;
+text-decoration: underline;
+}
+
+section.paging span {
+    margin: 0 6px;
+    display: inline-block;
+    font-weight: bold;
+    color: #f06000;
+}
+
+a:link, a:visited {
+    color: coral;
+    text-decoration: none;
+}
+
+h1 b, h1 strong {
+    color: #888
+}
+
+h1 span {
+    color: #888;
+}
+
+a:hover {
+    color: #f06000;
+    text-decoration: underline;
+}
+
+#content_wrapper {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+
+a.small, a.large {
+    width: auto !important;
+    height: auto !important;
+    background: #f06000; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#f06000, #ffaf7a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f06000, #ffaf7a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f06000, #ffaf7a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f06000, #ffaf7a); /* Standard syntax */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: #000 groove 1px;
+}
+
+a.small {
+    font-size: 12px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+a.large {
+    font-size: 15px;
+    padding: 11px 9px;
+    display: inline-block;
+}
+
+a:hover.large {
+    box-shadow: 2px 2px 2px #888888;
+}
+
+a:hover.small {
+    box-shadow: 1px 1px 1px #888888;
+}
