@@ -71,6 +71,13 @@ namespace IQSDirectory
                 null,
                 null
                 );
+            routes.MapPageRoute("ListCompanies",
+                "listcompanies/{letter}/{page}",
+                "~/ListCompanies.aspx",
+                true,
+                null,
+                null
+                );
         }
     }
 }
