@@ -1,5 +1,4 @@
-﻿
-if (are_cookies_enabled()) {
+﻿if (are_cookies_enabled()) {
     var cookieName = 'profilelogin';
     var cookie = $.cookie(cookieName);
     //alert(cookie)
@@ -39,7 +38,6 @@ if (are_cookies_enabled()) {
         });
     }
 }
-
 $('#txtRegPass').bind('cut copy paste', function (event) {
     event.preventDefault();
 });
@@ -99,79 +97,67 @@ $('#lnkRegLogin').click(function () {
     return false;
 });
 
-$("#lnkForgotSubmit").click(function () {
-
-    if ($.trim($('#txtForgotEmail').val()) == '') {
-        alert('Please Enter Email');
-        $('#txtForgotEmail').focus();
-        return false;
-    }
-    if (!isValidEmailAddress($('#txtForgotEmail').val())) {
-        alert('Enter a Valid Email');
-        $('#txtForgotEmail').focus();
-        return false;
-    }
-
-    var list = [$('#txtForgotEmail').val()];
-    var jsonText = JSON.stringify({ list: list });
-    $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/userforgotpassword",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
-        success: function (msg) {
-            if (msg == "Success") {
-                $('#divRegForm').slideUp('slow', function () {
-                    $('#divSuccessForgot').slideDown();
-                });
-                return false;
-            }
-            else if (msg === "Invalid") {
-                alert("Email Address You Entered Does Not Exists !!");
-                $('#txtForgotEmail').focus();
-            }
-            else {
-                alert("Unexpected Error Occured. Try Again!!");
-            }
-        },
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
-    });
-    return false;
-});
-$("#frmRegCommenter").validate({
-    ignore: ".ignore",
+$("#frmRegForgot").validate({
     rules: {
-        txtRegName: { required: true },
-        txtRegEmail: { required: true, emailRule: true},
-        txtRegPass: { required: true },
-        txtRegVerify: { equalTo: "#txtRegPass" },
-        hiddenRecaptcha3: {
-            required: function () {
-                if (grecaptcha.getResponse(recaptcha3) == '') {
-                    return true;
-                } else {
+        txtForgotEmail: { required: true, emailRule: true }
+            },
+    messages: {
+        txtForgotEmail: { required: "Required ", emailRule: "Invalid" }
+        
+    },
+    submitHandler: function (form) { }
+});
+$("#lnkForgotSubmit").click(function () {
+    if ($("#frmRegForgot").valid()) {
+        var list = [$('#txtForgotEmail').val()];
+        var jsonText = JSON.stringify({ list: list });
+        $.ajax({
+            type: "POST",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/userforgotpassword",
+            data: jsonText,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (msg) {
+                if (msg.d == "Success") {
+                    $('#divRegForm').slideUp('slow', function () {
+                        $('#divSuccessForgot').slideDown();
+                    });
                     return false;
                 }
+                else if (msg.d === "Invalid") {
+                    alert("Email Address You Entered Does Not Exists !!");
+                    $('#txtForgotEmail').focus();
+                }
+                else {
+                    alert("Unexpected Error Occured. Try Again!!");
+                }
+            },
+            failure: function () {
+                alert('Request Failed. Try Again.');
             }
-        }
+        });
+    }
+    return false;
+});
+
+$("#frmRegLogin").validate({
+    rules: {
+        txtEmail: { required: true, emailRule: true },
+        txtPassword: { required: true }
     },
     messages: {
-        txtRegName: { required: "Required " },
-        txtRegEmail: { required: "Required ", emailRule: "Invalid" },
-        txtRegPass: { required: "Required " },
-        txtRegVerify: {equalTo: "Verify Password Same as Password" },       
-        hiddenRecaptcha3: { required: "Required " }
+        txtEmail: { required: "Required ", emailRule: "Invalid" },
+        txtPassword: { required: "Required " }
     },
     submitHandler: function (form) { }
 });
 
+
+
 $('#lnkLogin').click(function () {
-    
+    if ($("#frmRegLogin").valid()) {
         var list = [$('#txtEmail').val(), $('#txtPassword').val()];
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
@@ -227,7 +213,8 @@ $('#lnkLogin').click(function () {
                 alert('Request Failed. Try Again.');
             }
         });
-        return false;
+    }
+    return false;
        
 });
 function openreviewbox() {
@@ -238,7 +225,36 @@ function openreviewbox() {
         $('#lnkReplyBox').trigger('click');
     }
 }
+
+$("#frmRegCommenter").validate({
+    ignore: ".ignore",
+    rules: {
+        txtRegName: { required: true },
+        txtRegEmail: { required: true, emailRule: true },
+        txtRegPass: { required: true },
+        txtRegVerify: { required: true, equalTo: "#txtRegPass" },
+        hiddenRecaptcha3: {
+            required: function () {
+                if (grecaptcha.getResponse(recaptcha3) == '') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }        
+    },
+    messages: {
+        txtRegName: { required: "Required " },
+        txtRegEmail: { required: "Required ", emailRule: "Invalid" },
+        txtRegPass: { required: "Required " },
+        txtRegVerify: { required: "Required ", equalTo: "Verify Password Same as Password" },       
+        hiddenRecaptcha3: { required: "Required " }
+    },
+    submitHandler: function (form) { }
+});
+
 $('#lnkRegister').click(function () {
+    
     if ($("#frmRegCommenter").valid()) {
         var list = [$('#txtRegDName').val(), $('#txtRegName').val(), $('#txtRegEmail').val(), $('#txtRegPass').val(), $('#hidIp').val()];
 
@@ -254,22 +270,22 @@ $('#lnkRegister').click(function () {
             async: true,
             cache: false,
             success: function (msg) {
-                if (msg == "Success") {
+                if (msg.d == "Success") {
                     $('#divRegForm').slideUp('slow', function () {
                         $('#divSuccess').slideDown();
                     });
                 }
-                else if (msg == "Exists") {
+                else if (msg.d == "Exists") {
                     alert("Email Address You Entered Already Exists!!");
                 }
-                else if (msg == "IP") {
+                else if (msg.d == "IP") {
                     alert("You have exceeded maximum (5) registration from this IP");
                 }
-                else if (msg == "") {
+                else if (msg.d == "") {
                     alert("Unexpected Error Occured. Try Again!!");
                 }
                 else {
-                    alert(msg);
+                    alert(msg.d);
                 }
             },
 
@@ -279,8 +295,10 @@ $('#lnkRegister').click(function () {
         });
         return false;
     }
+    
     return false;
 });
+
 function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
     return pattern.test(emailAddress);

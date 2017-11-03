@@ -399,6 +399,7 @@ function GetCommentsHTML(cmtjson)
         str += "</div>";
     }
     return str;
+}
     
 function GetSubCommentHTML(cmtjson) {
     var result = [];

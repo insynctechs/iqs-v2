@@ -6,7 +6,7 @@
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">    
     <style type="text/css">                
     </style>
-     <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   -->
+    <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   -->
     <!--<script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>-->
     <script type="text/javascript" defer async src="<%:RootPath %>Scripts/register_commenter.js"></script>
     <script type="text/javascript">
@@ -22,7 +22,7 @@
 
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
-                alert('Test');
+                //alert('Test');
             });
 
         //};
@@ -31,10 +31,11 @@
 </head>
 <body>
 <div id="divLogin" class="register_popup">
-<form id="frmRegCommeter" runat="server">
-     <h2 class="pophead">USER REGISTRATION / LOGIN</h2>
+
+<h2 class="pophead">USER REGISTRATION / LOGIN</h2>
 <div id="divRegForm" class="register_form_wrapper" >
-      <div class="register_popup_left">
+    <form id="frmRegCommenter">
+    <div class="register_popup_left">
       <p></p>
       <h2>Fill in the info below to register.</h2><br />
       <p>
@@ -56,6 +57,7 @@
           <p>
               <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
           </p>-->
+          
           <div id="recaptcha3"></div>
           <input type="hidden" class="hiddenRecaptcha3 required" name="hiddenRecaptcha3" id="hiddenRecaptcha3"  data-callback="verify_callback3"  /> 
          
@@ -66,7 +68,8 @@
           
           <!-- <div id="divErr" style="clear:both;text-align: right;color:Red; display:none;"></div>-->
       </div>
-    
+    </form>
+     
       <div id="divRegChild" class="register_popup_right" >
       <div>
       <h2>You can Log-in with Facebook</h2>
@@ -75,17 +78,18 @@
             Login
         </div>-->
           <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+          </fb:login-button>
       </div>
+      <form id="frmRegLogin">
       <div>
       <h2>Or If Already registered?<br />Log-in below.</h2>
       <p>
       E-mail Address:<br />
-      <input type="text" id="txtEmail" class="commenttextbox" />
+      <input type="text" id="txtEmail" name="txtEmail" class="commenttextbox" />
       </p>
       <p>
       Password:<br />
-      <input type="password" id="txtPassword" class="commenttextbox" />
+      <input type="password" id="txtPassword" name="txtPassword" class="commenttextbox" />
       </p>
       <p class="register_login_bot_wrapper">
       <span class="register_checkbox_wrapper"><input type="checkbox" id="chkRemember" /> Remember me?</span>
@@ -94,16 +98,21 @@
           
       </p>
       </div>
+      </form>
+
+      <form id="frmRegForgot">
       <div id="divForgot" class="register_forgot_wrapper">
         <h2>Forgot Password</h2>
         <p>
           Enter Registered E-mail Address:<br />
-          <input type="text" id="txtForgotEmail" class="commenttextbox" />
+          <input type="text" id="txtForgotEmail" name="txtForgotEmail" class="commenttextbox" />
           </p>
           <p class="register_forgot_btn_wrapper">
         <a href="#ForgotSubmit" id="lnkForgotSubmit" class="large">Get Password</a>
       </p>
       </div>
+      </form>
+
       <div class="cleardiv"></div>
       </div>
      
@@ -129,12 +138,12 @@
       <a href="#Close" id="lnkClose">Close</a>
 </div>
 
- </form>
-	</div>
+ 
+</div>
    <script type='text/javascript'>
            //this will insert recaptcha in the form
-            captchaCallBack();  
-        //fbLogin();
+           captchaCallBack();  
+        
     </script>
     
 </body>
