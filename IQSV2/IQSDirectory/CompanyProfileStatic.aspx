@@ -7,7 +7,7 @@
     <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
-    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
+    <!--<script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>-->
     
     
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
@@ -196,9 +196,9 @@
                 </section>
                 <div style="display:none;">
 
-                    <a id="lnkRegBox" href="controls/registercommenter" title="Login">Login</a>
-                    <a id="lnkReviewBox" href="controls/writecomment" title="WriteAReview">Write A Review</a>
-                    <a id="lnkReplyBox" href="controls/writesubcomment" title="ReplyReview"></a>
+                    <a id="lnkRegBox" href="controls/registercommenter2?p=./" title="Login">Login</a>
+                    <a id="lnkReviewBox" href="controls/writecomment?p=./" title="WriteAReview">Write A Review</a>
+                    <a id="lnkReplyBox" href="controls/writesubcomment?p=./" title="ReplyReview"></a>
 
                 </div>
             </div>
@@ -232,29 +232,10 @@
                         var top = (screen.height/2)-(h/2);
                         window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
                     }
-                    FB.init({
-                        appId: '221653014637602',
-                        channelUrl: 'http://www.iqsdirectory.com/channel.html',
-                        scope: 'id,name,email',
-                        status: true,
-                        cookie: true,
-                        xfbml: true
-                    });
-                    function postToFeed(cname, title, review) {
-                        var lnkurl = $(location).attr('href');
-                        var obj = {
-                            method: 'feed',
-                            redirect_uri: 'http://www.iqsdirectory.com/',
-                            link: lnkurl,
-                            picture: 'http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
-                            name: cname,
-                            caption: title,
-                            description: review
-                        };
-                        function callback(response) {
-                        }
-                        FB.ui(obj, callback);
-                    }
+
+                    
+
+                   
                 </script>
             </div>
             <div id="divRelated" class="rightbox clearfix" >

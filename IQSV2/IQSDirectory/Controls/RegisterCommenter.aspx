@@ -6,8 +6,28 @@
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">    
     <style type="text/css">                
     </style>
-     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
+     <!--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   -->
+    <!--<script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>-->
     <script type="text/javascript" defer async src="<%:RootPath %>Scripts/register_commenter.js"></script>
+    <script type="text/javascript">
+        /*window.fbAsyncInit = function () {*/
+            //alert('Linda');
+            FB.init({
+                appId: '504326666290316',
+                cookie: true,  // enable cookies to allow the server to access the session 
+                status: true,
+                xfbml: true,  // parse social plugins on this page
+                version: 'v2.8' // use graph api version 2.8
+            });
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+                alert('Test');
+            });
+
+        //};
+    </script>
+    
 </head>
 <body>
 <div id="divLogin" class="register_popup">
@@ -43,17 +63,19 @@
               <a href="#Register" id="lnkRegister" class="register_btn large" >Register</a>
 
           </p>
-          <p>test</p>
+          
           <!-- <div id="divErr" style="clear:both;text-align: right;color:Red; display:none;"></div>-->
       </div>
     
       <div id="divRegChild" class="register_popup_right" >
       <div>
       <h2>You can Log-in with Facebook</h2>
-      <div id="fb-root"></div>
+      <!--<div id="fb-root"></div>
         <div class="fb-login-button" autologoutlink="false" onlogin="fbLogin();" scope="user_birthday,email" >
             Login
-        </div>
+        </div>-->
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
       </div>
       <div>
       <h2>Or If Already registered?<br />Log-in below.</h2>
@@ -111,7 +133,8 @@
 	</div>
    <script type='text/javascript'>
            //this will insert recaptcha in the form
-            captchaCallBack();       
+            captchaCallBack();  
+        //fbLogin();
     </script>
     
 </body>

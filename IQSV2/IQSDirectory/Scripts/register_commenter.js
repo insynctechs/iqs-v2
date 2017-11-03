@@ -2,7 +2,9 @@
 if (are_cookies_enabled()) {
     var cookieName = 'profilelogin';
     var cookie = $.cookie(cookieName);
-    /*if (cookie !== null) {
+    //alert(cookie)
+    if (cookie !== null && cookie!="") {
+        //alert('inside cookie null');
         var list = cookie.split("|| ||");
         var acomp = new Array();
         $.each(list, function (key, val) {
@@ -11,7 +13,7 @@ if (are_cookies_enabled()) {
         });
         if (list.length > 0) {
             var lastval = list[list.length - 2];
-            if (lastval !== null) {
+            if (lastval !== null && lastval!="") {
                 var lval = lastval.toString().split("| |");
                 $('#txtEmail').val(lval[0]);
                 $('#txtPassword').val(lval[1]);
@@ -35,7 +37,7 @@ if (are_cookies_enabled()) {
                 }
             }
         });
-    }*/
+    }
 }
 
 $('#txtRegPass').bind('cut copy paste', function (event) {
@@ -292,50 +294,3 @@ function are_cookies_enabled() {
     return (cookieEnabled);
 };
 
-FB.init({
-    appId: '221653014637602', // App ID
-    channelUrl: 'http://216.250.147.171/directorytestarea/channel.html', // Channel File
-    scope: 'id,name,email',
-    status: true, // check login status
-    cookie: true, // enable cookies to allow the server to access the session
-    xfbml: true  // parse XFBML
-});
-
-function fbLogin() {
-    //FB.Event.subscribe('auth.statusChange', OnLogin);
-    FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {
-            FB.api('/me?fields=id,name,email', function (me) {
-                //alert(me.name + ',' + me.id + ',' + me.email);
-                var list = [me.email, me.name, me.id];
-                var jsonText = JSON.stringify({ list: list });
-                $.ajax({
-                    type: "POST",
-                    url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fbuserlogin",
-                    data: jsonText,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: true,
-                    cache: false,
-                    success: function (msg) {
-                        if (msg == "Success") {
-                            $('#fancybox-close').trigger('click');
-                            window.setTimeout('openreviewbox()', 600);
-                            $('#divLogout').show();
-                            return false;
-                        }
-                        else if (msg == "InActive") {
-                            alert("Your IQS account is disabled!!");
-                        }
-                        else {
-                            alert("Unexpected Error Occured. Try Again!!");
-                        }
-                    },
-                    failure: function () {
-                        alert('Request Failed. Try Again.');
-                    }
-                });
-            });
-        }
-    });
-}

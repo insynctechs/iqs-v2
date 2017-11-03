@@ -1,4 +1,23 @@
 ﻿$(document).ready(function () {
+    
+      var recaptcha1;
+      //var recaptcha2;
+    /*
+      var myCallBack = function () {
+          alert("thx LOrd");
+                //Render the recaptcha1 on the element with ID "recaptcha1"
+                recaptcha1 = grecaptcha.render('recaptcha1', {
+                    'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
+                    'theme': 'light'
+                });
+          */
+        
+            //Render the recaptcha2 on the element with ID "recaptcha2"
+        /*    recaptcha2 = grecaptcha.render('recaptcha2', {
+                'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
+          'theme' : 'dark'
+        });
+      };   */
     $('#hidRootPath').val($('#hdnSrhRootPath').val());
     $.ajax({
         type: "POST",
@@ -381,14 +400,6 @@ function GetCommentsHTML(cmtjson)
     }
     return str;
     
-                /*$("#divCommentDisp").find("script").each(function (i) {
-                    eval($(this).text());
-                });*/
-}
-function GetSubComments()
-{
-
-}
 function GetSubCommentHTML(cmtjson) {
     var result = [];
     ms = cmtjson.replace(/\\/g, '\\');

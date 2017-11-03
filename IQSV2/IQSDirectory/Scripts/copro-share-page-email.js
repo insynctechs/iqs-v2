@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 
     $('#btnShare').on('click', function () {
-        
+        alert("btn clicked");
         if ($("#frmShare").valid()) {
             //$(this).prop('disabled', 'disabled');
             list = [$('#txtName').val(), $('#txtFrom').val(), $('#txtTo').val(), $('#txtTitle').val(), $('#txtUrl').val(), $('#txtDescription').val()];

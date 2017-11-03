@@ -13,12 +13,12 @@
 
     <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
     <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
     <script src='<%:RootPath %>Scripts/company_profile.js' type='text/javascript' ></script>
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script> 
+    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
     <input type='hidden' id='hdnEmailCaptcha' value="no" />
 
     <div id='content_wrapper'>
@@ -225,9 +225,9 @@
                         var top = (screen.height / 2) - (h / 2);
                         window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
                     }
-                    FB.init({
-                        appId: '221653014637602',
-                        channelUrl: 'http://www.iqsdirectory.com/channel.html',
+                    /*FB.init({
+                        appId: '504326666290316',
+                        channelUrl: 'http://216.250.147.171/IQSBeta2017/channel.html', // Channel File
                         scope: 'id,name,email',
                         status: true,
                         cookie: true,
@@ -247,7 +247,7 @@
                         function callback(response) {
                         }
                         FB.ui(obj, callback);
-                    }
+                    }*/
                 </script>
             </div>
             <% if (RelatedCompaniesList != "" && RelatedCompaniesList != null)

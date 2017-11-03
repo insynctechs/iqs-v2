@@ -39,30 +39,7 @@
                 var top = (screen.height/2)-(h/2);
                 window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
             }
-            FB.init({
-                appId: '221653014637602',
-                channelUrl: 'http://www.iqsdirectory.com/channel.html',
-                scope: 'id,name,email',
-                status: true,
-                cookie: true,
-                xfbml: true
-            });
-            function postToFeed(cname, title, review) {
-                var lnkurl = $(location).attr('href');
-                var obj = {
-                    method: 'feed',
-                    redirect_uri: 'http://www.iqsdirectory.com/',
-                    link: lnkurl,
-                    picture: 'http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
-                    name: cname,
-                    caption: title,
-                    description: review
-                };
-                function callback(response) {
-                }
-                FB.ui(obj, callback);
-            }
-        </script>
+         </script>
     </div>
     <h1 itemprop='name'><%: DisplayName %></h1>
     <div class="desc" itemprop='description'><%: ItemDesc %></div>

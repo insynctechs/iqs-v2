@@ -240,6 +240,50 @@ namespace IQSDirectory
         }
 
         [WebMethod(EnableSession = true)]
+        public static string fbuserlogin(List<string> list)
+        {
+            try
+            {
+                string Email = list[0];
+                string UName = list[1];
+                string UId = list[2];
+                WebApiHelper wHelper = new WebApiHelper();
+                var url = string.Format("api/Reviews/GetFBCommentersLogin?DesiredName="+UName+"&FullName="+UId+"&Email="+Email+"&Password=&SystemIp="+ HttpContext.Current.Request.UserHostAddress + "&Active=1");
+                DataSet ds = wHelper.GetDataSetFromWebApi(url);
+                if (ds.Tables.Count == 0)
+                {
+                    return "Invalid";
+                }
+                else
+                {
+                    DataTable dt = ds.Tables[0];
+                    if (dt.Rows.Count == 0)
+                    {
+                        return "Invalid";
+                    }
+                    else
+                    {
+                        if (Convert.ToBoolean(dt.Rows[0]["Active"]) == true)
+                        {
+                            HttpContext.Current.Session["CommenterId"] = dt.Rows[0]["UserId"].ToString();
+                            HttpContext.Current.Session["CommenterName"] = dt.Rows[0]["DesiredName"].ToString();
+                            HttpContext.Current.Session["FBStatus"] = "1";
+                            return "Success";
+                        }
+                        else
+                        {
+                            return "InActive";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        [WebMethod(EnableSession = true)]
         public static string writereviewreply(List<string> list)
         {
             try
