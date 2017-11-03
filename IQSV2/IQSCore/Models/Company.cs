@@ -29,6 +29,13 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetClientProfileDetails", sqlParam));
         }
 
+        public async Task<DataSet> GetListCompanies(string SrhLetter)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[1];
+            sqlParam[0] = new SqlParameter("@SrhLetter", SrhLetter);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetListCompanies", sqlParam));
+        }
+
         #region "Insert DirectoryProfileEmailDetails"
         public async Task<int> InsertDirectoryProfileEmailDetails(String FirstName, String LastName, String EmailAddress, string CompanyName, string Zip, string Subject, string Message, int ClientSk, string RequestIp)
         {

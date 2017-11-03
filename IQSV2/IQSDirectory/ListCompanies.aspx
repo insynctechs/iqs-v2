@@ -24,18 +24,45 @@
                     { %>
                     <% if (c.ToString() == SrhLetter)
                         { %>
-                        <a href='ListCompanies/<%: c.ToString() %>/1' class='active'><%: c.ToString() %></a> | 
+                        <a href='<%: RootPath %>ListCompanies/<%: c.ToString() %>/1' class='active'><%: c.ToString() %></a> | 
                     <%} else { %>    
-                        <a href='ListCompanies/<%: c.ToString() %>/1'><%: c.ToString() %></a> | 
+                        <a href='<%: RootPath %>ListCompanies/<%: c.ToString() %>/1'><%: c.ToString() %></a> | 
                     <%} %>
                 <%} %>
             </div>
+
+            <div class="siteMapPageLinks">
+                <% for (int i = 1; i <= TotalPages; i++)
+                    { %>
+                    <% if (i == SrhPage)
+                        { %>
+                        <a href='<%: RootPath %>ListCompanies/<%: SrhLetter %>/<%: i.ToString() %>' class='active'><%: i.ToString() %></a> | 
+                    <% }
+                    else
+                    { %>
+                        <a href='<%: RootPath %>ListCompanies/<%: SrhLetter %>/<%: i.ToString() %>'><%: i.ToString() %></a> | 
+                    <% } %>
+                <%} %>
+            </div>
             <div class="clearfix"></div>
+            <div class="headSiteMap">
+                <ul>
+                    <% foreach (var comp in CompaniesList)
+                        { %>
+                    <li class="odd clearfix">
+                        <ul>
+                            <li class="divLeft left"><a href='<%: RootPath %><%: comp["FORMATED_URL"] %>'><%: comp["NAME"] %> </a></li>
+                            <li class="divLeft right"><%: comp["CITYSTATE"] %></li>
+                        </ul>
+                    </li>
+                    <%} %>
+                </ul>
+            </div>
         </div>
     </div>
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get('StateSearch.html', function (data) {
+            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
             });
         });
