@@ -44,6 +44,16 @@ namespace IQSCore.Controllers
                 return Ok(cat);
         }
 
+        [Route("api/Clients/GetListCompanies")]
+        public async Task<IHttpActionResult> GetListCompanies(string SrhLetter, int json = 0)
+        {
+            var cat = await comp.GetListCompanies(SrhLetter);
+            if (json == 1)
+                return Json(JsonConvert.SerializeObject(cat, Formatting.Indented));
+            else
+                return Ok(cat);
+        }
+
         [Route("api/Clients/InsertDirectoryProfileEmailDetails")]
         [HttpGet]
         public async Task<IHttpActionResult> InsertDirectoryProfileEmailDetails(String FirstName, String LastName, String EmailAddress, string CompanyName, string Zip, string Subject, string Message, int ClientSk, string RequestIp)
