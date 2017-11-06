@@ -257,13 +257,13 @@ $('#lnkRegister').click(function () {
     
     if ($("#frmRegCommenter").valid()) {
         var list = [$('#txtRegDName').val(), $('#txtRegName').val(), $('#txtRegEmail').val(), $('#txtRegPass').val(), $('#hidIp').val()];
-
-        var jsonText = JSON.stringify({ list: list, doaction: "yes", returntype: '' });
+        var jsonText = JSON.stringify({ list: list });
+        //var jsonText = JSON.stringify({ list: list, doaction: "yes", returntype: '' });
 
         $.ajax({
             type: "POST",
-            url: $('#hdnApiPath').val() + "api/Reviews/AddCommenter",
-            //url: $('#hdnApiPath').val() + "controls/reviewmanager/registercommenter",
+            //url: $('#hdnApiPath').val() + "api/Reviews/AddCommenter",
+            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/registercommenter",
             data: jsonText,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
