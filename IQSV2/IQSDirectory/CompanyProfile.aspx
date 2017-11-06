@@ -288,7 +288,8 @@
     <script type='text/javascript'>
                     var recaptcha1;
                     var recaptcha2;
-                    var captchaReg;
+                    var recaptcha3;
+                
         var captchaCallBack = function () {
             //alert("thx lord jesus" + $("#hdnEmailCaptcha").val());
             if ($("#hdnEmailCaptcha").val() != 'yes') {
@@ -308,9 +309,10 @@
                 });
             }
             if ($("#recaptcha3").length > 0) {
-                captchaReg = grecaptcha.render('recaptcha3', {
+                recaptcha3 = grecaptcha.render('recaptcha3', {
                     'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
-                    'theme': 'light'
+                    'theme': 'light',
+                    'callback': verify_callback3
                 });
             }
         }
@@ -331,9 +333,9 @@
             $("#frmShare").valid();
         }
         function verify_callback3(response) {
-            alert("Captcha 3=" + response);
+            //alert("Captcha 3=" + response);
             $('#hiddenRecaptcha3').val(response);
-            $("#frmRegCommeter").valid();
+            $("#frmRegCommenter").valid();
         }
     </script>
     

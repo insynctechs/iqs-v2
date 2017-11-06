@@ -343,8 +343,7 @@ function LoadSubComments(commentid, divToAppend) {
         async: true,
         cache: false,
         success: function (msg) {
-            if (msg.d !== "") {
-                
+            if (msg.d != "" && msg.d != "LastRecord") {                
                 var result = GetSubCommentHTML(msg.d);
                 $(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');
             }
@@ -406,8 +405,7 @@ function GetSubCommentHTML(cmtjson) {
     result = JSON.parse(ms);
     
     var html = "";
-    for (i in result) {
-
+    for (i in result) {        
         var str = "";
         str += "<div class='divSubComments'>";
         str += "<input type='hidden' id='hdSubCommentId' value='" + result[i].SubCommentId + "' />";
