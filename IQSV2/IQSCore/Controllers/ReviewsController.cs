@@ -83,15 +83,10 @@ namespace IQSCore.Controllers
 
         [Route("api/Reviews/InsertCommenter")]
         [HttpGet]
-        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, string doaction, int json = 0)
+        public async Task<IHttpActionResult> InsertCommenter(string DesiredName, string FullName, string Email, string Password, string SystemIp, int Active, int json = 0)
         {
             var res = await rev.InsertCommenter(DesiredName, FullName, Email, Password, SystemIp, Active);
-            if (res == "success" && doaction == "yes")
-                ReviewActions.SendRegistrationMail(FullName, Email, Password);
-            if (json == 1)
-                return Json(JsonConvert.SerializeObject(res, Formatting.Indented));
-            else
-                return Ok(res);
+            return Ok(res);
 
         }
 

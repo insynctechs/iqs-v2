@@ -57,26 +57,22 @@ namespace IQSDirectory
         {
             try
             {
-                /*string DesiredName = list[0];
+                string DesiredName = list[0];
                 string FullName = list[1];
                 string Email = list[2];
-                string Password = list[3];*/
-                //WebApiHelper wHelper = new WebApiHelper();
-                
+                string Password = list[3];
 
-                //var url = string.Format("api/Reviews/InsertCommenter?DesiredName=" + DesiredName + "&FullName=" + FullName + "&Email=" + Email + "&Password=" + Password + "&SystemIp=" + HttpContext.Current.Request.UserHostAddress + "&Active=1");
-
-                /*
+                WebApiHelper wHelper = new WebApiHelper();       
                 var url = string.Format("api/Reviews/InsertCommenter?DesiredName=" + DesiredName + "&FullName=" + FullName + "&Email=" + Email + "&Password=" + Password + "&SystemIp=" + HttpContext.Current.Request.UserHostAddress + "&Active=1");
-                string RetVal = "1";// wHelper.GetExecuteNonQueryStringResFromWebApi(url);
+                //return url;
+                string RetVal = wHelper.GetExecuteNonQueryStringResFromWebApi(url);
                 if (RetVal == "Success")
                 {
                     string mailStat = SendRegistrationMail(FullName, Email, Password);
                     //string ipStat = objCommentService.InsertSystemIp(new object[] { HttpContext.Current.Request.UserHostAddress });
                 }
-                return RetVal;*/
-                //HttpContext.Current.Response.Write("Test");
-                return "test";
+                return RetVal;
+                
             }
             catch (Exception ex)
             {
