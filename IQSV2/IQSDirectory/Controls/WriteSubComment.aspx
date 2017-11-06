@@ -9,7 +9,7 @@
 <body>
 <div id="divLogin" class="write_comment_wrapper">
     <h2 class="pophead">Post Reply To a Review</h2>
-<form id="form1" runat="server">
+<form id="frmSubComment" runat="server">
     <div id="divRegForm">
       <div class="write_comment_inner">
       
@@ -29,7 +29,7 @@
       </div>
       <div class="write_comment_review">
       <p class="p1">Review (Required):<br />
-      <textarea id="txtReview" ></textarea></p>
+      <textarea id="txtReview" name="txtReview" ></textarea></p>
       <p class="p2">
       <a href="#SubmitSubComment" id="lnkSubmitSubComment" class="large submit">Submit</a>
       </p>
