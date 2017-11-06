@@ -355,8 +355,7 @@ function LoadSubComments(commentid, divToAppend) {
     });
 }
 
-function GetCommentsHTML(cmtjson)
-{
+function GetCommentsHTML(cmtjson) {
     var result = [];
     ms = cmtjson.replace(/\\/g, '\\');
     result = JSON.parse(ms);
@@ -399,6 +398,7 @@ function GetCommentsHTML(cmtjson)
         str += "</div>";
     }
     return str;
+}
     
 function GetSubCommentHTML(cmtjson) {
     var result = [];
