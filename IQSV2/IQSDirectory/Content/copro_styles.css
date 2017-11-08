@@ -375,7 +375,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
         width: 66%;
     }
     .row1 .col1 {width:40%;}
-    .row2 .col2  {width:58%;}
+    .row1 .col2  {width:58%;}
     #divImage, #divVideo {width:auto; margin-right:5%; float:left; margin-top:0px;}
 
 }

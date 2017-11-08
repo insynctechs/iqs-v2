@@ -37,7 +37,7 @@
                                         <h3>
                                         <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' alt='<%: cl["TITLE"].ToString() %>'><%: cl["TITLE"].ToString() %></a><br>
                                         </h3>
-                                        <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>>
+                                        <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>
                                         <span><%: cl["PHONE"].ToString() %></span></div>
                                     
                                     <p><%: cl["MDESC"].ToString() %></p>

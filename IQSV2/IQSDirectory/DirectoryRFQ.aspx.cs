@@ -27,12 +27,16 @@ namespace IQSDirectory
         char[] chrsplit = new char[] { '^' };
         char[] chrsplitDetail = new char[] { '|' };
         string _RequestIP = System.Web.HttpContext.Current.Request.UserHostAddress;
+        
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                WebURL = wHelper.WebUrl;
+                frmRFQ.Action = WebURL + "DirectoryRFQ";
+                
                 if (Request.QueryString["CategorySK"] != null)// && Double.Parse(Request.QueryString["CategorySK"].ToString()))
                 {
                     hdnCategorySK.Value = Request.QueryString["CategorySK"].ToString();
@@ -77,9 +81,11 @@ namespace IQSDirectory
             
             string attrs = "";
             //sj added javascript validation to button click
-            attrs += " return SetSelectedValues();";
-            btnSubmit.Attributes.Add("onClick", attrs);
-           
+
+            attrs += "return SetSelectedValues();";
+            btnSubmit.Attributes.Add("onclick", attrs);
+
+
         }
         #endregion
 
@@ -98,19 +104,13 @@ namespace IQSDirectory
                     hdnCompanyName.Value = _dtDisplayName.Rows[0][0].ToString();
                     hdnCategoryDisplayName.Value = _dtDisplayName.Rows[0][1].ToString();
                 }
-                this.Page.Title = hdnCategoryDisplayName.Value + " RFQ";
-                HtmlMeta htmlMeta = new HtmlMeta();
-                htmlMeta.Name = "keywords";
-                htmlMeta.Content = "RFQ from " + hdnCategoryDisplayName.Value + " Manufacturers, " + hdnCategoryDisplayName.Value + " Manufacturers, " + hdnCategoryDisplayName.Value + " Suppliers";
-                this.Page.Header.Controls.AddAt(1, htmlMeta);
-
-                htmlMeta = new HtmlMeta();
-                htmlMeta.Name = "description";
-                htmlMeta.Content = " Request Immediate Quotes from " + hdnCategoryDisplayName.Value + " Manufacturers & Suppliers.";
-                this.Page.Header.Controls.AddAt(1, htmlMeta);
+                //this.Page.Title = hdnCategoryDisplayName.Value + " RFQ";
+                PageTitle = hdnCategoryDisplayName.Value + " RFQ";
+                PageKeyword = "RFQ from " + hdnCategoryDisplayName.Value + " Manufacturers, " + hdnCategoryDisplayName.Value + " Manufacturers, " + hdnCategoryDisplayName.Value + " Suppliers";
+                PageDescription = " Request Immediate Quotes from " + hdnCategoryDisplayName.Value + " Manufacturers & Suppliers.";
                 lblCategoryHeading.Text = hdnCategoryDisplayName.Value + " RFQ";
                 hylnkCategory.Text = hdnCategoryDisplayName.Value;
-                hylnkCategory.NavigateUrl = System.Configuration.ConfigurationManager.AppSettings["WebURL"] + hdnCompanyName.Value + "/";//To be filled later
+                hylnkCategory.NavigateUrl = wHelper.WebUrl + hdnCompanyName.Value + "/";//To be filled later
             }
             catch (Exception ex)
             {
@@ -254,17 +254,17 @@ namespace IQSDirectory
         {
            
             divip_error.Visible = false;
-            if(Utils.isvalidIpAccess()==true)
-            { 
-                //Captcha1.CheckEnteredValue();
-                InsertMethod();
-                sendMail();
-            }
-            else
-            {
-                divip_error.Visible = true;
-                OnSecurityFailure(2);
-            }
+                    if(Utils.isvalidIpAccess()==true)
+                    { 
+                        //Captcha1.CheckEnteredValue();
+                        InsertMethod();
+                        sendMail();
+                    }
+                    else
+                    {
+                        divip_error.Visible = true;
+                        OnSecurityFailure(2);
+                    }
             
         }
 
@@ -576,7 +576,7 @@ namespace IQSDirectory
                     _Subject = System.Configuration.ConfigurationManager.AppSettings["RFQSubject"];
                     
                     //sendMailWithAttachment(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
-                    //sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
+                    sendMailWithAttachment(_FromAddress, "sumi@insynctechs.com, nitha@insynctechs.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
                    
 
                     //CommonLogger.Info("Sending mail completed");
@@ -600,8 +600,29 @@ namespace IQSDirectory
             {
             }
         }
+
         #endregion
 
-        
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            divip_error.Visible = false;
+            if (Utils.isvalidIpAccess() == true)
+            {
+                //Captcha1.CheckEnteredValue();
+                InsertMethod();
+                sendMail();
+            }
+            else
+            {
+                divip_error.Visible = true;
+                OnSecurityFailure(2);
+            }
+
+        }
+        public string WebURL { get; set; }
+        public string PageTitle { get; set; }
+        public string PageKeyword { get; set; }
+        public string PageDescription { get; set; }
     }
+
 }
