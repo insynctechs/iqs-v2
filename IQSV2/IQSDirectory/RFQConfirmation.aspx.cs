@@ -20,13 +20,16 @@ namespace IQSDirectory
     {
         //SELECT TOP(1) * FROM dbo.IQS_TRACKING_SCRIPT ORDER BY SCRIPT_PK;
         //ICategoriesService objICategoriesService;
-       // string DirectoryWebSiteURL = System.Configuration.ConfigurationManager.AppSettings["DirectoryWebSiteURL"].ToString();
+        // string DirectoryWebSiteURL = System.Configuration.ConfigurationManager.AppSettings["DirectoryWebSiteURL"].ToString();
+        public string WebURL { get; set; }
+        WebApiHelper wHelper = new WebApiHelper();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
+                    WebURL = wHelper.WebUrl;
                     string CategorySK = string.Empty;
                     string strRequestIP = string.Empty;
                     //if (DirectoryWebSiteURL.Trim().LastIndexOf("/") != DirectoryWebSiteURL.Trim().Length - 1)

@@ -10,8 +10,8 @@ $(document).ready(function () {
             txtContactName: { required: true, minlength: 2 },
             txtContactEmail: { required: true, emailRule: true },
             txtContactCity: { required: true },
-            txtCompanyWeb: { required: true },
-           
+            txtCompanyWeb: { required: true }
+           /*
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -21,7 +21,7 @@ $(document).ready(function () {
                     }
                 }
             }
-           
+            */
             
         },
         messages: {
@@ -30,13 +30,23 @@ $(document).ready(function () {
             txtContactName: { required: "Required ", minlength: "Must be at least 2 characters" },
             txtContactEmail: { required: "Required ", emailRule: "Please input valid email address" },
             txtContactCity: { required: "Required ", minlength: "Must be at least 2 characters" },
-            txtCompanyWeb: { required: "Required ", minlength: "Must be at least 2 characters" },
-            hiddenRecaptcha: { required: "Required "}
+            txtCompanyWeb: { required: "Required ", minlength: "Must be at least 2 characters" }
+            //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
             form.submit();
             return false;
-          
+            /*
+                if (grecaptcha.getResponse()) {
+                    $("#rfqmessage").html("You are not a BOT!");
+                    form.submit();
+                    return false;
+                } else {
+                    $("#rfqmessage").html("Please make sure that you are not a BOT!");
+                   // return false;
+                    
+                }
+            */
         }
     });
 
@@ -53,8 +63,7 @@ $(document).ready(function () {
 
 
 function recaptchaCallback() {
-    $('#hiddenRecaptcha').valid();
-    $("#frmShare").validate();
+   $('#hiddenRecaptcha').valid();
 }
 
 var _varCount;
@@ -198,6 +207,7 @@ function CheckAll(ButtonIds) {
 
 
 function SetSelectedValues() {
+    $("#frmRFQ").valid();
     document.getElementById('rfqmessage').innerHTML = "";
     var tblID = document.getElementById('tblCategories');
     var tbllength = tblID.rows.length - 1;
@@ -227,7 +237,7 @@ function SetSelectedValues() {
         _varFlag = '';
         
         //document.getElementById('btnSubmit').click();
-        /*
+        
         var response = grecaptcha.getResponse();
 
         if (response.length == 0) {
@@ -237,7 +247,7 @@ function SetSelectedValues() {
             document.getElementById('rfqmessage').innerHTML = "Please verify that you are not a BOT!";
             return false;
         }
-       */
+       
         return true;
 
     }
@@ -291,8 +301,9 @@ function fnKeyCode(Code) {
             return;
         }
         else {
-            return true;
+            
             fnMaxLength(event, _vartextboxId);
+            return true;
         }
     }
 }   

@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DirectoryRFQ.aspx.cs" Inherits="IQSDirectory.DirectoryRFQ" %>
-
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>RFQ</title>
+<html>
+<head>
+    <title><%= PageTitle %></title>
     <meta name="robots" content="noindex, nofollow" />
-    <link href="Content/publish_styles.css" rel="stylesheet" />
+    <meta name="keywords" content="<%= PageKeyword %>" />
+    <meta name="description" content="<%= PageDescription %>" />
+    <link href="<%: WebURL %>Content/publish_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <!--include jQuery -->  
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  
@@ -14,7 +14,7 @@
     <!--include jQuery Validation Plugin-->  
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  
     type="text/javascript"></script>   
-    <script type="text/javascript"  src="Scripts/DirectoryRFQ.js"></script>
+    <script type="text/javascript"  src="<%: WebURL %>Scripts/DirectoryRFQ.js"></script>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <!--[if IE 5]>
 <style type='text/css'> 
@@ -99,7 +99,7 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                     </div>
                     <span class="requireD">*Indicates required field</span>
 	            </div>
-            <form id="frmRFQ" runat="server">
+            <form id="frmRFQ" name="frmRFQ" runat="server">
             <div class="rfqpanel">
                 <div class="rfqfrmstep1 divLeft">
                     <p class="rfqsubhead">1) Select Company Name(s):<span class="requireD">*</span></p>
@@ -135,12 +135,14 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                             <div class="rfqdivspecattsub">Attachment3 :</div><div><input id="inpAttachment3"  type="file" size="46" class="rfqFileCtrlArea" name="filMyFile" runat="server"></div>
                             
                            <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div> 
-                           <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback"  /> 
+                           <!--<input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha" data-callback="recaptchaCallback"  /> -->
+                            
                             <!--<div class="rfqdivspecatt">Enter the text as shown in the box.</div>-->
                             <div><%--<uc1:Captcha ID="Captcha1" runat="server" OnSuccess="OnSuccess" OnFailure="OnFailure"/>--%></div>
                             <div id="rfqmessage" runat="server"></div>
-                            <div class="rfqbuttonsnew">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Send"  onclick="btnSubmit_Click"  />
+                            <div class="rfqbuttonsnew">                                
+                                <asp:Button ID="btnSubmit" runat="server" Text="Send"  OnClick="btnSubmit_Click"  />
+                                <!--<asp:Button ID="Button1" runat="server" Text="Send"  onclick="btnSubmit_Click"  />-->
                                 <input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" />
                                 <input type="hidden" name="val_curip" id="val_curip" value="" runat="server" />
                                 <input type="button" class="RFQSend" value="Reset"  onclick="ResetValues();" />

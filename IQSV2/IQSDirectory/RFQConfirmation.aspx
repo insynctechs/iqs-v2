@@ -2,15 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head>
     <title>RFQ Confirmation</title>
     <meta name="robots" content="noindex, nofollow" />
-    <link href="Content/publish_styles.css" rel="stylesheet" />
+    <link href="<%: WebURL %>Content/publish_styles.css" rel="stylesheet" />
     <!-- Google Tag Manager -->
 
 <!-- End Google Tag Manager -->
 
-    <script src='js/jquery-1.7.2.min.js' type='text/javascript' ></script>
+    <script src='<%: WebURL %>Scripts/jquery-1.7.2.min.js' type='text/javascript' ></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#btnclose').click(function () {

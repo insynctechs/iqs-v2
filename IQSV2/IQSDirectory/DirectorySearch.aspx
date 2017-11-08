@@ -18,7 +18,7 @@
                     <% foreach (var pl in ProductList)
                         { %>
                     <li>
-                        <h3><a href='<%: pl["URL"].ToString() %>'><%: pl["TITLE"].ToString() %></a></h3>
+                        <h3><a href='<%: pl["URL"].ToString() %>' title="<%: pl["TITLE"].ToString() %>"><%: pl["TITLE"].ToString() %></a></h3>
                         <p><%: pl["MDESC"].ToString()  %></p>
                         <a href='<%: pl["URL"].ToString() %>'><%: pl["URL"].ToString() %></a>
                     </li>
@@ -35,9 +35,9 @@
                             
                                 
                                         <h3>
-                                        <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' alt='<%: cl["TITLE"].ToString() %>'><%: cl["TITLE"].ToString() %></a><br>
+                                        <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%: cl["TITLE"].ToString() %></a><br>
                                         </h3>
-                                        <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>>
+                                        <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>
                                         <span><%: cl["PHONE"].ToString() %></span></div>
                                     
                                     <p><%: cl["MDESC"].ToString() %></p>
