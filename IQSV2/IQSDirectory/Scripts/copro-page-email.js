@@ -31,7 +31,7 @@ $(document).ready(function () {
              //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
-            alert("Thanks Lord");
+            //alert("Thanks Lord");
             form.submit();
             return false;
           

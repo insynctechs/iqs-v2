@@ -4,14 +4,12 @@
 <head runat="server">
     <title>IQSDirectory: Post Reviews and Ratings</title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <script type="text/javascript" defer async src="<%:RootPath %>Scripts/write_comment.js"></script>   
-    
-
+    <script type="text/javascript" defer async src="<%:RootPath %>Scripts/write_comment.js"></script>       
 </head>
 <body>
 <div id="divLogin" class="write_comment_wrapper">
     <h2 class="pophead">Write a Review</h2>
-<form id="form1" runat="server">
+<form id="frmComment" runat="server">
     <div id="divRegForm"  >
         
       <div class="write_comment_inner">
@@ -28,17 +26,17 @@
         <input name="star1" type="radio" class="writereviewstar" value="4" title="4"/>
         <input name="star1" type="radio" class="writereviewstar" value="5" title="5"/>
       </div>
-      <input type="text" id="txtRating" class="commenttextbox hide_elem"  />
+      <input type="text" id="txtRating" name="txtRating" class="commenttextbox hide_elem"  /> <!-- -->
       <p>
       Review Title (Required):<br />
-      <input type="text" id="txtTitle" class="commenttextbox" />
+      <input type="text" id="txtTitle" name="txtTitle" class="commenttextbox" />
       </p>
         		
       <div class="write_comment_captcha_wrapper">
        
       </div>
       <p class="p1">Review (Required):<br />
-      <textarea id="txtReview" class="commentTextArea" ></textarea></p>
+      <textarea id="txtReview" name="txtReview" class="commentTextArea" ></textarea></p>
       <p class="p2">
       <a href="#SubmitComment" id="lnkSubmitComment" class="large">Submit</a>
       </p>

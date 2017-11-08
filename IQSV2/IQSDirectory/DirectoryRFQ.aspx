@@ -99,7 +99,7 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                     </div>
                     <span class="requireD">*Indicates required field</span>
 	            </div>
-            <form id="frmRFQ" name="frmRFQ" runat="server" action="http://216.250.147.171/IQSBeta2017/DirectoryRFQ.aspx?CategorySK=81&ClientSK">
+            <form id="frmRFQ" name="frmRFQ" runat="server">
             <div class="rfqpanel">
                 <div class="rfqfrmstep1 divLeft">
                     <p class="rfqsubhead">1) Select Company Name(s):<span class="requireD">*</span></p>

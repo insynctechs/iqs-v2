@@ -35,7 +35,7 @@ namespace IQSDirectory
             try
             {
                 WebURL = wHelper.WebUrl;
-                frmRFQ.Action = WebURL + "DirectoryRFQ";
+                
                 
                 if (Request.QueryString["CategorySK"] != null)// && Double.Parse(Request.QueryString["CategorySK"].ToString()))
                 {
@@ -44,6 +44,7 @@ namespace IQSDirectory
                     {
                         hdnRFQClientSK.Value = Request.QueryString["ClientSK"].ToString();
                     }
+                    //frmRFQ.Action = WebURL + "DirectoryRFQ.aspx?CategorySK="+hdnCategorySK.Value+"&ClientSK=" + hdnRFQClientSK.Value;
                     LoadCompanyDetails();
                     if (!IsPostBack)
                     {

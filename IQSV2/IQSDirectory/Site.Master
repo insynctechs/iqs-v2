@@ -11,7 +11,6 @@
     
     <%-- <%:HeadScript %>
     <%: PageIndex %>--%>
-
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/bundles/SiteMasterStyles") %>
         <%: Scripts.Render("~/bundles/SiteMasterScripts") %>
@@ -44,26 +43,26 @@
             <ul id='footerlinks'>
                 <li class='one'>
                     <span>IQS&reg; Directory</span>
-                    <a href='http://www.iqsdirectory.com/about-us.html'>About Us</a><br>
-                    <a href='http://www.iqsdirectory.com/testimonial.htm'>Testimonials</a><br>
-                    <a href='http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx'>Advertise Your Company</a><br />
-                    <a href='http://www.iqsdirectory.com/directorylistcompanies.aspx'>Directory of Companies</a><br />
+                    <a href='<%= WebURL %>about-us.html'>About Us</a><br>
+                    <a href='<%= WebURL %>testimonial.htm'>Testimonials</a><br>
+                    <a href='<%= WebURL %>directoryhomelistyourcompany.aspx'>Advertise Your Company</a><br />
+                    <a href='<%= WebURL %>listcompanies/A/1'>Directory of Companies</a><br />
                     <a href='http://www.iqsdirectory.com/sitemap/sitemap.htm'>Directory Sitemap</a><br />
                 </li>
                 <li class='two'>
                     <span>Resources</span>
                     <a href='http://www.iqsdirectory.com/resources/home/'>Resource Center</a><br />
                     <a href='http://blog.iqsdirectory.com/' target='blank'>IQS&reg; Newsroom</a><br />
-                    <a href='http://www.iqsdirectory.com/industry-associations.html'>Manufacturing Associations</a><br />
-                    <a href='http://www.iqsdirectory.com/industry-tradeshows.html'>Industry Tradeshows</a><br />
-                    <a href='http://www.iqsdirectory.com/faq.html'>FAQ</a>
+                    <a href='<%= WebURL %>industry-associations.html'>Manufacturing Associations</a><br />
+                    <a href='<%= WebURL %>industry-tradeshows.html'>Industry Tradeshows</a><br />
+                    <a href='<%= WebURL %>faq.html'>FAQ</a>
                 </li>
                 <li class='three'>
                     <span>Marketing Services</span>
-                    <a href='http://www.iqsdirectory.com/web-marketing/seo/' target='_blank'>Search Engine Optimization</a><br>
-                    <a href='http://www.iqsdirectory.com/web-marketing/social-media/' target='_blank'>Social Media</a><br>
-                    <a href='http://www.iqsdirectory.com/web-marketing/ppc/' target='_blank'>PPC Management</a><br />
-                    <a href='http://www.iqsdirectory.com/web-marketing/web-design/' target='_blank'>Web Design</a><br />
+                    <a href='<%= WebURL %>web-marketing/seo/' target='_blank'>Search Engine Optimization</a><br>
+                    <a href='<%= WebURL %>web-marketing/social-media/' target='_blank'>Social Media</a><br>
+                    <a href='<%= WebURL %>web-marketing/ppc/' target='_blank'>PPC Management</a><br />
+                    <a href='<%= WebURL %>web-marketing/web-design/' target='_blank'>Web Design</a><br />
                 </li>
                 <li class='four'>
                     <span>Connect with Us</span>
@@ -75,13 +74,13 @@
                 </li>
             </ul>
             <div class='sch-logo'>
-                <a href='http://www.iqsdirectory.com' id='flogo' itemprop='url'>
-                    <img id='footerlogo' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' alt='IQS Directory' title='IQS Directory' itemprop='logo' /></a>
-                <a href='http://www.iqsdirectory.com/contact.html' class='contactlink'>
-                    <img src='http://www.iqsdirectory.com/images/contact-us1.png' alt='contact us image' title='contact us image' class='contactlink' /></a>
+                <a href='<%= WebURL %>' id='flogo' itemprop='url'>
+                    <img id='footerlogo' src='<%= WebURL %>images/iqsdirectory_home_logo.png' alt='IQS Directory' title='IQS Directory' itemprop='logo' /></a>
+                <a href='<%= WebURL %>contact.html' class='contactlink'>
+                    <img src='<%= WebURL %>images/contact-us1.png' alt='contact us image' title='contact us image' class='contactlink' /></a>
             </div>
             <div class='sch-org'>
-                <a href='http://www.iqsdirectory.com/directorytermsconditions.htm'>Terms and Conditions</a>
+                <a href='<%= WebURL %>directorytermsconditions.htm'>Terms and Conditions</a>
                 <h3><span class='tele' itemprop='telephone'>877-977-5377</span></h3>
                 <span itemprop='name'>IQS Directory</span>
             </div>
