@@ -900,5 +900,51 @@ namespace IQSDirectory
                 return ex.ToString();
             }
         }
+
+        [WebMethod(EnableSession = true)]
+        public static string premiumlistingemail(List<string> list)
+        {
+            try
+            {               
+                string _CompanyName = list[0];
+                string _CompanyPhone = list[1];
+                string _CompanyWebsite = list[2];
+                string _ProductArea = list[3];
+                string _ContactName = list[4];
+                string _ContactTitle = list[5];
+                string _ContactEmailAddress = list[6];
+                string _CategoryName = list[7];
+
+                string _strMailBody = null;
+                string _toAddress = string.Empty;
+                string _FromAddress = string.Empty;
+                string _Subject = string.Empty;
+
+                _strMailBody = "Suggested IQSDirectory Site : " + _CategoryName + "<br>" + "Company Name : " + _CompanyName + "<br>" + "Company Phone : " + _CompanyPhone + "<br>" + "Company Website : " + _CompanyWebsite + "<br>" + "Product/Service Area : " + _ProductArea + "<br>" + "Contact : " + _ContactName + "<br>" + "Contact Title : " + _ContactTitle + "<br>" + "Contact Email : " + _ContactEmailAddress;
+                _strMailBody = _strMailBody + "<br><br>" + "Best Regards" + "<br>" + _ContactName;
+                _toAddress = System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyToMailID"];
+                _FromAddress = _ContactEmailAddress;
+                //System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyFromMailID"];
+                _Subject = System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyPremiumSubject"];
+                //Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
+                bool mailstatus = Utils.SendMail(_FromAddress, "sumi@insynctechs.com", string.Empty, string.Empty, _Subject, _strMailBody, true);   
+
+                        if (mailstatus == true)
+                            return "Success";
+                        else
+                            return "MailError";
+              
+            }
+            catch (Exception ex)
+            {
+                return "Error1";
+            }
+            finally
+            {
+
+            }
+
+        }
+
     }
 }
