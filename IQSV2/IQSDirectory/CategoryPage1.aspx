@@ -111,7 +111,7 @@
                         <a rel='nofollow' alt='<%: drT2Ad["FORMATED_NAME"] %>' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', this)"><%: drT2Ad["CLIENT_NAME"] %></a>
                         <span><%: drT2Ad["CITY_STATE"] %></span><span><%: drT2Ad["PHONE"] %></span>
                     </h3>
-                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>
+                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a rel='nofollow' class='btncopro' alt='<%: drT2Ad["FORMATED_NAME"] %> Profile' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT2Ad["ADDESCRIPTION"] %></p>
@@ -211,7 +211,7 @@
 
             $('.btnrfq').fancybox({'height':600,'width':800,'onStart':function(){$('body').css('overflow','hidden');},'onClosed':function(){$('body').css('overflow','auto');},'hideOnOverlayClick':false});
             $('.btnrfq').bind('contextmenu', function(e){return false;});
-            $('.btnrfq').css('display', 'block');
+            
 
             $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
             $('.lnkmail').bind('contextmenu', function (e) { return false; });

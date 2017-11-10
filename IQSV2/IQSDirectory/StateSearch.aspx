@@ -57,7 +57,7 @@
 
     <section id='secadpage' class="adlist_section boxnone">
         <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
-                                  id="lnkRFQ" class="lnkrfq">Request For Quote</a>
+                                  id="lnkRFQ" class="lnkrfq iframe">Request For Quote</a>
             <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" >Go To <%: H1Text %> Home</a></div>
         <ul class="adlist_ul">
             <h2><%: H1Text %> Companies Serving <%: StateName %></h2>
@@ -183,7 +183,7 @@
 
             $('.lnkrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
             $('.lnkrfq').bind('contextmenu', function (e) { return false; });
-            $('.lnkrfq').css('display', 'block');
+            
 
             $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
             $('.lnkmail').bind('contextmenu', function (e) { return false; });

@@ -49,7 +49,7 @@
     <% if (TierAdvertisements.Count > 0) { %>
     <section id='secpage2' class="adlist_section">
         <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
-                                  id="lnkRFQ" class="lnkrfq">Request For Quote</a></div>
+                                  id="lnkRFQ" class="iframe btnrfq">Request For Quote</a></div>
         <ul class="adlist_ul">
             <% foreach (var drTAd in TierAdvertisements)
                 {%>
@@ -114,9 +114,9 @@
         $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
         $('.lnkmail').bind('contextmenu', function (e) { return false; });
 
-        $('.lnkrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
-        $('.lnkrfq').bind('contextmenu', function (e) { return false; });
-        $('.lnkrfq').css('display', 'block');
+        $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+        $('.btnrfq').bind('contextmenu', function (e) { return false; });
+        
 
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
