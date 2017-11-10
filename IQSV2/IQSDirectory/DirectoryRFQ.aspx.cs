@@ -559,26 +559,26 @@ namespace IQSDirectory
                     string[] Details = companyDetails[count].Split(chrsplitDetail);
                     //CommonLogger.Info("Sending mail for RFQ: " + "From mail id: " + txtContactEmail.Text.Trim().ToString() + "To Mail Id: " + Details[1] + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                     _strMailBody = "Name : " + Server.HtmlEncode(txtContactName.Text.Trim()) + "<br>" + "Company : " + txtCompanyName.Text.Trim() + "<br>" + "Email : " + Server.HtmlEncode(txtContactEmail.Text.Trim()) + "<br>" + "Contact Phone : " + Server.HtmlEncode(txtContactPhone.Text.Trim()) + "<br>" + "City, State : " + Server.HtmlEncode(txtContactCity.Text.Trim()) + "<br>" + "Specifications/Questions/RFQ : " + Server.HtmlEncode(txtDescription.Value.Trim()) + "<br>" + "Request IP:" + _RequestIP;
-                    //sj adding for testing purpose
-                    if (System.Configuration.ConfigurationManager.AppSettings["RFQTestMode"] == "true")
+
+                    _FromAddress = txtContactEmail.Text.Trim().ToString();
+                    _Subject = Utils.RFQSubject;
+                    if (Utils.RFQTestMode == "true")
                     {
-                        _toAddress = System.Configuration.ConfigurationManager.AppSettings["RFQTestToMailID"];
-                        _ccAddress = System.Configuration.ConfigurationManager.AppSettings["RFQTestCCMailID"];
+                        _toAddress = Utils.TestEmailTo;
+                        _ccAddress = Utils.TestEmailCC;
+                        _Subject = Utils.TestEmailSubjectPrefix + _Subject;
 
                     }
                     else
                     {
-                        _toAddress = ((Details[1].Equals("N/A")) | (Details[1].Equals("NULL"))) ? System.Configuration.ConfigurationManager.AppSettings["RFQAlternateMailID"].ToString() : Details[1];
-                        _ccAddress = System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"];
+                        _toAddress = ((Details[1].Equals("N/A")) | (Details[1].Equals("NULL"))) ? Utils.RFQAlternateMailID : Details[1];
+                        _ccAddress = Utils.RFQCCMailID;
 
                     }
-
-                    _FromAddress = txtContactEmail.Text.Trim().ToString();
-                    _Subject = System.Configuration.ConfigurationManager.AppSettings["RFQSubject"];
+                                       
                     
-                    //sendMailWithAttachment(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
-                    sendMailWithAttachment(_FromAddress, "sumi@insynctechs.com, nitha@insynctechs.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
-                   
+                    sendMailWithAttachment(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
+                    
 
                     //CommonLogger.Info("Sending mail completed");
                 }

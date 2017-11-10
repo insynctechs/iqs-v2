@@ -7,13 +7,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Web.Script.Serialization;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 using IQSDirectory.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net;
-using System.Linq;
+
 
 namespace IQSDirectory
 {
@@ -325,21 +322,7 @@ namespace IQSDirectory
                 }
                 else
                 {
-                    /*System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(sb.ToString());
-                    string clientEmail = "";
-                    if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
-                    {
-                        if (dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "" && dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "N/A")
-                        {
-                            clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
-                        }
-                    }
-                    string mailStat = SendReviewReplyMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["SCDate"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail, ReplyTo);
-                    //return json;
-                    return sb.ToString();*/
                     string JSONString = JsonConvert.SerializeObject(dt);
                     string clientEmail = "";
                     if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
@@ -494,9 +477,7 @@ namespace IQSDirectory
                     foreach (DataRow dr in dt.Rows)
                         lo.Add(new object[] { dr[0].ToString(), (Convert.ToInt16(dr[1].ToString()) - 1).ToString(), dr[2].ToString() });
                     return JsonConvert.SerializeObject(lo);
-                    /*JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(lo);
-                    return json;*/
+                   
                 }
 
             }
@@ -664,25 +645,34 @@ namespace IQSDirectory
 
                         urlGetId = string.Format("api/Clients/GetClientNameEmailById?ClientSk=" + ClientSk );
                         DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
-                        string clientEmail = dt.Rows[0]["EMAILADDRESS"].ToString();
+                        string clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
 
                         clientEmail = "";
-
-                        if (clientEmail != null && clientEmail != "N/A")
+                        if (Utils.ProfileEmailTestMode == "true")
                         {
-                            _toAddress = clientEmail;
-                            _ccAddress = wHelper.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
-                            _Subject = wHelper.ProfileEmailSubject; // System.Configuration.ConfigurationManager.AppSettings["ProfileEmailSubject"].ToString();
-                            //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + dsEmail.Tables[0].Rows[0]["EMAIL_ADDRESS"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                            _toAddress = Utils.TestEmailTo;
+                            _ccAddress = Utils.TestEmailCC;
+                            _Subject = Utils.TestEmailSubjectPrefix + Utils.ProfileEmailSubject;
                         }
                         else
                         {
-                            _toAddress = wHelper.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
-                            _Subject = wHelper.ProfileNonExistEmailSubject; //System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
-                            //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                            if (clientEmail != null && clientEmail != "N/A")
+                            {
+                                _toAddress = clientEmail;
+                                _ccAddress = Utils.ProfileCCEmailAddress; 
+                                _Subject = Utils.ProfileEmailSubject; 
+                                                                      
+                                //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + dsEmail.Tables[0].Rows[0]["EMAIL_ADDRESS"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                            }
+                            else
+                            {
+                                _toAddress = Utils.ProfileCCEmailAddress; 
+                                _Subject = Utils.ProfileNonExistEmailSubject; 
+                                                                              
+                                //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                            }
                         }
                         
-                        //bool mailstatus = Utils.SendMail("admin@industrialquicksearch.com", "sumi@insynctechs.com", "linda@insynctechs.com", string.Empty, _Subject, strEmailContent.ToString(), true);
                         bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
                         if (mailstatus == true)
                              return "Success";
@@ -703,7 +693,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return "Error1";
+                return ex.Message.ToString();
             }
             finally
             {
@@ -732,12 +722,11 @@ namespace IQSDirectory
                     _strMailBody += "<br/><br/>" + _description.ToString();
                     _strMailBody += "<br/><br/><a href='" + _url.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
                     _strMailBody += "<br/><br/> Thanks & Regards <br/>" + _FromName.ToString();
-                    //sendMailWithAttachment(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
-                    bool mailstatus = Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
-                        if (mailstatus == true)
-                            return "Success";
-                        else
-                            return "MailError";
+                    bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
+                    if (mailstatus == true)
+                        return "Success";
+                    else
+                        return "MailError";
                     
                 }
                 else  //invalid ip access
@@ -751,7 +740,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return "Error1";
+                return ex.Message.ToString();
             }
             finally
             {
@@ -779,16 +768,23 @@ namespace IQSDirectory
                 sb.AppendLine("Thanks and Regards");
                 sb.AppendLine("<br/>");
                 sb.AppendLine("IQS Directory Administrator");
-                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
-                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
-                bool res = Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
-                //IQS.Utility.Utils.SendMail(_fromAddress, toEmail, "njerry@iforceproservices.com", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
+                string _fromAddress = Utils.ReviewUserRegisterMailID;
+                string _ccAddress = Utils.ReviewUserRegisterTo;
+                string _subject = Utils.ReviewUserRegisterSubject;
+                if(Utils.ReviewTestMode == "true")
+                {
+                    _ccAddress = Utils.TestEmailCC;
+                    _subject = Utils.TestEmailSubjectPrefix + _subject;
+                }
+                
+               
+                bool res = Utils.SendMail(_fromAddress, toEmail, _ccAddress, string.Empty, _subject, sb.ToString(), true);
                 return res.ToString();
 
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -815,23 +811,32 @@ namespace IQSDirectory
                 sb.AppendLine("Thanks and Regards");
                 sb.AppendLine("<br/>");
                 sb.AppendLine("IQS Directory Administrator");
+
+                string _fromAddress = Utils.ReviewUserRegisterMailID;
+                string _toAddress = Utils.ReviewUserRegisterTo;
+                string _ccAddress = Utils.ReviewUserRegisterCC;
+                string _bccAddress = Utils.ReviewUserRegisterBCC;
+                string _subject = Utils.ReviewEmailNewSubject;
+                if (Utils.ReviewTestMode == "true")
+                {
+                    _toAddress = Utils.TestEmailTo;
+                    _ccAddress = Utils.TestEmailCC;
+                    _bccAddress = Utils.TestEmailBCC;
+                    _subject = Utils.TestEmailSubjectPrefix + _subject;
+                    Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, _subject, sb.ToString(), true);
+                }
+                else {
+                    Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, _subject, sb.ToString(), true);
+                    if (ClientEmail != "")
+                        Utils.SendMail(_fromAddress, ClientEmail, "", "", _subject, sb.ToString(), true);
+                }
                 
-                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
-                string _toAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
-                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
-                string _bccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
-                /*Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
-                //IQS.Utility.Utils.SendMail(_fromAddress, "njerry@iforceproservices.com", "", "njerry@iforceproservices.com,mbbinil@iforceproservices.com", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
-                if (ClientEmail != "")
-                    Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
-                //Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REVIEW POSTED", sb.ToString(), true);
                 
-                */
                 return "mail sent";
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -855,20 +860,31 @@ namespace IQSDirectory
                 sb.AppendLine("Thanks and Regards");
                 sb.AppendLine("<br/>");
                 sb.AppendLine("IQS Directory Administrator");
-                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
-                string _toAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
-                string _ccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
-                string _bccAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
-                /*Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
-                //IQS.Utility.Utils.SendMail(_fromAddress, "njerry@iforceproservices.com", "", "njerry@iforceproservices.com,mbbinil@iforceproservices.com", "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
-                if (ClientEmail != "")
-                    Utils.SendMail(_fromAddress, ClientEmail, "", "", "[IQS DIRECTORY] COMPANY PROFILE - NEW REPLY POSTED", sb.ToString(), true);
-                */
+
+                string _fromAddress = Utils.ReviewUserRegisterMailID;
+                string _toAddress = Utils.ReviewUserRegisterTo;
+                string _ccAddress = Utils.ReviewUserRegisterCC;
+                string _bccAddress = Utils.ReviewUserRegisterBCC;
+                string _subject = Utils.ReviewEmailNewReplySubject;
+                if (Utils.ReviewTestMode == "true")
+                {
+                    _toAddress = Utils.TestEmailTo;
+                    _ccAddress = Utils.TestEmailCC;
+                    _bccAddress = Utils.TestEmailBCC;
+                    _subject = Utils.TestEmailSubjectPrefix + _subject;
+                    Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, _subject, sb.ToString(), true);
+                }
+                else
+                {
+                    Utils.SendMail(_fromAddress, _toAddress, _ccAddress, _bccAddress, _subject, sb.ToString(), true);
+                    if (ClientEmail != "")
+                        Utils.SendMail(_fromAddress, ClientEmail, "", "", _subject, sb.ToString(), true);
+                }                
                 return "mail sent";
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -890,14 +906,12 @@ namespace IQSDirectory
                 sb.AppendLine("<br/>");
                 sb.AppendLine("IQS Directory Administrator");
 
-                string _fromAddress = System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
-                //Utils.SendMail(_fromAddress, toEmail, "jpratt@industrialquicksearch.com", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
-                Utils.SendMail(_fromAddress, toEmail, "", string.Empty, "[IQS DIRECTORY] COMPANY PROFILE REVIEW - USER REGISTRATION", sb.ToString(), true);
+                Utils.SendMail(Utils.ReviewUserRegisterMailID, toEmail, "", string.Empty, Utils.ForgotPasswordSubject , sb.ToString(), true);
                 return "mail sent";
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -917,27 +931,36 @@ namespace IQSDirectory
 
                 string _strMailBody = null;
                 string _toAddress = string.Empty;
+                string _ccAddress = string.Empty;
+                string _bccAddress = string.Empty;
                 string _FromAddress = string.Empty;
                 string _Subject = string.Empty;
 
                 _strMailBody = "Suggested IQSDirectory Site : " + _CategoryName + "<br>" + "Company Name : " + _CompanyName + "<br>" + "Company Phone : " + _CompanyPhone + "<br>" + "Company Website : " + _CompanyWebsite + "<br>" + "Product/Service Area : " + _ProductArea + "<br>" + "Contact : " + _ContactName + "<br>" + "Contact Title : " + _ContactTitle + "<br>" + "Contact Email : " + _ContactEmailAddress;
                 _strMailBody = _strMailBody + "<br><br>" + "Best Regards" + "<br>" + _ContactName;
-                _toAddress = System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyToMailID"];
+                if(Utils.ListYourCompanyEmailTestMode == "true")
+                {
+                    _toAddress = Utils.TestEmailTo;
+                    _ccAddress = Utils.TestEmailCC;
+                    _Subject = Utils.TestEmailSubjectPrefix + Utils.ListYourCompanyPremiumSubject;
+                }
+                else
+                {
+                    _toAddress = Utils.ListYourCompanyToMailID;
+                    _ccAddress = Utils.ListYourCompanyFromMailID;
+                    _Subject = Utils.ListYourCompanyPremiumSubject;
+                }
                 _FromAddress = _ContactEmailAddress;
-                //System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyFromMailID"];
-                _Subject = System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyPremiumSubject"];
-                //Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
-                bool mailstatus = Utils.SendMail(_FromAddress, "sumi@insynctechs.com", string.Empty, string.Empty, _Subject, _strMailBody, true);   
-
-                        if (mailstatus == true)
-                            return "Success";
-                        else
-                            return "MailError";
+                bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);   
+                if (mailstatus == true)
+                    return "Success";
+                else
+                    return "MailError";
               
             }
             catch (Exception ex)
             {
-                return "Error1";
+                return ex.Message.ToString();
             }
             finally
             {

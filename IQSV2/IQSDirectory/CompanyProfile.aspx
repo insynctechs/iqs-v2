@@ -267,7 +267,7 @@
                     <ul class="twocols">
                         <% foreach (var dr in RelatedCategories)
                      {  %>
-                        <li><a href="http://<%: dr["CATEGORY_URL"].ToString() %>" target="_blank"><%: dr["NAME"].ToString() %></a></li>
+                        <li><a href="<%:RootPath %><%: dr["CATEGORYNAME"].ToString() %>/" target="_blank"><%: dr["NAME"].ToString() %></a></li>
                    
                     <% } %>    
                     </ul>

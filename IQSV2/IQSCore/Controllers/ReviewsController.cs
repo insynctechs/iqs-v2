@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using IQSCore.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Mail;
-using IQSCore.Helpers;
+//using System.Net.Mail;
+//using IQSCore.Helpers;
 
 
 namespace IQSCore.Controllers
@@ -90,7 +90,7 @@ namespace IQSCore.Controllers
 
         }
 
-        [Route("api/Reviews/AddCommenter")]
+        /*[Route("api/Reviews/AddCommenter")]
         [HttpPost]
         public async Task<IHttpActionResult> AddCommenter([FromBody] JObject jData)
         {
@@ -108,7 +108,7 @@ namespace IQSCore.Controllers
             else
                 return Ok(res);
         }
-
+        */
 
 
 
