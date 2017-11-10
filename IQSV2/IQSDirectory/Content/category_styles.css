@@ -486,6 +486,38 @@ table, tr, td {max-width:100% !important;}
     color: #517573;
     margin-bottom: 10px;
 }
+#secininfo ul {
+margin: 0;
+padding: 0;
+}
+
+#secininfo ul li {
+    margin: 0;
+    padding: 5px 0;
+}
+
+#secininfo ol {
+    margin 0;
+    padding: 0;
+}
+
+#secininfo ol li {
+    margin: 0;
+    padding: 5px 0;
+}
+
+#secininfo object, #secininfo embed {
+    max-width: 100%;
+}
+#secininfo a {
+    color: #30494e;
+    text-decoration:underline;
+}
+
+#secininfo a:hover {
+    color: #fb9622;
+    text-decoration: underline;
+}
 #secarticle
 {
     background: url("../images/div4bg.jpg") repeat scroll 0 0 transparent;
@@ -568,6 +600,128 @@ table, tr, td {max-width:100% !important;}
     width: 87%;
 }
 .boxnone { box-shadow: none !important;}
+/* Industry Information - Image Section */
+#industry-information.sub-images {
+}
+
+#industry-information.sub-images h3 {
+    margin-bottom: 0;
+}
+
+#industry-information.sub-images p.two {
+    float: left;
+    width: 47%;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#industry-information.sub-images img {
+    width: 100%;
+    float: none;
+    margin: 0 auto;
+    max-height: 390px;
+}
+
+#industry-information.sub-images p span {
+    display: block;
+    clear: both;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+<!-- Content Article Styles -->
+.industry-information.articles {
+    margin: 10px 0;
+    width: 100%;
+    float: left;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.industry-information.articles h3 {
+    font-family: 'Fjalla One', san-serif;
+    font-size: 1.5em;
+    text-align: left;
+    float: left;
+}
+
+.industry-information.articles:hover > h3 {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.industry-information.articles .fa-sort-desc {
+    float: right;
+    margin-left: 10px;
+}
+
+.industry-information.articles .fa-sort-asc {
+    float: right;
+    margin-left: 10px;
+    display: none;
+}
+
+.industry-information.articles:hover .fa-sort-desc {
+    color: #6094b2;
+}
+
+.industry-information.articles:focus {
+    outline: none;
+}
+
+.industry-information.articles:focus .fa-sort-desc {
+    color: #6094b2;
+    display: none;
+}
+
+.industry-information.articles:focus .fa-sort-asc {
+    color: #6094b2;
+    display: block;
+}
+
+.industry-information.articles:focus .onclick-content {
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.industry-information.articles .onclick-content ul {
+    margin: 0 0 20px 20px;
+}
+
+.industry-information.articles .onclick-content ul li {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    list-style-type: disc;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.industry-information.articles .onclick-content ol {
+    margin: 0 0 20px 20px;
+}
+
+.industry-information.articles .onclick-content ol li {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    list-style-type: decimal;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.onclick-content {
+    margin: 0 0 0 20px;
+    clear: left;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
 #secad_canada
 {
     color:#fff; background-color:#ed6815; padding: 50px 0; text-align: center; margin: 0; clear: both; height: auto; overflow: hidden;

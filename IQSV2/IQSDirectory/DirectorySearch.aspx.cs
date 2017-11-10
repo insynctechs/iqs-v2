@@ -103,77 +103,85 @@ namespace IQSDirectory
             }
             var url = string.Format("api/StateSearch/GetSearchResultsDetails?SrhStr=" + CurQuery + "&Start=" + StartPage + "&Count=" + RecCount + "&State=" + CurState);
             DataTable dt = wHelper.GetDataTableFromWebApi(url);
-
-            DataRow[] drCatChek = (DataRow[])dt.Select("DISPLAY_NAME='" + CurQuery.Replace("'", "''") + "'");
-            if (drCatChek.Length == 1)
+            if (dt.Rows.Count > 0)
             {
-                url = RootPath + dt.Rows[0]["URL"].ToString().Replace("\\", "/");
-                Response.Redirect(url);
-            }
-
-            drCatChek = (DataRow[])dt.Select("CTYPE='CATEGORY'");
-            if (drCatChek.Length == 1)
-            {
-                url = RootPath + dt.Rows[0]["URL"].ToString().Replace("\\", "/");
-                Response.Redirect(url);
-            }
-
-            if (dt.Rows.Count == 1)
-            {
-                if (dt.Rows[0]["CTYPE"].ToString() == "COMPANY")
+                DataRow[] drCatChek = (DataRow[])dt.Select("DISPLAY_NAME='" + CurQuery.Replace("'", "''") + "'");
+                if (drCatChek.Length == 1)
                 {
                     url = RootPath + dt.Rows[0]["URL"].ToString().Replace("\\", "/");
-                    Response.Write(url);
-                    //Response.Redirect(url);
+                    Response.Redirect(url);
                 }
+
+                drCatChek = (DataRow[])dt.Select("CTYPE='CATEGORY'");
+                if (drCatChek.Length == 1)
+                {
+                    url = RootPath + dt.Rows[0]["URL"].ToString().Replace("\\", "/");
+                    Response.Redirect(url);
+                }
+
+                if (dt.Rows.Count == 1)
+                {
+                    if (dt.Rows[0]["CTYPE"].ToString() == "COMPANY")
+                    {
+                        url = RootPath + dt.Rows[0]["URL"].ToString().Replace("\\", "/");
+                        //Response.Write(url);
+                        Response.Redirect(url);
+                    }
+                }
+
+                dt.Columns.Add("FORMATED_TITLE");
+                dt.AsEnumerable().ToList().ForEach(dr =>
+                {
+                    dr["URL"] = wHelper.WebUrl + dr["URL"].ToString().Replace("\\", "/");
+                    dr["MDESC"] = dr["MDESC"].ToString().IndexOf(". ") > 0 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().IndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
+                    dr["FORMATED_TITLE"] = Utils.FormatCompanyWebsiteLink(dr["TITLE"].ToString());
+                });
+
+                ProductList = dt.Select("NORDER = 1").AsEnumerable().ToList();
+
+                DataRow[] drComp = dt.Select("NORDER = 2");
+                foreach (var cList in drComp)
+                {
+                    string[] csite = cList["WEBSITE"].ToString().Split(',');
+                    if (csite.Length > 0)
+                    {
+                        if (csite[0].Trim().StartsWith("http://"))
+                            cList["WEBSITE"] = csite[0].Trim();
+                        else
+                            cList["WEBSITE"] = "http://" + csite[0].Trim();
+                    }
+                    if (cList["MDESC"].ToString().Length > 300)
+                    {
+                        cList["MDESC"] = cList["MDESC"].ToString().Substring(0, 300);
+                    }
+                    cList["MDESC"] = cList["MDESC"].ToString().Substring(0, cList["MDESC"].ToString().LastIndexOf(' '));
+                }
+                CompanyList = drComp.AsEnumerable().ToList();
+
+                OtherList = dt.Select("NORDER <> 1 AND NORDER <> 2").AsEnumerable().ToList();
+                TotalCount = Convert.ToInt32(dt.Rows[0]["TCOUNT"].ToString());
+
+                PageCount = Math.Ceiling(Convert.ToDouble(TotalCount) / RecCount);
+               
             }
-
-            dt.Columns.Add("FORMATED_TITLE");
-            dt.AsEnumerable().ToList().ForEach(dr => {
-                dr["URL"] = wHelper.WebUrl + dr["URL"].ToString().Replace("\\", "/");
-                dr["MDESC"] = dr["MDESC"].ToString().IndexOf(". ") > 0 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().IndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
-                dr["FORMATED_TITLE"] = Utils.FormatCompanyWebsiteLink(dr["TITLE"].ToString());
-            });
-
-            ProductList = dt.Select("NORDER = 1").AsEnumerable().ToList();
-
-            DataRow[] drComp = dt.Select("NORDER = 2");
-            foreach (var cList in drComp)
+            else
             {
-                string[] csite = cList["WEBSITE"].ToString().Split(',');
-                if (csite.Length > 0)
-                {
-                    if (csite[0].Trim().StartsWith("http://"))
-                        cList["WEBSITE"] = csite[0].Trim();
-                    else
-                        cList["WEBSITE"] = "http://" + csite[0].Trim();
-                }
-                if(cList["MDESC"].ToString().Length > 300)
-                {
-                    cList["MDESC"] = cList["MDESC"].ToString().Substring(0, 300);
-                }
-                cList["MDESC"] = cList["MDESC"].ToString().Substring(0, cList["MDESC"].ToString().LastIndexOf(' '));
+                TotalCount = 0;
+                PageCount = 0;
             }
-            CompanyList = drComp.AsEnumerable().ToList();
 
-            OtherList = dt.Select("NORDER <> 1 AND NORDER <> 2").AsEnumerable().ToList();
-            TotalCount = Convert.ToInt32(dt.Rows[0]["TCOUNT"].ToString());
-
-            PageCount = Math.Ceiling(Convert.ToDouble(TotalCount) / RecCount);
             PgSrhUrl = RootPath + "search/" + CurQuery + "/";
             PageTitle = "Search Found <strong> " + TotalCount.ToString() + " </strong> Result(s) matching the word - <span> " + tInfo.ToTitleCase(CurQuery).ToString() + " </span>";
 
             if (StartPage != 1)
             {
-                PgPreURl = PgSrhUrl + (StartPage -1).ToString();
+                PgPreURl = PgSrhUrl + (StartPage - 1).ToString();
             }
 
             if (StartPage != PageCount)
             {
                 PgNxtURl = PgSrhUrl + (StartPage + 1).ToString();
             }
-
-            
         }
 
         private void CheckStateSearch()
