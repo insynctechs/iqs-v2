@@ -7,8 +7,16 @@
             txtCompanyPhone: { required: true, phoneRule: true },
             txtCompanyWebsite: { required: true, webRule: true },            
             txtContactName: { required: true },
-            txtContactEmailAddress: { required: true, emailRule: true }
-            //,hiddenRecaptcha: { required: true }
+            txtContactEmailAddress: { required: true, emailRule: true },
+            hiddenRecaptcha: {
+                required: function () {
+                    if (grecaptcha.getResponse() == '') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
         },
         messages: {
             txtCompanyName: { required: "Required " },
@@ -16,7 +24,7 @@
             txtCompanyWebsite: { required: "Required ", webRule: "Invalid" },
             txtContactName: { required: "Required" },            
             txtContactEmailAddress: { required: "Required", emailRule: "Invalid" }
-            //,hiddenRecaptcha: { required: "Required" }
+            ,hiddenRecaptcha: { required: "Required" }
         },
         submitHandler: function (form) {
             form.submit();
@@ -41,32 +49,19 @@
                 async: true,
                 cache: false,
                 success: function (msg) {
-                    //alert(msg);
-                    if (msg.d == "Success") {
-                        //alert("Mail has been sent sucessfully!!!");
-                        window.location = "DirectoryListingThankYou.aspx?CategoryName=" + $("#hdnCategoryName").Val() + "&CompanyName=" + $("#txtCompanyName").val() + "&CompanyPhone=" + $("#txtCompanyPhone").val() + "&CompanyWebsite=" + $("#txtCompanyWebsite").val() + "&ProductArea=" + $("#txtProductArea").val() + "&ContactName=" + $("#txtContactName").val() + "&ContactTitle=" + $("#txtContactTitle").val() + "&Amount=";
-                       /* $('#txtFirstName').val('');
-                        $('#txtLastName').val('');
-                        $('#txtEmailAddress').val('');
-                        $('#txtCompanyName').val('');
-                        $('#txtZip').val('');
-                        $('#txtSubject').val('');
-                        $('#txtMessage').val('');
-            */
-                    }
-                    else if (msg == "Country") {
-                        alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
-                    }
-                    else if (msg.d == "Error1") {
+                    if (msg.d == "Error1") {
                         alert("Unexpected Error Occured. Please contact IQSDirectory");
                     }
                     else if (msg.d == "MailError") {
                         alert("Error sending in email");
                     }
-                    else {
-                        alert("Unexpected Error Occured. Try Again!!");
+                    else { //success
+                        $("#contentHomePremium").hide();
+                        $("#successBlock").show();
+                        $("#returnBlock").html(msg.d);
+                        //alert("Unexpected Error Occured. Try Again!!");
                     }
-                    //$('#btnSend').removeAttr('disabled');
+                    
 
                 },
 
@@ -81,6 +76,14 @@
         }
         return false;
     });
+
+      
+    function recaptchaCallback()
+    {  alert("thx Lord");
+        $("#hiddenRecaptcha").val(grecaptcha.getResponse());
+        alert($("#hiddenRecaptcha").val());
+        $("#frmMaster").valid();
+    }
 
     jQuery.validator.addMethod("emailRule", function (value, element) {
         Exp = /\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
