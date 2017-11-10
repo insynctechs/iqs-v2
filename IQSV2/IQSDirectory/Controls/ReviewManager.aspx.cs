@@ -7,13 +7,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Web.Script.Serialization;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 using IQSDirectory.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net;
-using System.Linq;
+
 
 namespace IQSDirectory
 {
@@ -325,21 +322,7 @@ namespace IQSDirectory
                 }
                 else
                 {
-                    /*System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(sb.ToString());
-                    string clientEmail = "";
-                    if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
-                    {
-                        if (dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "" && dt.Rows[0]["EMAIL_ADDRESS"].ToString() != "N/A")
-                        {
-                            clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
-                        }
-                    }
-                    string mailStat = SendReviewReplyMail(dt.Rows[0]["CName"].ToString(), dt.Rows[0]["Email"].ToString(), dt.Rows[0]["SCDate"].ToString(), dt.Rows[0]["Review"].ToString(), dt.Rows[0]["NAME"].ToString(), clientEmail, ReplyTo);
-                    //return json;
-                    return sb.ToString();*/
                     string JSONString = JsonConvert.SerializeObject(dt);
                     string clientEmail = "";
                     if (dt.Rows[0]["NOTIFY_CLIENTS"].ToString() == "Y")
@@ -494,9 +477,7 @@ namespace IQSDirectory
                     foreach (DataRow dr in dt.Rows)
                         lo.Add(new object[] { dr[0].ToString(), (Convert.ToInt16(dr[1].ToString()) - 1).ToString(), dr[2].ToString() });
                     return JsonConvert.SerializeObject(lo);
-                    /*JavaScriptSerializer jss = new JavaScriptSerializer();
-                    string json = jss.Serialize(lo);
-                    return json;*/
+                   
                 }
 
             }
@@ -678,15 +659,17 @@ namespace IQSDirectory
                             if (clientEmail != null && clientEmail != "N/A")
                             {
                                 _toAddress = clientEmail;
-                                _ccAddress = Utils.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
-                                _Subject = Utils.ProfileEmailSubject; // System.Configuration.ConfigurationManager.AppSettings["ProfileEmailSubject"].ToString();
-                                                                      //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + dsEmail.Tables[0].Rows[0]["EMAIL_ADDRESS"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                                _ccAddress = Utils.ProfileCCEmailAddress; 
+                                _Subject = Utils.ProfileEmailSubject; 
+                                                                      
+                                //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + dsEmail.Tables[0].Rows[0]["EMAIL_ADDRESS"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                             }
                             else
                             {
-                                _toAddress = Utils.ProfileCCEmailAddress; //System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
-                                _Subject = Utils.ProfileNonExistEmailSubject; //System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
-                                                                              //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
+                                _toAddress = Utils.ProfileCCEmailAddress; 
+                                _Subject = Utils.ProfileNonExistEmailSubject; 
+                                                                              
+                                //CommonLogger.Info("Sending mail for Directory Profile PageEmail: " + "From mail id: " + EmailAddress + "To Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString() + "CC Mail Id: " + System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"] + "Mail Server IP: " + System.Configuration.ConfigurationManager.AppSettings["MailServerIP"]);
                             }
                         }
                         
@@ -757,7 +740,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return "Error1";
+                return ex.Message.ToString();
             }
             finally
             {
@@ -801,7 +784,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -853,7 +836,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -901,7 +884,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
@@ -928,7 +911,7 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
 
