@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />    
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
 <script type="text/javascript" src="Scripts/DirectoryPremiumListing.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="contentHomePremium">
 <h1>Premium Advertising Features &amp; Benefits on IQS Directory</h1>
 <p>Thank you for your interest in finding out more about IQS&reg; Directory and its vertical product and services websites.</p>
@@ -22,8 +23,9 @@
 <p class="labelFrmlist1">Contact Name:<span class="requireD">*</span> <input type="text"   ID="txtContactName" name="txtContactName"  class="lisTextbox" /></p>       
 <p class="labelFrmlist1">Contact Title:<input type="text"  ID="txtContactTitle" name="txtContactTitle"  class="lisTextbox" /></p>  
 <p class="labelFrmlist1">Contact E-mail Address:<span class="requireD">*</span> <input type="text"  name="txtContactEmailAddress" id="txtContactEmailAddress"  class="lisTextbox" /></p>   
-
 <div class="dividerH  "> </div>
+<div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
+<input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
 <div class="clearfix" ></div> 
 <div class="listSubmit">
 <!-- <asp:Button ID="btnSubmit1" runat="server" CssClass="buttonBg" Text="Submit" OnClientClick="return Validate();" OnClick="btnSubmit_Click"/> -->
@@ -37,4 +39,22 @@
 <input type="hidden" id="hdnCategoryName" name="hdnCategoryName" runat="server" />
 <!--<input type="hidden" id="hdnCategoryAlphabet" name="hdnCategoryAlphabet" runat="server" />
 <input type="hidden" id="hdnAlphabetColor" name="hdnAlphabetColor" runat="server" />-->
+</div>
+
+<div id="successBlock" style="display:none">
+    <table>
+                    
+                    <tr style="height:80px;">
+                        <td class="page2listing" colspan="2">
+                            <img src="images/premium.gif" alt='IQSDirectory'/>
+                        </td>
+                    </tr>
+                    <tr style="height:40px;">
+                        <td class="page2listingHeadTxt" colspan="2">Thank you! Information will be sent to you shortly. </td>
+                    </tr>  
+                     </table>                  
+               
+     
+</div>
+<div id="returnBlock"></div>
 </asp:Content>
