@@ -365,7 +365,7 @@ p.headTop{color:#000;margin-bottom:3px;font-size:9pt;font-weight:bold;margin-top
 .listRelIn ul{padding-left:20px;margin:0;padding-top:5px;padding-bottom:5px}
 .listRelIn li a{color:#000;font-weight:bold}
 #listHome{width:620px;margin:auto;text-align:center;font-weight:bold;color:#30494e;font-size:14px;height:350px;padding-top:20px}
-.dividerH{height:3px;background:url(../commonimages/hori_line.gif) repeat-x;max-height:3px;min-height:3px;margin-top:20px;margin-bottom:10px;overflow:hidden;width:100%}
+.dividerH{height:3px;background:url(../images/hori_line.gif) repeat-x;max-height:3px;min-height:3px;margin-top:20px;margin-bottom:10px;overflow:hidden;width:100%}
 .ListingContIn{width:24%;float:left;padding-right:5px;margin-bottom:10px}
 .listContInfo p{padding:0;margin-top:-8px}
 .chkbox{margin-top:-10px;font-weight:normal}
@@ -1788,3 +1788,13 @@ body.pagetwolisting #contentList, body.pagetwolisting .contentListing, body.page
 #new-footer .sch-org { width: 40%; }
 #new-footer  img {height:35px;}
 }
+#contentHomePremium {
+    margin: 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-left: 40px;
+    text-align:left;
+}
+#contentHomePremium h1 { font-size: 2.7em; font-style: italic; text-transform: uppercase; color: #2a434a; text-shadow: 0px 1px 1px #fb9622; font-weight: bold; "}

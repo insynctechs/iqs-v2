@@ -3,7 +3,7 @@
 $(document).ready(function () {
     
     $("#frmRFQ").validate({
-        ignore: ".ignore",
+        //ignore: ".ignore",
         rules: {
 
             txtCompanyName : { required: true, minlength: 2 },
@@ -26,11 +26,11 @@ $(document).ready(function () {
         },
         messages: {
 
-            txtCompanyName: { required: "Required ", minlength: "Must be at least 2 characters" },
-            txtContactName: { required: "Required ", minlength: "Must be at least 2 characters" },
-            txtContactEmail: { required: "Required ", emailRule: "Please input valid email address" },
-            txtContactCity: { required: "Required ", minlength: "Must be at least 2 characters" },
-            txtCompanyWeb: { required: "Required ", minlength: "Must be at least 2 characters" }
+            txtCompanyName: { required: "Required ", minlength: "Invalid" },
+            txtContactName: { required: "Required ", minlength: "Invalid" },
+            txtContactEmail: { required: "Required ", emailRule: "Invalid" },
+            txtContactCity: { required: "Required ", minlength: "Invalid" },
+            txtCompanyWeb: { required: "Required ", minlength: "Invalid" }
             //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
@@ -54,7 +54,7 @@ $(document).ready(function () {
     jQuery.validator.addMethod("emailRule", function (value, element) {
         Exp = /\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
         return this.optional(element) || Exp.test(value);
-    }, 'Please enter a valid email.');
+    }, 'Invalid email.');
 
     
 
@@ -207,7 +207,6 @@ function CheckAll(ButtonIds) {
 
 
 function SetSelectedValues() {
-    $("#frmRFQ").valid();
     document.getElementById('rfqmessage').innerHTML = "";
     var tblID = document.getElementById('tblCategories');
     var tbllength = tblID.rows.length - 1;
@@ -301,9 +300,8 @@ function fnKeyCode(Code) {
             return;
         }
         else {
-            
-            fnMaxLength(event, _vartextboxId);
             return true;
+            fnMaxLength(event, _vartextboxId);
         }
     }
 }   
