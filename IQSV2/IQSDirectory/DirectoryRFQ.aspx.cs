@@ -378,6 +378,7 @@ namespace IQSDirectory
                 /*CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
                 CommonLogger.Error("InsertMethod", ex);
                 throw new BaseException(ex.Message);*/
+                throw new Exception(ex.Message);
             }
             finally
             {
@@ -593,9 +594,10 @@ namespace IQSDirectory
             }*/
             catch (Exception ex)
             {
-               /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                CommonLogger.Error("sendMail", ex);
-                throw new BaseException(ex.Message);*/
+                /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                 CommonLogger.Error("sendMail", ex);
+                 throw new BaseException(ex.Message);*/
+                throw new Exception(ex.Message);
             }
             finally
             {

@@ -36,7 +36,6 @@ namespace IQSDirectory
 
             bundles.Add(new StyleBundle("~/bundles/SiteMasterStyles").Include(
                 "~/Content/master_styles.css",
-                "~/Content/searchbox_styles.css",
                 "~/Content/jquery-ui.css"
                 ));
 

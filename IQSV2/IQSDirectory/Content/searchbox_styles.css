@@ -170,6 +170,7 @@ table, tr, td {max-width:100% !important;}
 }
 /*jQuery.Autocomplete Override*/
 /************************End of Search Box Styles *******/
+
 /*  #Mobile (Portrait)
 ================================================== */
 /* Note: Design for a width of 320px */
@@ -207,6 +208,7 @@ table, tr, td {max-width:100% !important;}
     {
         width: 78%;
     }
+    .txtsearch{font-size:0.955em;}
 
 
 }
@@ -218,9 +220,11 @@ table, tr, td {max-width:100% !important;}
     {
         width:95%;
         height: auto;
-        margin: 0.833em 1% 0.833em 0;
+        /*margin: 0.833em 1% 0.833em 0;*/
     }
-
+    .txtsearch {
+        font-size: 0.955em;
+    }
     #ulsbox #lisearch
     {
         width:95%;

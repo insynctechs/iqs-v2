@@ -2,15 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <link href="<%: RootPath %>Content/publish_styles.css" rel="stylesheet" media='screen'/>
-    <link href='<%: RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%: RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
-
-    <script src='<%: RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='<%: RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='<%: RootPath %>Scripts/fb.js' type='text/javascript'></script>
-    <script src='<%: RootPath %>Scripts/category_page1.js' type='text/javascript'></script>
-    <script src='<%: RootPath %>Scripts/move_top.js' type='text/javascript'></script>
+    <link href="<%: RootPath %>Content/common_styles.css" rel="stylesheet" media='screen'/>
+    
 
     <div id="outerWrapper">
         <div class="clearfix"></div>
@@ -46,15 +39,13 @@
             </div>
             <div class="clearfix"></div>
             <div class="headSiteMap">
-                <ul>
+                <ul class="complist">
                     <% foreach (var comp in CompaniesList)
                         { %>
-                    <li class="odd clearfix">
-                        <ul>
-                            <li class="divLeft left"><a href='<%: RootPath %><%: comp["FORMATED_URL"] %>'><%: comp["NAME"] %> </a></li>
-                            <li class="divLeft right"><%: comp["CITYSTATE"] %></li>
-                        </ul>
-                    </li>
+                    
+                            <li><a href='<%: RootPath %><%: comp["FORMATED_URL"] %>'><%= comp["NAME"] %> </a><br /><%= comp["CITYSTATE"] %></li>
+                           
+                   
                     <%} %>
                 </ul>
             </div>

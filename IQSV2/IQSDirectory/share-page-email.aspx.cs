@@ -151,15 +151,16 @@ namespace IQSDirectory
                 //sendMailWithAttachment("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);
                 
             }
-                catch (Exception ex)
-                {
-                    /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                     CommonLogger.Error("sendMail", ex);
-                     throw new BaseException(ex.Message);*/
-                }
-                finally
-                {
-                }
+            catch (Exception ex)
+            {
+            /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                CommonLogger.Error("sendMail", ex);
+                throw new BaseException(ex.Message);*/
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+            }
         }
 
         #region SMTP email sending with attachment code

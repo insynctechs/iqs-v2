@@ -69,57 +69,51 @@ img
     list-style:none;
 }
 /********************** Search Box Styles *****************/
-/*
-#ulsbox
-{
-    background-color:#F0F0F0;
+#ulsbox {
+    background-color: #F0F0F0;
     display: block;
     float: right;
     height: auto;
-    margin:0;
-
+    margin: 0;
     overflow: hidden;
     padding: 0;
     width: 100%;
-    -moz-box-shadow:0px 0px 0.833em 0.083em #000000;
-    -webkit-box-shadow:0px 0px 0.833em 0.083em #000000;
-    box-shadow:0px 0px 0.833em 0.083em #000000;
+    -moz-box-shadow: 0px 0px 0.833em 0.083em #000000;
+    -webkit-box-shadow: 0px 0px 0.833em 0.083em #000000;
+    box-shadow: 0px 0px 0.833em 0.083em #000000;
 }
 
-#ulsbox #lisearch
-{
-    background-color:#EBEBEB;
-    -moz-box-shadow:5px 5px 8px -6px #2A434A inset;
-    -webkit-box-shadow:5px 5px 8px -6px #2A434A inset;
-    box-shadow:5px 5px 8px -6px #2A434A inset;
-    margin:0.75em 0 0 0.75em;
-    width:315px;
-    height:3.417em;
-}
+    #ulsbox #lisearch {
+        background-color: #EBEBEB;
+        -moz-box-shadow: 5px 5px 8px -6px #2A434A inset;
+        -webkit-box-shadow: 5px 5px 8px -6px #2A434A inset;
+        box-shadow: 5px 5px 8px -6px #2A434A inset;
+        margin: 0.75em 0 0 0.75em;
+        width: 315px;
+        height: 3.417em;
+    }
 
-#ulsbox #listate
-{
-    background-color: #ADC1C8;
-    -moz-box-shadow: 1px 8px 8px -6px #2A434A inset;
-    -webkit-box-shadow: 1px 8px 8px -6px #2A434A inset;
-    box-shadow: 1px 8px 8px -6px #2A434A inset;
-    height: 3.417em;
-    margin: 0.75em 0;
-    width: 181px;
-}
+    #ulsbox #listate {
+        background-color: #ADC1C8;
+        -moz-box-shadow: 1px 8px 8px -6px #2A434A inset;
+        -webkit-box-shadow: 1px 8px 8px -6px #2A434A inset;
+        box-shadow: 1px 8px 8px -6px #2A434A inset;
+        height: 3.417em;
+        margin: 0.75em 0;
+        width: 181px;
+    }
 
-#ulsbox #libutton
-{
-    background-color:#2A434A;
-    -moz-box-shadow: 1px 10px 8px -6px #2A434A inset;
-    -webkit-box-shadow: 1px 10px 8px -6px #2A434A inset;
-    box-shadow: 1px 10px 8px -6px #2A434A inset;
-    margin: 0.75em 0;
-    width:75px;
-    height:3.417em;
-}
-.txtsearch
-{
+    #ulsbox #libutton {
+        background-color: #2A434A;
+        -moz-box-shadow: 1px 10px 8px -6px #2A434A inset;
+        -webkit-box-shadow: 1px 10px 8px -6px #2A434A inset;
+        box-shadow: 1px 10px 8px -6px #2A434A inset;
+        margin: 0.75em 0;
+        width: 75px;
+        height: 3.417em;
+    }
+
+.txtsearch {
     background-color: #EBEBEB;
     border: 0 none;
     color: #555555;
@@ -129,8 +123,7 @@ img
     width: 307px;
 }
 
-.txtsearchsel
-{
+.txtsearchsel {
     background-color: #EBEBEB;
     border: 0 none;
     color: #555555;
@@ -140,8 +133,7 @@ img
     width: 307px;
 }
 
-#btnSearch
-{
+#btnSearch {
     color: #A0C71E;
     display: block;
     font-size: 16px;
@@ -150,24 +142,23 @@ img
     text-decoration: none;
 }
 
-#libutton:hover
-{
+#libutton:hover {
     background-color: #FFAB74 !important;
     -moz-box-shadow: 0 18px 17px -5px #C35002 inset !important;
     -webkit-box-shadow: 0 18px 17px -5px #C35002 inset !important;
     box-shadow: 0 18px 17px -5px #C35002 inset !important;
 }
 
-#btnSearch:hover
-{
-    color:#FFFFFF;
-}*/
+#btnSearch:hover {
+    color: #FFFFFF;
+}
 /*jQuery.Autocomplete Override for States Combo*/
-/*.ui-combobox {
+.ui-combobox {
     position: relative;
     display: inline-block;
-    width:100%;
+    width: 100%;
 }
+
 .ui-combobox-toggle {
     position: absolute;
     top: 0;
@@ -177,46 +168,43 @@ img
     *height: 1.7em;
     *top: 0.1em;
 }
+
 .ui-combobox-input {
     margin: 0;
     padding: 0.3em;
 }
 
-.ui-button-text
-{
-    background: url('../images/darrow.png') no-repeat scroll 0 0 transparent;
-    float:none !important;
-    margin:0 !important;
+.ui-button-text {
+    background: url('../images/darrow.png') no-repeat scroll 0 center transparent;
+    float: none !important;
+    margin: 0 !important;
+    height: 80%;
 }
 
-.ui-combobox .ui-combobox-input, #combo
-{
-    background:none !important;
+.ui-combobox .ui-combobox-input, #combo {
+    background: none !important;
     font-size: 14px;
     margin: 11px 0 10px 6px;
     padding: 2px 0;
     width: 147px;
 }
 
-.ui-combobox .ui-corner-left, .ui-combobox .ui-corner-right
-{
-    border:0 none !important;
+.ui-combobox .ui-corner-left, .ui-combobox .ui-corner-right {
+    border: 0 none !important;
     background: none repeat scroll 0 0 transparent;
 }
 
-.ui-combobox a
-{
-    float:none !important;
-    margin:0 !important;
+.ui-combobox a {
+    float: none !important;
+    margin: 0 !important;
 }
 
-.ui-icon
-{
-    background:none !important;
-}*/
+.ui-icon {
+    background: none !important;
+}
 /*jQuery.Autocomplete Override*/
-/************************End of Search Box Styles *******/
 /***************** Header Nav Styles *******************/
+/************************End of Search Box Styles *******/
 #head div nav
 {
     float:left;
@@ -356,23 +344,27 @@ img
     #footerlinks li,#footerlinks li.two,#footerlinks li.three, #footerlinks li.four {margin:10px; width:45%; text-align: left;}
     #new-footer .sch-logo {float: left; width: 75%; clear: left; margin: 0 auto;}
     #new-footer .sch-org {float: right;  margin: 15px 10px 15px 0px; width: 22%; clear: right;}
+    #new-footer .sch-logo img { float:none;}
+    #new-footer .sch-logo .contactlink {
+        float: none;
+    }
     #new-footer  img {height:55px;}
 }
 @media only screen and (max-width: 590px)
 {
-    #new-footer .sch-logo { width: 65%; }
-    #new-footer .sch-org { width: 32%; }
+    #new-footer .sch-logo { width: 100%; }
+    #new-footer .sch-org { width: 100%; }
 }
 @media only screen and (max-width: 400px)
 {
-    #new-footer .sch-logo { width: 60%; }
-    #new-footer .sch-org { width: 37%; }
+    #new-footer .sch-logo { width: 100%; }
+    #new-footer .sch-org { width: 100%; }
     #new-footer  img {height:40px;}
 }
 @media only screen and (max-width: 360px)
 {
-    #new-footer .sch-logo { width: 55%; }
-    #new-footer .sch-org { width: 40%; }
+    #new-footer .sch-logo { width: 100%; }
+    #new-footer .sch-org { width: 100%; }
     #new-footer  img {height:35px;}
 }
 
@@ -391,7 +383,7 @@ img
         margin-top:0 !important; display:none;
     }
     #head a {
-        margin: 0.833em 3% 0.583em 0 !important; width:95%;
+        /*margin: 0.833em 3% 0.583em 0 !important;*/ width:95%;
     }
 
     #head div
@@ -399,37 +391,43 @@ img
         width:95%;
         height: auto;margin: 0.833em 3% 0.583em 0 !important;
     }
-    /*
-    #ulsbox #lisearch
-    {
-        width:94% !important;
+    #ulsbox #lisearch {
+        width: 94% !important;
     }
 
-    #ulsbox #listate
-    {
-        margin-left:0.75em;
-        width:65%;
+    #ulsbox #listate {
+        margin-left: 0.75em;
+        width: 65%;
     }
 
-    #ulsbox #libutton
-    {
-        width:29% !important; text-align: center;
+    #ulsbox #libutton {
+        width: 29% !important;
+        text-align: center;
     }
 
-    body.testimonials #ulsbox #libutton {width:22%;}
-    body.testimonials #btnSearch {padding:10px 5px;}
+    body.testimonials #ulsbox #libutton {
+        width: 22%;
+    }
+
+    body.testimonials #btnSearch {
+        padding: 10px 5px;
+    }
 
 
     #btnSearch {
         padding: 15px 0px !important;
-        float:none !important;
+        float: none !important;
     }
 
 
-    .ui-combobox .ui-combobox-input, #combo
-    {
+    .ui-combobox .ui-combobox-input, #combo {
         width: 78%;
-    }*/
+    }
+
+    .txtsearch {
+        font-size: 0.955em;
+    }
+    
 
 
 }
@@ -441,42 +439,48 @@ img
     {
         width:95%;
         height: auto;
-        margin: 0.833em 1% 0.833em 0;
+        /*margin: 0.833em 1% 0.833em 0;*/
     }
-
-    /*#ulsbox #lisearch
-    {
-        width:95%;
-    }
-
-    #ulsbox #listate
-    {
-        margin-left:0.75em;
-        width:65%;
-    }
-
-    #ulsbox #libutton
-    {
-        width:30%;
-    }
-
-    body.testimonials #ulsbox #libutton {width:22%;}
-    body.testimonials #btnSearch {padding:10px 5px;}
-
-
-
-    #btnSearch
-    {
-        padding: 10px 28%;
-    }
-
-    .ui-combobox .ui-combobox-input, #combo
-    {
-        width: 83%;
-    }*/
 
 
     #head img {max-width:100%; }
+    
+    .txtsearch {
+        font-size: 0.955em;
+    }
+
+    #ulsbox #lisearch {
+        width: 95%;
+    }
+
+    #ulsbox #listate {
+        margin-left: 0.75em;
+        width: 65%;
+    }
+
+    #ulsbox #libutton {
+        width: 30%;
+    }
+
+    body.testimonials #ulsbox #libutton {
+        width: 22%;
+    }
+
+    body.testimonials #btnSearch {
+        padding: 10px 5px;
+    }
+
+
+
+    #btnSearch {
+        padding: 10px 28%;
+    }
+
+    .ui-combobox .ui-combobox-input, #combo {
+        width: 83%;
+    }
+
+
 
 }
 @media only screen and (max-width: 769px)
@@ -505,6 +509,7 @@ img
     #footerlinks li,#footerlinks li.two,#footerlinks li.four {margin:10px 0; width:100%; text-align: center;}
 
 
+
 }
 /* #Mobile (Landscape)
 ================================================== */
@@ -512,42 +517,41 @@ img
 @media only screen and (min-width: 480px) and (max-width: 768px)
 {
 
-    #head div, #head a
-    {
-        width:95%;
+    #head div, #head a {
+        width: 95%;
         height: auto;
     }
 
-   /* #ulsbox #lisearch
-    {
-        width:95%;
+    #ulsbox #lisearch {
+        width: 95%;
     }
 
-    #ulsbox #listate
-    {
-        margin-left:0.75em;
-        width:65%;
+    #ulsbox #listate {
+        margin-left: 0.75em;
+        width: 65%;
     }
 
-    #ulsbox #libutton
-    {
-        width:30%;
+    #ulsbox #libutton {
+        width: 30%;
     }
 
-    body.testimonials #ulsbox #libutton {width:22%;}
-    body.testimonials #btnSearch {padding:10px 5px;}
+    body.testimonials #ulsbox #libutton {
+        width: 22%;
+    }
+
+    body.testimonials #btnSearch {
+        padding: 10px 5px;
+    }
 
 
 
-    #btnSearch
-    {
+    #btnSearch {
         padding: 10px 28%;
     }
 
-    .ui-combobox .ui-combobox-input, #combo
-    {
+    .ui-combobox .ui-combobox-input, #combo {
         width: 88%;
-    }*/
+    }
 
 
 
@@ -571,8 +575,16 @@ img
     #new-footer {height:auto;}
     #footerlinks {height:500px; padding:0;}
     #footerlinks li,#footerlinks li.two,#footerlinks li.four {margin:10px 0; width:100%; text-align: center;}
-    #new-footer .sch-logo {float: none; width: 250px; clear: left; margin: 0 auto;}
-    #new-footer .sch-org {float: none; margin: 25px auto; width: 250px; clear: right;}
+    #new-footer .sch-logo {float: none; width: 100%; clear: left; margin: 0 auto; text-align:center; height:auto; overflow:hidden;}
+    #new-footer .sch-org {
+        float: none;
+        margin: 25px auto;
+        width: 100%;
+        clear: right;
+        text-align: center;
+        height: auto;
+        overflow: hidden;
+    }
     #footerlinks li.three {margin:10px 0; width: 100%; text-align:center;}
     #new-footer  img {height:55px;}
 }

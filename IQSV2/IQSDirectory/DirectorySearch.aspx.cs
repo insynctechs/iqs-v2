@@ -45,6 +45,9 @@ namespace IQSDirectory
                 catch
                 {
                 }
+                ProductList = new List<DataRow>();
+                OtherList = new List<DataRow>();
+                CompanyList = new List<DataRow>();
                 DisplayResults();
             }
         }
@@ -93,7 +96,7 @@ namespace IQSDirectory
             Int16 RecCount = 10;
             TextInfo tInfo = new CultureInfo("en-US", false).TextInfo;
             this.Title = "IQS Directory - " + tInfo.ToTitleCase(CurQuery).ToString() + " Results";
-             string json = "", citycode = "";
+             string citycode = "";
             try
             {
                 citycode = getIPState("https://freegeoip.net/json/");
@@ -239,6 +242,7 @@ namespace IQSDirectory
             {
                 s = "";
                 return s;
+                
             }
 
 

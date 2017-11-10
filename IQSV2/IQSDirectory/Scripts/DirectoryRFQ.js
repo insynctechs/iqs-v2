@@ -265,7 +265,7 @@ function SetSelectedValues() {
 function fnMaxLength(val, Id) {
     var _varId = Id.id;
     var exp = val.which;
-    if (lTrim(document.getElementById(_varId).value).length > 4999) {
+    if (trim(document.getElementById(_varId).value).length > 4999) {
         if (navigator.appName == "Microsoft Internet Explorer") {
             event.keyCode = 0;
         }
@@ -304,4 +304,31 @@ function fnKeyCode(Code) {
             fnMaxLength(event, _vartextboxId);
         }
     }
-}   
+} 
+
+/*	Purpose : Left trimming the  space */
+function lTrim(LtrimValue) {
+    var length = LtrimValue.length;
+    var counter = 0;
+    for (counter = 0; counter < length; counter++) {
+        if (LtrimValue.charCodeAt(counter) != 32) break;
+    }
+    return LtrimValue.substring(counter, LtrimValue.length);
+}
+
+/*	Purpose : Right trimming the  space */
+function rTrim(RtrimValue) {
+    var count = 0;
+    for (counter = RtrimValue.length - 1; counter >= 0; counter--) {
+        if (RtrimValue.charCodeAt(counter) == 32)
+            count++;
+        else
+            break;
+    }
+    return RtrimValue.substring(0, RtrimValue.length - count)
+}
+
+/*	Purpose : Left and Right trimming the  space */
+function trim(val) {
+    return lTrim(rTrim(val));
+}

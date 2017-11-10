@@ -211,6 +211,8 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+    min-height:200px;
+    height:auto;overflow:hidden;
 }
 
 
@@ -247,3 +249,58 @@ a:hover.large {
 a:hover.small {
     box-shadow: 1px 1px 1px #888888;
 }
+/*  #Mobile (Portrait)
+================================================== */
+@media screen and (max-width: 1310px) {
+}
+
+@media screen and (max-width: 960px) {
+}
+
+@media only screen and (max-width: 930px) {
+}
+/* Note: Design for a width of 320px */
+@media only screen and (max-width: 767px) {
+
+    #content_wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: 94%;
+    }
+}
+
+@media only screen and (max-width:319px) {
+
+    #content_wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: 98%;
+    }
+
+    
+}
+
+/* #Mobile (Landscape)
+================================================== */
+/* Note: Design for a width of 480px */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    #content_wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+}
+
+@media only screen and (min-width: 1600px) {
+    
+}
+
+
+@media only screen and (max-width: 640px) {
+   
+}
+
+
+
