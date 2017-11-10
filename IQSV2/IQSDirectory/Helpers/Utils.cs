@@ -471,9 +471,239 @@ namespace IQSDirectory.Helpers
 
             return context.Request.ServerVariables["REMOTE_ADDR"];
         }
-
-
-
         #endregion
+
+        public static string ProfileEmailTestMode
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileEmailTestMode"].ToString();
+            }
+        }
+
+        public static string IQSEmployeeName
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["IQSEmployeeName"].ToString();
+            }
+        }
+        public static string ProfileFromEmailAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileFromEmailAddress"].ToString();
+            }
+        }
+        public static string ProfileCCEmailAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileCCEmailAddress"].ToString();
+            }
+        }
+        public static string ProfileEmailSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileEmailSubject"].ToString();
+            }
+        }
+        public static string ProfileNonExistEmailSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ProfileNonExistEmailSubject"].ToString();
+            }
+        }
+
+        public static string RFQTestMode
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RFQTestMode"].ToString();
+            }
+        }
+
+        public static string RFQFromMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RFQFromMailID"].ToString();
+            }
+        }
+
+        public static string RFQCCMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RFQCCMailID"].ToString();
+            }
+        }
+
+        public static string RFQAlternateMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RFQAlternateMailID"].ToString();
+            }
+        }
+
+        public static string RFQSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["RFQSubject"].ToString();
+            }
+        }
+
+        public static string AttachmentDetail
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["AttachmentDetail"].ToString();
+            }
+        }
+
+        public static string ReviewTestMode
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewTestMode"].ToString();
+            }
+        }
+        public static string ReviewUserRegisterMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterMailID"].ToString();
+            }
+        }
+        public static string ReviewUserRegisterSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterSubject"].ToString();
+            }
+        }
+        public static string ReviewUserRegisterTo
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterTo"].ToString();
+            }
+        }
+        public static string ReviewUserRegisterCC
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterCC"].ToString();
+            }
+        }
+        public static string ReviewUserRegisterBCC
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewUserRegisterBCC"].ToString();
+            }
+        }
+        public static string ReviewEmailNewSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewEmailNewSubject"].ToString();
+            }
+        }
+        public static string ReviewEmailNewReplySubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ReviewEmailNewReplySubject"].ToString();
+            }
+        }
+        public static string ForgotPasswordSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ForgotPasswordSubject"].ToString();
+            }
+        }
+
+
+        public static string ListYourCompanyEmailTestMode
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyEmailTestMode"].ToString();
+            }
+        }
+        public static string ListYourCompanyPremiumSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyPremiumSubject"].ToString();
+            }
+        }
+        public static string ListYourCompanyStandardSubject
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyStandardSubject"].ToString();
+            }
+        }
+        public static string ListYourCompanyFromMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyFromMailID"].ToString();
+            }
+        }
+        public static string ListYourCompanyToMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyToMailID"].ToString();
+            }
+        }
+        public static string ListYourCompanyCCMailID
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyCCMailID"].ToString();
+            }
+        }
+        
+
+
+        public static string TestEmailTo
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["TestEmailTo"].ToString();
+            }
+        }
+        public static string TestEmailCC
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["TestEmailCC"].ToString();
+            }
+
+        }
+        public static string TestEmailBCC
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["TestEmailBCC"].ToString();
+            }
+        }
+        public static string TestEmailSubjectPrefix
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["TestEmailSubjectPrefix"].ToString();
+            }
+        }
+
     }
 }
