@@ -37,8 +37,8 @@
 
         if ($("#frmMaster").valid()) {
             //$(this).prop('disabled', 'disabled');
+            $(this).text("Sending Email");
             list = [$('#txtCompanyName').val(), $('#txtCompanyPhone').val(), $('#txtCompanyWebsite').val(), $('#txtProductArea').val(), $('#txtContactName').val(), $('#txtContactTitle').val(), $('#txtContactEmailAddress').val(), $("#hdnCategoryName").val()];
-            alert($('#txtContactEmailAddress').val());
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
@@ -48,18 +48,23 @@
                 dataType: "json",
                 async: true,
                 cache: false,
-                success: function (msg) {
-                    if (msg.d == "Error1") {
+                success: function (msg) {                  
+                    if (msg.d.indexOf("Success!") != -1)
+                    {
+                        $("#contentHomePremium").hide();
+                        $("#successBlock").show();
+                        var str = msg.d.replace("Success!", "");
+                        $("#returnBlock").html(str);
+
+                    }
+                    else if (msg.d == "Error1") {
                         alert("Unexpected Error Occured. Please contact IQSDirectory");
                     }
                     else if (msg.d == "MailError") {
                         alert("Error sending in email");
                     }
-                    else { //success
-                        $("#contentHomePremium").hide();
-                        $("#successBlock").show();
-                        $("#returnBlock").html(msg.d);
-                        //alert("Unexpected Error Occured. Try Again!!");
+                    else { 
+                        alert("Unexpected Error Occured. Try Again!!");
                     }
                     
 

@@ -928,6 +928,7 @@ namespace IQSDirectory
                 string _ContactTitle = list[5];
                 string _ContactEmailAddress = list[6];
                 string _CategoryName = list[7];
+                string _Content = string.Empty;
 
                 string _strMailBody = null;
                 string _toAddress = string.Empty;
@@ -951,12 +952,34 @@ namespace IQSDirectory
                     _Subject = Utils.ListYourCompanyPremiumSubject;
                 }
                 _FromAddress = _ContactEmailAddress;
-                bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);   
+                bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, string.Empty, _Subject, _strMailBody, true);
+                
                 if (mailstatus == true)
-                    return "Success";
+                {
+                    string _strMail = System.Configuration.ConfigurationManager.AppSettings["ListYourCompanyToMailID"];
+                    string _strDateFormat = DateTime.Now.ToString("D");
+                    string _strTime = DateTime.Now.ToString("T");
+                    _Content = "<h2>Below is what you submitted to " + _strMail + " on " + _strDateFormat + " at " + _strTime+ "</h2>";
+                    _Content += "<div class=\"rTable\"><div class=\"rTableRow\"><div class=\"rTableHead\">Suggested IQS Directory Site</div><div class=\"rTableHead\">&nbsp;</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Company name</div><div class=\"rTableHead\">";
+                    _Content +=  _CompanyName+"</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Company Phone#</div><div class=\"rTableHead\">";
+                    _Content += _CompanyPhone + "</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Company Website</div><div class=\"rTableHead\">";
+                    _Content += _CompanyWebsite + "</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Contact Name</div><div class=\"rTableHead\">";
+                    _Content += _ContactName + "</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Contact Title</div><div class=\"rTableHead\">";
+                    _Content += _ContactTitle + "</div></div>";
+                    _Content += "<div class=\"rTableRow\"><div class=\"rTableHead\">Contact Email</div><div class=\"rTableHead\">";
+                    _Content += _ContactEmailAddress + "</div></div></div>";
+
+                    return "Success!" +_Content;
+                }
                 else
                     return "MailError";
-              
+
+
             }
             catch (Exception ex)
             {

@@ -42,19 +42,8 @@
 </div>
 
 <div id="successBlock" style="display:none">
-    <table>
-                    
-                    <tr style="height:80px;">
-                        <td class="page2listing" colspan="2">
-                            <img src="images/premium.gif" alt='IQSDirectory'/>
-                        </td>
-                    </tr>
-                    <tr style="height:40px;">
-                        <td class="page2listingHeadTxt" colspan="2">Thank you! Information will be sent to you shortly. </td>
-                    </tr>  
-                     </table>                  
-               
-     
+<div id="imghead"><img src="images/premium.gif" alt='IQSDirectory'/></div>
+<div class="page2listingHeadTxt">Thank you! Information will be sent to you shortly. </div>                   
 </div>
 <div id="returnBlock"></div>
 </asp:Content>
