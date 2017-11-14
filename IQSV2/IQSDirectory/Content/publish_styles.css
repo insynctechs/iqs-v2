@@ -1798,14 +1798,14 @@ body.pagetwolisting #contentList, body.pagetwolisting .contentListing, body.page
     padding-left: 40px;
     text-align:left;
 }
-    #contentHomePremium h1 {
+#contentHomePremium h1 {
         font-size: 2.7em;
         font-style: italic;
         text-transform: uppercase;
         color: #2a434a;
         text-shadow: 0px 1px 1px #fb9622;
         font-weight: bold;
-        }
+}
 
 #returnBlock
 {
@@ -1844,4 +1844,16 @@ body.pagetwolisting #contentList, body.pagetwolisting .contentListing, body.page
     clear: both;
     height: 0;
 }
+p.pagetwo-heading {
+    font-size: 36px;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    color: #000;
+    font-style: italic;
+    text-shadow: 2px 1px 1px #444;
+    background: -webkit-linear-gradient(#847B7B, #A09D9D);
+    -webkit-text-fill-color: transparent;
+    line-height: 100%;
+}
+
 		
