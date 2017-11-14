@@ -95,9 +95,10 @@
     </div>
 
    <div id="successBlock" style="display:none">
+       <p class="pagetwo-heading">Page 2 Listing</p>
         <div class="page2listingHeadTxt">You will be contacted soon to verify payment details.</div>                   
         </div>
-        <div id="returnBlock"></div>
+        <div id="returnBlock" style="display:none"></div>
     </div>
     </div>
 

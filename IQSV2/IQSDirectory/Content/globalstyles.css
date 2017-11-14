@@ -198,7 +198,7 @@ body.faq #lowerContainer #bodyCopy {margin:0 20px 8px 20px;}
 .social {float: right; margin: -32px 10px 0 0;}
 #orangeBanner{position:absolute;z-index:3;top:108px;right:-11px;height:32px;width:145px; background: url(../images/main_bg.png) no-repeat 0px -791px;}
 #orangeBanner span {font-size:12px !important;}
-#footer{position:relative; width: 100%;max-width:1024px;margin:0 auto;padding:0;color:#fff;background-color:#2a4249;clear:both; min-height:210px;}
+#footer{position:relative; width: 100%;max-width:1024px;margin:0 auto;padding:0;color:#fff;background-color:#2a4249;clear:both; /*min-height:210px;*/ float:left; }
 
 #footerlinks {float:none; width:98%; border-bottom: 1px solid #efefef; margin:0 auto; height:135px; text-align:left;}
 #footerlinks li {display:block; list-style-type:none; float:left; margin:10px 15px 10px 15px; line-height:1.5em;}
