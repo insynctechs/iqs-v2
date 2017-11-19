@@ -8,8 +8,8 @@
     <form id="form1" runat="server">
         <div>
    
-<link href="/Content/globalstyles.css" rel="stylesheet" />
-<link href="/Content/jquery-ui.css" rel="stylesheet" />
+<link href="./Content/globalstyles.css" rel="stylesheet" />
+<link href="./Content/jquery-ui.css" rel="stylesheet" />
 <!--<div id="dhl" class="home">-->
 <div id="browserShadow"></div>
 <div id="gradient"></div>

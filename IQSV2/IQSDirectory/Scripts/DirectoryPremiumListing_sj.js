@@ -33,18 +33,6 @@
         }
     });
 
-
-    $('#btnReset').on('click', function () {
-        $('#txtCompanyName').val('');
-        $('#txtCompanyPhone').val('');
-        $('#txtCompanyWebsite').val('');
-        $('#txtContactName').val('');
-        $('#txtContactTitle').val('');
-        $('#txtContactEmailAddress').val('');
-        $('#txtProductArea').val('');
-
-    });
-
     $('#btnSubmit').on('click', function () {
 
         if ($("#frmMaster").valid()) {
@@ -143,6 +131,17 @@ function SetAlphabet(obj)
      document.getElementById('hdnCategoryAlphabet').value = obj;
 }
 
+function Reset()
+{
+    document.getElementById('txtCompanyName').value = '';
+    document.getElementById('txtCompanyPhone').value = '';
+    document.getElementById('txtCompanyWebsite').value = '';
+    document.getElementById('txtContactName').value = '';
+    document.getElementById('txtContactTitle').value = '';
+    document.getElementById('txtContactEmailAddress').value = '';
+    //document.getElementById('Captcha1_txtCaptcha').value = '';
+    return false;
+}
 
 
 /********** To check the max length for Meta Description,Title tag, Tracking script and Keyword **********/

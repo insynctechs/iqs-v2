@@ -49,6 +49,99 @@
 #service-center .font-icons a.anchor {padding:0;}
 /* End Service Center Page Icon/Links */
 
+/* about us styles */
+body.about-us .premium-listing-centered, body.faq .premium-listing-centered {
+    margin: 0px auto 35px auto;
+    width: 100%;
+    max-width: 845px;
+    padding-bottom: 40px;
+    max-width: inherit !important;
+}
+
+body.about-us .listbutton1, body.about-us a .listbutton2, body.faq .listbutton1, body.faq a .listbutton2, .premium-listing-centered.testimonials .listbutton1, .premium-listing-centered.testimonial-page a .listbutton2 {
+    text-decoration: none;
+}
+
+body.about-us .premium-listing-centered .listbutton1, body.faq .premium-listing-centered .listbutton1, .premium-listing-centered.testimonial-page .listbutton1 {
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    font-style: italic;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 8px;
+    background: rgb(81,101,108);
+    display: block;
+    width: 390px;
+    height: 50px;
+    margin: 0 10px;
+    font-size: 2.0em;
+    line-height: 2.3em;
+    border: 1px solid #333;
+    float: left;
+    position: relative;
+    top: 4px;
+}
+
+body.about-us .premium-listing-centered .how-iqs-works, body.faq .premium-listing-centered .how-iqs-works, .premium-listing-centered.testimonial-page .how-iqs-works {
+    padding: 20px !important;
+    margin: auto;
+    text-align: center;
+    width: 130px;
+    background: #fff;
+    color: #f60 !important;
+    font-weight: bold;
+    font-size: 1.4em;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: auto;
+    border: 1px solid #ccc !important;
+}
+
+body.about-us .premium-listing-centered .listbutton2, body.faq .premium-listing-centered .listbutton2, .premium-listing-centered.testimonial-page .listbutton2 {
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+    border-radius: 8px;
+    background: #696868;
+    display: block;
+    height: 50px;
+    margin: 0 10px;
+    font-size: 2.0em;
+    line-height: 2.3em;
+    border: 1px solid #333;
+    float: left;
+    width: 325px;
+    float: right;
+    margin-right: 80px;
+}
+
+body.about-us .listbutton1:hover, body.faq .listbutton1:hover, .premium-listing-centered.testimonial-page .listbutton1:hover {
+    box-shadow: 0px 2px 3px 2px #888;
+}
+
+body.about-us .listbutton2:hover, body.faq .listbutton2:hover, .premium-listing-centered.testimonial-page .listbutton2:hover {
+    box-shadow: 0px 2px 3px 2px #575757;
+}
+
+body.about-us p.contact-button, body.faq p.contact-button, .premium-listing-centered.testimonial-page p.contact-button {
+    padding: 0;
+}
+
+    body.about-us p.contact-button img, body.faq p.contact-button img, .premium-listing-centered.testimonial-page p.contact-button img {
+        max-width: 170px;
+    }
+
+body.about-us .bolder, body.faq .bolder, .premium-listing-centered.testimonial-page .bolder {
+    font-size: 1.1em !important;
+} 
+
+
 .contactus-button {position:absolute; left:46.5%; top:-18px; max-width: 75px; border: 1px solid #f60; box-shadow:0px 0px 2px 0px #9f9f9f; display:none;}
 .contactus-button:hover {border: 1px solid #fff;}
 .news {float: left; width: 240px; position:relative; height:240px;}
@@ -231,7 +324,7 @@ body.home .alpha,body.secondary .alpha {display: block; margin-left: 5px; color:
 }
 
 
-body.home .sitesTab-wrapper {float: left; width: 100%; position: relative; margin-top:35px;}
+body.home .sitesTab-wrapper {float: left; width: 100%; position: relative; margin-top:75px;}
 .industry-association-homepage {position:absolute; bottom:-70px; right: 150px; line-height: 2em; z-index:200;}
 .industry-association-homepage a {color:#000 !important; font-weight:bold; text-decoration:underline !important; font-size:1.6em;}
 .industry-association-homepage a:hover {color:#f60;}

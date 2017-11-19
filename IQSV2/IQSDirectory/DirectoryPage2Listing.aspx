@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectoryPage2Listing.aspx.cs" Inherits="IQSDirectory.DirectoryPage2Listing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="Content/publish_styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />    
+<link href="./Content/publish_styles.css" rel="stylesheet" />
+<link rel="stylesheet" href="./Content/jquery-ui.css" />   
+<link href="./Content/jquery.fancybox-1.3.4.css" rel='Stylesheet' type='text/css' media='screen' />
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
 <script type="text/javascript" src="Scripts/DirectoryPage2Listing.js"></script>
+<script src='./Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
     <div id="outerWrapper">
     <div id="contentWrapper">
@@ -42,13 +44,15 @@
         <div class="step1">
           <h1>1) Select type of Page 2 listing:</h1>
           <p>Please select the listing option below that you would like. By selecting an amount, you are agreeing to pay the seleted price (on next page) which will cover a <b>12 months listing period.</b> Once we receive payment, your company will be live on the site within 3 business days.</p>
-          <input type="radio"  name="radioAmount"  Value="$199">$199 Standard listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span><br />
-          <input type="radio"  name="radioAmount"   Value="$499" >$499 Top listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span>
-          <br /><br />
+          <label for="radioAmount" ><input type="radio"  name="radioAmount"  Value="$199">$199 Standard listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span><br /> </label>
+          <label for="radioAmount" ><input type="radio"  name="radioAmount"   Value="$499" >$499 Top listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span></label>
+          <br />
+            <label id="radioAmount-error" class="error" for="radioAmount"></label>
+          <br />
         <div class="clearfix" ></div>
         <div class="dividerH "> </div>
         <div class=" divLeft">
-          <h1>3) Enter your contact information:</h1>
+          <h1>2) Enter your contact information:</h1>
           <div id="profileList ">
             <div class="listContInfo ">
               <p class="labelFrmlist">Company Name:<span class="requireD">*</span>
@@ -80,13 +84,13 @@
             <div class="dividerH "> </div>
             <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
             <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
-
-            
+              <br />
+    
               <input type="button" ID="btnSubmit" name="btnSubmit" Class="buttonBg" value="Submit" />
               &nbsp;
               <input type="button" class="buttonBg"  value="Reset" id="btnreset" onclick="return ResetStandardListing();" />
               <p>By submitting this form you agree to be included in the Industrial Quick Search&reg; mailing list, but may opt out this list at any time</p>
-            
+                      
             <div class="reqText"> <span class="requireD"> * Indicates Required Fields</span> </div>
          
         </div>
@@ -94,13 +98,35 @@
       <div class="clearfix" ></div>
     </div>
 
-   <div id="successBlock" style="display:none">
+   
+    </div>
+        
+    </div>
+    </div>
+    <div id="successBlock" style="display:none">
        <p class="pagetwo-heading">Page 2 Listing</p>
         <div class="page2listingHeadTxt">You will be contacted soon to verify payment details.</div>                   
         </div>
-        <div id="returnBlock" style="display:none"></div>
-    </div>
-    </div>
+   <div id="returnBlock" style="display:none"></div>
+     <script type='text/javascript'>
+         $(document).ready(function () {
+             $.get($('#hdnWebURL').val() + 'StateSearch.html', function (data) {
+                 $('#secsbox').html(data);
+             });
 
+
+             $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+             $('.lnkmail').bind('contextmenu', function (e) { return false; });
+
+         });
+    </script>
     
+    <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
+    <input type='hidden' id='hdnCategorySK' value='0' />
+    <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+   
+    
+    
+   
+
 </asp:Content>

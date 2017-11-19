@@ -1811,6 +1811,7 @@ body.pagetwolisting #contentList, body.pagetwolisting .contentListing, body.page
 {
     text-align:left;
     min-height:300px;
+    display:none;
 }
 .rTable
 {

@@ -54,7 +54,7 @@
                 cache: false,
                 success: function (msg) {
                     if (msg.d.indexOf("Success!") != -1) {
-                        $("#contentList").hide();
+                        $("#outerWrapper").hide();
                         $("#successBlock").show();
                         var str = msg.d.replace("Success!", "");
                         $("#returnBlock").html(str);
