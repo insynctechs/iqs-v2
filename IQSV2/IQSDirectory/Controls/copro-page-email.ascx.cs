@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
 using IQSDirectory.Helpers;
 using System.Data;
-using System.Net.Mail;
-using System.Text;
-using System.Web.UI.HtmlControls;
+
 namespace IQSDirectory.Controls
 {
     public partial class copro_page_email : System.Web.UI.UserControl
@@ -19,8 +21,15 @@ namespace IQSDirectory.Controls
             
             if (!Page.IsPostBack)             
             {
-                string ClientSk = "57425";
+                //string ClientSk = "57425";
                 //string ClientSk = Request.QueryString["ClientSK"].ToString();
+                string url = HttpContext.Current.Request.Url.AbsolutePath;
+                if (url.IndexOf("/", url.Length - 1) > -1)
+                {
+                    url = url.Remove(url.Length - 1);
+                }
+                string copro = url.Split('/').Last();
+                string ClientSk = copro.Substring(copro.LastIndexOf('-')).Trim('-');
                 var urlGetId = string.Format("api/Clients/GetClientNameEmailById?ClientSk=" + ClientSk);
                 DataTable dtEmail = wHelper.GetDataTableFromWebApi(urlGetId);
                 clientEmail = dtEmail.Rows[0]["EMAIL_ADDRESS"].ToString();

@@ -12,7 +12,10 @@ namespace IQSDirectory
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            WebApiHelper wHelper = new WebApiHelper();
+            ApiPath = wHelper.ApiUrl;
+            CategorySK = "0";
+            RootPath = "./";
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -34,5 +37,8 @@ namespace IQSDirectory
             */
         }
 
+        public string RootPath { get; set; }        
+        public string CategorySK { get; set; }
+        public string ApiPath { get; set; }
     }
 }

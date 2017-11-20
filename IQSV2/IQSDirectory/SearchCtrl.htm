@@ -1,0 +1,76 @@
+﻿<html>
+<head>
+    <title>Form for Search</title>
+    <script type="text/javascript" language="javascript">
+        var txtval = 'Enter A Product/Service Category Or Company Name';
+        $(document).ready(function () {
+            $('#home_search_q_Dir1').val(txtval);
+            $('#home_search_q_Dir1').focus(function () {
+                if ($('#home_search_q_Dir1').val() == txtval) {
+                    $(this).attr('class', 'home_search_q_Dir');
+                    $(this).val('');
+                }
+            });
+            $('#home_search_q_Dir1').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this).attr('class', 'home_search_q_Dir_w');
+                    $(this).val(txtval);
+                }
+            });
+            $("#home_search_q_Dir1").autocomplete({
+                source: function (request, response) {
+                    var list = [$('#home_search_q_Dir1').val()];
+                    var jsonText = JSON.stringify({ list: list });
+                    $.ajax({
+                        type: "POST",
+                        url: $('#hdnRootPath').val() + "controls/reviewmanager.aspx/getsearchresults",
+                        data: jsonText,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        cache: false,
+                        success: function (data) {
+                            if (data != "Invalid") {
+                                response($.parseJSON(data));
+                            }
+                        },
+                        failure: function () {
+                            alert('Request Failed. Try Again.');
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#home_search_q_Dir1').val(ui.item.value);
+                    submitForm();
+                }
+            });
+            $("#home_search_q_Dir1").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    submitForm();
+                }
+            });
+            $('#home_search_submit_Dir').click(function () {
+                submitForm();
+            });
+        });
+        function submitForm() {
+            if ($.trim($("#home_search_q_Dir1").val()).length > 0 && $("#home_search_q_Dir1").val() != txtval) {
+                $("#home_search_q_Dir1").val($.trim($("#home_search_q_Dir1").val()));
+                var srhurl = $('#hdnRootPath').val() + "directorysearch.aspx?q=" + encodeURIComponent($.trim($("#home_search_q_Dir1").val())) + "&s=1";
+                window.location = srhurl;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <input id="home_search_q_Dir1" class="home_search_q_Dir_w" type="text" size="40" name="home_search_q_Dir1" accesskey="/" tabindex="1" />
+    <a href="#" id="home_search_submit_Dir" class="submit" tabindex="2">Search</a>
+    <input type='hidden' id='hdnSrhRootPath' />
+</div>
+</body>
+</html>

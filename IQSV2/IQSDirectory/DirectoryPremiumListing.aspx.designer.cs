@@ -22,15 +22,6 @@ namespace IQSDirectory {
         protected global::System.Web.UI.WebControls.Button btnSubmit1;
         
         /// <summary>
-        /// hdnCategoryName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdnCategoryName;
-        
-        /// <summary>
         /// hdnCategoryAlphabet control.
         /// </summary>
         /// <remarks>
@@ -47,5 +38,14 @@ namespace IQSDirectory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdnAlphabetColor;
+        
+        /// <summary>
+        /// hdnCategoryName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdnCategoryName;
     }
 }

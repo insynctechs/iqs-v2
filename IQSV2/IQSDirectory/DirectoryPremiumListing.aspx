@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectoryPremiumListing.aspx.cs" Inherits="IQSDirectory.DirectoryPremiumListing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="Content/publish_styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />    
+<link href="./Content/publish_styles.css" rel="stylesheet" />
+<link rel="stylesheet" href="./Content/jquery-ui.css" />    
+<link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
-<script type="text/javascript" src="Scripts/DirectoryPremiumListing.js"></script>
+<script type="text/javascript" src="./Scripts/DirectoryPremiumListing.js"></script>
+<script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="contentHomePremium">
 <h1>Premium Advertising Features &amp; Benefits on IQS Directory</h1>
@@ -18,7 +20,7 @@
 
 <p class="labelFrmlist1">Company Name:<span class="requireD">*</span><input type="text" ID="txtCompanyName" name="txtCompanyName" class="lisTextbox"  /></p>
 <p class="labelFrmlist1">Company Phone:<span class="requireD">*</span><input type="text" ID="txtCompanyPhone" name="txtCompanyPhone" class="lisTextbox"  /></p>     
-<p class="labelFrmlist1">Company Web Site URL:<span class="requireD">*</span><input type="text"  ID="txtCompanyWebsite" name="txtCompanyWebsite" class="lisTextbox" /></p>   
+<p class="labelFrmlist1">Company Web Site URL:<span class="requireD">*</span><input type="text"  ID="txtCompanyWebsite" name="txtCompanyWebsite" class="lisTextbox" value="http://" /></p>   
 <p class="labelFrmlist1">Product/Service Area: <input type="text"  ID="txtProductArea" name="txtProductArea" class="lisTextbox"  /></p>
 <p class="labelFrmlist1">Contact Name:<span class="requireD">*</span> <input type="text"   ID="txtContactName" name="txtContactName"  class="lisTextbox" /></p>       
 <p class="labelFrmlist1">Contact Title:<input type="text"  ID="txtContactTitle" name="txtContactTitle"  class="lisTextbox" /></p>  
@@ -30,13 +32,12 @@
 <div class="listSubmit">
 <!-- <asp:Button ID="btnSubmit1" runat="server" CssClass="buttonBg" Text="Submit" OnClientClick="return Validate();" OnClick="btnSubmit_Click"/> -->
 <input type="button" id="btnSubmit" EnableViewState="false" class="buttonBg" value="Submit"  />
-<input type="button" class="buttonBg"  value="Reset" id="btnReset" onclick="return Reset();" />
+<input type="button" class="buttonBg"  value="Reset" id="btnReset"  />
 </div>
 <div class="reqText">
 <span class="requireD"> * Indicates Required Fields </span>
 </div>
 </div>
-<input type="hidden" id="hdnCategoryName" name="hdnCategoryName" runat="server" />
 <!--<input type="hidden" id="hdnCategoryAlphabet" name="hdnCategoryAlphabet" runat="server" />
 <input type="hidden" id="hdnAlphabetColor" name="hdnAlphabetColor" runat="server" />-->
 </div>
@@ -46,4 +47,21 @@
 <div class="page2listingHeadTxt">Thank you! Information will be sent to you shortly. </div>                   
 </div>
 <div id="returnBlock"></div>
+    <script type='text/javascript'>
+        $(document).ready(function () {            
+            $.get($('#hdnWebURL').val() + 'StateSearch.html', function (data) {
+                $('#secsbox').html(data);
+            });
+
+            $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+            $('.lnkmail').bind('contextmenu', function (e) { return false; });
+
+        });        
+</script>
+<input type="hidden" id="hdnCategoryName" name="hdnCategoryName" runat="server" />
+<input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
+<input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
+<input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+
 </asp:Content>
+

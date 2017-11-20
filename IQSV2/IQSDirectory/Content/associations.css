@@ -1,0 +1,229 @@
+@charset "UTF-8";
+/* CSS Document */
+#content_1.content {width:100%;}
+h1{font-size:24px;font-weight:bold !important; color:#000 !important; text-align:center; margin: 20px 0 20px 0px !important;}
+h2{font-size:18px; text-decoration:underline; font-weight:bold !important; color:#000 !important;}
+li span{color:#000 !important; font-weight:bold !important;}
+ul li{padding:3px}ul{list-style:none}
+.link span{display:block;color:#000}
+.link a{padding-left:20px;color:#000 !important;text-decoration:none;font-weight:bold;}
+.link a:hover{color:#f60 !important;font-weight:bold;}
+.inner1 p a,.inner2 p a, .inner3 p a {text-decoration:underline !important; display:inline !important;}
+.inner1 p,.inner2 p, .inner3 p {font-size: 16px !important;}
+.outer{margin:0 auto;width:100%}
+img {max-width:100%;}
+
+select {vertical-align:top;}
+.contactus-button {display:block;}
+body.faq .contactus-button,body.about-us .contactus-button,#testimonials .contactus-button {display:none;}
+body.associations-main .inner1 {clear:both;float:left;display:inline-block;width:33%; text-align:left;}
+body.associations-main .inner2{float:left;display:inline-block;width:33%; text-align:left;}
+body.associations-main .inner3{float:left;display:inline-block;width:33%; text-align:left;}
+
+body.faq .inner1,body.faq .inner2,body.faq .inner3 {text-align:left;}
+body.faq .inner1 h3,body.faq .inner2 h3,body.faq .inner3 h3 {font-size:18px; font-family: Georgia, Times, "Times New Roman", serif; text-decoration:underline; font-weight:bold !important; color:#000 !important;}
+.inner1{clear:both;float:left;display:inline-block;width:100%; text-align:center;}
+.inner2{float:left;display:inline-block;width:100%; text-align:center;}
+.inner3{float:left;display:inline-block;width:100%; text-align:center;}
+.footer-breadcrumb {text-align:center; margin:10px 0 20px 0;}
+#logo {float:left;}
+.social {position:absolute; top:140px; left:37%; z-index:200;}
+#headsearchdiv, #headsearch {width: 60.7em !important; float:right;}
+#footerlinks li span {color: #efefef !important;}
+
+body.associations-main .engineering,body.associations-main .purchasing {font-size:21px; text-decoration:underline; font-weight:bold; color:#000; display:block; width:49.5%; text-align:center; float:left; margin: 10px 0 20px 0; font-family:Georgia, Times, "Times New Roman", serif;}
+
+.alpha-associations .alpha-list, 
+.list-associations .alpha-list {width:100%; float:left; clear:both;}
+
+.alpha-anchor {margin:10px 0 0 88px; float:left;}
+.alpha-anchor a {padding:0 !important;}
+.alpha-anchor span {display:inline !important;}
+.sort-alpha {float:left; background: #adc1c8; padding:10px 40px 0px 40px;}
+
+.alpha-list.w-description {width:100%; background:#adc1c8;}
+.alpha-list.w-description li {float:left; width:100%; overflow:hidden; border:1px solid #000; margin:0 0 10px 0; padding:0; background:#fff;}
+.alpha-list.w-description li a {float:left; display:block; margin-left:10px; padding:5px !important; text-decoration:underline !important;}
+.alpha-list.w-description li .category {float:right; display:block; border-left:1px solid #000; padding:5px; background:#000; color:#fff !important;}
+.alpha-list.w-description li .description {display:block; clear:both; margin:0; padding:5px; border-top:1px solid #000;}
+
+div.alpha-left {float:left; width:24.8%; border-right:1px solid #000; margin-bottom: -5000px; padding-bottom:5000px;}
+.alpha-list.w-description li .alpha-left a {margin:0 !important; padding:0 !important; float:none;}
+div.alpha-r {float:right; width:75%;}
+div.alpha-left img {margin:10px auto; display:block;}
+
+.alpha-associations .link1, .alpha-associations .link2,
+.list-associations .link1, .list-associations .link2 {position:relative; font-weight:bold; font-family:Georgia, Times, "Times New Roman", serif;font-size:1.0em; text-decoration:none; background:#F1F1F1; padding:20px; border:1px solid #333; width:auto; margin-right:20px; text-align:center; display:block; float:left; border-radius:5px; text-decoration:none;}
+
+.alpha-associations .link a.link1,
+.alpha-associations .link a.link2 {color:#000 !important; position:relative; font-weight:bold; font-family:Georgia, Times, "Times New Roman", serif;font-size:1.0em; text-decoration:none; background: #F1F1F1; padding:10px 20px; margin-bottom: 10px;border:1px solid #333; cursor:pointer; width:auto; margin-right:20px; text-align:center; display:block; float:left; border-radius:5px;}
+
+.list-associations .link a.link1,.list-associations .link a.link2 {color:#000 !important; position:relative; font-weight:bold; font-family:Georgia, Times, "Times New Roman", serif;font-size:1.0em; text-decoration:none; background: #F1F1F1; padding:10px 20px; margin: 0 auto 10px auto; border:1px solid #333; cursor:pointer; width:300px; text-align:center; display:block; float:none; border-radius:5px;}
+
+
+.list-associations .alpha-list li {border:1px solid #000; margin:10px 10px 10px 0; padding:0; background:#ADC1C8; position:relative; overflow:hidden; }
+
+
+.list-associations .alpha-list li a:hover {text-decoration:underline; color:#333 !important;}
+.list-associations li span.industry {float:right; border-bottom: 1px solid #000; border-left: 1px solid #000; margin:0; padding:5px; background:#F5DF8E; position:absolute; right:0;}
+.alpha-associations .alpha-list li span.desc, .list-associations .alpha-list li span.desc {clear:both; display:block; padding:10px;}
+.contain-it {position:relative;}
+.alpha-associations .sort-industry, .list-associations .sort-industry {clear:both;}
+
+/* Modal Box and Form */
+#popup1 p.heading {color:#A55C2B; font-weight:bold; font-size:16px; padding:0; margin:0;}
+p.free-heading {float:none; margin:0; padding: 0;}
+.free-heading a {color: #fff; font-weight:bold; text-decoration: none; background: #263b42; border: 1px solid #000; padding: 5px 20px; display: block; float: none; margin: auto; text-align:center; width:100%; max-width:350px; position:absolute; z-index:500; left:0; right:0; top:-18px;}
+.free-heading a:hover {color:#f60; text-decoration:underline;}
+#popup1 .form-label {display:block; font-weight: bold; font-size: 14px; color: #999;}
+#popup1 .form-value {display:block; width:99%; padding:5px 0;}
+#popup1 #submit-reset {padding:0; margin:0;}
+#popup1 #submit-reset input {text-align: center; font-weight: bold; color: #fff; background: #A55C2B; padding: 10px 0; width:98%; display:block; border: 1px solid #ccc;}
+#popup1 #submit-reset input:hover {background:#000; cursor:pointer;}
+.modal-body form {overflow:hidden;}
+
+ 
+#popup1 .modal-body .form {width:98%; font-size:12px;}	 
+#popup1.modal-box {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  width: 45%;
+  background: #efefef;
+  border-bottom: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  height:620px;
+  margin:auto;
+  min-width:290px;
+}
+
+#popup1.modal-box header,
+#popup1.modal-box .modal-header {
+  padding: 1.25em 1.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+#popup1.modal-box header h3,
+#popup1.modal-box header h4,
+#popup1.modal-box .modal-header h3,
+#popup1.modal-box .modal-header h4 { margin: 0; }
+
+#popup1.modal-box .modal-body { padding: 1em 1.5em; }
+
+#popup1.modal-box footer,
+#popup1.modal-box .modal-footer {
+  padding: 1em;
+  border-top: 1px solid #ddd;
+  background: rgba(0, 0, 0, 0.02);
+  text-align: right;
+  width:96.5%;
+  clear:both;
+}
+
+.modal-overlay {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+#popup1 a.close {
+  line-height: 1;
+  font-size: 1.5em;
+  position: absolute;
+  top: 3%;
+  right: 2%;
+  text-decoration: none;
+  color: #bbb;
+}
+
+#popup1 a.close:hover {
+  color: #222;
+  -webkit-transition: color 1s ease;
+  -moz-transition: color 1s ease;
+  transition: color 1s ease;
+}
+
+@media only screen and (max-width: 1099px) {
+#header {background-color:#1d2e35; !important; height:213px !important;}
+#headerContent {background-color:#1d2e35; !important; height:213px !important;}
+#anniversary {display:none;}
+#orangeBanner {top: 228px !important;}
+#orangeBannerTestimonials {top: 227px !important;}
+.social {top:260px;}
+}
+
+@media only screen and (max-width:1000px) {.alpha-associations .outer {width:98%;}
+}
+
+@media only screen and (max-width:950px){h1 {width:100% !important; margin:20px 0 20px 0px !important}}
+
+@media only screen and (max-width:900px) {
+body.associations-main .sort-industry .inner1,
+body.associations-main .sort-industry .inner2,
+body.associations-main .sort-industry .inner3 {width:100%;}
+body.associations-main .list-associations {width:96%; margin:0 auto;}
+}
+
+@media only screen and (max-width:890px){
+#header #headsearch {margin: 0 5px 0 0 !important;}
+#ulsbox #lisearch {max-width: 510px !important;}
+#ulsbox #listate {width:81% !important;}
+#content_1.content {padding:0 !important;}
+.free-heading a {position:relative; top:38px; max-width:inherit;}
+div.alpha-left {float:left; width:100%; border-right: none; border-bottom: 1px solid #000; margin-bottom: 0; padding-bottom:0;}
+.alpha-list.w-description li .alpha-left a,.alpha-list.w-description li a {float:none; text-align:center;}
+.alpha-list.w-description li a {margin-left:0;}
+.alpha-list.w-description li .category {width:100%; text-align:center;}
+div.alpha-r {width:100%;}
+
+}
+
+@media only screen and (max-width:850px) {
+.alpha-list.w-description {width:100%;}
+.alpha-list.w-description li .category {border-top:1px solid #000; clear:both;}
+
+}
+
+@media only screen and (max-width:775px) {
+.alpha-anchor {margin:10px 0 0 10px; float:none; clear:both;}
+}
+
+@media only screen and (max-width:720px){.inner1,.inner2,.inner3{display:block;width:100%}}
+
+@media only screen and (max-width:670px){
+.social {top:115px !important; left:0 !important;}
+#header {height:243px !important;}
+#headerContent {height:243px !important;}
+#orangeBanner {top: 258px !important;}
+#orangeBannerTestimonials {top: 257px !important;}
+#header #headsearch {margin: 40px 5px 0 0 !important;}
+body.associations-main .list-associations .sort-industry .engineering,body.associations-main .list-associations .sort-industry .purchasing {width:100%;}
+}
+
+@media only screen and (max-width:620px){	
+#ulsbox #lisearch {width:92% !important;}
+#ulsbox #listate {width:66.5% !important;}
+#header #headsearch {margin: 20px 5px 0 0 !important;}
+}
+
+@media only screen and (max-width:430px) {
+#content_1.content {padding-left:0 !important;} 
+h1 {margin:60px 0 20px 0px !important}
+.list-associations .link a.link1, .list-associations .link a.link2 {width:200px;}
+.contactus-button {left:37%; max-width:65px;}
+}
+
+

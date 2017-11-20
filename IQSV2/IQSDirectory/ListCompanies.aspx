@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="<%: RootPath %>Content/common_styles.css" rel="stylesheet" media='screen'/>
-    
-
     <div id="outerWrapper">
         <div class="clearfix"></div>
         <div id="panelHome">

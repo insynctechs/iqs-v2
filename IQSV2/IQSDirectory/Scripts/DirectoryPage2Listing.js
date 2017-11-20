@@ -21,7 +21,7 @@
             }
         },
         messages: {
-            radioAmount : {required: "Required"}
+            radioAmount : {required: "Required"},
             txtCompanyName: { required: "Required " },
             txtCompanyPhone: { required: "Required ", phoneRule: "Invalid" },
             txtCompanyWebsite: { required: "Required ", webRule: "Invalid" },
@@ -42,7 +42,7 @@
         if ($("#frmMaster").valid()) {
             //$(this).prop('disabled', 'disabled');
             $(this).text("Sending Email");
-            list = [$('#txtCompanyName').val(), $('#txtCompanyPhone').val(), $('#txtCompanyWebsite').val(), $('#txtDescription').val(), $('#txtContactName').val(), $('#txtContactTitle').val(), $('#txtContactEmailAddress').val(), $("#hdnCategoryName").val(), $('input[name=radioAmount]:checked').data('radioAmount')];
+            list = [$('#txtCompanyName').val(), $('#txtCompanyPhone').val(), $('#txtCompanyWebsite').val(), $('#txtDescription').val(), $('#txtContactName').val(), $('#txtContactTitle').val(), $('#txtContactEmailAddress').val(), $("#hdnCategoryName").val(), $('input[name=radioAmount]:checked').val()];
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
@@ -54,10 +54,10 @@
                 cache: false,
                 success: function (msg) {
                     if (msg.d.indexOf("Success!") != -1) {
-                        $("#contentList").hide();
+                        $("#outerWrapper").hide();
                         $("#successBlock").show();
-                        //var str = msg.d.replace("Success!", "");
-                        //$("#returnBlock").html(str);
+                        var str = msg.d.replace("Success!", "");
+                        $("#returnBlock").html(str);
 
                     }
                     else if (msg.d == "Error1") {
