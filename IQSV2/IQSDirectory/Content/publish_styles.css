@@ -449,6 +449,16 @@ p.headTop{color:#000;margin-bottom:3px;font-size:9pt;font-weight:bold;margin-top
 .RFQSend{border-style:groove; background-color:#e7e7e7; /*background:url('../commonimages/rfqsend.gif');*/width:60px;height:17px;cursor:pointer;padding-bottom:3px;font-weight:bold;font-size:11px;margin-left:5px}
 .ie7 .RFQSend{border-style:groove; background-color:#e7e7e7; /*background:url('../commonimages/rfqsend.gif');*/width:60px;height:17px;cursor:pointer;padding-top:2px;padding-bottom:0;font-weight:bold;font-size:11px;margin-left:5px}
 .error {    color: red;    vertical-align: top;    width: 200px;    padding-left: .5em;}
+input[type='radio'].error {
+    width: 50px;
+    outline: 1px solid; color:red; margin-bottom:15px;
+}
+textarea.error {
+    width: 600px;
+    display: block;
+    margin-bottom: 15px; text-align:left; margin-left:0;
+
+}
 .RFQRequest{border-style:none;background:url('../commonimages/rfqrequest.gif');width:60px;height:17px;cursor:pointer}
 .regionalHeadTop{border-bottom:#666 1px solid;padding-bottom:0;margin-bottom:3px}
 .ie8 .regionalHeadTop{border-bottom:#666 1px solid;padding-bottom:0;margin-bottom:10px;min-height:90px;background-color:#e3e7ea}
