@@ -158,7 +158,7 @@
             //alert($("#weburl").val());
             if ($.trim($("#txtsearch").val()).length > 0 && $("#txtsearch").val() != txtval) {
                 $("#txtsearch").val($.trim($("#txtsearch").val()));               
-                var srhurl = $('#hdnSrhRootPath').val()+"search/" + encodeURIComponent($.trim($("#txtsearch").val())) + "/1/" + encodeURIComponent($.trim($("#comboval").val()));
+                var srhurl = $('#hdnSrhRootPath').val() + "search/" + encodeURIComponent($.trim($("#txtsearch").val())) + "/1/" + encodeURIComponent($.trim($("#comboval").val()));
                 //var srhurl = $('#hdnSrhRootPath').val() + "directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
 
                 window.location = srhurl;

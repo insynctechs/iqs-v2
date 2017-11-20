@@ -171,6 +171,7 @@
                 $('#secsbox').html(data);
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');
+                $('#combo').val('<%: StateName %>, <%: CountryCode %>');
             });
 
             <% foreach (var cr in ClientRatings)

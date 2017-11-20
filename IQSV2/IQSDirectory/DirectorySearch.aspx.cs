@@ -60,32 +60,40 @@ namespace IQSDirectory
                 url = url.Remove(url.Length - 1);
                 Response.Redirect(url);
             }
-            string srh = url.Substring(url.IndexOf("search/")).Replace("search/", "");
-            object[] queryVals = srh.Split('/');
-            if (queryVals.Length >= 2)
+            if (url.IndexOf("search/") != -1)
             {
-                CurQuery = queryVals[0].ToString();
-                CurPage = queryVals[1].ToString();
-                CurState = "";
-                RootPath = "../../";
-                if (queryVals.Length > 2)
+                string srh = url.Substring(url.IndexOf("search/")).Replace("search/", "");
+                object[] queryVals = srh.Split('/');
+                if (queryVals.Length >= 2)
                 {
-                    CurState = queryVals[2].ToString();
-                    RootPath = "../../../";
+                    CurQuery = queryVals[0].ToString();
+                    CurPage = queryVals[1].ToString();
+                    CurState = "";
+                    RootPath = "../../";
+                    Response.Write(CurQuery);
+                    if (queryVals.Length > 2)
+                    {
+                        CurState = queryVals[2].ToString();
+                        RootPath = "../../../";
+                    }
+                    return true;
                 }
-                return true;
+                else if (queryVals.Length == 1)
+                {
+                    CurQuery = queryVals[0].ToString();
+                    CurPage = "1";
+                    CurState = "";
+                    RootPath = "../";
+                    return true;
+                }
+                else
+                {
+                    RootPath = "../";
+                    return false;
+                }
             }
-            else if (queryVals.Length == 1)
+            else
             {
-                CurQuery = queryVals[0].ToString();
-                CurPage = "1";
-                CurState = "";
-                RootPath = "../";
-                return true;
-            }
-            else 
-            {
-                RootPath = "../";
                 return false;
             }
 
