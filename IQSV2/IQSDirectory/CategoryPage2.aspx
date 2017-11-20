@@ -61,7 +61,7 @@
                         <span><%: drTAd["PHONE"] %></span>
                     </h3>
                     <!--<a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>-->
-                    <a rel='nofollow' class='btncopro' alt='<%: drTAd["FORMATED_NAME"] %> Profile' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro' alt='<%: drTAd["FORMATED_NAME"] %> Profile' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%=RootPath %><%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drTAd["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
