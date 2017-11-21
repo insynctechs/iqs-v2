@@ -44,8 +44,10 @@
         <div class="step1">
           <h1>1) Select type of Page 2 listing:</h1>
           <p>Please select the listing option below that you would like. By selecting an amount, you are agreeing to pay the seleted price (on next page) which will cover a <b>12 months listing period.</b> Once we receive payment, your company will be live on the site within 3 business days.</p>
+          <p>
           <label for="radioAmount" ><input type="radio"  name="radioAmount"  Value="$199">$199 Standard listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span><br /> </label>
           <label for="radioAmount" ><input type="radio"  name="radioAmount"   Value="$499" >$499 Top listing - 1st available<span style="color:red;">&nbsp;*</span> <span style="color:red;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please note, pricing is per category selection.</b></span></label>
+          </p>
           <br />
             <label id="radioAmount-error" class="error" for="radioAmount"></label>
           <br />
@@ -54,7 +56,7 @@
         <div class=" divLeft">
           <h1>2) Enter your contact information:</h1>
           <div id="profileList ">
-            <div class="listContInfo ">
+            <div>
               <p class="labelFrmlist">Company Name:<span class="requireD">*</span>
                 <input type="text" ID="txtCompanyName" name="txtCompanyName" class="lisTextbox" />
               </p>
@@ -75,22 +77,24 @@
               </p>
             </div>
             <div class="dividerH "> </div>
-            <div class="companyDesc ">
-              <h1>4) Enter a company description:</h1>
+            <div class="step1">
+              <h1>3) Enter a company description:</h1>
               <p>Please type in a 40 word description that best describes your company's services and capabalities. This text will be used as your listing's descriptive text. (This description may be edited by the IQSDirectory editorial staff to better fit the format of the relevent product directory).</p>
-              <textarea id="txtDescription" name="txtDescription"  cols="100" rows="10" ></textarea>
+             <p><textarea id="txtDescription" name="txtDescription"  cols="100" rows="10" ></textarea></p>
             </div>
             <div class="clearfix" ></div>
             <div class="dividerH "> </div>
+             <div class="step4">
             <div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
             <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 
+                 
               <br />
     
               <input type="button" ID="btnSubmit" name="btnSubmit" Class="buttonBg" value="Submit" />
               &nbsp;
               <input type="button" class="buttonBg"  value="Reset" id="btnreset" onclick="return ResetStandardListing();" />
               <p>By submitting this form you agree to be included in the Industrial Quick Search&reg; mailing list, but may opt out this list at any time</p>
-                      
+                 </div>     
             <div class="reqText"> <span class="requireD"> * Indicates Required Fields</span> </div>
          
         </div>

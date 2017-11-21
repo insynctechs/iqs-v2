@@ -63,7 +63,7 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
 </script>
 <script type='text/javascript'>
     $(document).ready(function () {
-        $.get('statesearch.htm', function (data) {
+        $.get('StateSearch.html', function (data) {
             $('#headsearch').html(data);
         });
     });
@@ -759,9 +759,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <input type='hidden' id='hdnRootPath' value='' />
 <input type='hidden' id='hdnCategorySK' value='0' />
+    <input type='hidden' id='hdnApiPath' value='http://216.250.147.171/IQSCore/' />
+    <input type='hidden' id='hdnSrhRootPath' value="http://216.250.147.171/IQSBeta2017/" />
+
 <!-- InstanceBeginEditable name="scripts" -->
-<input type='hidden' id='hdnRootPath' value='' />
-<input type='hidden' id='hdnCategorySK' value='0' />
 <!-- Google Code for Remarketing Tag -->
 
 <!-- InstanceEndEditable -->
