@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 using System.Web.Routing;
+
 
 namespace IQSDirectory
 {
@@ -26,6 +28,9 @@ namespace IQSDirectory
             {
                 return true;
             }
+            HttpContext.Current.Response.StatusCode = 301;
+            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.End();
             return false;
         }
     }
@@ -51,6 +56,9 @@ namespace IQSDirectory
             {
                 return true;
             }
+            HttpContext.Current.Response.StatusCode = 301;
+            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.End();
             return false;
         }
     }
@@ -99,6 +107,9 @@ namespace IQSDirectory
                     }
                 }
             }
+            HttpContext.Current.Response.StatusCode = 301;
+            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.End();
             return false;
         }
     }

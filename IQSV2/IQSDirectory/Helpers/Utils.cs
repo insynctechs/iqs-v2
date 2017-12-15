@@ -473,6 +473,22 @@ namespace IQSDirectory.Helpers
         }
         #endregion
 
+        public static string ApiURL
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["Api"].ToString();
+            }
+        }
+
+        public static string WebURL
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["WebURL"].ToString();
+            }
+        }
+
         public static string ProfileEmailTestMode
         {
             get
@@ -480,6 +496,7 @@ namespace IQSDirectory.Helpers
                 return System.Configuration.ConfigurationManager.AppSettings["ProfileEmailTestMode"].ToString();
             }
         }
+
 
         public static string IQSEmployeeName
         {

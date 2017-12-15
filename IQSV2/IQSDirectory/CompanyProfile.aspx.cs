@@ -70,7 +70,7 @@ namespace IQSDirectory
             CompRating = (Convert.ToInt32(dr["RATINGAVG"].ToString()) - 1).ToString();
             CompCount = dr["RATINGCOUNT"].ToString(); 
             ShowReviews = dr["SHOW_REVIEWS"].ToString();
-            ClientDesc = Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
+            ClientDesc = new HtmlString(Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1));
             if (dr["COPRO_VIDEO"].ToString() != "")
             {
                 string sName = "";
@@ -111,7 +111,7 @@ namespace IQSDirectory
                 LogoLink = "";
             }
 
-            Phone = "";
+            Phone = ""; Fax = "";
             foreach (DataRow drPhone in dtPhone.Rows)
                 Phone += drPhone.ItemArray[0].ToString() + ",";
             if (Phone.Length > 0)
@@ -122,7 +122,8 @@ namespace IQSDirectory
             
 
             Address = (dr["CITY"].ToString() != "") ? dr["CITY"].ToString() : string.Empty;
-            Address = (dr["STATE"].ToString() != "") ? Address.Trim() + ", " + dr["STATE"].ToString() : dr["STATE"].ToString();
+            Address = (dr["STATE"].ToString() != "") ? Address.Trim() + ", " + dr["STATE"].ToString() : Address;
+            Address = (dr["ZIP"].ToString() != "") ? Address.Trim() + " " + dr["ZIP"].ToString() : Address;
             if (dr["ADDRESS"].ToString() != "")
                 Address = dr["ADDRESS"].ToString().Trim() + "<br/>" + Address;
             MapAddress  = dr["Address"].ToString() + "," + dr["CITY"].ToString() + "," + dr["STATE"].ToString() + "," + dr["ZIP"].ToString();
@@ -331,7 +332,7 @@ namespace IQSDirectory
         public string ClientNameFormatted { get; set; }
         public string CompRating { get; set; }
         public string CompCount { get; set; }
-        public string ClientDesc { get; set; }
+        public IHtmlString ClientDesc { get; set; }
         public string ShowReviews { get; set; }
         public string ApiPath { get; set; }
         public string ShareURL { get; set; }

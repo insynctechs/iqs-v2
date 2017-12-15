@@ -68,7 +68,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: stAd["FORMATED_NAME"] %>' title='<%: stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', this)"><%: stAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' alt='<%: stAd["FORMATED_NAME"] %>' title='<%: stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: stAd["HITSLINK"] %>')"><%: stAd["CLIENT_NAME"] %></a>
                         <span><%: stAd["CITY_STATE"] %></span>
                         <span><%: stAd["PHONE"] %></span>
                     </h3>
@@ -114,7 +114,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: nghAd["FORMATED_NAME"] %>' title='<%: nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this)"><%: nghAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' alt='<%: nghAd["FORMATED_NAME"] %>' title='<%: nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"><%: nghAd["CLIENT_NAME"] %></a>
                         <span><%: nghAd["CITY_STATE"] %></span>
                         <span><%: nghAd["PHONE"] %></span>
                     </h3>
@@ -193,4 +193,10 @@
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+     <!-- HitsLink.com tracking script -->
+    <script>
+        var wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
+        document.getElementById('wa_u').src = wa_hp + '://counter.hitslink.com/track.js';
+    </script>
+    <script type="text/javascript" id="wa_u" defer></script> 
 </asp:Content>

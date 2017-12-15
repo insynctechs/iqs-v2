@@ -16,12 +16,25 @@ namespace IQSDirectory
     public partial class CategoryPage1 : System.Web.UI.Page
     {
         WebApiHelper wHelper = new WebApiHelper();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                CheckCategory();           
+                InitializeVars();
+                CheckCategory();
+                
             }
+        }
+
+        private void InitializeVars()
+        {
+            Tier1Advertisements = new List<DataRow>();
+            Tier2Advertisements = new List<DataRow>();
+            ProfileLinks = new List<DataRow>();
+            RelatedCategories = new List<DataRow>();
+            ClientRatings = new List<DataRow>();
+            Articles = new List<DataRow>();
         }
 
         private void CheckCategory()
@@ -30,7 +43,9 @@ namespace IQSDirectory
             if(url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
+                Response.StatusCode = 301;
                 Response.Redirect(url);
+                Response.End();
             }
             RootPath = "";
             CategoryName = url.Split('/').Last();
@@ -38,7 +53,18 @@ namespace IQSDirectory
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
             var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + CategoryName);
             DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
-            DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
+            if (dt.Rows.Count > 0)
+            {
+                //Response.Write("Category");
+                DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
+            }
+            else
+            {
+                Response.StatusCode = 301;
+                Response.Redirect(Utils.WebURL, true);
+                Response.End();
+            }
+
         }
 
         private void DisplayCategory(string CategoryID)
@@ -51,8 +77,13 @@ namespace IQSDirectory
                 
                 GenerateRelatedCategories(ds.Tables[1]);
                 GenerateProfile(ds.Tables[2]);
-                GenerateAdvertisements(ds.Tables[3]);
-                GenerateIndustryInformation(ds.Tables[5]);
+                if (ds.Tables[0].Rows[0]["DISPLAY_PRODUCT"].ToString() == "Y")
+                    GenerateProductPage(ds.Tables[3], ds.Tables[2], ds.Tables[5]);
+                else
+                {
+                    GenerateAdvertisements(ds.Tables[3]);
+                    GenerateIndustryInformation(ds.Tables[5]);
+                }
                 GenerateMetaTagsAndScripts(ds.Tables[4],ds.Tables[6]);
                 DisplayArticles();
             }
@@ -322,6 +353,179 @@ namespace IQSDirectory
             }
         }
 
+        #region "GenerateProductPage"
+        private void GenerateProductPage(DataTable dtAdvertisements, DataTable dtWebsiteLinks, DataTable dtSection)
+        {
+            //string _defaultvalue = "##UserInput"; GetConfigValuesbyKey("ProductPagePrefixTag");
+            //int _initialTag = 1; Convert.ToInt32(GetConfigValuesbyKey("TagInitialValue"));
+            string _content = string.Empty;
+            
+            string inputvalue = string.Empty;
+            
+            DataRow[] drProd = dtSection.Select("SECTION_ID ='Product Description'");
+            string productPage = "";
+            if (drProd.Length > 0)
+            {
+                productPage = drProd[0]["DESCRIPTION"].ToString();
+            }
+            DataRow[] drInd = dtSection.Select("SECTION_ID ='Industry Information'");
+            if (drInd.Length > 0)
+            {
+                
+                productPage = productPage.Replace("##UserInput_IndustryInformation", drInd[0]["DESCRIPTION"].ToString());
+                ProductInformation =    new HtmlString(productPage);
+            }
+            
+            /*//strDirectoryFile.AppendLine(_row.Length.ToString());
+            if (_row.Length > 0)
+            {
+                ProductInformation = _row[0].ItemArray[2].ToString();
+                for (int index = 0; index <= dtAdvertisements.Rows.Count - 1; index++)
+                {
+                    int AdvertisementSK = Int32.Parse(dtAdvertisements.Rows[index].ItemArray[1].ToString());
+                    DataRow[] websiteLinks = dtWebsiteLinks.Select("ADVERTISEMENT_SK =" + AdvertisementSK);
+                    DataRow[] EmailWebSiteLinks = dtWebsiteLinks.Select("ADVERTISEMENT_SK =" + AdvertisementSK + "and  ENTITY_ATTRIBUTE_ID='E-MAIL'");
+                    string rfq_Path = ConfigurationManager.AppSettings["DirectoryRFQPath"].ToLower();
+                    rfq_Path += "?CategorySK=" + CategorySK;
+                    rfq_Path += "&amp;ClientSK=" + dtAdvertisements.Rows[index].ItemArray[4].ToString();
+
+                    string clientname = dtAdvertisements.Rows[index].ItemArray[5].ToString();
+                    imagePath = ConfigurationManager.AppSettings["DirectoryImagePath"].ToString().ToLower() + dtCategoryDesc.Rows[0].ItemArray[0].ToString().ToLower() + "/images/" + dtAdvertisements.Rows[index].ItemArray[2].ToString().ToLower();
+
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("RFQImageTag");
+                    //************ removed target = blank  on 24th mar 2010 ****************
+                    _content = _content.Replace(inputvalue, "<a  href='" + rfq_Path + "'><img alt=\"IQSDirectory\" title =\"IQSDirectory\" src='../commonimages/requestforbtn.gif' border='0' /></a>");
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("bannerImageTag");
+                    _content = _content.Replace(inputvalue, "<img alt=\"IQSDirectory\" id='PlaceHolder_Tier1'  src='" + imagePath + "' />");
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("CompanyNameTag");
+                    if (strOutBoundTrackingscript.Trim().Length > 0)
+                    {
+                        //************ removed target = blank  on 24th mar 2010 ****************
+                        if (strOutBoundTrackingscript.Contains("msnTracker"))
+                            _content = _content.Replace(inputvalue, "<a  alt='" + clientname + "' id='" + "ID" + dtAdvertisements.Rows[index].ItemArray[1].ToString() + "' onClick=\"outboundTracker(); msnTracker();\"  href='" + strDirectoryCompanyProfilePath + Utils.ReplaceContent(EmailWebSiteLinks[0]["DESCRIPTION"].ToString(), 0) + "' >" + clientname + "</a><br />");
+                        else
+                            _content = _content.Replace(inputvalue, "<a  alt='" + clientname + "' id='" + "ID" + dtAdvertisements.Rows[index].ItemArray[1].ToString() + "' onClick=\"outboundTracker()\"  href='" + strDirectoryCompanyProfilePath + Utils.ReplaceContent(EmailWebSiteLinks[0]["DESCRIPTION"].ToString(), 0) + "' >" + clientname + "</a><br />");
+                    }
+                    else
+                        //************ removed target = blank  on 24th mar 2010 ****************
+                        _content = _content.Replace(inputvalue, "<a alt='" + clientname + "' id='" + "ID" + dtAdvertisements.Rows[index].ItemArray[1].ToString() + "'  href='" + strDirectoryCompanyProfilePath + Utils.ReplaceContent(clientname, 3) + "' >" + clientname + "</a><br />"); //Utils.ReplaceContent(dtAdvertisements.Rows[index].ItemArray[3].ToString(), 0) 
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("AddressTag");
+                    _content = _content.Replace(inputvalue, dtAdvertisements.Rows[index].ItemArray[6].ToString());
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("FaxTag");
+                    _content = _content.Replace(inputvalue, dtAdvertisements.Rows[index].ItemArray[7].ToString());
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("RFQLinkTag");
+                    //************ removed target = blank  on 24th mar 2010 ****************
+                    _content = _content.Replace(inputvalue, "<a  href='" + rfq_Path + "'>Request For Quote</a>");
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("AdvDescriptionTag");
+                    _content = _content.Replace(inputvalue, dtAdvertisements.Rows[index].ItemArray[0].ToString());
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("EmailIDTag");
+                    _content = _content.Replace(inputvalue, "<a href='mailto:" + dtAdvertisements.Rows[index].ItemArray[9].ToString() + "'>" + dtAdvertisements.Rows[index].ItemArray[9].ToString() + "</a>");
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("ZipTag");
+                    _content = _content.Replace(inputvalue, dtAdvertisements.Rows[index].ItemArray[10].ToString());
+                    inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("ClientURLTag");
+                    _content = _content.Replace(inputvalue, (dtAdvertisements.Rows[index].ItemArray[3].ToString().StartsWith("http://")) ? "<a href='" + dtAdvertisements.Rows[index].ItemArray[3].ToString() + "'>" + dtAdvertisements.Rows[index].ItemArray[3].ToString().Substring(8, dtAdvertisements.Rows[index].ItemArray[3].ToString().Length - 8) + "</a>" : "<a href='" + dtAdvertisements.Rows[index].ItemArray[3].ToString() + "'>" + dtAdvertisements.Rows[index].ItemArray[3].ToString() + "</a>");
+
+
+                    foreach (DataRow drLinks in websiteLinks)
+                    {
+                        string _link = string.Empty;
+                        switch (drLinks["ENTITY_ATTRIBUTE_ID"].ToString())
+                        {
+                            case "E-MAIL":
+                                string strEmailDes = Convert.ToString(drLinks["DESCRIPTION"]);
+                                strEmailDes = strEmailDes.Replace("®", "&reg;");
+                                strDirectoryFile.AppendLine("");
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("EmailLinkTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = "<a  href='" + strDirectoryCompanyProfilePath.ToLower() + strEmailDes.ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "DRAWING":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("DrawingTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a  rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a  rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "CATALOG":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("CatalogTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a  rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "E-COMMERCE":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("E-commerceTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "CERTIFICATION":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("CertificationTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a  rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "DISTRIBUTOR":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("DistributorsTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "PRESS RELEASE":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("PressreleaseTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "REPS":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("RepsTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a  rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "CAPABILITIES":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("CapabilitiesTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a  rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "EQUIPMENT":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("EquipmentTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a  rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                            case "VIDEO URL":
+                                inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("VideourlTag");
+                                //************ removed target = blank  on 24th mar 2010 ****************
+                                _link = (drLinks["DESCRIPTION"].ToString().ToLower().StartsWith("http://")) ? "<a  rel='nofollow' href='" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>" : "<a  rel='nofollow' href='http://" + drLinks["DESCRIPTION"].ToString().ToLower() + "' >" + drLinks["ENTITY_ATTRIBUTE_ID"].ToString() + "</a>";
+                                _content = _content.Replace(inputvalue, _link);
+                                break;
+                        }
+                    }
+                    if (GetConfigValuesbyKey("Seperatordisplayflag") == "Y")
+                    {
+                        inputvalue = _defaultvalue + (_initialTag) + GetConfigValuesbyKey("SeperatorTag");
+                        _content = _content.Replace(inputvalue, "<div class=\"borderlist clearfix\"></div>");
+                    }
+                    _initialTag = _initialTag + 1;
+                }
+            }
+            if (_rowindustryinformation.Length > 0)
+            {
+                inputvalue = _defaultvalue + GetConfigValuesbyKey("IndustryInformationcontentTag");
+                _content = _content.Replace(inputvalue, _rowindustryinformation[0].ItemArray[2].ToString());
+            }
+            if (GetConfigValuesbyKey("Seperatordisplayflag") == "N")
+                _content = _content + "<div class=\"borderlist clearfix\"></div>";
+            strDirectoryFile.AppendLine(_content);*/
+
+            // generateAdditionalCompaniesLinks();
+        }
+        #endregion
+
+
+
+
         public string RootPath { get; set; }
         public string CategoryName { get; set; }
         public string CategorySK { get; set; }
@@ -338,6 +542,7 @@ namespace IQSDirectory
         public List<DataRow> ProfileLinks { get; set; }
         public List<DataRow> Articles { get; set; }
         public IHtmlString IndustryInformation { get; set; }
+        public IHtmlString ProductInformation { get; set; }
         public List<DataRow> ClientRatings { get; set; }
         public string ApiPath { get; set; }
     }

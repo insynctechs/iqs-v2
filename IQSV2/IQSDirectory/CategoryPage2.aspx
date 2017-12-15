@@ -56,7 +56,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', this)"><%: drTAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: drTAd["HITSLINK"] %>')"><%: drTAd["CLIENT_NAME"] %></a>
                         <span><%: drTAd["CITY_STATE"] %></span>
                         <span><%: drTAd["PHONE"] %></span>
                     </h3>
@@ -122,4 +122,10 @@
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+     <!-- HitsLink.com tracking script -->
+    <script>
+        var wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
+        document.getElementById('wa_u').src = wa_hp + '://counter.hitslink.com/track.js';
+    </script>
+    <script type="text/javascript" id="wa_u" defer></script> 
 </asp:Content>

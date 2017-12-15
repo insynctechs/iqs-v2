@@ -60,7 +60,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', this)"><%: drT1Ad["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', this);hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')"><%: drT1Ad["CLIENT_NAME"] %></a>
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>
@@ -108,7 +108,7 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: drT2Ad["FORMATED_NAME"] %>' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', this)"><%: drT2Ad["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' alt='<%: drT2Ad["FORMATED_NAME"] %>' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', this);hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');"><%: drT2Ad["CLIENT_NAME"] %></a>
                         <span><%: drT2Ad["CITY_STATE"] %></span><span><%: drT2Ad["PHONE"] %></span>
                     </h3>
                     <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
@@ -157,24 +157,31 @@
             <% } %>
         });
     </script>
-
+   <% if (ProductInformation != null)
+       { %> 
+    <section id='prodinfo'>
+        <%: ProductInformation %>
+        </section>
+    <% }
+    else
+    { %>
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
             <a class='addcomp' href='<%: CategoryName %>/<%: CategoryName %>-2'><span>More <%: DisplayName %> Companies</span>
                 <img src='images/barrow.png' alt='More <%: DisplayName %> Companies' title='More <%: DisplayName %> Companies'></a>
         </header>
     </section>
-
+    
     <section id='secartmain'>
         <!-- Dynamic Articles and Press Releases -->
         <% if (Articles.Count > 0)
-            { %>
+    { %>
         <section id="secarticle">
             <h2 id="secarthead">ARTICLES AND PRESS RELEASES</h2>
 
             <ul>
                 <% foreach (var art in Articles)
-                    { %>
+    { %>
                 <li>
 
                     <h3><a href="<%: art["URL"].ToString() %>"
@@ -193,13 +200,14 @@
         </section>
         <% } %>
     </section>
-
-    <section id='secininfo'>
+     <section id='secininfo'>
         <header>Industry Information</header>
         <article>
             <%: IndustryInformation %>
         </article>
     </section>
+    <% } %>
+   
 
     <script type='text/javascript'>
         $(document).ready(function () {
@@ -220,4 +228,12 @@
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+    <!-- HitsLink.com tracking script -->
+    <script>
+        var wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
+        document.getElementById('wa_u').src = wa_hp + '://counter.hitslink.com/track.js';
+    </script>
+    <script type="text/javascript" id="wa_u" defer></script> 
 </asp:Content>
+ 
+

@@ -30,7 +30,10 @@ namespace IQSDirectory.Helpers
             {
                 var res = response.Content.ReadAsStringAsync().Result;
                 DataSet dt = JsonConvert.DeserializeObject<DataSet>(res);
-                return dt.Tables[0];
+                if (dt.Tables.Count > 0)
+                    return dt.Tables[0];
+                else
+                    return null;
             }
             return null;
         }

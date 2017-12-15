@@ -453,6 +453,19 @@ table, tr, td {max-width:100% !important;}
     box-shadow: -4px 12px 7px -9px #959595 inset;
 }
 
+#prodinfo {
+    clear: both;
+    float: left;
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+    
+    -moz-box-shadow: -4px 12px 7px -9px #959595 inset;
+    -webkit-box-shadow: -4px 12px 7px -9px #959595 inset;
+    box-shadow: -4px 12px 7px -9px #959595 inset;
+    text-align:left;
+}
+
 #secininfo header
 {
     font-size: 32px;
@@ -1229,3 +1242,693 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
 
 }
 
+/* P3 Page Styling */
+#p3.wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px auto 0 auto;
+    position: relative;
+}
+
+    #p3.wrapper .seperator {
+        width: 100%;
+        float: left;
+    }
+
+    #p3.wrapper .container {
+        width: 95%;
+        max-width: 1300px;
+        margin: 10px auto 0 auto;
+    }
+
+
+        /* Single P3 Page */
+        #p3.wrapper .container .centered-block {
+            width: 100%;
+            float: left;
+            min-height: 1000px;
+        }
+
+            #p3.wrapper .container .centered-block .company-block {
+                text-align: center;
+            }
+
+        #p3.wrapper .container .left-block {
+            width: 50%;
+            float: left;
+        }
+
+#p3.two.wrapper .container .left-block {
+    min-height: 850px;
+}
+
+#p3.wrapper .container .left-block h4 {
+    text-align: left;
+}
+
+    #p3.wrapper .container .left-block h4 a {
+        color: #444;
+    }
+
+        #p3.wrapper .container .left-block h4 a:hover {
+            color: #000;
+        }
+
+#p3.wrapper .container .left-block p {
+    margin: 5px 0px;
+    font-size: 12px;
+}
+
+    #p3.wrapper .container .left-block p a {
+        color: #444;
+    }
+
+    #p3.wrapper .container .left-block p img {
+        max-width: 50%;
+    }
+
+#p3.wrapper .container .right-block {
+    width: 45%;
+    float: left;
+    margin-top: 30px;
+    position: relative;
+}
+
+
+#p3.wrapper .container .company-block {
+    margin: 0 auto;
+    clear: left;
+    width: 95%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+#p3.wrapper .container #last.company-block {
+    border-bottom: none;
+}
+
+#p3.wrapper .container #single-display {
+    display: none;
+}
+
+#p3.wrapper .container .webpreview {
+    width: 1010px;
+    height: 910px;
+    margin: 0px 0 0 0;
+    padding: 0;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    -moz-transform: scale(0.58, 0.58);
+    -moz-zoom: 0.5;
+    -webkit-transform: scale(0.58, 0.58);
+    -webkit-zoom: 0.5;
+    -o-transform: scale(0.58, 0.58);
+    -o-zoom: 0.5;
+    -ms-transform: scale(0.58, 0.58);
+    -ms-zoom: 0.98;
+    transform: scale(0.58, 0.58);
+    -moz-transform-origin: center;
+    -webkit-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    left: -190px;
+    top: -130px;
+}
+
+#p3.wrapper #stop-block.clear {
+    width: 98%;
+    clear: both;
+    margin: 0 auto;
+}
+
+#p3-single {
+    width: 85%;
+    margin: 0px auto;
+    height: 650px;
+}
+
+    #p3-single.mumetal #preview_iframe.foriframe {
+        transform: scale(0.60,0.48);
+        -webkit-transform: scale(0.60,0.48);
+    }
+
+    #p3-single .foriframe#preview_iframe {
+        position: relative;
+        width: 1050px;
+        height: 910px;
+        transform: scale(0.80,0.68);
+        -webkit-transform: scale(0.80,0.68);
+        -ms-zoom: 1;
+    }
+
+#p3-multiple .company-block {
+    width: 43%;
+    float: left;
+    clear: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-right: 40px;
+}
+
+#p3-multiple #last.company-block {
+    border-bottom: none;
+}
+
+#p3-multiple #preview_iframe.foriframe {
+    transform: scale(0.53,0.53);
+    -webkit-transform: scale(0.53,0.53);
+    -ms-zoom: 1;
+    width: 1050px;
+    height: 910px;
+}
+
+#p3-multiple .frame-container {
+    width: 53%;
+    margin: 50px auto 0 0;
+    overflow: visible;
+    height: 550px;
+}
+
+#p3-multiple .company-block img {
+    max-width: 90%;
+}
+
+#p3-multiple.threelistings .company-block p, #p3-multiple.threelistings .company-block h4 {
+    margin: 3px 0;
+}
+
+#p3-multiple.threelistings .frame-container {
+    width: 53%;
+    margin: 50px auto 0 0;
+    overflow: visible;
+    height: 550px;
+    position: relative;
+    top: 150px;
+}
+
+#p3-multiple.threelistings .company-block img {
+    max-width: 50%;
+}
+
+#p3-multiple.threelistings .company-block {
+    width: 40%;
+    float: left;
+    clear: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-right: 40px;
+    position: relative;
+    z-index: 500;
+}
+
+#p3-multiple.fourlistings .company-block p, #p3-multiple.fourlistings .company-block h4 {
+    margin: 3px 0;
+}
+
+#p3-multiple.fourlistings .frame-container {
+    width: 53%;
+    margin: 50px auto 0 0;
+    overflow: visible;
+    height: 550px;
+    position: relative;
+    top: 150px;
+}
+
+#p3-multiple.fourlistings .company-block img {
+    max-width: 50%;
+}
+
+#p3-multiple.fourlistings .company-block {
+    width: 40%;
+    float: left;
+    clear: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-right: 40px;
+}
+.seperator {
+    background: url(../images/featuredcompanybackground.jpg) repeat-x;
+    text-align: center;
+    height: 20px;
+    vertical-align: top;
+    color: black;
+    padding-bottom: 25px
+}
+.BlackBolder {
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+}
+/* P3 Media Queries */
+@media screen and (min-width: 1500px) and (max-width: 2499px) {
+    #p3.wrapper .container .webpreview {
+        -moz-transform: scale(0.80, 0.80);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.80, 0.80);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.80, 0.80);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.80, 0.80);
+        -ms-zoom: 0.98;
+        transform: scale(0.80, 0.80);
+        left: 0;
+        top: 0;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: 500px;
+        top: 200px;
+    }
+
+    #p3.wrapper .container .left-block {
+        width: 40%;
+        min-height: 800px;
+        margin-top: 100px;
+    }
+
+    #p3.wrapper.two .container .left-block {
+        margin-top: 50px;
+    }
+
+    #p3.wrapper.p3-three .container .left-block {
+        width: 40%;
+        min-height: 800px;
+        margin-top: 200px;
+    }
+
+    body.page #paddle-wheel-page .left-block {
+        margin-top: 0;
+    }
+
+    body.page #coriolis-page .left-block {
+        margin-top: 70px;
+    }
+
+    body.page #orifice-plate-page .left-block {
+        margin-top: 50px;
+    }
+
+    body.page #vortex-page .left-block {
+        margin-top: 20px;
+    }
+
+    body.page #ultrasonic-page .left-block {
+        margin-top: 50px;
+    }
+
+    body.page #massflow-page .left-block {
+        margin-top: 30px;
+    }
+
+    body.page #electromagnetic-page .left-block {
+        margin-top: 50px;
+    }
+
+    body.page #turbine-page .left-block {
+        margin-top: 50px;
+    }
+
+    #p3.wrapper {
+        width: 100%;
+        max-width: inherit;
+    }
+
+        #p3.wrapper.three .company-block {
+            margin: 50px auto;
+        }
+
+        #p3.wrapper.two .company-block {
+            margin: 100px auto;
+            line-height: 2.0em;
+        }
+}
+
+@media screen and (max-width: 1750px) {
+    #p3.wrapper .container .webpreview {
+        left: -80px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: 290px;
+        top: 130px;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    #p3.wrapper .container .left-block {
+        width: 36%;
+    }
+}
+
+@media screen and (max-width: 1499px) {
+    #p3.two.wrapper .container .left-block {
+        min-height: 600px;
+    }
+
+    #p3.wrapper.wrapper.two .container .webpreview, #p3.wrapper.wrapper.three .container .webpreview {
+        top: -210px;
+    }
+
+    #p3.wrapper .container .webpreview {
+        width: 1010px;
+        height: 910px;
+        margin: 0px 0 0 0;
+        padding: 0;
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        -moz-transform: scale(0.58, 0.58);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.58, 0.58);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.58, 0.58);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.58, 0.58);
+        -ms-zoom: 0.98;
+        transform: scale(0.58, 0.58);
+        -moz-transform-origin: center;
+        -webkit-transform-origin: center;
+        -o-transform-origin: center;
+        -ms-transform-origin: center;
+        transform-origin: center;
+        left: -190px;
+        top: -130px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: 220px;
+        top: 50px;
+    }
+
+    #p3.wrapper .container .centered-block {
+        min-height: 800px;
+    }
+
+    #p3.wrapper {
+        width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        #p3.wrapper .container .left-block {
+            width: 50%;
+            float: left;
+            min-height: inherit;
+            margin-top: 0;
+        }
+
+        #p3.wrapper.wrapper.three .container .left-block {
+            width: 50%;
+            float: left;
+            min-height: 600px;
+            margin-top: 0px;
+        }
+}
+
+@media screen and (max-width: 1350px) {
+    #p3.wrapper .container .webpreview {
+        -moz-transform: scale(0.55, 0.53);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.55, 0.53);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.55, 0.53);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.55, 0.53);
+        -ms-zoom: 0.98;
+        transform: scale(0.55, 0.53);
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: 130px;
+    }
+}
+
+@media screen and (max-width: 1245px) {
+
+    #p3.wrapper .container .webpreview {
+        -moz-transform: scale(0.50, 0.50);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.50, 0.50);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.50, 0.50);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.50, 0.50);
+        -ms-zoom: 0.98;
+        transform: scale(0.50, 0.50);
+        left: -200px;
+        top: -150px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: 80px;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    #p3.wrapper .container {
+        max-width: 95%;
+    }
+
+        #p3.wrapper .container .left-block {
+            width: 100%;
+            float: left;
+        }
+
+        #p3.wrapper .container .right-block {
+            width: 100%;
+            float: left;
+            display: none;
+        }
+
+        #p3.wrapper .container .company-block {
+            height: 800px;
+        }
+
+    #p3.wrapper.wrapper.two .container .company-block, #p3.wrapper.wrapper.three .container .company-block {
+        height: auto;
+    }
+
+    #p3.two.wrapper .container .left-block {
+        min-height: inherit;
+    }
+
+    #p3.wrapper .container #single-display {
+        display: block;
+        position: absolute;
+        top: 150px;
+        left: 0px;
+    }
+
+    #p3.two.wrapper .container #single-display {
+        display: block;
+        position: absolute;
+        top: 250px;
+        left: 0px;
+    }
+
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.8,.7);
+        -moz-transform: scale(0.8, 0.7);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.8, 0.7);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.8, 0.7);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.8, 0.7);
+        -ms-zoom: 0.98;
+    }
+
+    #p3.wrapper.wrapper.three .container .left-block {
+        width: 100%;
+        min-height: inherit;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.6,.6);
+        -moz-transform: scale(0.6, 0.6);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.6, 0.6);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.6, 0.6);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.6, 0.6);
+        -ms-zoom: 0.98;
+    }
+
+    #p3.wrapper .container #single-display {
+        display: block;
+        position: absolute;
+        top: 150px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -50px;
+    }
+}
+
+@media screen and (max-width: 805px) {
+    #p3.wrapper .container .company-block {
+        height: 800px;
+    }
+
+    #p3.two.wrapper .container #single-display {
+        display: block;
+        position: absolute;
+        top: 300px;
+        left: 0px;
+    }
+}
+
+
+@media screen and (max-width: 740px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.53,.6);
+        -moz-transform: scale(0.53, 0.6);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.53, 0.6);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.53, 0.6);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.53, 0.6);
+        -ms-zoom: 0.98;
+    }
+
+    #p3.wrapper .container #single-display {
+        display: block;
+        position: absolute;
+        top: 200px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -130px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.45,.5);
+        -moz-transform: scale(0.45, 0.5);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.45, 0.5);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.45, 0.5);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.45, 0.5);
+        -ms-zoom: 0.98;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -190px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.40,.45);
+        -moz-transform: scale(0.40, 0.45);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.40, 0.45);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.40, 0.45);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.40, 0.45);
+        -ms-zoom: 0.98;
+    }
+
+    #p3.wrapper .container .company-block {
+        height: 620px;
+    }
+
+    #p3.two.wrapper .container .company-block {
+        height: 700px;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -230px;
+        top: 0;
+    }
+
+    #p3.wrapper .container .centered-block .webpreview {
+        transform: scale(.40,.40);
+        -moz-transform: scale(.40,.40);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(.40,.40);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(.40,.40);
+        -o-zoom: 0.5;
+        -ms-transform: scale(.40,.40);
+        -ms-zoom: 0.98;
+    }
+}
+
+@media screen and (max-width: 515px) {
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -260px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #p3.wrapper .container .centered-block .webpreview {
+        left: -290px;
+        transform: scale(.35,.35);
+        -moz-transform: scale(.35,.35);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(.35,.35);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(.35,.35);
+        -o-zoom: 0.5;
+        -ms-transform: scale(.35,.35);
+        -ms-zoom: 0.98;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.35,.4);
+        -moz-transform: scale(0.35, 0.4);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.35, 0.4);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.35, 0.4);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.35, 0.4);
+        -ms-zoom: 0.98;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #p3.wrapper .container .foriframe {
+        width: 1100px;
+        height: 900px;
+        transform: scale(.30,.35);
+        -moz-transform: scale(0.30, 0.35);
+        -moz-zoom: 0.5;
+        -webkit-transform: scale(0.30, 0.35);
+        -webkit-zoom: 0.5;
+        -o-transform: scale(0.30, 0.35);
+        -o-zoom: 0.5;
+        -ms-transform: scale(0.30, 0.35);
+        -ms-zoom: 0.98;
+    }
+}
