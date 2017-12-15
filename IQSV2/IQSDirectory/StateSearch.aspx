@@ -50,7 +50,7 @@
     <ul id="ulRelatedCategories">
         <% foreach (var dr in RelatedCategories)
             {  %>
-            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
+            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
         <% } %>
     </ul>
 </section>

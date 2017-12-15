@@ -31,21 +31,31 @@ namespace IQSDirectory
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
-                Response.Redirect(url);
+                
+
             }
+            else
+            {
+                url = url + '/';
+                Response.StatusCode = 301;
+                Response.Redirect(url);
+                Response.End();
+               
+            }
+            
             string category = "", state = "";
             string[] cval = url.Split('/');
             if(url.Contains("canada"))
             {
                 category = cval[cval.Length - 3];
                 state = cval[cval.Length - 1];
-                RootPath = "../../";
+                RootPath = "../../../";
             }
             else
             {
                 category = cval[cval.Length - 2];
                 state = cval[cval.Length - 1];
-                RootPath = "../";
+                RootPath = "../../";
             }
             var urlGet = string.Format("api/StateSearch/GetStateSearchPageDetails?Category=" + category + "&State=" + state);
             DataSet ds = wHelper.GetDataSetFromWebApi(urlGet);

@@ -58,7 +58,16 @@ namespace IQSDirectory
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
+
+
+            }
+            else
+            {
+                url = url + '/';
+                Response.StatusCode = 301;
                 Response.Redirect(url);
+                Response.End();
+
             }
             if (url.IndexOf("search/") != -1)
             {
@@ -69,12 +78,12 @@ namespace IQSDirectory
                     CurQuery = queryVals[0].ToString();
                     CurPage = queryVals[1].ToString();
                     CurState = "";
-                    RootPath = "../../";
-                    Response.Write(CurQuery);
+                    RootPath = "../../../";
+                    //Response.Write(CurQuery);
                     if (queryVals.Length > 2)
                     {
                         CurState = queryVals[2].ToString();
-                        RootPath = "../../../";
+                        RootPath = "../../../../";
                     }
                     return true;
                 }
@@ -83,12 +92,12 @@ namespace IQSDirectory
                     CurQuery = queryVals[0].ToString();
                     CurPage = "1";
                     CurState = "";
-                    RootPath = "../";
+                    RootPath = "../../";
                     return true;
                 }
                 else
                 {
-                    RootPath = "../";
+                    RootPath = "../../";
                     return false;
                 }
             }

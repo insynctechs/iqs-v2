@@ -1,15 +1,15 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage2.aspx.cs" inherits="IQSDirectory.CategoryPage2" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../Content/category_styles.css" rel="stylesheet" media='screen'/>
-    <link href='../Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='../Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
+    <link href="<%:RootPath %>Content/category_styles.css" rel="stylesheet" media='screen'/>
+    <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
+    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='../Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='../Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='../Scripts/fb.js' type='text/javascript'></script>
-    <script src='../Scripts/category_page2.js' type='text/javascript'></script>
-    <script src='../Scripts/move_top.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/category_page2.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
     <section id='seccat'>
         <div id="social">
             <span>Share this page on</span>
@@ -97,7 +97,7 @@
 
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get('../StateSearch.html', function (data) {
+            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');

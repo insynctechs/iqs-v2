@@ -40,14 +40,20 @@ namespace IQSDirectory
         private void CheckCategory()
         {
             string url = HttpContext.Current.Request.Url.AbsolutePath;
-            if(url.IndexOf("/", url.Length - 1) > -1)
+            if (url.IndexOf("/", url.Length - 1) > -1)
             {
                 url = url.Remove(url.Length - 1);
+                RootPath = "../";
+
+            }
+            else
+            {
+                url = url + '/';
                 Response.StatusCode = 301;
                 Response.Redirect(url);
                 Response.End();
+                RootPath = "./";
             }
-            RootPath = "";
             CategoryName = url.Split('/').Last();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
             DirectoryURL = HttpContext.Current.Request.Url.Authority;

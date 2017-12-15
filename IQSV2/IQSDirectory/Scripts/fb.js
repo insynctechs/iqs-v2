@@ -27,7 +27,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '504326666290316',
+        appId: '221653014637602',/*'504326666290316',*/
         cookie: true,  // enable cookies to allow the server to access 
         // the session
         xfbml: true,  // parse social plugins on this page
@@ -53,9 +53,9 @@ function postToFeed(cname, title, review) {
     var lnkurl = $(location).attr('href');
     var obj = {
         method: 'feed',
-        redirect_uri: 'http://www.iqsdirectory.com/',
+        redirect_uri: 'https://www.iqsdirectory.com/',
         link: lnkurl,
-        picture: 'http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
+        picture: 'https://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
         name: cname,
         caption: title,
         description: review

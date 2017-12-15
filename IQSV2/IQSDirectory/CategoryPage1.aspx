@@ -1,15 +1,15 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage1.aspx.cs" inherits="IQSDirectory.CategoryPage1" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="Content/category_styles.css" rel="stylesheet" media='screen'/>
-    <link href='Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
+    <link href="<%:RootPath %>Content/category_styles.css" rel="stylesheet" media='screen'/>
+    <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
+    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='Scripts/fb.js' type='text/javascript'></script>
-    <script src='Scripts/category_page1.js' type='text/javascript'></script>
-    <script src='Scripts/move_top.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/category_page1.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
 
 
     <section id='seccat'>
@@ -47,7 +47,7 @@
         <ul id="ulRelatedCategories">
             <% foreach (var dr in RelatedCategories)
                 {  %>
-            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAY_NAME"].ToString() %></a></li>
+            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
             <% } %>
         </ul>
     </section>
@@ -64,8 +64,8 @@
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>
-                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
-                    <a rel='nofollow' class='btncopro' alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
+                    <a rel='nofollow' class='btncopro' alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT1Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
@@ -95,7 +95,7 @@
             <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
             -->
             <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
+            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
     <% } %>
@@ -111,8 +111,8 @@
                         <a rel='nofollow' alt='<%: drT2Ad["FORMATED_NAME"] %>' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', this);hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');"><%: drT2Ad["CLIENT_NAME"] %></a>
                         <span><%: drT2Ad["CITY_STATE"] %></span><span><%: drT2Ad["PHONE"] %></span>
                     </h3>
-                    <a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
-                    <a rel='nofollow' class='btncopro' alt='<%: drT2Ad["FORMATED_NAME"] %> Profile' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
+                    <a rel='nofollow' class='btncopro' alt='<%: drT2Ad["FORMATED_NAME"] %> Profile' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT2Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
@@ -168,7 +168,7 @@
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
             <a class='addcomp' href='<%: CategoryName %>/<%: CategoryName %>-2'><span>More <%: DisplayName %> Companies</span>
-                <img src='images/barrow.png' alt='More <%: DisplayName %> Companies' title='More <%: DisplayName %> Companies'></a>
+                <img src='<%:RootPath %>images/barrow.png' alt='Click' title='More <%: DisplayName %> Companies'></a>
         </header>
     </section>
     
@@ -211,7 +211,7 @@
 
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get('StateSearch.html', function (data) {
+            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
                 $('#secsbox').html(data);
                 $('#txtsearch').val('<%: DisplayName %>');
                 $('#txtsearch').attr('class', 'txtsearchsel');

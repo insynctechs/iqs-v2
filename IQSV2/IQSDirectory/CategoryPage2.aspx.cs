@@ -29,10 +29,18 @@ namespace IQSDirectory
             string url = HttpContext.Current.Request.Url.AbsolutePath;
             if (url.IndexOf("/", url.Length - 1) > -1)
             {
+                RootPath = "../../";
                 url = url.Remove(url.Length - 1);
-                Response.Redirect(url);
             }
-            RootPath = "../";
+            else
+            {
+                url = url + '/';
+                Response.StatusCode = 301;
+                Response.Redirect(url);
+                Response.End();               
+                RootPath = "../";
+            }
+            
             CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
