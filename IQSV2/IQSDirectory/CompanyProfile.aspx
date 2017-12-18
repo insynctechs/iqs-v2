@@ -7,18 +7,18 @@
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />     -->
     
     
-    <link href="<%:RootPath %>Content/copro_styles.css" rel="stylesheet" />
-    <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
+    <link href="<%:RootPath %>content/copro_styles_min.css" rel="stylesheet" />
+    <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
+    <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='<%:RootPath %>Scripts/jquery.rating.pack.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/jquery.cookie.js' type='text/javascript' ></script>
-    <script src='<%:RootPath %>Scripts/company_profile.js' type='text/javascript' ></script>
-    <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/jquery.cookie.js' defer type='text/javascript' ></script>
+    <script src='<%:RootPath %>scripts/company_profile.js' async defer type='text/javascript' ></script>
+    <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script> 
-    <script src='<%:RootPath %>Scripts/fb.js' type='text/javascript'></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" async defer  type="text/javascript"></script> 
+    <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
     <input type='hidden' id='hdnEmailCaptcha' value="no" />
 
     <div id='content_wrapper'>
@@ -225,29 +225,7 @@
                         var top = (screen.height / 2) - (h / 2);
                         window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
                     }
-                    /*FB.init({
-                        appId: '504326666290316',
-                        channelUrl: 'http://216.250.147.171/IQSBeta2017/channel.html', // Channel File
-                        scope: 'id,name,email',
-                        status: true,
-                        cookie: true,
-                        xfbml: true
-                    });
-                    function postToFeed(cname, title, review) {
-                        var lnkurl = $(location).attr('href');
-                        var obj = {
-                            method: 'feed',
-                            redirect_uri: 'http://www.iqsdirectory.com/',
-                            link: lnkurl,
-                            picture: 'http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
-                            name: cname,
-                            caption: title,
-                            description: review
-                        };
-                        function callback(response) {
-                        }
-                        FB.ui(obj, callback);
-                    }*/
+                    
                 </script>
             </div>
             <% if (RelatedCompaniesList != "" && RelatedCompaniesList != null)

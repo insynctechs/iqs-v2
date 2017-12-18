@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectoryPage2Listing.aspx.cs" Inherits="IQSDirectory.DirectoryPage2Listing" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link href="./Content/publish_styles.css" rel="stylesheet" />
 <link rel="stylesheet" href="./Content/jquery-ui.css" />   

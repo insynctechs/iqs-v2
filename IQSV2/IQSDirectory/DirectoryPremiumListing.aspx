@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectoryPremiumListing.aspx.cs" Inherits="IQSDirectory.DirectoryPremiumListing" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="./Content/publish_styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="./Content/jquery-ui.css" />    
+<link href="./content/publish_styles.css" rel="stylesheet" /> 
 <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
-<script type="text/javascript" src="./Scripts/DirectoryPremiumListing.js"></script>
-<script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+<script type="text/javascript" src="./scripts/DirectoryPremiumListing.js"></script>
+<script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="contentHomePremium">
 <h1>Premium Advertising Features &amp; Benefits on IQS Directory</h1>

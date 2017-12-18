@@ -2,14 +2,104 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    
+    <!-- Google Tag Manager -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-NGZWMKN');</script>
+
+<!-- End Google Tag Manager -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://plus.google.com/106568831377935249480" rel="publisher" />
+<!-- End Google Webmaster Tools Verification Code -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Advertise Your Company | IQSDirectory</title>
+<meta name="Keywords" content="IQS Directory, testimonials, success stories, manufacturers directory testimonials, industrial directory, manufacturers directory, industrial manufacturers, industrial suppliers, manufacturing directory, directory of manufacturers, manufacturer search, industrial purchasing directory, industrial business directory, industrial distributors" />
+<meta name="Description" content="Listing information for advertising on IQS®." />
+<!-- InstanceEndEditable -->
+<meta name="robots" content="all,index,follow" />
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<!-- Google Plus One Script -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<link rel="shortcut icon" href="favicon.ico" />
+<link href="content/globalstyles.css" rel="stylesheet" type="text/css" />
+<link href='content/jquery-ui.css'  rel='stylesheet' type='text/css' media='screen' />
+<script src='js/jquery-1.7.2.min.js' type='text/javascript' ></script>
+<script src='js/jquery-ui.js' type='text/javascript' ></script>
+<script src='iqs_tracker/js/tracker.js?client_id=-1' type='text/javascript' ></script>
+<!-- Industrial Quick Search Referring Site Stats web tools statistics hit counter code | Installed by Nate, 3/17/2010 -->
+<script type="text/javascript" id="wa_u"></script>
+<script type="text/javascript">//<![CDATA[
+// Begin Variable Declarations
+wa_account="968E8C9B968D9A9C8B908D86"; wa_location=29;
+wa_pageName=location.pathname;  // you can customize the page name here
+// End Variable Declarations
+document.cookie='__support_check=1;path=/';wa_hp='http';
+wa_rf=document.referrer;wa_sr=window.location.search;
+wa_tz=new Date();if(location.href.substr(0,6).toLowerCase()=='https:')
+wa_hp='https';wa_data='&an='+escape(navigator.appName)+ 
+'&sr='+escape(wa_sr)+'&ck='+document.cookie.length+
+'&rf='+escape(wa_rf)+'&sl='+escape(navigator.systemLanguage)+
+'&av='+escape(navigator.appVersion)+'&l='+escape(navigator.language)+
+'&pf='+escape(navigator.platform)+'&pg='+escape(wa_pageName);
+wa_data=wa_data+'&cd='+
+screen.colorDepth+'&rs='+escape(screen.width+ ' x '+screen.height)+
+'&tz='+wa_tz.getTimezoneOffset()+'&je='+ navigator.javaEnabled();
+wa_img=new Image();wa_img.src=wa_hp+'://loc1.hitsprocessor.com/statistics.asp'+
+'?v=1&s='+wa_location+'&eacct='+wa_account+wa_data+'&tks='+wa_tz.getTime();
+document.cookie='__support_check=1;path=/;expires=Thu, 01-Jan-1970 00:00:01 GMT';
+document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
+ //]]>
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $.get('statesearch.htm', function (data) {
+            $('#headsearch').html(data);
+        });
+    });
+</script>
+<!-- End Industrial Quick Search Referring Site Stats statistics web tools hit counter code -->
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+  "name": "IQS Directory",
+      "url": "http://www.iqsdirectory.com",
+  "sameAs" : [ "http://google.com/+Iqsdirectory",
+    "https://twitter.com/IQSDirectory",
+    "http://www.youtube.com/c/Iqsdirectory",
+    "http://www.linkedin.com/company/iqsdirectory-com",
+    "https://www.facebook.com/IQSDirectory"] ,
+      "logo": "http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png",
+  "telephone": "877-977-5377",
+      "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 E Beltline Ave SE",
+    "addressLocality": "Grand Rapids",
+    "addressRegion": "Michigan"
+  }
+    }
+    </script>
+<!-- InstanceParam name="class" type="text" value="home" -->
+<!-- InstanceParam name="id" type="text" value="dhl" -->
 </head>
+
+
 <body id="dhl" class="home">
     <form id="form1" runat="server">
         <div>
-   
-<link href="./Content/globalstyles.css" rel="stylesheet" />
-<link href="./Content/jquery-ui.css" rel="stylesheet" />
+
 <!--<div id="dhl" class="home">-->
 <div id="browserShadow"></div>
 <div id="gradient"></div>
@@ -21,7 +111,7 @@
   <!-- end --> 
   <!-- orange banner w/ links -->
   <div id="orangeBanner">
-    <span style="font-size:x-small;"><a href="http://www.iqsdirectory.com/DirectoryHomeListYourCompany.aspx" title="Find out how to list your company with IQS">List Your Company</a></span> </div>
+    <span style="font-size:x-small;"><a href="http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx" title="Find out how to list your company with IQS">List Your Company</a></span> </div>
   <div id="bannerBack"></div>
   <!-- end orange banner -->
       <div id="orangeBannerTestimonials">

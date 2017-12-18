@@ -13,5 +13,9 @@ namespace IQSDirectory
         {
 
         }
+        private void GenerateMetaTagsAndScripts()
+        {
+            //this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+        }
     }
 }

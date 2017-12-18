@@ -4,18 +4,19 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />   
+    <!--<meta name="robots" content="noindex, nofollow" />   -->
     <meta name='copyright' content='2017 Industrial Quick Search Manufacturing Directory' />
     <meta name="referrer" content="origin">
     <!--<meta name="referrer" content="origin-when-cross-origin">-->
     <title><%= PageTitle %></title>
     <%= PageMeta %>   
     
-    <%-- <%:HeadScript %>
-    <%: PageIndex %>--%>
+    <%: HeadScript %>
+    <%: PageIndex %>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/bundles/SiteMasterStyles") %>
         <%: Scripts.Render("~/bundles/SiteMasterScripts") %>
+        <%--: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/SiteMasterScripts") --%>
     </asp:PlaceHolder>
 
     <%--    <webopt:bundlereference runat="server" path="~/Content/css" />
@@ -24,7 +25,7 @@
 </head>
 <body>
     <article class="<%: WebURL %>"></article>
-    <%--<%= BodyOpenScript %> --%>
+    <%= BodyOpenScript %>
      <form runat="server" id="frmMaster" > 
         <header id='head'>
             <a id='logo' title='IQSDirectory' href='http://www.iqsdirectory.com/'>IQSDirectory
@@ -34,7 +35,10 @@
 
                 </section>
                 <nav>
-                    <script src="http://www.iqsdirectory.com/js/site_links.js" type="text/javascript"></script>
+                    <ul>
+                        <li><a href='http://www.iqsdirectory.com/'>Home</a></li>
+                        <li><a href='http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx'>List Your Company</a></li>
+                    </ul>
                 </nav>
             </div>
         </header>

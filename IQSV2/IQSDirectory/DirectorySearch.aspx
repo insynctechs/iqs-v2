@@ -1,5 +1,5 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="DirectorySearch.aspx.cs" inherits="IQSDirectory.DirectorySearch" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
     <link href="<%:RootPath %>Content/search_styles.css" rel="stylesheet" />
