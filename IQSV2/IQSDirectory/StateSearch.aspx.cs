@@ -42,7 +42,11 @@ namespace IQSDirectory
                 Response.End();
                
             }
-            
+            StateAdvertisements = new List<DataRow>();
+            RelatedCategories = new List<DataRow>();
+            NeighAdvertisements = new List<DataRow>();
+            ClientRatings = new List<DataRow>();
+            OtherAdvertisements = new List<DataRow>();
             string category = "", state = "";
             string[] cval = url.Split('/');
             if(url.Contains("canada"))
@@ -62,6 +66,24 @@ namespace IQSDirectory
             if(ds != null)
             {
                 SetRegionalValues(ds.Tables[5]);
+                //Response.Write("<!-- URL=" + url + " --- Countrycode=" + CountryCode);
+                if (url.Contains("canada") && CountryCode.Trim() == "USA") {
+                    url = url.Replace("canada/", "");
+                    //Response.Write("<!-- URL=" + url );
+                    Response.StatusCode = 301;
+                    Response.Redirect(url);
+                    Response.End();
+
+                }
+                else if (!url.Contains("canada") && CountryCode.Trim() == "CAN")
+                {
+                    url = RootPath+category+"/canada/"+state+"/";
+                    //Response.Write("<!-- URL=" + url);
+                    Response.StatusCode = 301;
+                    Response.Redirect(url);
+                    Response.End();
+
+                }
                 GenerateHeader(ds.Tables[0]);
                 
                 GenerateMetaAndScripts(ds.Tables[7], ds.Tables[8], ds.Tables[6], ds.Tables[10]);
@@ -153,6 +175,8 @@ namespace IQSDirectory
                     dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
                     if (dr.Length > 0)
                         this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                    else
+                        this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
                 }
             }                       
 
@@ -190,25 +214,30 @@ namespace IQSDirectory
 
         private void GenerateAdvertisements(DataTable dt)
         {
-            string stateCode = dt.Rows[0]["CURSTATECODE"].ToString();
-            CurrentState = dt.Rows[0]["STATECODE"].ToString();
-            dt.Columns.Add("FORMATED_NAME");
-            dt.Columns.Add("FORMATED_URL");
-            dt.Columns.Add("PROFILE_URL");
-            dt.AsEnumerable().ToList().ForEach(r => {
-                r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
-                r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
-                r["PROFILE_URL"] = Utils.ReplaceContent(r["COPRA_PATH"].ToString(), 0);
-                r["ADDESCRIPTION"] = r["ADDESCRIPTION"].ToString().Replace("[keyword]", H1Text)
-                    .Replace("[state], [country]", "[state]")
-                    .Replace("[state],[country]", "[state]")
-                    .Replace("[city],", "")
-                    .Replace("[state]", CurrentState);
-            });
+            if (dt.Rows.Count > 0)
+            {
+                string stateCode = dt.Rows[0]["CURSTATECODE"].ToString();
+                CurrentState = dt.Rows[0]["STATECODE"].ToString();
+                dt.Columns.Add("FORMATED_NAME");
+                dt.Columns.Add("FORMATED_URL");
+                dt.Columns.Add("PROFILE_URL");
+                dt.AsEnumerable().ToList().ForEach(r =>
+                {
+                    r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
+                    r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
+                    r["PROFILE_URL"] = Utils.ReplaceContent(r["COPRA_PATH"].ToString(), 0);
+                    r["ADDESCRIPTION"] = r["ADDESCRIPTION"].ToString().Replace("[keyword]", H1Text)
+                        .Replace("[state], [country]", "[state]")
+                        .Replace("[state],[country]", "[state]")
+                        .Replace("[city],", "")
+                        .Replace("[state]", CurrentState);
+                });
 
-            StateAdvertisements = dt.Select("theSTATE = '" + stateCode + "'").AsEnumerable().ToList();
-            NeighAdvertisements = dt.Select("theSTATE <> '" + stateCode + "'", "theState").AsEnumerable().ToList();
-            GetClientSkForRating();
+                StateAdvertisements = dt.Select("theSTATE = '" + stateCode + "'").AsEnumerable().ToList();
+                NeighAdvertisements = dt.Select("theSTATE <> '" + stateCode + "'", "theState").AsEnumerable().ToList();
+                GetClientSkForRating();
+            }
+            
         }
 
         private void GenerateOtherAdvertisements(DataTable dt)

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StateSearch.aspx.cs" Inherits="IQSDirectory.StateSearch" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>content/category_styles_min.css" rel="stylesheet" media='screen'/>
+    <link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
 
@@ -50,7 +50,7 @@
     <ul id="ulRelatedCategories">
         <% foreach (var dr in RelatedCategories)
             {  %>
-            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
+            <li><a href="<%: dr["CATEGORY_URL"].ToString() %>"><%= dr["DISPLAYNAME"].ToString() %></a></li>
         <% } %>
     </ul>
 </section>
@@ -59,8 +59,9 @@
         <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
                                   id="lnkRFQ" class="lnkrfq iframe">Request For Quote</a>
             <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" >Go To <%: H1Text %> Home</a></div>
+        <div class="clearfix"></div>
         <ul class="adlist_ul">
-            <h2><%: H1Text %> Companies Serving <%: StateName %></h2>
+            <li><h2><%: H1Text %> Companies Serving <%: StateName %></h2></li>
     <% if (StateAdvertisements.Count > 0)
     {
         foreach (var stAd in StateAdvertisements)
@@ -68,22 +69,22 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: stAd["FORMATED_NAME"] %>' title='<%: stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: stAd["HITSLINK"] %>')"><%: stAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')"><%= stAd["CLIENT_NAME"] %></a>
                         <span><%: stAd["CITY_STATE"] %></span>
                         <span><%: stAd["PHONE"] %></span>
                     </h3>
                    
-                    <a rel='nofollow' class='btncopro'   alt='<%: stAd["FORMATED_NAME"] %> Profile' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
-                <p class='cdesc'><%: stAd["ADDESCRIPTION"] %>
+                <p class='cdesc'><%= stAd["ADDESCRIPTION"] %>
                 </p>
                 <div class='divRate'>
                     <div id='divRate<%: stAd["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script language='javascript' type='text/javascript'>
+                        <script type='text/javascript'>
                             $(document).ready(function () { $('input[type=radio].star<%: stAd["CLIENT_SK"] %>').rating({required: true});});
                         </script>
                     <span class="spanreadreviews">
-                        <a alt='<%: stAd["FORMATED_NAME"] %> Profile' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["CLIENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>Read Reviews</a>
+                        <a title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["CLIENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>Read Reviews</a>
                     </span>
                     <span class='divratingclient'>
                         <input name='star<%: stAd["CLIENT_SK"] %>' type='radio' class='star<%: stAd["CLIENT_SK"] %>' value='1' title='1'/>
@@ -99,7 +100,7 @@
     }
     else
     { %>
-            <p>No companies under the searched state. You can see below the companies serving under neighboring states.</p>
+            <li><p>No companies under the searched state. You can see below the companies serving under neighboring states if any.</p></li>
      <% } %>
             <% 
                 string scode = "", precode = "";
@@ -109,14 +110,14 @@
                     %>
             <% if (scode != precode)
                 { %>
-            <h2><%: H1Text %> Companies Serving <%: nghAd["STATECODE"].ToString()  %></h2>
+            <li><h2><%: H1Text %> Companies Serving <%: nghAd["STATECODE"].ToString()  %></h2></li>
             <%} %>
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: nghAd["FORMATED_NAME"] %>' title='<%: nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"><%: nghAd["CLIENT_NAME"] %></a>
-                        <span><%: nghAd["CITY_STATE"] %></span>
-                        <span><%: nghAd["PHONE"] %></span>
+                        <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"><%= nghAd["CLIENT_NAME"] %></a>
+                        <span><%= nghAd["CITY_STATE"] %></span>
+                        <span><%= nghAd["PHONE"] %></span>
                     </h3>
                     <a rel='nofollow' class='btncopro'   alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
@@ -124,7 +125,7 @@
                 </p>
                 <div class='divRate'>
                     <div id='divRate<%: nghAd["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script language='javascript' type='text/javascript'>
+                        <script type='text/javascript'>
                             $(document).ready(function () { $('input[type=radio].star<%: nghAd["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                     <span class="spanreadreviews">
@@ -155,12 +156,12 @@
     </section>
     <% if (OtherAdvertisements.Count > 0) { %>
     <section id='secad_canada' >
-    <h2>WE LIST FOR OTHER COUNTRIES TOO!</h2>
-        <h3><%: H1Text %> manufacturers in CANADA STATES</h3>
+    <h3>WE LIST FOR OTHER COUNTRIES TOO!</h3>
+        <h2><%: H1Text %> manufacturers in CANADA</h2>
         <ul>
             <% foreach (var othAd in OtherAdvertisements)
                 { %>
-            <li><a href="<%: RootPath %><%: CategoryName %>/<%: othAd["SEARCH_URL"].ToString() %>"><%: othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
+            <li><a href="<%: RootPath %><%: CategoryName %>/<%: othAd["SEARCH_URL"].ToString() %>"><%= othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
             <% } %>
         </ul>
     </section>
@@ -177,7 +178,7 @@
             <% foreach (var cr in ClientRatings)
                 {%>
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
-            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>)-1, false);
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
             if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
             <% } %>

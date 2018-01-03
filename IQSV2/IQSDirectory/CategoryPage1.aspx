@@ -1,7 +1,7 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage1.aspx.cs" inherits="IQSDirectory.CategoryPage1" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>content/category_styles_min.css" rel="stylesheet" media='screen'/>
+    <link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
 
@@ -47,7 +47,7 @@
         <ul id="ulRelatedCategories">
             <% foreach (var dr in RelatedCategories)
                 {  %>
-            <li><a href="<%:RootPath %><%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
+            <li><a href="<%: dr["CATEGORY_URL"].ToString() %>"><%: dr["DISPLAYNAME"].ToString() %></a></li>
             <% } %>
         </ul>
     </section>
@@ -60,21 +60,21 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', this);hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')"><%: drT1Ad["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', '<%: drT1Ad["IMAGE"] %>');hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')"><%= drT1Ad["CLIENT_NAME"] %></a>
                         <span><%: drT1Ad["CITY_STATE"] %></span>
                         <span><%: drT1Ad["PHONE"] %></span>
                     </h3>
                     <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
-                    <a rel='nofollow' class='btncopro' alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT1Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drT1Ad["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script language='javascript' type='text/javascript'>
+                        <script type='text/javascript'>
                             $(document).ready(function () { $('input[type=radio].star<%: drT1Ad["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                         <span class="spanreadreviews">
-                            <a alt='<%: drT1Ad["FORMATED_NAME"] %> Profile' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["CLIENT_SK"] %>' href='<%: drT1Ad["PROFILE_URL"] %>'>Read Reviews</a>
+                            <a title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["CLIENT_SK"] %>' href='<%: drT1Ad["PROFILE_URL"] %>'>Read Reviews</a>
                         </span>
                         <span class='divratingclient'>
                         <input name='star<%: drT1Ad["CLIENT_SK"] %>' type='radio' class='star<%: drT1Ad["CLIENT_SK"] %>' value='1' title='1'/>
@@ -108,20 +108,20 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' alt='<%: drT2Ad["FORMATED_NAME"] %>' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', this);hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');"><%: drT2Ad["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', '<%: drT2Ad["IMAGE"] %>');hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');"><%= drT2Ad["CLIENT_NAME"] %></a>
                         <span><%: drT2Ad["CITY_STATE"] %></span><span><%: drT2Ad["PHONE"] %></span>
                     </h3>
                     <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
-                    <a rel='nofollow' class='btncopro' alt='<%: drT2Ad["FORMATED_NAME"] %> Profile' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drT2Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drT2Ad["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script language='javascript' type='text/javascript'>
+                        <script type='text/javascript'>
                             $(document).ready(function () { $('input[type=radio].star<%: drT2Ad["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                         <span class="spanreadreviews">
-                            <a alt='<%: drT2Ad["FORMATED_NAME"] %> Profile' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["CLIENT_SK"] %>' href='<%: drT2Ad["PROFILE_URL"] %>'>Read Reviews</a>
+                            <a title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["CLIENT_SK"] %>' href='<%: drT2Ad["PROFILE_URL"] %>'>Read Reviews</a>
                         </span>
                         <span class='divratingclient'>
                             <input name='star<%: drT2Ad["CLIENT_SK"] %>' type='radio' class='star<%: drT2Ad["CLIENT_SK"] %>' value='1' title='1' />
@@ -151,7 +151,7 @@
             <% foreach (var cr in ClientRatings)
                 {%>
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
-            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>)-1, false);
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
             if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
             <% } %>
@@ -167,7 +167,7 @@
     { %>
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
-            <a class='addcomp' href='<%: CategoryName %>/<%: CategoryName %>-2'><span>More <%: DisplayName %> Companies</span>
+            <a class='addcomp' href='<%:RootPath %><%: CategoryName %>/<%: CategoryName %>-2/'><span>More <%: DisplayName %> Companies</span>
                 <img src='<%:RootPath %>images/barrow.png' alt='Click' title='More <%: DisplayName %> Companies'></a>
         </header>
     </section>
@@ -185,12 +185,12 @@
                 <li>
 
                     <h3><a href="<%: art["URL"].ToString() %>"
-                        target="_blank"><%: art["HEADING"].ToString() %></a></h3>
+                        target="_blank"><%= art["HEADING"].ToString() %></a></h3>
                     <aside>
-                        <%: art["NAME"].ToString() %>
+                        <%= art["NAME"].ToString() %>
                     </aside>
                     <p>
-                        <%: art["DISPLAYDESC"].ToString() %>
+                        <%= art["DISPLAYDESC"].ToString() %>
                     </p>
 
                 </li>
@@ -203,7 +203,7 @@
      <section id='secininfo'>
         <header>Industry Information</header>
         <article>
-            <%: IndustryInformation %>
+            <%= IndustryInformation %>
         </article>
     </section>
     <% } %>

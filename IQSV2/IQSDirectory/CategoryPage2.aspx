@@ -1,12 +1,12 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage2.aspx.cs" inherits="IQSDirectory.CategoryPage2" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>content/category_styles_min.css" rel="stylesheet" media='screen'/>
+    <link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/category_page2.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
@@ -56,21 +56,19 @@
             <li>
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: drTAd["HITSLINK"] %>')"><%: drTAd["CLIENT_NAME"] %></a>
+                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')"><%= drTAd["CLIENT_NAME"] %></a>
                         <span><%: drTAd["CITY_STATE"] %></span>
                         <span><%: drTAd["PHONE"] %></span>
                     </h3>
                     <!--<a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>-->
-                    <a rel='nofollow' class='btncopro' alt='<%: drTAd["FORMATED_NAME"] %> Profile' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%=RootPath %><%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
+                    <a rel='nofollow' class='btncopro' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%=RootPath %><%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: drTAd["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drTAd["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script language='javascript' type='text/javascript'>
-                            $(document).ready(function () { $('input[type=radio].star<%: drTAd["CLIENT_SK"] %>').rating({ required: true }); });
-                        </script>
+                        
                         <span class="spanreadreviews">
-                            <a alt='<%: drTAd["FORMATED_NAME"] %> Profile' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["CLIENT_SK"] %>' href='<%: drTAd["PROFILE_URL"] %>'>Read Reviews</a>
+                            <a title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["CLIENT_SK"] %>' href='<%: drTAd["PROFILE_URL"] %>'>Read Reviews</a>
                         </span>
                         <span class='divratingclient'>
                             <input name='star<%: drTAd["CLIENT_SK"] %>' type='radio' class='star<%: drTAd["CLIENT_SK"] %>' value='1' title='1' />
@@ -79,6 +77,9 @@
                             <input name='star<%: drTAd["CLIENT_SK"] %>' type='radio' class='star<%: drTAd["CLIENT_SK"] %>' value='4' title='4' />
                             <input name='star<%: drTAd["CLIENT_SK"] %>' type='radio' class='star<%: drTAd["CLIENT_SK"] %>' value='5' title='5' />
                         </span>
+                        <script type='text/javascript'>
+                            $(document).ready(function () { $('input[type=radio].star<%: drTAd["CLIENT_SK"] %>').rating({ required: true }); });
+                        </script>
                     </div>
                 </div>
             </li>
@@ -105,7 +106,7 @@
             <% foreach (var cr in ClientRatings)
                 {%>
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
-            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>), false);
+            $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('select', parseInt(<%: cr["RATING"].ToString() %>)-1, false);
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
             if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
             <% } %>

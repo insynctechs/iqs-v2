@@ -70,7 +70,8 @@ namespace IQSDirectory
             CompRating = (Convert.ToInt32(dr["RATINGAVG"].ToString()) - 1).ToString();
             CompCount = dr["RATINGCOUNT"].ToString(); 
             ShowReviews = dr["SHOW_REVIEWS"].ToString();
-            ClientDesc = new HtmlString(Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1));
+            string strdescr = Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
+            ClientDesc = new HtmlString("<p>" + strdescr.Replace(Environment.NewLine, "</p><p>").Replace("</p><p>", "</p>"));
             if (dr["COPRO_VIDEO"].ToString() != "")
             {
                 string sName = "";
@@ -193,7 +194,11 @@ namespace IQSDirectory
                 }
                 else
                 {
-                    string addHttp = dr.ItemArray[0].ToString().ToLower().StartsWith("http://") ? "" : "http://";
+                    string addHttp = "";
+                    if (!dr.ItemArray[0].ToString().ToLower().StartsWith("https://") && !dr.ItemArray[0].ToString().ToLower().StartsWith("http://"))
+                    {
+                        addHttp = "http://";
+                    }                    
                     string thisurl = addHttp + dr.ItemArray[0].ToString();
                     if (mainurl == "")
                         mainurl = thisurl;
@@ -206,7 +211,7 @@ namespace IQSDirectory
             {
                 if (Convert.ToInt32(ClientSK) == 63659) //Client wants only the main host url in the display and the landing url buried in href
                 {
-                    string[] urldisp = mainurl.Replace("http://", "").Split('/');
+                    string[] urldisp = mainurl.Replace("http://", "").Replace("https://", "").Split('/');
                     sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' >" + urldisp[0] + "</a>" + ",");
 
                 }

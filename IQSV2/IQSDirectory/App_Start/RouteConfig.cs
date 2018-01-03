@@ -48,6 +48,51 @@ namespace IQSDirectory
                 new RouteValueDictionary { { "category,state", new StateSearchConstraint() } }
                 );
 
+            routes.MapPageRoute("StateSearchCity",
+                "{category}/{state}/{city}",
+                "~/StateSearch.aspx",
+                true,
+                null,
+                new RouteValueDictionary { { "category,state,city", new StateSearchConstraint() } }
+                );
+
+            
+            routes.MapPageRoute("StateSearchRedirect",
+               "{category}/canada/{state}/{city}",
+               "~/StateSearch.aspx",
+               true,
+               null,
+               new RouteValueDictionary { { "category,state", new StateSearchRedirectConstraint() } }
+               );
+            routes.MapPageRoute("StateSearchRedirect1",
+               "{category}/{category1}/canada/{state}",
+               "~/StateSearch.aspx",
+               true,
+               null,
+               new RouteValueDictionary { { "category,state,category1", new StateSearchRedirectConstraint() } }
+               );
+            routes.MapPageRoute("StateSearchRedirect2",
+              "{category}/{category1}/canada/{state}/{city}",
+              "~/StateSearch.aspx",
+              true,
+              null,
+              new RouteValueDictionary { { "category,state,category1,city", new StateSearchRedirectConstraint() } }
+              );
+            routes.MapPageRoute("StateSearchRedirect3",
+              "{category}/{category1}/{category2}/canada/{state}",
+              "~/StateSearch.aspx",
+              true,
+              null,
+              new RouteValueDictionary { { "category,state,category1,category2", new StateSearchRedirectConstraint() } }
+              );
+            routes.MapPageRoute("StateSearchRedirect4",
+              "{category}/{category1}/{category2}/canada/{state}/{city}",
+              "~/StateSearch.aspx",
+              true,
+              null,
+              new RouteValueDictionary { { "category,state,category1,category2,city", new StateSearchRedirectConstraint() } }
+              );
+
             routes.MapPageRoute("CompanyProfile",
                 "profile/{copro}",
                 "~/CompanyProfile.aspx",
@@ -78,6 +123,15 @@ namespace IQSDirectory
                 null,
                 null
                 );
+
+            /*routes.MapPageRoute("RedirectionChecking",
+                "{*url}",
+                "~/Redirection.aspx",
+                true,
+                null,
+                null
+                );*/
+
         }
     }
 }

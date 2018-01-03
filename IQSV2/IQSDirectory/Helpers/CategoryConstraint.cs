@@ -29,7 +29,7 @@ namespace IQSDirectory
                 return true;
             }
             HttpContext.Current.Response.StatusCode = 301;
-            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.RedirectPermanent(Utils.WebURL);
             HttpContext.Current.Response.End();
             return false;
         }
@@ -57,7 +57,7 @@ namespace IQSDirectory
                 return true;
             }
             HttpContext.Current.Response.StatusCode = 301;
-            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.RedirectPermanent(Utils.WebURL);
             HttpContext.Current.Response.End();
             return false;
         }
@@ -69,16 +69,92 @@ namespace IQSDirectory
 
         public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
-            return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower());
+            return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower(), parameterName.Split(',').Length);
         }
 
-        private bool GetCategoryIdByName(string Category, string State)
+        private bool GetCategoryIdByName(string Category, string State, int paramcount)
         {
             var url = string.Format("api/CategoryPages/GetCategoryStateValidate?Category=" + Category + "&State=" + State);
             DataTable dt = wHelper.GetDataTableFromWebApi(url);
-            return Convert.ToBoolean(dt.Rows[0][0]);
+            bool val = Convert.ToBoolean(dt.Rows[0][0]);
+            if (val == true)
+            {
+                if(paramcount >= 3)
+                {
+                    HttpContext.Current.Response.StatusCode = 301;
+                    HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + Category + "/" + State);
+                    HttpContext.Current.Response.End();
+                    return false;
+                }
+                return true;
+            }
+                
+            else
+            {
+                url = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + State);
+                dt = wHelper.GetDataTableFromWebApi(url);
+                if (dt.Rows.Count > 0)
+                {
+                    HttpContext.Current.Response.StatusCode = 301;
+                    HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + State + "/");
+                    HttpContext.Current.Response.End();
+                    return false;                    
+                }
+                else
+                {
+                    url = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + Category);
+                    dt = wHelper.GetDataTableFromWebApi(url);
+                    if (dt.Rows.Count > 0)
+                    {
+                        HttpContext.Current.Response.StatusCode = 301;
+                        HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + Category + "/");
+                        HttpContext.Current.Response.End();
+                        return false;
+                    }
+                }
+                return false;
+            }
+            
         }
     }
+
+    public class StateSearchRedirectConstraint : IRouteConstraint
+    {
+        WebApiHelper wHelper = new WebApiHelper();
+
+        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            string[] pnames = parameterName.Split(',');
+            if (Array.IndexOf(pnames, "category1")>-1)
+            {
+                if (Array.IndexOf(pnames, "category2") > -1)
+                {
+                    return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower(),"canada", values[parameterName.Split(',')[2]].ToString().ToLower(), values[parameterName.Split(',')[3]].ToString().ToLower());
+                }
+                else
+                {
+                    return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower(), "canada", values[parameterName.Split(',')[2]].ToString().ToLower());
+
+                }
+            }
+            else
+                return GetCategoryIdByName(values[parameterName.Split(',')[0]].ToString().ToLower(), values[parameterName.Split(',')[1]].ToString().ToLower(),"canada");
+        }
+
+        private bool GetCategoryIdByName(string Category, string State, string Country, string Category1=null, string Category2=null)
+        {
+            var url = string.Format("api/StateSearch/StateSearchURLValidate?category=" + Category + "&state=" + State + "&country="+Country + "&category1="+ Category1 + "&category2="+Category2);
+            DataTable dt = wHelper.GetDataTableFromWebApi(url);
+            string redirect = dt.Rows[0][0].ToString();
+            HttpContext.Current.Response.StatusCode = 301;
+            HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + redirect);
+            HttpContext.Current.Response.End();
+            return false;
+            
+                
+        }
+    }
+
 
     public class CompanyProfileConstraint : IRouteConstraint
     {
@@ -108,7 +184,7 @@ namespace IQSDirectory
                 }
             }
             HttpContext.Current.Response.StatusCode = 301;
-            HttpContext.Current.Response.Redirect(Utils.WebURL);
+            HttpContext.Current.Response.RedirectPermanent(Utils.WebURL);
             HttpContext.Current.Response.End();
             return false;
         }

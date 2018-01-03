@@ -14,10 +14,11 @@
     <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/jquery.cookie.js' defer type='text/javascript' ></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" defer  type="text/javascript"></script> 
     <script src='<%:RootPath %>scripts/company_profile.js' async defer type='text/javascript' ></script>
     <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" async defer  type="text/javascript"></script> 
+    
     <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
     <input type='hidden' id='hdnEmailCaptcha' value="no" />
 
@@ -125,7 +126,7 @@
         </div>
         
         <div class="col2" itemprop="description" >
-            <p><%= ClientDesc %></p>
+            <%= ClientDesc %>
         </div>
 
         <div class="cleardiv"></div>

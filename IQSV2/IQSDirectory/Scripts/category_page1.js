@@ -15,7 +15,7 @@
 
 
 }
-function loadWebPreview(site, tier, thisObj) {
+function loadWebPreview(site, tier, customimage) {
    
    // var md5 = require('MD5');
 
@@ -28,13 +28,19 @@ function loadWebPreview(site, tier, thisObj) {
     var hash = MD5(secret + expires + url);
     var auth = '925-' + expires + '-' + hash;
 
-    var imgUrl = '//image.thum.io/get/auth/' + auth + '/' + url;
+    var width = parseFloat($("#sectier1 aside").width());
+    var imgUrl = '//image.thum.io/get/width/'+width+'/auth/' + auth + '/' + url;
+    var custompath = document.getElementById('hdnSrhRootPath').value + 'preview_images//';
+    //alert(imgUrl);
     //var imgUrl = '//image.thum.io/get/' + site;
     var id = 'preview' + tier;
     if (document.getElementById(id)) {
+        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(customimage) )
+            document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + custompath + customimage + "' /></a>";
+        else
         document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + imgUrl + "' /></a>";
     }
-    else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
+    //else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
 
     
 }
@@ -72,99 +78,75 @@ function getPosition(element) {
 }
 $(document).ready(function () {
 
-    var boxheight = 900;
-    var subfact = Math.floor(boxheight / 4);
-    var fact = 0.48;
-    if ($(window).width() < 700)
-        fact = 0.35;
-    else if ($(window).width() < 1300)
-        fact = 0.48;
-    else if ($(window).width() < 1500)
-        fact = 0.54;
-    else if ($(window).width() < 1700)
-        fact = 0.62;
-    else if ($(window).width() < 1900)
-        fact = 0.68;
-    else if ($(window).width() < 2200)
-        fact = 0.7;
-    else if ($(window).width() < 2500)
-        fact = 0.72;
-    else
-        fact = 0.75;
-    var cutheight = parseInt(boxheight * fact);
-    $("#iframe_mask1").click(function () {
-        //outboundTracker(); msnTracker();
-        var framesource = document.getElementById('preview_iframe').name;
-        if (!framesource.includes("cardboard-placeholder.jpg"))
-            window.open(framesource, '_blank')
-        // alert(document.getElementById('preview_iframe').src);
-    });
-    $("#iframe_mask2").click(function () {
-        //outboundTracker(); msnTracker();
-        var framesource = document.getElementById('preview_iframe2').name;
-        if (!framesource.includes("cardboard-placeholder.jpg"))
-            window.open(framesource, '_blank')
-        // alert(document.getElementById('preview_iframe').src);
-    });
-    $("#iframe_mask3").click(function () {
-        //outboundTracker(); msnTracker();
-        var framesource = document.getElementById('preview_iframe').name;
-        if (!framesource.includes("cardboard-placeholder.jpg"))
-            window.open(framesource, '_blank')
-        // alert(document.getElementById('preview_iframe').src);
-    });
+    var width = parseFloat($("#sectier1 aside").width());
+    var height = parseFloat($("#sectier1 ul").height());
+    if(width > height)
+    {
+        var top = (width - height)/2;
+         $('#sectier1 ul').css('margin-top', top + "px");
+     }
+
+     var width1 = parseFloat($("#sectier2 aside").width());
+     var height1 = parseFloat($("#sectier2 ul").height());
+     if (width1 > height1) {
+         var top1 = (width1 - height1) / 2;
+         $('#sectier2 ul').css('margin-top', top + "px");
+     }
+
     $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
-        var h = $(window).height();
-        var mod = (y - subfact) % h; //+ 250;	
-        var f = parseInt(y / h);
-        var top = y; //(f * h);
-        var offset = parseInt(h / 2);
-        //alert( mod + '---' + offset);
-        if (mod > offset)
-            offset = mod; // - offset ;
-        else
-            offset = parseInt(h); // - (mod - offset)) ;
-        top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#sectier1").height();
+        var h = $(window).height();        
+        var elemheight = $("#sectier1 .adlist_ul").height();
+        var elemtop = $("#sectier1 .adlist_ul").position().top;
+        var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
+        var h1 = parseFloat($("#sectier1 aside").width());
+        var elemFull = parseFloat(y) + h1;
+        var mod = (y - elemtop) % h;
+        //elemFull = elemFull + widthoff;
+        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
 
-
-        if (top + cutheight > elemheight) {
-            top = top - (top + cutheight - elemheight);
+        //alert(elemFull + "--" + sectionfull);
+        var top1;
+        if (elemFull > sectionfull) {
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod/4);
+           
         }
-
-        //alert(top);			
-        $('#sectier1 .forpreview').css('margin-top', top + "px");
-        
+        else {
+            top1 = y - elemtop - (h1 / 2);
+        }
+        top1 = Math.max(0, top1);
+        $('#sectier1 .forpreview').css('margin-top', top1 + "px");
 
 
     });
 
-    
+
 
     $('#sectier2 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
-        var mod = (y - subfact) % h; //+ 250;	
-        var f = parseInt(y / h);
-        var top = y; //(f * h);
-        var offset = parseInt(h / 2);
-        //alert( mod + '---' + offset);
-        if (mod > offset)
-            offset = mod; // - offset ;
-        else
-            offset = parseInt(h); // - (mod - offset)) ;
-        top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#sectier2").height();
+        var elemheight = $("#sectier2 .adlist_ul").height();
+        var elemtop = $("#sectier2 .adlist_ul").position().top;
+        var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
+        var h1 = parseFloat($("#sectier2 aside").width());
+        var elemFull = parseFloat(y) + h1;
+        var mod = (y - elemtop) % h;
 
+        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
 
-        if (top + cutheight > elemheight) {
-            top = top - (top + cutheight - elemheight);
+        //alert(elemFull + "--" + sectionfull);
+        var top1;
+        if (elemFull > sectionfull) {
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
+
         }
-
-        $('#sectier2 .forpreview').css('margin-top', top + "px");
+        else {
+            top1 = y - elemtop - (h1 / 2);
+        }
+        top1 = Math.max(0, top1);
+        $('#sectier2 .forpreview').css('margin-top', top1 + "px");
 
 
     });
@@ -174,25 +156,27 @@ $(document).ready(function () {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
-        var mod = (y - subfact) % h; //+ 250;	
-        var f = parseInt(y / h);
-        var top = y; //(f * h);
-        var offset = parseInt(h / 2);
-        //alert( mod + '---' + offset);
-        if (mod > offset)
-            offset = mod; // - offset ;
-        else
-            offset = parseInt(h); // - (mod - offset)) ;
-        top = Math.max(0, $(window).scrollTop() - subfact + (mod / 4));
-        var elemheight = $("#sectier3").height();
+        
+        var elemheight = $("#sectier3 .adlist_ul").height();
+        var elemtop = $("#sectier3 .adlist_ul").position().top;
+        var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
+        var h1 = parseFloat($("#sectier3 aside").width());
+        var elemFull = parseFloat(y) + h1;
+        var mod = (y - elemtop) % h;
 
+        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
 
-        if (top + cutheight > elemheight) {
-            top = top - (top + cutheight - elemheight);
+        //alert(elemFull + "--" + sectionfull);
+        var top1;
+        if (elemFull > sectionfull) {
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod /4);
+
         }
-
-        //alert(top);			
-        $('#sectier3 .forpreview').css('margin-top', top + "px");
+        else {
+            top1 = y - elemtop - (h1 / 2);
+        }
+        top1 = Math.max(0, top1);
+        $('#sectier3 .forpreview').css('margin-top', top1 + "px");
 
 
     });
@@ -261,7 +245,7 @@ function hitsLinkTrack(hitslink) {
             '&sl=' + escape(navigator.systemLanguage) + '&l=' + escape(navigator.language) +
             '&pf=' + escape(navigator.platform) + '&pg=' + escape(wa_pageName) + '&cd=' + screen.colorDepth + '&rs=' + escape(screen.width +
                 ' x ' + screen.height) + '&je=' + navigator.javaEnabled() + '&c=' + wa_c + '&tks=' + wa_tz.getTime();
-        alert(wa_img.src);
+        //alert(wa_img.src);
 
     }
 }//]]> 

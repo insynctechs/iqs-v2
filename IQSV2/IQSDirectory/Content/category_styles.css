@@ -25,30 +25,12 @@ h6{
 }
 img{vertical-align:top; max-width: 100%; border: 0;}
 table, tr, td {max-width:100% !important;}
-
-
-
-
 /********************* Category Desc Section Styles ************/
-#seccat
-{
-    clear: both;
-    height: auto;
-    margin: 0 3%;
-    overflow: hidden;
-    padding-top: 15px;
+#seccat{
+    clear: both;height: auto;margin: 0 3%;overflow: hidden;padding-top: 15px;
 }
-
-#seccat h1
-{
-    border-bottom: 1px solid;
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 26px;
-    margin: 0;
-    padding-bottom: 4px;
-    float:left;
-    height: auto;
+#seccat h1{
+    border-bottom: 1px solid;  font-size: 22px;  font-weight: bold;  line-height: 26px;  margin: 0;   padding-bottom: 4px;  float:left;  height: auto;
 }
 
 #seccat div#social
@@ -181,7 +163,8 @@ table, tr, td {max-width:100% !important;}
 {
     float: left;
     width:42%;
-    height:620px;
+    height:auto;
+    overflow:hidden;
 
 }
 .adlist_section aside img
@@ -197,6 +180,8 @@ table, tr, td {max-width:100% !important;}
     width:56%;
     list-style: none outside none;
     padding: 0;
+    height:auto;
+    overflow:hidden;
 }
 .adlist_section ul li{
     list-style: none;
@@ -318,10 +303,10 @@ table, tr, td {max-width:100% !important;}
     display: block;
     font-size: 21px;
     height: auto;
-    padding: 10px 0px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    width: 295px;
+    width: auto;
     line-height:26px;
     float:left;
 }
@@ -737,36 +722,41 @@ padding: 0;
 }
 #secad_canada
 {
-    color:#fff; background-color:#ed6815; padding: 50px 0; text-align: center; margin: 0; clear: both; height: auto; overflow: hidden;
-}
-#secad_canada h2
-{
-    color:#fff; font-size: 40px; text-transform: uppercase; line-height: 45px; margin: 20px; padding: 0;
+    color:#fff; background-color:#ed6815; padding: 20px 0; text-align: center; margin: 0; clear: both; height: auto; overflow: hidden;
 }
 #secad_canada h3
+{
+    color:#fff; font-size: 17px; text-transform: uppercase; line-height: 45px; margin: 20px; padding: 0;
+}
+#secad_canada h2
  {
-     color:#000; margin: 20px; padding: 0; font-size: 25px; text-transform: uppercase; font-weight: bold; line-height: 30px;
+     color:#000; margin: 20px; padding: 0; font-size: 19px; text-transform: uppercase; font-weight: bold; line-height: 30px;
  }
 #secad_canada ul
 {
-    margin:10px auto; width: 50%; text-align: left; color: #ccc; font-size: 18px; font-weight: 600; line-height: 23px; list-style: none; height: auto; display: block; overflow: hidden;
+    margin:10px auto; width: 50%; text-align: left; color: #ccc; font-size: 14px; font-weight: 600; line-height: 23px; list-style: none; height: auto; display: block; overflow: hidden;
 }
 #secad_canada ul li
   {
-      color: #303030; font-size: 18px; font-weight: 600; line-height: 23px; list-style: none; margin: 10px 40px; padding: 0; float: left; width: auto;
+      color: #303030; font-size: 14px; font-weight: 600; line-height: 23px; list-style: none; margin: 10px 40px; padding: 0; float: left; width: auto;
   }
 #secad_canada ul li a
 {
-    color: #303030; font-size: 18px; font-weight: 600; margin: 10px; padding: 0; text-decoration: none;
+    color: #303030; font-size: 14px; font-weight: 600; margin: 10px; padding: 0; text-decoration: none;
 }
 #secad_canada ul li a:hover
 {
     color: #000;  text-decoration: underline;
 }
+.forpreview{min-height:400px; height:auto; overflow:hidden; margin-bottom:20px;}
 /*******************************************/
-
 /*jQuery.Rating Plugin*/
-.divRate{clear: both;height: 24px;margin: 3px 0;overflow: hidden;}
+.divRate {
+    clear: both;
+    height: 24px;
+    margin: 3px 0;
+    overflow: hidden;
+}
 .divratingclientmain{clear: both;display:none;cursor:default;height: auto;overflow: hidden;padding: 5px 0 0;}
 .divratingclient{height:auto;overflow:hidden;float:left;margin-top:-4px}
 .spanreadreviews{padding-right:7px;color:#30494e;font-weight:bold;float:left;font-size:11px}
@@ -1072,174 +1062,53 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
         padding: 8px 8px 0 8px;
     }
 }
-/*************************************************/
-@media only screen and (min-width: 1300px) and (max-width: 1500px)
-{
 
-    .foriframe {
-        transform: scale(0.54, 0.54);
-        -moz-transform: scale(0.54, 0.54);
-        -moz-zoom: 0.54;
-        -webkit-transform: scale(0.54,0.54);
-        -webkit-zoom: 0.54;
-        -o-transform: scale(0.54, 0.54);
-        -o-zoom: 0.54;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.54;
-        margin-left:20px;
-
-    }
-}
-/*************************************************/
 
 /*************************************************/
-@media only screen and (min-width: 1501px) and (max-width: 1700px)
+@media only screen and (min-width: 1501px) and (max-width: 2199px)
 {
 
-    .foriframe {
-        transform: scale(0.62, 0.62);
-        -moz-transform: scale(0.62, 0.62);
-        -moz-zoom: 0.62;
-        -webkit-transform: scale(0.62,0.62);
-        -webkit-zoom: 0.62;
-        -o-transform: scale(0.62, 0.62);
-        -o-zoom: 0.62;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.62;
-        margin-left:20px;
-
-    }
-    .adlist_section ul
-    {
-        width: 53%;
-    }
-    .adlist_section aside
-    {
-        width: 43%;
-
+    .adlist_section ul {
+        width: 40%;
     }
 
-}
-@media only screen and (min-width: 1701px) and (max-width: 1899px)
-{
-
-    .foriframe {
-        transform: scale(0.69, 0.69);
-        -moz-transform: scale(0.69, 0.69);
-        -moz-zoom: 0.69;
-        -webkit-transform: scale(0.69,0.69);
-        -webkit-zoom: 0.69;
-        -o-transform: scale(0.69, 0.69);
-        -o-zoom: 0.69;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.69;
-
-
-    }
-    .adlist_section ul
-    {
-        width: 49%;
-    }
-    .adlist_section aside
-    {
-        width: 47%;
-        margin-left: 3%;
-    }
-}
-@media (min-width: 1900px) and (max-width: 2199px)
-{
-    .foriframe {
-
-        transform: scale(0.7, 0.7);
-        -moz-transform: scale(0.7, 0.7);
-        -moz-zoom: 0.7;
-        -webkit-transform: scale(0.7,0.7);
-        -webkit-zoom: 0.7;
-        -o-transform: scale(0.7, 0.7);
-        -o-zoom: 0.7;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.7;
-
-        width:1300px !important;
-
-    }
-    .adlist_section ul
-    {
-        width: 43%;
-    }
-    .adlist_section aside
-    {
-        width: 50%;
-        margin-left: 5%;
+    .adlist_section aside {
+        width: 48%;
+        margin-left: 6%;
     }
 
 }
 @media (min-width: 2200px) and (max-width: 2499px)
 {
-    .foriframe {
 
-        transform: scale(0.72, 0.72);
-        -moz-transform: scale(0.72, 0.72);
-        -moz-zoom: 0.72;
-        -webkit-transform: scale(0.72,0.72);
-        -webkit-zoom: 0.72;
-        -o-transform: scale(0.72, 0.72);
-        -o-zoom: 0.72;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.72;
-
-        width:1600px !important;
-        /*height:1250px !important;*/
-
-    }
-    .adlist_section ul
-    {
+    .adlist_section ul {
         width: 40%;
     }
-    .adlist_section aside
-    {
-        width: 55%;
-        margin-left: 4%;
-        /*height: 900px !important;*/
+
+    .adlist_section aside {
+        width: 48%;
+        margin-left: 6%;
     }
 
 }
 @media (min-width: 2500px)
 {
-    .foriframe {
 
-        transform: scale(0.75, 0.75);
-        -moz-transform: scale(0.75, 0.75);
-        -moz-zoom: 0.75;
-        -webkit-transform: scale(0.75,0.75);
-        -webkit-zoom: 0.75;
-        -o-transform: scale(0.75, 0.75);
-        -o-zoom: 0.75;
-        -ms-transform: scale(1);
-        -ms-zoom: 0.75;
-
-        width:2000px !important;
-        /*height:1200px !important;
-*/
-
-
+    .adlist_section ul {
+        width: 50%;
     }
-    .adlist_section ul
-    {
-        width: 40%;
+
+    .adlist_section aside {
+        width: 42%;
+        margin-left: 4%;
+        /*height: 900px !important;*/
     }
     .adlist_section .cdesc
     {
         font-size: 1.1em;
         line-height: 19px;
     }
-    .adlist_section aside
-    {
-        width: 56%;
-        margin-left: 3%;
-        /*height: 900px !important;*/
-    }
-
+   
 }
 
 /* P3 Page Styling */
@@ -1248,17 +1117,20 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     overflow: hidden;
     margin: 10px auto 0 auto;
     position: relative;
+    height:auto;
 }
 
     #p3.wrapper .seperator {
         width: 100%;
-        float: left;
+        clear:both;
     }
 
     #p3.wrapper .container {
         width: 95%;
         max-width: 1300px;
         margin: 10px auto 0 auto;
+        height: auto;
+        overflow: hidden;
     }
 
 
@@ -1267,6 +1139,8 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
             width: 100%;
             float: left;
             min-height: 1000px;
+            height: auto;
+            overflow: hidden;
         }
 
             #p3.wrapper .container .centered-block .company-block {
@@ -1280,6 +1154,8 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
 
 #p3.two.wrapper .container .left-block {
     min-height: 850px;
+    height: auto;
+    overflow: hidden;
 }
 
 #p3.wrapper .container .left-block h4 {
@@ -1312,6 +1188,8 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     float: left;
     margin-top: 30px;
     position: relative;
+    height: auto;
+    overflow: hidden;
 }
 
 
@@ -1357,7 +1235,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     left: -190px;
     top: -130px;
 }
-
+.clearfix{clear:both; height:auto;}
 #p3.wrapper #stop-block.clear {
     width: 98%;
     clear: both;

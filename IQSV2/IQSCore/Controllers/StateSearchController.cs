@@ -86,5 +86,16 @@ namespace IQSCore.Controllers
             return Ok(res);
 
         }
+
+        [Route("api/StateSearch/StateSearchURLValidate")]
+        [HttpGet]
+        public async Task<IHttpActionResult> StateSearchURLValidate(string category, string state, string country = null, string category1 = null, string category2 = null, string city = null)
+        {
+            var res = await stateSearch.StateSearchURLValidate(category, state, country, category1, category2, city);
+            return Ok(res);
+
+        }
+
+
     }
 }

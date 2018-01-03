@@ -17,7 +17,7 @@ namespace IQSCore.Models
             SqlParameter[] sqlParam = new SqlParameter[3];
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
-            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "http://www.iqsdirectory.com/");
             /*sqlParam[3] = new SqlParameter("@Page2AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
             //uspGetPage1AdvertisementDetails*/
@@ -36,7 +36,7 @@ namespace IQSCore.Models
             SqlParameter[] sqlParam = new SqlParameter[4];
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
-            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "");
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "http://www.iqsdirectory.com/");
             /*sqlParam[3] = new SqlParameter("@Page3AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
             //uspGetPage2AdvertisementDetails 

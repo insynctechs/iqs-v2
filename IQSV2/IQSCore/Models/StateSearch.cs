@@ -52,5 +52,17 @@ namespace IQSCore.Models
             sqlParam[3] = new SqlParameter("@State", State);
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetSearchResultsDetails", sqlParam));
         }
+
+        public async Task<DataSet> StateSearchURLValidate(string category, string state, string country=null, string category1=null, string category2=null, string city=null)
+        {
+            SqlParameter[] sqlParam = new SqlParameter[6];
+            sqlParam[0] = new SqlParameter("@Category", category);
+            sqlParam[1] = new SqlParameter("@State", state);
+            sqlParam[2] = new SqlParameter("@Country", country);
+            sqlParam[3] = new SqlParameter("@Category1", category1);
+            sqlParam[4] = new SqlParameter("@Category2", category2);
+            sqlParam[5] = new SqlParameter("@City", city);
+            return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspStateSearchURLValidate", sqlParam));
+        }
     }
 }
