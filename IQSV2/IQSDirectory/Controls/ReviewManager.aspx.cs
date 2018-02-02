@@ -569,6 +569,7 @@ namespace IQSDirectory
         {            
              try
                 {
+                //return "Jesus";
                 WebApiHelper wHelper = new WebApiHelper();                   
                 if (Utils.isvalidIpAccess()== true )
                 {
@@ -647,7 +648,7 @@ namespace IQSDirectory
                         DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
                         string clientEmail = dt.Rows[0]["EMAIL_ADDRESS"].ToString();
 
-                        clientEmail = "";
+                        //clientEmail = "";
                         if (Utils.ProfileEmailTestMode == "true")
                         {
                             _toAddress = Utils.TestEmailTo;
@@ -674,6 +675,7 @@ namespace IQSDirectory
                         }
                         
                         bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
+                        //return mailstatus+","+_FromAddress + "," + _toAddress + "," + _ccAddress + ", , " + _Subject + ", " + strEmailContent.ToString();
                         if (mailstatus == true)
                              return "Success";
                          else

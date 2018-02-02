@@ -4,12 +4,11 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
-    <meta name='copyright' content='2017 Industrial Quick Search Manufacturing Directory' />
-    <meta name="referrer" content="origin">
-    <!--<meta name="referrer" content="origin-when-cross-origin">-->
     <title><%= PageTitle %></title>
     <%= PageMeta %>   
-    
+    <meta name='copyright' content='2018 Industrial Quick Search Manufacturing Directory' />
+    <!--<meta name="referrer" content="origin">
+    <meta name="referrer" content="origin-when-cross-origin">-->
     <%: HeadScript %>
     <%: PageIndex %>
     <asp:PlaceHolder runat="server">
@@ -23,7 +22,7 @@
     <%: HitsLinkScript %>
 </head>
 <body>
-    <article class="<%: WebURL %>"></article>
+    <!--<article class="<%: WebURL %>"></article>-->
     <%= BodyOpenScript %>
      <form runat="server" id="frmMaster" > 
         <header id='head'>

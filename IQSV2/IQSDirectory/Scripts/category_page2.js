@@ -62,24 +62,68 @@ function effectiveDeviceHeight() {
 function getPosition(element) {
     var xPosition = 0;
     var yPosition = 0;
-
+    alert(element.offsetLeft);
     while (element) {
         xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
         yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
         element = element.offsetParent;
     }
+    alert(yPosition);
     return { x: xPosition, y: yPosition };
 }
 $(document).ready(function () {
 
     var width = parseFloat($(".adlist_section aside").width());
     var height = parseFloat($(".adlist_ul").height());
+    var newwidth = width;
     if (width > height) {
         var top = (width - height) / 2;
-        $('.adlist_ul').css('margin-top', top + "px");
+        //alert(width + '---' + height + '----' + top * 2);
+        $('#sectier1 ul').css('padding-top', top + "px");
+        /*if (top <= 25)
+            $('.adlist_ul').css('padding-top', top + "px");
+        else if (top < 50) {
+            newwidth = width * 90 / 100;
+
+        }
+        else if (top < 100) {
+            newwidth = width * 80 / 100;
+
+        }
+        else if (top < 150) {
+            newwidth = width * 75 / 100;
+
+        }
+        else if (top < 200) {
+            newwidth = width * 70 / 100;
+
+        }
+        else if (top < 300) {
+            newwidth = width * 60 / 100;
+
+        }
+        else if (top < 500) {
+            newwidth = width * 50 / 100;
+
+        }
+        else {
+            newwidth = width * 49 / 100;
+
+        }
+        if (newwidth != width) {
+            var m = (parseFloat($(".adlist_section").width()) - parseFloat($(".adlist_ul").width()) - newwidth) / 2 + parseFloat($(".adlist_section").css('padding-right')) / 2;
+            //alert(m);
+            $(".adlist_section aside").width(newwidth);
+            $(".adlist_section aside").css('margin-left', m + "px");
+            if (newwidth > height) {
+                var top = (newwidth - height) / 2;
+                $('.adlist_ul').css('padding-top', top + "px");
+            }
+        }*/
     }
+    
     $('h3.cname a').mousemove(function (e) {
-        //alert("Linda");
+
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
@@ -87,11 +131,12 @@ $(document).ready(function () {
 
         var elemheight = $(".adlist_ul").height();
         var elemtop = $(".adlist_ul").position().top;
+        //alert(elemtop + '---' + getPosition(document.getElementById("secpage2")).y);
         var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
         var h1 = parseFloat($(".adlist_section aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-        
+
         //alert(y + '---' + h + '--' +mod);
         //var h = 
 
@@ -100,13 +145,13 @@ $(document).ready(function () {
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
-            top1 = y - (elemFull - sectionfull) - elemtop - (mod/4);
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
         }
         else {
-            top1 = y-elemtop - (h1/2);
+            top1 = y - elemtop - (h1 / 2);
         }
         top1 = Math.max(0, top1);
-        
+
         //alert($(window).scrollTop() + '--'+ $(".adlist_ul").position().top);
         //alert(y - $(window).scrollTop());
         $('.forpreview').css('margin-top', top1 + "px");
@@ -163,7 +208,7 @@ function hitsLinkTrack(hitslink) {
         /*if (document.referrer != '')
             wa_rf = document.referrer;
         else*/
-            wa_rf = location.hostname;
+            wa_rf = location.href;
         var wa_sr = location.search,
             wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
 

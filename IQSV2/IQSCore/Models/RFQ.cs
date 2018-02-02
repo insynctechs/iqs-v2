@@ -1,7 +1,9 @@
 ﻿using Microsoft.ApplicationBlocks.Data;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+
 
 namespace IQSCore.Models
 {
@@ -49,7 +51,8 @@ namespace IQSCore.Models
             sqlParam[8] = new SqlParameter("@RETURNVALUE", SqlDbType.Int);
             sqlParam[8].Direction = ParameterDirection.Output;
             sqlParam[8].Size = 10;
-            return await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertRFQDetails", sqlParam));
+            await Task.Run(() => SqlHelper.ExecuteNonQuery(Settings.Constr, CommandType.StoredProcedure, "uspInsertRFQDetails", sqlParam));
+            return Int32.Parse(sqlParam[8].Value.ToString());
         }
         #endregion
 

@@ -255,17 +255,17 @@ namespace IQSDirectory
         {
            
             divip_error.Visible = false;
-                    if(Utils.isvalidIpAccess()==true)
-                    { 
-                        //Captcha1.CheckEnteredValue();
-                        InsertMethod();
-                        sendMail();
-                    }
-                    else
-                    {
-                        divip_error.Visible = true;
-                        OnSecurityFailure(2);
-                    }
+            if(Utils.isvalidIpAccess()==true)
+            { 
+                //Captcha1.CheckEnteredValue();
+                InsertMethod();
+                sendMail();
+            }
+            else
+            {
+                divip_error.Visible = true;
+                OnSecurityFailure(2);
+            }
             
         }
 
@@ -347,6 +347,7 @@ namespace IQSDirectory
                 
                 // CommonLogger.Info("Insertion to RFQHeader for category SK: " + hdnCategorySK.Value);
                 var urlGetId = string.Format("api/RFQ/InsertRFQ?CategorySK=" + hdnCategorySK.Value + "&CompanyName="+ txtCompanyName.Text.Trim() + "&ContactName="+ txtContactName.Text.Trim() + "&Email="+ txtContactEmail.Text.Trim() + "&Address="+ txtContactCity.Text.Trim() + "&Phone="+ txtContactPhone.Text.Trim() + "&Comments="+ txtDescription.Value.Trim()  + "&RequestIP="+ _RequestIP);
+                //rfqmessage.InnerText = urlGetId;
                 _iRFQHeader = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId);
                  if (_iRFQHeader != 0)
                 {
@@ -355,6 +356,7 @@ namespace IQSDirectory
 
                         string[] Details = companyDetails[count].Split(chrsplitDetail);
                         var urlGetId1 = string.Format("api/RFQ/InsertRFQClientDetails?RFQHeaderSK="+ _iRFQHeader + "&ClientSK="+ Details[4] + "&SequenceNo="+ Details[2] + "&TierSK="+ Details[3]);
+                        //rfqmessage.InnerText += urlGetId1;
                         int res1 = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId1);
                     }
                     

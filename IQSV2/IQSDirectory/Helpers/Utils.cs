@@ -426,10 +426,11 @@ namespace IQSDirectory.Helpers
         {
             try
             {
-                string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
+                /*string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN" };
                 string ipaddress = GetIPAddress();
                 string url = "http://ip-api.com/json/" + ipaddress;
                 string json = new System.Net.WebClient().DownloadString(url);
+
                 string[] jsplit = json.Split(',');
                 if (jsplit[3] != null)
                 {
@@ -446,7 +447,45 @@ namespace IQSDirectory.Helpers
 
                 }
                 else
-                    return false;
+                    return false;*/
+
+                string[] allowedCountries = new string[] { "US", "UM", "CA", "MX", "IN", "United States", "Canada", "Mexico","India" };
+                string ipaddress = GetIPAddress();
+
+                string url = "http://ip-api.com/json/" + ipaddress;
+                string json = new System.Net.WebClient().DownloadString(url);
+                string[] jsplit = json.Split(',');
+                
+                if (json != null || json != "")
+                {
+                    int pos = json.IndexOf("countryCode");
+                    if (pos > 1)
+                    {
+                        int pos1 = json.IndexOf(",", pos + 1);
+                        if (pos1 == -1)
+                            pos1 = json.Length;
+                        string ctrstr = json.Substring(pos, pos1 - pos);
+                        string ctr = ctrstr.Substring(ctrstr.IndexOf(':') + 1).Replace('"', ' ').Trim();
+                        //Response.Write("ctrstr=" + ctrstr + "<br>ctr=" + ctr);
+                        if (Array.IndexOf(allowedCountries, ctr) >= 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+
             }
             catch (Exception ex)
             {

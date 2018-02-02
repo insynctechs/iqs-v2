@@ -21,14 +21,22 @@ namespace IQSDirectory
         public void BindMeta()
         {
             System.Text.StringBuilder strMetaTag = new System.Text.StringBuilder();
-            strMetaTag.AppendFormat(@"<meta content='{0}' name='Description'/>", PageDescription);
-            strMetaTag.AppendFormat(@"<meta content='{0}' name='Keywords'/>", PageKeywords);
+            strMetaTag.AppendFormat(@"<meta content='{0}' name='description'/>", PageDescription);
+            strMetaTag.Append(Environment.NewLine);
+            strMetaTag.AppendFormat(@"<meta content='{0}' name='keywords'/>", PageKeywords);
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:title'/>", PageTitle);
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:description'/>", PageDescription);
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:image'/>", WebURL + "images/iqs_logo.gif");
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:image:type'/>", "image/gif");
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:image:width'/>", "348");
+            strMetaTag.Append(Environment.NewLine);
             strMetaTag.AppendFormat(@"<meta content='{0}' name='og:image:height'/>", "79");
+            strMetaTag.Append(Environment.NewLine);
             PageMeta = strMetaTag.ToString();
         }
 

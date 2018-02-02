@@ -34,6 +34,7 @@ namespace IQSCore.Controllers
             return Ok(cat);
         }
         [Route("api/RFQ/InsertRFQ")]
+        [HttpGet]
         public async Task<IHttpActionResult> InsertRFQ(int CategorySK, string CompanyName, string ContactName, string Email, string Address, string Phone, string Comments, string RequestIP)
         {
             
@@ -42,6 +43,7 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/RFQ/InsertRFQClientDetails")]
+        [HttpGet]
         public async Task<IHttpActionResult> InsertRFQClientDetails(int RFQHeaderSK, int ClientSK, int SequenceNo, int TierSK)
         {
 

@@ -74,7 +74,7 @@
                         <span><%: stAd["PHONE"] %></span>
                     </h3>
                    
-                    <a rel='nofollow' class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
+                    <a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%= stAd["ADDESCRIPTION"] %>
                 </p>
@@ -119,7 +119,7 @@
                         <span><%= nghAd["CITY_STATE"] %></span>
                         <span><%= nghAd["PHONE"] %></span>
                     </h3>
-                    <a rel='nofollow' class='btncopro'   alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
+                    <a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
                 </header>
                 <p class='cdesc'><%: nghAd["ADDESCRIPTION"] %>
                 </p>

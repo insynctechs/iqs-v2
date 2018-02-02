@@ -80,23 +80,106 @@ $(document).ready(function () {
 
     var width = parseFloat($("#sectier1 aside").width());
     var height = parseFloat($("#sectier1 ul").height());
-    if(width > height)
-    {
-        var top = (width - height)/2;
-         $('#sectier1 ul').css('margin-top', top + "px");
-     }
+    var newwidth = width;
+    if (width > height) {
+        var top = (width - height) / 2;
+        //alert(width + '---' + height + '----' + top * 2);
+        $('#sectier1 ul').css('padding-top', top + "px");
+        /*if (top <= 25)
+            $('#sectier1 ul').css('padding-top', top + "px");
+        else if (top < 50) {
+            newwidth = width * 90 / 100;
 
-     var width1 = parseFloat($("#sectier2 aside").width());
-     var height1 = parseFloat($("#sectier2 ul").height());
-     if (width1 > height1) {
-         var top1 = (width1 - height1) / 2;
-         $('#sectier2 ul').css('margin-top', top + "px");
-     }
+        }
+        else if (top < 100) {
+            newwidth = width * 80 / 100;
+
+        }
+        else if (top < 150) {
+            newwidth = width * 75 / 100;
+
+        }
+        else if (top < 200) {
+            newwidth = width * 70 / 100;
+
+        }
+        else if (top < 300) {
+            newwidth = width * 60 / 100;
+
+        }
+        else if (top < 500) {
+            newwidth = width * 50 / 100;
+
+        }
+        else {
+            newwidth = width * 49 / 100;
+
+        }
+        if (newwidth != width) {
+            var m = (parseFloat($("#sectier1").width()) - parseFloat($("#sectier1 ul").width()) - newwidth) / 2 + parseFloat($("#sectier1").css('padding-right')) / 2;
+            //alert(m);
+            $("#sectier1 aside").width(newwidth);
+            $("#sectier1 aside").css('margin-left', m + "px");
+            if (newwidth > height) {
+                var top = (newwidth - height) / 2;
+                $('#sectier1 ul').css('padding-top', top + "px");
+            }
+        }*/
+    }
+
+    var width1 = parseFloat($("#sectier2 aside").width());
+    var height1 = parseFloat($("#sectier2 ul").height());
+    var newwidth1 = width1;
+    if (width1 > height1) {
+        var top1 = (width1 - height1) / 2;
+        $('#sectier2 ul').css('padding-top', top1 + "px");
+        /*if (top1 <= 25) {
+            $('#sectier2 ul').css('padding-top', top1 + "px");
+        }
+        else if (top1 < 50) {
+            newwidth1 = width1 * 90 / 100;
+        }
+        else if (top1 < 100) {
+            newwidth1 = width1 * 80 / 100;
+
+        }
+        else if (top1 < 150) {
+            newwidth1 = width1 * 75 / 100;
+
+        }
+        else if (top1 < 200) {
+            newwidth1 = width1 * 70 / 100;
+
+        }
+        else if (top1 < 300) {
+            newwidth1 = width1 * 60 / 100;
+
+        }
+        else if (top1 < 500) {
+            newwidth1 = width1 * 50 / 100;
+
+        }
+        else {
+            newwidth1 = width1 * 49 / 100;
+
+        }
+        if (newwidth1 != width1) {
+            var m1 = (parseFloat($("#sectier2").width()) - parseFloat($("#sectier2 ul").width()) - newwidth) / 2 + parseFloat($("#sectier2").css('padding-right')) / 2;
+            //alert(m);
+            $("#sectier2 aside").width(newwidth1);
+            $("#sectier2 aside").css('margin-left', m1 + "px");
+            if (newwidth1 > height1) {
+                var top1 = (newwidth1 - height1) / 2;
+                $('#sectier2 ul').css('padding-top', top1 + "px");
+            }
+        }*/
+
+    }
 
     $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
-        var h = $(window).height();        
+        var h = $(window).height();
         var elemheight = $("#sectier1 .adlist_ul").height();
         var elemtop = $("#sectier1 .adlist_ul").position().top;
         var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
@@ -109,8 +192,8 @@ $(document).ready(function () {
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
-            top1 = y - (elemFull - sectionfull) - elemtop - (mod/4);
-           
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
+
         }
         else {
             top1 = y - elemtop - (h1 / 2);
@@ -156,7 +239,7 @@ $(document).ready(function () {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
-        
+
         var elemheight = $("#sectier3 .adlist_ul").height();
         var elemtop = $("#sectier3 .adlist_ul").position().top;
         var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
@@ -169,7 +252,7 @@ $(document).ready(function () {
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
-            top1 = y - (elemFull - sectionfull) - elemtop - (mod /4);
+            top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
 
         }
         else {
@@ -221,10 +304,12 @@ function hitsLinkTrack(hitslink) {
 
         var wa_c = new RegExp('__wa_v=([^;]+)').exec(document.cookie),
             wa_tz = new Date();
-        /*if (document.referrer != '')
+        /*if (document.referrer != '') {
             wa_rf = document.referrer;
+            //alert(wa_rf);
+        }
         else*/
-            wa_rf = location.hostname;
+            wa_rf = location.href;
             var wa_sr = location.search,
             wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
 
