@@ -12,7 +12,7 @@
     <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
 
 
-    <section id='seccat'>
+    <section id='seccat' itemscope="" itemtype="http://schema.org/Product">
         <div id="social">
             <span>Share this page on</span>
             <ul>
@@ -57,17 +57,23 @@
         <ul class="adlist_ul">
             <% foreach (var drT1Ad in Tier1Advertisements)
                 {%>
-            <li>
+            <li itemscope itemtype="http://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', '<%: drT1Ad["IMAGE"] %>');hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')"><%= drT1Ad["CLIENT_NAME"] %></a>
-                        <span><%: drT1Ad["CITY_STATE"] %></span>
-                        <span><%: drT1Ad["PHONE"] %></span>
+                        <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', '<%: drT1Ad["IMAGE"] %>');hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drT1Ad["CLIENT_NAME"] %></span></a>
+                        <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                            <span itemprop="addressLocality"><%: drT1Ad["CITY_STATE"] %></span>
+                            <span itemprop="telephone"><%: drT1Ad["PHONE"] %></span>
+                        </span>
                     </h3>
+                    <div class="buttons">
                     <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a class='btncopro' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                    <% if (drT1Ad["CAD_URL"].ToString()!="" && drT1Ad["CAD_URL"].ToString()!="http://")
+                        { %><a class='btnCAD' target="_blank" href='<%: drT1Ad["CAD_URL"] %>'>View CAD Drawings</a><% } %>
+                        </div>
                 </header>
-                <p class='cdesc'><%: drT1Ad["ADDESCRIPTION"] %></p>
+                <p class='cdesc' itemprop="description"><%: drT1Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drT1Ad["CLIENT_SK"] %>' class="divratingclientmain">
                         <script type='text/javascript'>
@@ -105,16 +111,22 @@
         <ul class="adlist_ul">
             <% foreach (var drT2Ad in Tier2Advertisements)
               {%>
-            <li>
+            <li itemscope itemtype="http://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', '<%: drT2Ad["IMAGE"] %>');hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');"><%= drT2Ad["CLIENT_NAME"] %></a>
-                        <span><%: drT2Ad["CITY_STATE"] %></span><span><%: drT2Ad["PHONE"] %></span>
+                        <a rel='nofollow' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', '<%: drT2Ad["IMAGE"] %>');hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');" itemprop="url"><span itemprop="name"><%= drT2Ad["CLIENT_NAME"] %></span></a>
+                         <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                             <span itemprop="addressLocality"><%: drT2Ad["CITY_STATE"] %></span><span itemprop="telephone"><%: drT2Ad["PHONE"] %></span>
+                         </span>
                     </h3>
+                    <div class="buttons">
                     <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT2Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a class='btncopro' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
+                 <% if (drT2Ad["CAD_URL"].ToString()!="" && drT2Ad["CAD_URL"].ToString()!="http://")
+                        { %><a class='btnCAD' target='_blank' href='<%: drT2Ad["CAD_URL"] %>'>View CAD Drawings</a><% } %>
+                        </div>
                 </header>
-                <p class='cdesc'><%: drT2Ad["ADDESCRIPTION"] %></p>
+                <p class='cdesc' itemprop="description"><%: drT2Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drT2Ad["CLIENT_SK"] %>' class="divratingclientmain">
                         <script type='text/javascript'>

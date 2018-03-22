@@ -155,7 +155,7 @@ namespace IQSDirectory
                 dt.AsEnumerable().ToList().ForEach(dr =>
                 {
                     dr["URL"] = wHelper.WebUrl + dr["URL"].ToString().Replace("\\", "/");
-                    dr["MDESC"] = dr["MDESC"].ToString().IndexOf(". ") > 0 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().IndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
+                    dr["MDESC"] = dr["MDESC"].ToString().Length > 500 ? dr["MDESC"].ToString().Substring(0, dr["MDESC"].ToString().Substring(0, 500).LastIndexOf(". ") + 1).ToString() : dr["MDESC"].ToString();
                     dr["FORMATED_TITLE"] = Utils.FormatCompanyWebsiteLink(dr["TITLE"].ToString());
                 });
 
@@ -167,16 +167,18 @@ namespace IQSDirectory
                     string[] csite = cList["WEBSITE"].ToString().Split(',');
                     if (csite.Length > 0)
                     {
-                        if (csite[0].Trim().StartsWith("http://"))
+                        if (csite[0].Trim().StartsWith("https://"))
+                            cList["WEBSITE"] = csite[0].Trim();
+                        else if (csite[0].Trim().StartsWith("http://"))
                             cList["WEBSITE"] = csite[0].Trim();
                         else
                             cList["WEBSITE"] = "http://" + csite[0].Trim();
                     }
-                    if (cList["MDESC"].ToString().Length > 300)
+                    /*if (cList["MDESC"].ToString().Length > 500)
                     {
-                        cList["MDESC"] = cList["MDESC"].ToString().Substring(0, 300);
+                        cList["MDESC"] = cList["MDESC"].ToString().Substring(0, 500);
                     }
-                    cList["MDESC"] = cList["MDESC"].ToString().Substring(0, cList["MDESC"].ToString().LastIndexOf(' '));
+                    cList["MDESC"] = cList["MDESC"].ToString().Substring(0, cList["MDESC"].ToString().LastIndexOf(' '));*/
                 }
                 CompanyList = drComp.AsEnumerable().ToList();
 

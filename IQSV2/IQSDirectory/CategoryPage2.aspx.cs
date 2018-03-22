@@ -51,7 +51,7 @@ namespace IQSDirectory
 
         private void DisplayCategory(string CategoryID)
         {
-            var url = string.Format("api/CategoryPages/GetCategoryPage2Details?CategorySK=" + CategoryID + "&WebsiteType=Directory");
+            var url = string.Format("api/CategoryPages/GetCategoryPage2Details?CategorySK=" + CategoryID + "&WebsiteType=Directory&WebURL=" + Utils.WebURL);
             DataSet ds = wHelper.GetDataSetFromWebApi(url);
             if (ds != null)
             {

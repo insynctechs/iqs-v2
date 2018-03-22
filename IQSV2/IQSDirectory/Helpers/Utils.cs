@@ -12,6 +12,10 @@ namespace IQSDirectory.Helpers
     {
         public static string FormatCompanyWebsiteLink(string CompanyName)
         {
+            if (CompanyName == "" || CompanyName == null)
+            {
+                return String.Empty;
+            }
             string[] starr = { " incorporated", " corporation", " industries", " industry", " international", " company", " companies", " llc", " inc", " corp" };
             string cname = CompanyName;
             cname = cname.Trim().Replace("&amp;", "&");
@@ -115,6 +119,10 @@ namespace IQSDirectory.Helpers
         public static string ReplaceContent(string Content, int type)
         {
             string _replacecontent = string.Empty;
+            if(Content=="" || Content == null)
+            {
+                return String.Empty;
+            }
             switch (type)
             {
                 case 0:

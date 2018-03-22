@@ -10,7 +10,7 @@
     <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/category_page2.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
-    <section id='seccat'>
+    <section id='seccat' itemscope="" itemtype="http://schema.org/Product">
         <div id="social">
             <span>Share this page on</span>
             <ul>
@@ -53,17 +53,22 @@
         <ul class="adlist_ul">
             <% foreach (var drTAd in TierAdvertisements)
                 {%>
-            <li>
+            <li itemscope itemtype="http://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')"><%= drTAd["CLIENT_NAME"] %></a>
-                        <span><%: drTAd["CITY_STATE"] %></span>
-                        <span><%: drTAd["PHONE"] %></span>
+                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drTAd["CLIENT_NAME"] %></span></a>
+                        <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                             <span itemprop="addressLocality"><%: drTAd["CITY_STATE"] %></span>
+                        <span itemprop="telephone"><%: drTAd["PHONE"] %></span></span>
                     </h3>
+                    <div class="buttons">
                     <!--<a href='directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='btnrfq'>Request For Quote</a>-->
                     <a class='btncopro' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%=RootPath %><%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>
+                <% if (drTAd["CAD_URL"].ToString()!="" && drTAd["CAD_URL"].ToString()!="http://")
+                        { %><a class='btnCAD2' target='_blank' href='<%: drTAd["CAD_URL"] %>'>View CAD Drawings</a><% } %>
+                        </div>
                 </header>
-                <p class='cdesc'><%: drTAd["ADDESCRIPTION"] %></p>
+                <p class='cdesc' itemprop="description"><%: drTAd["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drTAd["CLIENT_SK"] %>' class="divratingclientmain">
                         

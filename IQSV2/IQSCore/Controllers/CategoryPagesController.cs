@@ -33,9 +33,9 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/CategoryPages/GetCategoryPage1Details")]
-        public async Task<IHttpActionResult> GetCategoryPage1Details(int CategorySK, string WebsiteType, int json=0)
+        public async Task<IHttpActionResult> GetCategoryPage1Details(int CategorySK, string WebsiteType, string WebURL, int json=0)
         {
-            var cat = await categoryPages.GetCategoryPage1Details(CategorySK, WebsiteType);
+            var cat = await categoryPages.GetCategoryPage1Details(CategorySK, WebsiteType, WebURL);
             if (json == 1)
                 return Json(JsonConvert.SerializeObject(cat, Formatting.Indented));
             else
@@ -53,9 +53,9 @@ namespace IQSCore.Controllers
         }
 
         [Route("api/CategoryPages/GetCategoryPage2Details")]
-        public async Task<IHttpActionResult> GetCategoryPage2Details(int CategorySK, string WebsiteType, int json=0)
+        public async Task<IHttpActionResult> GetCategoryPage2Details(int CategorySK, string WebsiteType, string WebURL, int json=0)
         {
-            var cat = await categoryPages.GetCategoryPage2Details(CategorySK, WebsiteType);
+            var cat = await categoryPages.GetCategoryPage2Details(CategorySK, WebsiteType, WebURL);
             if (json == 1)
                 return Json(JsonConvert.SerializeObject(cat, Formatting.Indented));
             else

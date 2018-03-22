@@ -10,7 +10,7 @@
     <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/category_page2.js' async defer type='text/javascript'></script>
     <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
-    <section id='seccat'>
+    <section id='seccat' itemscope="" itemtype="http://schema.org/Product">
     <div id="social">
         <span>Share this page on</span>
         <ul>
@@ -66,17 +66,21 @@
     {
         foreach (var stAd in StateAdvertisements)
         { %>
-            <li>
+            <li itemscope itemtype="http://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')"><%= stAd["CLIENT_NAME"] %></a>
-                        <span><%: stAd["CITY_STATE"] %></span>
-                        <span><%: stAd["PHONE"] %></span>
+                        <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= stAd["CLIENT_NAME"] %></span></a>
+                        <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                             <span itemprop="addressLocality"><%: stAd["CITY_STATE"] %></span>
+                        <span itemprop="telephone"><%: stAd["PHONE"] %></span></span>
                     </h3>
-                   
+                   <div class="buttons">
                     <a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
+                     <% if (stAd["CAD_URL"].ToString()!="" && stAd["CAD_URL"].ToString()!="http://")
+                        { %><a class='btnCAD2' href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a><% } %>
+                       </div>
                 </header>
-                <p class='cdesc'><%= stAd["ADDESCRIPTION"] %>
+                <p class='cdesc' itemprop="description"><%= stAd["ADDESCRIPTION"] %>
                 </p>
                 <div class='divRate'>
                     <div id='divRate<%: stAd["CLIENT_SK"] %>' class="divratingclientmain">
@@ -112,16 +116,21 @@
                 { %>
             <li><h2><%: H1Text %> Companies Serving <%: nghAd["STATECODE"].ToString()  %></h2></li>
             <%} %>
-            <li>
+            <li itemscope itemtype="http://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"><%= nghAd["CLIENT_NAME"] %></a>
-                        <span><%= nghAd["CITY_STATE"] %></span>
-                        <span><%= nghAd["PHONE"] %></span>
+                        <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"itemprop="url"><span itemprop="name"><%= nghAd["CLIENT_NAME"] %></span></a>
+                         <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                             <span itemprop="addressLocality"><%= nghAd["CITY_STATE"] %></span>
+                        <span itemprop="telephone"><%= nghAd["PHONE"] %></span></span>
                     </h3>
+                    <div class="buttons">
                     <a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
+                 <% if (nghAd["CAD_URL"].ToString()!="" && nghAd["CAD_URL"].ToString()!="http://")
+                        { %><a class='btnCAD2' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a><% } %>
+                        </div>
                 </header>
-                <p class='cdesc'><%: nghAd["ADDESCRIPTION"] %>
+                <p class='cdesc' itemprop="description"><%: nghAd["ADDESCRIPTION"] %>
                 </p>
                 <div class='divRate'>
                     <div id='divRate<%: nghAd["CLIENT_SK"] %>' class="divratingclientmain">
@@ -154,8 +163,19 @@
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
-    <% if (OtherAdvertisements.Count > 0) { %>
+    
     <section id='secad_canada' >
+        <% if (CityList != "")
+            { %>
+        <h3>ADDITIONAL CITIES WE SERVE INCLUDE:</h3>
+        <p><%=CityList %></p>
+        <% } %>
+        <% if (CountyList != "")
+            { %>
+        <h3>ADDITIONAL COUNTIES WE SERVE INCLUDE:</h3>
+        <p><%=CountyList %></p>
+        <% } %>
+        <% if (OtherAdvertisements.Count > 0) { %>
     <h3>WE LIST FOR OTHER COUNTRIES TOO!</h3>
         <h2><%: H1Text %> manufacturers in CANADA</h2>
         <ul>
@@ -163,9 +183,9 @@
                 { %>
             <li><a href="<%: RootPath %><%: CategoryName %>/<%: othAd["SEARCH_URL"].ToString() %>"><%= othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
             <% } %>
-        </ul>
+        </ul><% } %>
     </section>
-    <% } %>
+    
     <script type='text/javascript'>
         $(document).ready(function () {
             $.get($('#hdnSrhRootPath').val()+'StateSearch.html', function (data) {

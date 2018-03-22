@@ -13,7 +13,7 @@
         /*window.fbAsyncInit = function () {*/
             //alert('Linda');
             FB.init({
-                appId: '504326666290316',
+                appId: '221653014637602', /*'504326666290316',*/
                 cookie: true,  // enable cookies to allow the server to access the session 
                 status: true,
                 xfbml: true,  // parse social plugins on this page

@@ -90,6 +90,8 @@ namespace IQSDirectory
                 GenerateRelatedCategories(ds.Tables[1]);
                 GenerateAdvertisements(ds.Tables[2]);
                 GenerateOtherAdvertisements(ds.Tables[4]);
+                GenerateCityList(ds.Tables[11]);
+                GenerateCountyList(ds.Tables[12]);
             }
             ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
             DirectoryURL = HttpContext.Current.Request.Url.Authority;
@@ -245,6 +247,21 @@ namespace IQSDirectory
             OtherAdvertisements = dt.AsEnumerable().ToList();
         }
 
+        private void GenerateCityList(DataTable dt)
+        {
+            CityList = string.Join(", ", dt.AsEnumerable()
+                                 .Select(x => x["CITY"].ToString())
+                                 .ToArray());
+        }
+
+        private void GenerateCountyList(DataTable dt)
+        {
+            CountyList = string.Join(", ", dt.AsEnumerable()
+                                 .Select(x => x["COUNTY"].ToString())
+                                 .ToArray());
+        }
+
+
         private void GetClientSkForRating()
         {
             string ClientSKForRating = "";
@@ -290,6 +307,8 @@ namespace IQSDirectory
         public string ShareURL { get; set; }
         public string CurrentState { get; set; }
         public string DirectoryURL { get; set; }
+        public string CityList { get; set; }
+        public string CountyList { get; set; }
         public IHtmlString ItemDesc { get; set; }
         public List<DataRow> RelatedCategories { get; set; }
         public List<DataRow> StateAdvertisements { get; set; }

@@ -178,7 +178,7 @@ h2.pophead {
     display: block;
     background-color: #30494e; text-transform:uppercase;
 }
-.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; padding:2%; background-color:lavender;}
+.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; padding:2%; /*background-color:lavender;*/}
 .nest h3{color:#aaa; font-size:11px;}
 /**************** Comment Popup ********************************/
 .register_popup {

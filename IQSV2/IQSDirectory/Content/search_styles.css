@@ -99,10 +99,16 @@ ul.prodlist li h3 a:hover, ul.othercomplist li h3 a:hover {
 }
 
 ul.prodlist li p, ul.othercomplist li p {
-margin: 5px 0;
-font-size: 13px;
+    margin: 5px 0 10px 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 19px;
 }
-
+.leftbox{width:48%; float:left;}
+.rightbox {
+    width: 48%;
+    float: right;
+}
 ul.complist li h3 {
 font-size: 14px;
 font-weight: normal;
@@ -122,15 +128,17 @@ overflow: hidden;
 }
 
 ul.complist li div.contact span {
-float: left;
-margin-right: 50px;
-color: #333;
+    float: left;
+    margin-right: 50px;
+    color: #1d899f;
 }
 
 ul.complist li p {
 clear: both;
-margin: 10px 0;
+padding: 10px 0;
 font-size: 13px;
+color: #333;
+line-height: 19px;
 }
 
 ul.complist li .buttons a {
@@ -298,8 +306,9 @@ a:hover.small {
 }
 
 
-@media only screen and (max-width: 640px) {
-   
+@media only screen and (max-width: 700px) {
+   .leftbox,.rightbox{float:left; width:98%;}
+    ul.complist li div.contact{margin:5px 0;}
 }
 
 

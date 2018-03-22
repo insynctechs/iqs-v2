@@ -33,16 +33,15 @@
                     <li>
                         
                             
-                                
+                                <div class="leftbox">
                                         <h3>
                                         <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%: cl["TITLE"].ToString() %></a><br>
                                         </h3>
                                         <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>
+
                                         <span><%: cl["PHONE"].ToString() %></span></div>
-                                    
-                                    <p><%: cl["MDESC"].ToString() %></p>
-                               
-                                <div class='buttons'>
+                                    </div>
+                        <div class='buttons rightbox'>
                                     
                                         <% if (cl["NORDER"].ToString() == "2")
                                             { %>
@@ -52,6 +51,9 @@
                                     <a href='<%: cl["URL"].ToString() %>' title='<%: cl["FORMATED_TITLE"].ToString() %> Profile' alt='<%: cl["TITLE"].ToString() %> Profile' class='lnkviewcopro'>View Company Profile</a>
                                         
                                     </div>
+                                    <p ><%: cl["MDESC"].ToString() %></p>
+                               
+                                
                                 
                     </li>
                     <% } %></ul>

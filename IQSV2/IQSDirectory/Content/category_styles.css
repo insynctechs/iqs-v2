@@ -231,6 +231,20 @@ table, tr, td {max-width:100% !important;}
     margin: 8px 0 0 17px;
 }
 
+.adlist_section h3 a span {
+    display: block;
+    float: none !important;
+    font-weight: bold;
+    margin: 0 !important;
+    font-size: 13px;
+}
+.adlist_section h3 span.addr {
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin: 0 !important;
+    font-size: 12px;
+}
 .adlist_section h3 span
 {
     display: block;
@@ -239,8 +253,14 @@ table, tr, td {max-width:100% !important;}
     margin: 9px 16px 5px;
     font-size: 12px;
 }
-.adlist_section a.btncopro
-{
+.adlist_section .buttons {
+    width: 43%;
+    float: left;
+    height: auto;
+    overflow: hidden;
+}
+
+.adlist_section .buttons a {
     background-color: #474747;
     border: 1px outset #DDDDDD;
     color: #FB9622;
@@ -250,25 +270,27 @@ table, tr, td {max-width:100% !important;}
     padding: 8px 0px;
     text-align: center;
     text-decoration: none;
+    float: left;
+}
+
+.adlist_section a.btnCAD {      
+    width: 98%;    
+}
+.adlist_section a.btnCAD2 {    
+    margin-left: 1%;
+    width: 48%;    
+}
+.adlist_section a.btncopro
+{
     margin-right:0%;
-    width:20%;float:left;
+    width:48%;
 
 }
 .adlist_section  a.btnrfq
 {
-    background-color: #474747;
-    border: 1px outset #DDDDDD;
-    color: #FB9622;
-    display: block;
-    font-weight: bold;
-    height: auto;
-    padding: 8px 0px;
-    text-align: center;
-    text-decoration: none;
     margin-right:1%;
-    width:20%;
-    float:left;
-
+    width:48%;
+   
 }
 .foriframe {
 
@@ -723,7 +745,7 @@ padding: 0;
 }
 #secad_canada
 {
-    color:#fff; background-color:#ed6815; padding: 20px 0; text-align: center; margin: 0; clear: both; height: auto; overflow: hidden;
+    color:#000; background-color:#ed6815; padding: 20px 20px; font-size:13px; line-height:21px; text-align: center; margin: 0; clear: both; height: auto; overflow: hidden;
 }
 #secad_canada h3
 {
@@ -825,13 +847,16 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     {
         margin-top: 15px;
     }
-    .adlist_section h3, .adlist_section a.btncopro, .adlist_section a.btnrfq  {
-        width:100% !important;
+    .adlist_section h3, .adlist_section .buttons, .adlist_section a.btnCAD, .adlist_section a.btnCAD2, .adlist_section a.btncopro, .adlist_section a.btnrfq {
+        width: 100% !important;
+        margin: 0;
     }
 
 
-    .adlist_section a.btncopro, .adlist_section a.btnrfq , #secadpage .lirfq a, #secadpage .licopro a{
-        padding: 8px 0 !important; text-align: center;
+    .adlist_section a.btncopro, .adlist_section .buttons,.adlist_section a.btnrfq, .adlist_section a.btnCAD, .adlist_section a.btnCAD2, #secadpage .lirfq a, #secadpage .licopro a {
+        padding: 8px 0 !important;
+        text-align: center;
+        margin: 0;
     }
 }
 @media only screen and (min-width: 321px) and (max-width:480px)
@@ -907,12 +932,16 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
         text-align: left;
         width: 100%;
     }
-    .adlist_section a.btncopro, .adlist_section a.btnrfq  {
-        width:49.5%; margin-right: 0;
+    .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btnCAD2 {
+        width: 49.5%;
+        margin-right: 0; margin-left:0;
     }
-
-    .adlist_section h3  {
-        width:100%;
+    .adlist_section a.btnCAD {
+        width: 100%;
+        margin-right: 0;
+    }
+    .adlist_section h3, .adlist_section .buttons {
+        width: 100%;
     }
 
     #secadpage .licopro a{
@@ -993,14 +1022,17 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
 }
 @media only screen and (min-width: 800px) and (max-width: 1279px) {
     #secrelcat ul li{width: auto !important; padding-right:30px;}
-    .adlist_section a.btncopro, .adlist_section a.btnrfq  {
-        width:49.5%;
+    .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btnCAD2 {
+        width: 49.5%; 
     }
-
-    .adlist_section h3 {
+    .adlist_section a.btnCAD {
         width: 100%;
     }
-    .adlist_section a.btncopro, .adlist_section a.btnrfq , #secadpage .lirfq a, #secadpage .licopro a{
+
+    .adlist_section h3, .adlist_section .buttons {
+        width: 100%;
+    }
+    .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btnCAD2, .adlist_section a.btnCAD, #secadpage .lirfq a, #secadpage .licopro a {
         padding: 8px 8px 0 8px;
     }
 
@@ -1052,14 +1084,17 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
         margin-top: 0 !important;
         display: none;
     }
-    .adlist_section a.btncopro, .adlist_section a.btnrfq  {
-        width:24.5% !important;
+    .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btCAD2 {
+        width: 49.5% !important;
+    }
+   .adlist_section a.btCAD {
+        width: 100% !important;
     }
 
-    .adlist_section h3 {
+    .adlist_section h3, .adlist_section .buttons {
         width: 50% !important;
     }
-    .adlist_section a.btncopro, .adlist_section a.btnrfq , #secadpage .lirfq a, #secadpage .licopro a{
+    .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btnCAD, .adlist_section a.btnCAD2, #secadpage .lirfq a, #secadpage .licopro a {
         padding: 8px 8px 0 8px;
     }
 }
@@ -1120,6 +1155,15 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
 
 #p3.single.wrapper .adlist_section ul {width: 100%; margin-top: 0 !important; margin-bottom: 10px; padding-top: 0 !important;}
 #p3.single.wrapper .adlist_section aside {position: relative; top: 0px; right: inherit; margin: 0 auto; float: none; width: 75%;}
+
+#p3.wrapper.new .adlist_section header {background: none; border: none;}
+#p3.wrapper.new .adlist_section h3 {width: 100%;}
+#p3.wrapper.new .adlist_section h3 a {color: #000000; display: block; float: left; font-size: 13px; margin: 8px 0 0 0px;}
+#p3.wrapper.new .adlist_section .cdesc {margin: 7px 0;}
+#p3.wrapper .company-block a, #p3.wrapper .company-block a:visited, #p3.wrapper.new .adlist_section ul a,#p3.wrapper.new .adlist_section ul a:visited {color: #000000;} 
+#p3.wrapper .company-block a:hover, #p3.wrapper.new .adlist_section ul a:hover {color: #fb9622;}
+
+#p3.single.wrapper.new .adlist_section h3,#p3.single.wrapper.new .adlist_section h3 a,#p3.single.wrapper.new .adlist_section p {float:none; text-align:center;}
 
 #p3.wrapper {
     width: 100%;

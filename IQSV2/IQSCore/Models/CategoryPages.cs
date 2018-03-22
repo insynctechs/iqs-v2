@@ -12,12 +12,12 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "Usp_GetCategoryList"));
         }
 
-        public async Task<DataSet> GetCategoryPage1Details(int CategorySK, string WebsiteType)
+        public async Task<DataSet> GetCategoryPage1Details(int CategorySK, string WebsiteType, string WebURL)
         {
             SqlParameter[] sqlParam = new SqlParameter[3];
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
-            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "http://www.iqsdirectory.com/");
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", WebURL);
             /*sqlParam[3] = new SqlParameter("@Page2AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
             //uspGetPage1AdvertisementDetails*/
@@ -31,12 +31,12 @@ namespace IQSCore.Models
             return await Task.Run(() => SqlHelper.ExecuteDataset(Settings.Constr, CommandType.StoredProcedure, "uspGetCategoryIdByName", sqlParam));
         }
 
-        public async Task<DataSet> GetCategoryPage2Details(int CategorySK, string WebsiteType)
+        public async Task<DataSet> GetCategoryPage2Details(int CategorySK, string WebsiteType, string WebURL)
         {
             SqlParameter[] sqlParam = new SqlParameter[4];
             sqlParam[0] = new SqlParameter("@CategorySK", CategorySK);
             sqlParam[1] = new SqlParameter("@WebSiteType", WebsiteType);
-            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", "http://www.iqsdirectory.com/");
+            sqlParam[2] = new SqlParameter("@DirectoryWebsiteURL", WebURL);
             /*sqlParam[3] = new SqlParameter("@Page3AdsCount", SqlDbType.Int);
             sqlParam[3].Direction = ParameterDirection.Output;
             //uspGetPage2AdvertisementDetails 
