@@ -115,12 +115,12 @@ div.rightbox .col { height: auto; overflow: hidden;}
 .review_meta_wrapper h3{color: #777; font-size: 11px; }
 .review_rating_wrapper{width: 20%; float: right;}
 .review_content_wrapper{padding: 10px 0; text-align: justify; }
-.review_action_wrapper{padding: 10px 0 30px 0; text-align: right; color: #374246;}
+.review_action_wrapper{padding: 10px 0 0 0; text-align: right; color: #374246;}
 .review_action_wrapper img{vertical-align: middle;}
 .review_action_wrapper .spnHelpful{vertical-align:middle;display: inline-block;}
 .review_action_wrapper .spnHelpCount{padding-left:35px;}
 .review_action_wrapper .spnHelpCountDesc{display: inline-block; padding-right: 3px;}
-.divSubComments{padding:10px 0; overflow:hidden; height:auto; border-top:#ddddd solid 1px; }
+.divSubComments{padding:10px 2%; overflow:hidden; height:auto; border-top:#dddddd solid 1px; }
 .review_content_wrapper > .divSubComments:first-child {
     border: none !important;
 }
@@ -178,7 +178,7 @@ h2.pophead {
     display: block;
     background-color: #30494e; text-transform:uppercase;
 }
-.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; padding:2%; /*background-color:lavender;*/}
+.nest{margin:5px 0 5px 30px; text-align:left; height:auto; overflow:hidden; /*padding:2%; background-color:lavender;*/}
 .nest h3{color:#aaa; font-size:11px;}
 /**************** Comment Popup ********************************/
 .register_popup {

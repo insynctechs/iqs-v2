@@ -20,9 +20,19 @@ namespace IQSDirectory
         {
             if (!IsPostBack)
             {
+                InitializeVars();
                 CheckCategory();
             }
         }
+
+        private void InitializeVars()
+        {
+            TierAdvertisements = new List<DataRow>();
+            ProfileLinks = new List<DataRow>();
+            ClientRatings = new List<DataRow>();
+            Articles = new List<DataRow>();
+        }
+
 
         private void CheckCategory()
         {
@@ -55,7 +65,8 @@ namespace IQSDirectory
             DataSet ds = wHelper.GetDataSetFromWebApi(url);
             if (ds != null)
             {
-                GenerateHeader(ds.Tables[0]);
+                //Response.Write(ds.Tables[0].Rows.Count + "<br/>" + ds.Tables[1].Rows.Count+"<br/>"+ ds.Tables[2].Rows.Count + "<br/>" + ds.Tables[3].Rows.Count + "<br/>" + ds.Tables[4].Rows.Count);
+                GenerateHeader(ds.Tables[0]);                
                 GenerateProfile(ds.Tables[1]);
                 GenerateAdvertisements(ds.Tables[2]);
                 GenerateMetaTagsAndScripts(ds.Tables[3], ds.Tables[4]);

@@ -138,7 +138,7 @@ namespace IQSDirectory
             bool isIndexed = false;
             DataRow[] dr;
 
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='noindex,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
 
             if (dtMeta.Rows.Count > 0)
             {
@@ -234,10 +234,12 @@ namespace IQSDirectory
                         .Replace("[city],", "")
                         .Replace("[state]", CurrentState);
                 });
-
-                StateAdvertisements = dt.Select("theSTATE = '" + stateCode + "'").AsEnumerable().ToList();
-                NeighAdvertisements = dt.Select("theSTATE <> '" + stateCode + "'", "theState").AsEnumerable().ToList();
-                GetClientSkForRating();
+                if (dt.Rows.Count > 0)
+                {
+                    StateAdvertisements = dt.Select("theSTATE = '" + stateCode + "'").AsEnumerable().ToList();
+                    NeighAdvertisements = dt.Select("theSTATE <> '" + stateCode + "'", "theState").AsEnumerable().ToList();
+                    GetClientSkForRating();
+                }
             }
             
         }

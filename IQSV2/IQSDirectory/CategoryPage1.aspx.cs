@@ -128,11 +128,12 @@ namespace IQSDirectory
                     && p["ENTITY_ATTRIBUTE_ID"].ToString() == "E-MAIL")
                     .Select(p => p["DESCRIPTION"].ToString()).FirstOrDefault(),0);
             });
-
-            Tier1Advertisements = dt.Select("TIER_SK=1").ToList();
-            Tier2Advertisements = dt.Select("TIER_SK=2").ToList();
-
-            GetClientSkForRating(Tier1Advertisements, Tier2Advertisements);
+            if (dt.Rows.Count > 0)
+            {
+                Tier1Advertisements = dt.Select("TIER_SK=1").ToList();
+                Tier2Advertisements = dt.Select("TIER_SK=2").ToList();
+                GetClientSkForRating(Tier1Advertisements, Tier2Advertisements);
+            }
         }
 
         private void GetClientSkForRating(List<DataRow> tier1Advertisements, List<DataRow> tier2Advertisements)

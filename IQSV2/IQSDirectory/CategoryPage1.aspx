@@ -157,6 +157,11 @@
         </aside>
     </section>
     <% } %>
+    <% if (Tier1Advertisements.Count == 0 && Tier2Advertisements.Count == 0) { %>) 
+    <section class="adlist_empty">
+         <h4>No Companies listed under this Product Category!</h4>
+     </section>
+    <% } %>
     <script type='text/javascript'>
         $(document).ready(function ()
         {
@@ -177,13 +182,15 @@
     <% }
     else
     { %>
+    <% if (Tier1Advertisements.Count > 0)
+        { %>
     <section id='secaddcomp'>
         <header id='secsepaddcomp'>
             <a class='addcomp' href='<%:RootPath %><%: CategoryName %>/<%: CategoryName %>-2/'><span>More <%: DisplayName %> Companies</span>
                 <img src='<%:RootPath %>images/barrow.png' alt='Click' title='More <%: DisplayName %> Companies'></a>
         </header>
     </section>
-    
+    <% } %>
     <section id='secartmain'>
         <!-- Dynamic Articles and Press Releases -->
         <% if (Articles.Count > 0)

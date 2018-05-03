@@ -41,10 +41,12 @@
                     $('input[type=radio].topcommentstar').rating('enable');
                     $('input[type=radio].topcommentstar').rating('select', 0, false);
                     $('input[type=radio].topcommentstar').rating('disable');
-                    if (parseInt(<%: CompRating %>) > -1) { $('#spanTopRate').show(); }
+                    if (parseInt(<%: CompRating %>) > 0) { $('#spanTopRate').show(); }
                 });
              </script>
             <% } %>
+             <% if (CompCount != "0")
+            { %>
         <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="http://schema.org/AggregateRating">
             <meta itemprop="bestRating" content="5"/>
             <meta itemprop="worstRating" content="1"/>
@@ -53,11 +55,12 @@
             <!--<meta itemprop="reviewCount" content='0'/>-->
 
         </div>
+             <% } %>
         <div class='cleardiv'></div>
         <div class="col1">
              <% if (LogoLink != "")
                  { %>
-            <div id="divImage"><img class="clogo" src="<%= LogoLink %>" alt="<%: ClientNameFormatted %>" title="<%: ClientNameFormatted %>" itemprop="logo"></div>
+            <div id="divImage"><img class="clogo" src="<%= LogoLink %>" alt="<%: ClientNameFormatted %>" title="<%: ClientNameFormatted %>" itemprop="image"></div>
             <% } %>
             <% if (VideoLink.ToString() != "" && VideoLink.ToString() != "#")
                 { %>
@@ -95,7 +98,7 @@
             <div id="divCompUrls"><%= WebsiteLink %></div>
             <div id="divPhone" >
                 <% if(Phone != "") { %>
-                <b>Phone: </b><%= Phone %><br>
+                <b>Phone: </b><span itemprop="telephone"><%= Phone %></span><br>
                 <% } %>
                 <% if(Fax != "") { %>
                 <b>Fax: </b><%= Fax %>
@@ -103,7 +106,8 @@
             </div>
             <div id="divAddress">
                 <img src="<%:RootPath %>/images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
-                <div id="lblAddress"><%= Address %>
+                <div id="lblAddress" itemprop="address"itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="addressLocality"><%= Address %></span>
                 <br>
                 <a href="<%:RootPath %>copro-map.html?address=<%=MapAddress %>&comp=<%=ClientName %>" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
                 </div>

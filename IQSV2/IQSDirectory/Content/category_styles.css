@@ -146,11 +146,19 @@ table, tr, td {max-width:100% !important;}
 /***************** End of RElated Category Section **************/
 
 /*Page 1*/
+.adlist_empty {
+    background-color: #F0F0F0;
+    clear: both;    
+    height: 300px;
+    padding: 35px 3% 25px;
+    margin-bottom: 10px;
+}
 .adlist_section
 {
     background-color: #F0F0F0;
     clear: both;
     float: left;
+    min-height:300px;
     height: auto;
     overflow: hidden;
     padding:35px 3% 25px;
@@ -449,8 +457,7 @@ table, tr, td {max-width:100% !important;}
     margin: 0 0 0 5px;
     padding: 3px 0 0 34px;
 }
-#secininfo
-{
+#secininfo {
     clear: both;
     float: left;
     height: auto;
@@ -459,6 +466,7 @@ table, tr, td {max-width:100% !important;}
     -moz-box-shadow: -4px 12px 7px -9px #959595 inset;
     -webkit-box-shadow: -4px 12px 7px -9px #959595 inset;
     box-shadow: -4px 12px 7px -9px #959595 inset;
+    margin-bottom: 30px;
 }
 
 #prodinfo {
@@ -1092,10 +1100,10 @@ div.star-rating{background:transparent!important;overflow:hidden!important; curs
     }
 
     .adlist_section h3, .adlist_section .buttons {
-        width: 50% !important;
+        width: 48% !important;
     }
     .adlist_section a.btncopro, .adlist_section a.btnrfq, .adlist_section a.btnCAD, .adlist_section a.btnCAD2, #secadpage .lirfq a, #secadpage .licopro a {
-        padding: 8px 8px 0 8px;
+        padding: 8px;
     }
 }
 

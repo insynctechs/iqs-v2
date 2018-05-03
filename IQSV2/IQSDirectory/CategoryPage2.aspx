@@ -99,8 +99,11 @@
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
-    <% } %>
-
+    <% } else { %>
+     <section class="adlist_empty">
+         <h4>No Additional Companies listed under this Product Category!</h4>
+     </section>
+    <% }  %>
     <script type='text/javascript'>
         $(document).ready(function () {
             $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
