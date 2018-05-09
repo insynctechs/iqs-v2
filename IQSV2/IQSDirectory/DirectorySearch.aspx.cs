@@ -30,20 +30,21 @@ namespace IQSDirectory
             if (!IsPostBack)
             {
                 int start = 1;
-                CategorySK = "0";
-                if (CurPage != null)
-                {
-                    if (int.TryParse(CurPage, out start))
-                        StartPage = Convert.ToInt32(CurPage);
-                    else
-                        StartPage = 1;
-                }
+                CategorySK = "0";               
                 try
                 {
+                    if (CurPage != null)
+                    {
+                        if (int.TryParse(CurPage, out start))
+                            StartPage = Convert.ToInt32(CurPage);
+                        else
+                            StartPage = 1;
+                    }
                     CurQuery = Uri.UnescapeDataString(CurQuery);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    CommonLogger.Info(ex.ToString());
                 }
                 ProductList = new List<DataRow>();
                 OtherList = new List<DataRow>();
@@ -57,56 +58,65 @@ namespace IQSDirectory
         private bool ValidatePage()
         {
             string url = HttpContext.Current.Request.Url.AbsolutePath;
-            if (url.IndexOf("/", url.Length - 1) > -1)
+            try
             {
-                url = url.Remove(url.Length - 1);
-
-
-            }
-            else
-            {
-                url = url + '/';
-                Response.StatusCode = 301;
-                Response.Redirect(url);
-                Response.End();
-
-            }
-            if (url.IndexOf("search/") != -1)
-            {
-                string srh = url.Substring(url.IndexOf("search/")).Replace("search/", "");
-                object[] queryVals = srh.Split('/');
-                if (queryVals.Length >= 2)
+                if (url.IndexOf("/", url.Length - 1) > -1)
                 {
-                    CurQuery = queryVals[0].ToString();
-                    CurPage = queryVals[1].ToString();
-                    CurState = "";
-                    RootPath = "../../../";
-                    //Response.Write(CurQuery);
-                    if (queryVals.Length > 2)
-                    {
-                        CurState = queryVals[2].ToString();
-                        RootPath = "../../../../";
-                    }
-                    return true;
-                }
-                else if (queryVals.Length == 1)
-                {
-                    CurQuery = queryVals[0].ToString();
-                    CurPage = "1";
-                    CurState = "";
-                    RootPath = "../../";
-                    return true;
+                    url = url.Remove(url.Length - 1);
+
+
                 }
                 else
                 {
-                    RootPath = "../../";
+                    url = url + '/';
+                    Response.StatusCode = 301;
+                    Response.Redirect(url);
+                    Response.End();
+
+                }
+                if (url.IndexOf("search/") != -1)
+                {
+                    string srh = url.Substring(url.IndexOf("search/")).Replace("search/", "");
+                    object[] queryVals = srh.Split('/');
+                    if (queryVals.Length >= 2)
+                    {
+                        CurQuery = queryVals[0].ToString();
+                        CurPage = queryVals[1].ToString();
+                        CurState = "";
+                        RootPath = "../../../";
+                        //Response.Write(CurQuery);
+                        if (queryVals.Length > 2)
+                        {
+                            CurState = queryVals[2].ToString();
+                            RootPath = "../../../../";
+                        }
+                        return true;
+                    }
+                    else if (queryVals.Length == 1)
+                    {
+                        CurQuery = queryVals[0].ToString();
+                        CurPage = "1";
+                        CurState = "";
+                        RootPath = "../../";
+                        return true;
+                    }
+                    else
+                    {
+                        RootPath = "../../";
+                        return false;
+                    }
+                }
+                else
+                {
                     return false;
                 }
             }
-            else
+            catch (Exception ex)
             {
+                CommonLogger.Info(ex.ToString());
                 return false;
             }
+            
 
         }
 
@@ -115,13 +125,14 @@ namespace IQSDirectory
             Int16 RecCount = 10;
             TextInfo tInfo = new CultureInfo("en-US", false).TextInfo;
             this.Title = "IQS Directory - " + tInfo.ToTitleCase(CurQuery).ToString() + " Results";
-             string citycode = "";
+            string citycode = "";
             try
             {
                 citycode = getIPState("https://freegeoip.net/json/");
-            }
-            catch (Exception)
+            }           
+            catch (Exception ex)
             {
+                CommonLogger.Info(ex.ToString());
             }
             var url = string.Format("api/StateSearch/GetSearchResultsDetails?SrhStr=" + Server.UrlEncode(CurQuery) + "&Start=" + StartPage + "&Count=" + RecCount + "&State=" + CurState);
             DataTable dt = wHelper.GetDataTableFromWebApi(url);

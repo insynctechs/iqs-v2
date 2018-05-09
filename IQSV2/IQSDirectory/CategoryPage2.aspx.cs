@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using IQSDirectory.Helpers;
 using System.Data;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
+
 
 
 namespace IQSDirectory
@@ -36,42 +33,56 @@ namespace IQSDirectory
 
         private void CheckCategory()
         {
-            string url = HttpContext.Current.Request.Url.AbsolutePath;
-            if (url.IndexOf("/", url.Length - 1) > -1)
+            try
             {
-                RootPath = "../../";
-                url = url.Remove(url.Length - 1);
+                string url = HttpContext.Current.Request.Url.AbsolutePath;
+                if (url.IndexOf("/", url.Length - 1) > -1)
+                {
+                    RootPath = "../../";
+                    url = url.Remove(url.Length - 1);
+                }
+                else
+                {
+                    url = url + '/';
+                    Response.StatusCode = 301;
+                    Response.Redirect(url);
+                    Response.End();
+                    RootPath = "../";
+                }
+
+                CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
+                ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
+                DirectoryURL = HttpContext.Current.Request.Url.Authority;
+                var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + CategoryName);
+                DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
+                DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
             }
-            else
+            catch (Exception ex)
             {
-                url = url + '/';
-                Response.StatusCode = 301;
-                Response.Redirect(url);
-                Response.End();               
-                RootPath = "../";
+                CommonLogger.Info(ex.ToString());
             }
-            
-            CategoryName = url.Split('/').Reverse().Skip(1).Take(1).First();
-            ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
-            DirectoryURL = HttpContext.Current.Request.Url.Authority;
-            var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + CategoryName);
-            DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
-            DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
         }
 
         private void DisplayCategory(string CategoryID)
         {
-            var url = string.Format("api/CategoryPages/GetCategoryPage2Details?CategorySK=" + CategoryID + "&WebsiteType=Directory&WebURL=" + Utils.WebURL);
-            DataSet ds = wHelper.GetDataSetFromWebApi(url);
-            if (ds != null)
+            try
             {
-                //Response.Write(ds.Tables[0].Rows.Count + "<br/>" + ds.Tables[1].Rows.Count+"<br/>"+ ds.Tables[2].Rows.Count + "<br/>" + ds.Tables[3].Rows.Count + "<br/>" + ds.Tables[4].Rows.Count);
-                GenerateHeader(ds.Tables[0]);                
-                GenerateProfile(ds.Tables[1]);
-                GenerateAdvertisements(ds.Tables[2]);
-                GenerateMetaTagsAndScripts(ds.Tables[3], ds.Tables[4]);
+                var url = string.Format("api/CategoryPages/GetCategoryPage2Details?CategorySK=" + CategoryID + "&WebsiteType=Directory&WebURL=" + Utils.WebURL);
+                DataSet ds = wHelper.GetDataSetFromWebApi(url);
+                if (ds != null)
+                {
+                    //Response.Write(ds.Tables[0].Rows.Count + "<br/>" + ds.Tables[1].Rows.Count+"<br/>"+ ds.Tables[2].Rows.Count + "<br/>" + ds.Tables[3].Rows.Count + "<br/>" + ds.Tables[4].Rows.Count);
+                    GenerateHeader(ds.Tables[0]);
+                    GenerateProfile(ds.Tables[1]);
+                    GenerateAdvertisements(ds.Tables[2]);
+                    GenerateMetaTagsAndScripts(ds.Tables[3], ds.Tables[4]);
 
 
+                }
+            }
+            catch (Exception ex)
+            {
+                CommonLogger.Info(ex.ToString());
             }
         }
 
@@ -79,10 +90,17 @@ namespace IQSDirectory
         {
             ApiPath = wHelper.ApiUrl;
             //RootPath = HttpContext.Current.Request.ApplicationPath.ToString();
-            CategorySK = dt.Rows[0]["CATEGORY_SK"].ToString();
-            H1Text = dt.Rows[0]["H1DISPLAY_NAME"].ToString();
-            DisplayName = dt.Rows[0]["DISPLAY_NAME"].ToString();
-            ItemDesc = new HtmlString(dt.Rows[0]["DESCRIPTION"].ToString());
+            try
+            {
+                CategorySK = dt.Rows[0]["CATEGORY_SK"].ToString();
+                H1Text = dt.Rows[0]["H1DISPLAY_NAME"].ToString();
+                DisplayName = dt.Rows[0]["DISPLAY_NAME"].ToString();
+                ItemDesc = new HtmlString(dt.Rows[0]["DESCRIPTION"].ToString());
+            }
+            catch (Exception ex)
+            {
+                CommonLogger.Info(ex.ToString());
+            }
         }
 
         private void GenerateProfile(DataTable dt)
@@ -95,38 +113,53 @@ namespace IQSDirectory
             dt.Columns.Add("FORMATED_NAME");
             dt.Columns.Add("FORMATED_URL");
             dt.Columns.Add("PROFILE_URL");
-            dt.AsEnumerable().ToList().ForEach(r => {
-                r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
-                r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
-                r["PROFILE_URL"] = Utils.ReplaceContent(ProfileLinks.Where(
-                    p => p["CLIENT_SK"].ToString() == r["CLIENT_SK"].ToString()
-                    && p["ENTITY_ATTRIBUTE_ID"].ToString() == "E-MAIL")
-                    .Select(p => p["DESCRIPTION"].ToString()).FirstOrDefault(), 0);
-            });
+            try
+            {
+                dt.AsEnumerable().ToList().ForEach(r =>
+                {
+                    r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
+                    r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
+                    r["PROFILE_URL"] = Utils.ReplaceContent(ProfileLinks.Where(
+                        p => p["CLIENT_SK"].ToString() == r["CLIENT_SK"].ToString()
+                        && p["ENTITY_ATTRIBUTE_ID"].ToString() == "E-MAIL")
+                        .Select(p => p["DESCRIPTION"].ToString()).FirstOrDefault(), 0);
+                });
 
-            TierAdvertisements = dt.AsEnumerable().ToList();
-            GetClientSkForRating();
+                TierAdvertisements = dt.AsEnumerable().ToList();
+                GetClientSkForRating();
+            }
+            catch (Exception ex)
+            {
+                CommonLogger.Info(ex.ToString());
+            }
         }
 
         private void GetClientSkForRating()
         {
             string ClientSKForRating = "";
-            if (TierAdvertisements.Count > 0)
+            try
             {
-                ClientSKForRating += string.Join(",", TierAdvertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+                if (TierAdvertisements.Count > 0)
+                {
+                    ClientSKForRating += string.Join(",", TierAdvertisements.Select(ad => ad["CLIENT_SK"].ToString()));
+                }
+                if (ClientSKForRating != "")
+                {
+                    var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
+                    DataTable dt = wHelper.GetDataTableFromWebApi(url);
+                    if (dt.Rows.Count > 0)
+                    {
+                        ClientRatings = dt.Select("SHOW_REVIEWS='Y'").ToList();
+                    }
+                    else
+                    {
+                        ClientRatings = dt.AsEnumerable().ToList();
+                    }
+                }
             }
-            if (ClientSKForRating != "")
+            catch (Exception ex)
             {
-                var url = string.Format("api/Reviews/GetCompanyRatingByArray?ClientSkArray=" + ClientSKForRating);
-                DataTable dt = wHelper.GetDataTableFromWebApi(url);
-                if (dt.Rows.Count > 0)
-                {
-                    ClientRatings = dt.Select("SHOW_REVIEWS='Y'").ToList();
-                }
-                else
-                {
-                    ClientRatings = dt.AsEnumerable().ToList();
-                }
+                CommonLogger.Info(ex.ToString());
             }
         }
 
@@ -136,67 +169,77 @@ namespace IQSDirectory
             DataRow[] dr;
 
             this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
-
-            if (dtMeta.Rows.Count > 0)
+            try
             {
-                dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
-
-                if (dr.Length > 0)
+                if (dtMeta.Rows.Count > 0)
                 {
-                    CategoryTitle = dr[0]["DESCRIPTION"].ToString();
-                    CategoryTitle = CategoryTitle.Replace("–", "-");
-                    CategoryTitle = CategoryTitle.Replace("&", "&amp;");
-                    this.Master.PageTitle = CategoryTitle;
+                    dr = dtMeta.Select("META_TAG_ID = 'TITLE'");
+
+                    if (dr.Length > 0)
+                    {
+                        CategoryTitle = dr[0]["DESCRIPTION"].ToString();
+                        CategoryTitle = CategoryTitle.Replace("–", "-");
+                        CategoryTitle = CategoryTitle.Replace("&", "&amp;");
+                        this.Master.PageTitle = CategoryTitle;
+                    }
+                    else
+                        CategoryTitle = "IQS Product Categories";
+
+                    dr = dtMeta.Select("META_TAG_ID = 'DESCRIPTION'");
+
+                    if (dr.Length > 0)
+                    {
+                        MetaDesc = dr[0]["DESCRIPTION"].ToString();
+                        this.Master.PageDescription = MetaDesc;
+
+
+                    }
+
+                    dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
+                    if (dr.Length > 0)
+                        this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString();
+
+
+                    dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
+                    if (dr.Length > 0)
+                        this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
+                    dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
+                    if (dr.Length > 0)
+                        this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
                 }
-                else
-                    CategoryTitle = "IQS Product Categories";
 
-                dr = dtMeta.Select("META_TAG_ID = 'DESCRIPTION'");
+                
 
-                if (dr.Length > 0)
+                if (dtScripts.Rows.Count > 0)
                 {
-                    MetaDesc = dr[0]["DESCRIPTION"].ToString();
-                    this.Master.PageDescription = MetaDesc;
-
-
+                    foreach (DataRow dr1 in dtScripts.Rows)
+                    {
+                        if (dr1["HEAD_SCRIPT"].ToString() != "")
+                        {
+                            this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
+                        }
+                        if (dr1["BODY_START_SCRIPT"].ToString() != "")
+                        {
+                            this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
+                        }
+                        if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
+                        {
+                            this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
+                        }
+                        if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
+                        {
+                            this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
+                        }
+                    }
                 }
-
-                dr = dtMeta.Select("META_TAG_ID='KEYWORD'");
-                if (dr.Length > 0)
-                    this.Master.PageKeywords = dr[0]["DESCRIPTION"].ToString();
-
-
-                dr = dtMeta.Select("META_TAG_ID='TRACKING SCRIPT'");
-                if (dr.Length > 0)
-                    this.Master.HitsLinkScript = new HtmlString(dr[0]["DESCRIPTION"].ToString());
-                dr = dtMeta.Select("META_TAG_ID='VERIF_CODE'");
-                if (dr.Length > 0)
-                    this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
             }
-
-            this.Master.BindMeta();
-
-            if (dtScripts.Rows.Count > 0)
+            catch (Exception ex)
             {
-                foreach (DataRow dr1 in dtScripts.Rows)
-                {
-                    if (dr1["HEAD_SCRIPT"].ToString() != "")
-                    {
-                        this.Master.HeadScript = new HtmlString(dr1["HEAD_SCRIPT"].ToString());
-                    }
-                    if (dr1["BODY_START_SCRIPT"].ToString() != "")
-                    {
-                        this.Master.BodyOpenScript = new HtmlString(dr1["BODY_START_SCRIPT"].ToString());
-                    }
-                    if (dr1["BODY_BFR_CLOSE_SCRIPT"].ToString() != "")
-                    {
-                        this.Master.BodyCloseScript = new HtmlString(dr1["BODY_BFR_CLOSE_SCRIPT"].ToString());
-                    }
-                    if (dr1["BODY_AFT_CLOSE_SCRIPT"].ToString() != "")
-                    {
-                        this.Master.BodyAfterCloseScript = new HtmlString(dr1["BODY_AFT_CLOSE_SCRIPT"].ToString());
-                    }
-                }
+                CommonLogger.Info(ex.ToString());
+            }
+            finally
+            {
+                this.Master.BindMeta();
             }
         }
 
