@@ -1,25 +1,14 @@
-// This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
 
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
     //alert(response.stataus);
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         performFBActions();
     } else {
         // The person is not logged into your app or we are unable to tell.
-
     }
 }
-
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-function checkLoginState() {
-    //alert('Test');
+function checkLoginState() {    
     FB.getLoginStatus(function (response) {
         statusChangeCallback(response);
     });
@@ -28,10 +17,9 @@ function checkLoginState() {
 window.fbAsyncInit = function () {
     FB.init({
         appId: '221653014637602', /*'504326666290316',*/
-        cookie: true,  // enable cookies to allow the server to access 
-        // the session
-        xfbml: true,  // parse social plugins on this page
-        version: 'v2.8' // use graph api version 2.8
+        cookie: true,  
+        xfbml: true,  
+        version: 'v2.8' 
     });
 
     FB.getLoginStatus(function (response) {
@@ -39,7 +27,6 @@ window.fbAsyncInit = function () {
     });
 
 };
-
 // Load the SDK asynchronously
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -64,16 +51,8 @@ function postToFeed(cname, title, review) {
     }
     FB.ui(obj, callback);
 }
-
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
 function performFBActions() {
-    //alert('Welcome!  Fetching your information.... ');
-    /*FB.api('/me', function (response) {
-        alert('Successful login for: ' + response.name);
-
-    });*/
-    
+   
     FB.api('/me?fields=id,name,email', function (me) {
         //alert(me.name + ',' + me.id + ',' + me.email);
         var list = [me.email, me.name, me.id];

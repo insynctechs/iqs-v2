@@ -1,10 +1,7 @@
 ﻿using IQSDirectory.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
 using System.Web.Routing;
 
 
@@ -143,13 +140,25 @@ namespace IQSDirectory
 
         private bool GetCategoryIdByName(string Category, string State, string Country, string Category1=null, string Category2=null)
         {
+
             var url = string.Format("api/StateSearch/StateSearchURLValidate?category=" + Category + "&state=" + State + "&country="+Country + "&category1="+ Category1 + "&category2="+Category2);
+            CommonLogger.Debug("url=" + url + "---;\r\n");
             DataTable dt = wHelper.GetDataTableFromWebApi(url);
-            string redirect = dt.Rows[0][0].ToString();
-            HttpContext.Current.Response.StatusCode = 301;
-            HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + redirect);
-            HttpContext.Current.Response.End();
+            try
+            {
+                string redirect = dt.Rows[0][0].ToString();
+                HttpContext.Current.Response.StatusCode = 301;
+                HttpContext.Current.Response.RedirectPermanent(Utils.WebURL + redirect);
+                HttpContext.Current.Response.End();
+
+            }
+            catch (Exception ex)
+            {
+                //HttpContext.Current.Response.Redirect(Utils.WebURL + "?" + url);
+                CommonLogger.Debug("url=" + url + "---;dt.Rows.Count=" + dt.Rows.Count + "--;redirect=" + dt.Rows[0][0].ToString() + "\r\n" + ex.ToString());
+            }
             return false;
+            
             
                 
         }

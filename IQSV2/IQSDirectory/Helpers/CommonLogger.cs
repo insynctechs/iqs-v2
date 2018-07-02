@@ -1,10 +1,12 @@
-﻿using log4net;
+﻿using System;
+using log4net;
+using System.Configuration;
 
 namespace IQSDirectory.Helpers
 {
     public class CommonLogger
     {
-        private static ILog log = LogManager.GetLogger(System.Configuration.ConfigurationManager.AppSettings["ActiveLogger"]);
+        private static ILog log = LogManager.GetLogger(ConfigurationManager.AppSettings["ActiveLogger"]);
 
         private CommonLogger()
         {

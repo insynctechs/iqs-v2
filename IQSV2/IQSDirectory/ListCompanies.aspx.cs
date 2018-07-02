@@ -68,7 +68,7 @@ namespace IQSDirectory
 
         private void GenerateMetaTagsAndScripts()
         {
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
             this.Master.PageDescription = "";
             this.Master.PageTitle = "Directory Of Companies";
             this.Master.PageKeywords = "";

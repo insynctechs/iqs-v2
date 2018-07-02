@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using IQSDirectory.Helpers;
 using System.Data;
@@ -13,7 +14,9 @@ namespace IQSDirectory
     public partial class CategoryPage1 : System.Web.UI.Page
     {
         WebApiHelper wHelper = new WebApiHelper();
-        
+        public DataTable dtNw;
+        public DataTable dtBl;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -34,6 +37,8 @@ namespace IQSDirectory
             ClientRatings = new List<DataRow>();
             Articles = new List<DataRow>();
             
+
+
         }
 
         private void CheckCategory()
@@ -59,10 +64,15 @@ namespace IQSDirectory
                 ShareURL = HttpContext.Current.Request.Url.AbsoluteUri;
                 DirectoryURL = HttpContext.Current.Request.Url.Authority;
                 var urlGetId = string.Format("api/CategoryPages/GetCategoryIdByName?DisplayName=" + CategoryName);
+              
                 DataTable dt = wHelper.GetDataTableFromWebApi(urlGetId);
+                //CommonLogger.Info("url=" + url + "---;dt.Rows.Count=" + dt.Rows.Count + "--;SK=" + dt.Rows[0]["Category_SK"].ToString() + "=" + CategoryName);
+
                 if (dt.Rows.Count > 0)
                 {
                     //Response.Write("Category");
+                    dtNw = GetArticles();
+                    dtBl = GetBlogs();
                     DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
                 }
                 else
@@ -89,6 +99,7 @@ namespace IQSDirectory
                 if (ds != null)
                 {
                     GenerateHeader(ds.Tables[0]);
+                    //RegisterAsyncTask(new PageAsyncTask(GenerateHeader))
 
                     GenerateRelatedCategories(ds.Tables[1]);
                     GenerateProfile(ds.Tables[2]);
@@ -111,6 +122,7 @@ namespace IQSDirectory
         }
 
         private void GenerateHeader(DataTable dt)
+        //private async Task GenerateHeader(DataTable dt)
         {
             try
             {
@@ -225,7 +237,7 @@ namespace IQSDirectory
                         
             DataRow[] dr;
 
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='"+Utils.MetaRobots+"'>");
             try
             {
 
@@ -303,8 +315,7 @@ namespace IQSDirectory
 
         private void DisplayArticles()
         {
-            DataTable dtNw = GetArticles();
-            DataTable dtBl = GetBlogs();
+            
 
             DataTable dtBlog = new DataTable();
             dtBlog.Columns.Add("HEADING");
@@ -399,6 +410,7 @@ namespace IQSDirectory
             catch (Exception ex)
             {
                 CommonLogger.Info(ex.ToString());
+                return null;
             }
         }
 
@@ -489,5 +501,7 @@ namespace IQSDirectory
         public IHtmlString ProductInformation { get; set; }
         public List<DataRow> ClientRatings { get; set; }
         public string ApiPath { get; set; }
+        
+
     }
 }

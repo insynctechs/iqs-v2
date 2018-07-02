@@ -1,43 +1,17 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="CategoryPage1.aspx.cs" inherits="IQSDirectory.CategoryPage1" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
     <link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
-
-    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/category_page1.js' async defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
+    <asp:PlaceHolder runat="server">
+        <%--: Styles.Render("~/bundles/SiteMasterStyles") --%>
+        <%--: Scripts.Render("~/bundles/SiteMasterScripts") --%>
+        <%: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/ScriptCategoryPage1") %>
+    </asp:PlaceHolder>
 
 
-    <section id='seccat' itemscope="" itemtype="http://schema.org/Product">
-        <div id="social">
-            <span>Share this page on</span>
-            <ul>
-                <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
-                <li><a class="google" 
-                    href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">Google</a></li>
-                <li><a class="twitter" 
-                    href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">Twitter</a></li>
-                <li><a class="linkedin" 
-                    href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">LinkedIn</a></li>
-                <li><a class="facebook"  href=""
-                    onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">Facebook</a></li>
-                <li><a class="iframe lnkmail mail"
-                    href="<%:RootPath %>share-page-email.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">Mail</a></li>
-                <li><a href="" class="print" onclick="javascript:window.print();return false;">Print</a></li>
-            </ul>
-            <script type="text/javascript">
-                function popupwindow(url, title, w, h) {
-                    var left = (screen.width / 2) - (w / 2);
-                    var top = (screen.height / 2) - (h / 2);
-                    window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-                }
-                
-            </script>
-        </div>
+    <section id='seccat' itemscope="" itemtype="https://schema.org/Product">
         <h1 itemprop='name'><%: H1Text %></h1>
         <div class="desc" itemprop='description'><%: ItemDesc %></div>
     </section>
@@ -57,11 +31,11 @@
         <ul class="adlist_ul">
             <% foreach (var drT1Ad in Tier1Advertisements)
                 {%>
-            <li itemscope itemtype="http://schema.org/Place">
+            <li itemscope itemtype="https://schema.org/Place">
                 <header>
                     <h3 class='cname'>
                         <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', '<%: drT1Ad["IMAGE"] %>');hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drT1Ad["CLIENT_NAME"] %></span></a>
-                        <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                        <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                             <span itemprop="addressLocality"><%: drT1Ad["CITY_STATE"] %></span>
                             <span itemprop="telephone"><%: drT1Ad["PHONE"] %></span>
                         </span>
@@ -69,8 +43,8 @@
                     <div class="buttons">
                     <a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drT1Ad["CLIENT_SK"] %>' class='iframe btnrfq'>Request For Quote</a>
                     <a class='btncopro' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
-                    <% if (drT1Ad["CAD_URL"].ToString()!="" && drT1Ad["CAD_URL"].ToString()!="http://")
-                        { %><a class='btnCAD' target="_blank" href='<%: drT1Ad["CAD_URL"] %>'>View CAD Drawings</a><% } %>
+                    <% /*if (drT1Ad["CAD_URL"].ToString()!="" && drT1Ad["CAD_URL"].ToString()!="http://")
+                        { */%><a class='btnCAD' target="_blank" href='<%: drT1Ad["CAD_URL"] %>'>View CAD Drawings</a><% //} %>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: drT1Ad["ADDESCRIPTION"] %></p>
@@ -93,14 +67,9 @@
                 </div>
             </li>
             <% } %>
-            <%--<script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>--%>
-        </ul>
+                    </ul>
         <aside>
-           <!--
-            <iframe id='preview_iframe1' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
-            <div class='foriframe' id='iframe_mask1' style='position: absolute; cursor: pointer;'></div>
-            -->
-            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            <div id="preview1" class="forpreview"> 
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
@@ -111,11 +80,11 @@
         <ul class="adlist_ul">
             <% foreach (var drT2Ad in Tier2Advertisements)
               {%>
-            <li itemscope itemtype="http://schema.org/Place">
+            <li itemscope itemtype="https://schema.org/Place">
                 <header>
                     <h3 class='cname'>
                         <a rel='nofollow' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', '<%: drT2Ad["IMAGE"] %>');hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');" itemprop="url"><span itemprop="name"><%= drT2Ad["CLIENT_NAME"] %></span></a>
-                         <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%: drT2Ad["CITY_STATE"] %></span><span itemprop="telephone"><%: drT2Ad["PHONE"] %></span>
                          </span>
                     </h3>
@@ -129,7 +98,7 @@
                 <p class='cdesc' itemprop="description"><%: drT2Ad["ADDESCRIPTION"] %></p>
                 <div class='divRate'>
                     <div id='divRate<%: drT2Ad["CLIENT_SK"] %>' class="divratingclientmain">
-                        <script type='text/javascript'>
+                       <script type='text/javascript'>
                             $(document).ready(function () { $('input[type=radio].star<%: drT2Ad["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                         <span class="spanreadreviews">
@@ -145,23 +114,14 @@
                 </div>
             </li>
             <% } %>
-            <%--<script language='javascript' type='text/javascript'>$(document).ready(function () { LoadCompanyTotalRatingByArray('65819,73262,60803,76582'); });</script>--%>
-        </ul>
+                    </ul>
         <aside>
-            <!--
-            <iframe id='preview_iframe2' class='foriframe' src='images/cardboard-placeholder.jpg' scrolling='no'></iframe>
-            <div class='foriframe' id='iframe_mask2' style='position: absolute; cursor: pointer;'></div>
-            -->
-             <div id="preview2" class="forpreview" > <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
-            <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
+            
+             <div id="preview2" class="forpreview" >             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
     <% } %>
-    <% if (Tier1Advertisements.Count == 0 && Tier2Advertisements.Count == 0) { %>) 
-    <section class="adlist_empty">
-         <h4>No Companies listed under this Product Category!</h4>
-     </section>
-    <% } %>
+    
     <script type='text/javascript'>
         $(document).ready(function ()
         {
@@ -228,25 +188,10 @@
     <% } %>
    
 
-    <script type='text/javascript'>
-        $(document).ready(function () {
-            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
-                $('#secsbox').html(data);
-                $('#txtsearch').val('<%: DisplayName %>');
-                $('#txtsearch').attr('class', 'txtsearchsel');
-            });
-
-            $('.btnrfq').fancybox({'height':600,'width':800,'onStart':function(){$('body').css('overflow','hidden');},'onClosed':function(){$('body').css('overflow','auto');},'hideOnOverlayClick':false});
-            $('.btnrfq').bind('contextmenu', function(e){return false;});
-            
-
-            $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
-            $('.lnkmail').bind('contextmenu', function (e) { return false; });
-        });
-    </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+    <input type='hidden' id='hdnCategoryName' value="<%: DisplayName %>" />
     <!-- HitsLink.com tracking script -->
     <script>
         var wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');

@@ -1,7 +1,7 @@
 ﻿body 
 {
     background-color:#7e7c7c;
-    background-image:url(http://www.iqsdirectory.com/images/bg_texture.gif); 
+    background-image:url(//www.iqsdirectory.com/images/bg_texture.gif); 
     overflow-x: hidden;
     color:#000;
     font-family:Arial, Helvetica, Verdana, sans-serif;
@@ -1001,17 +1001,17 @@ a.blog{display:none;}
 #directoryOfCompanies:hover{background-color:#f60;color:#fff;border-bottom:2px solid #fefded;border-right:2px solid #fefded;border-left:2px solid #7e7c7c;border-top:2px solid #7e7c7c;}
 #rssrefresh{display:none;}
 
-#gradient{position:absolute;height:1200px;width:100%;overflow:hidden;margin:0;padding:0;border:none;background-image:url(http://www.iqsdirectory.com/images/bg_gradient.png);background-repeat:repeat-x;}
+#gradient{position:absolute;height:1200px;width:100%;overflow:hidden;margin:0;padding:0;border:none;background-image:url(//www.iqsdirectory.com/images/bg_gradient.png);background-repeat:repeat-x;}
 
 body#cat1 #gradient,body#cat2 #gradient, body#cat3 #gradient, body#cat4 #gradient, body#cat5 #gradient {height:1000px;}
-#shadowLeft{position:absolute;left:-20px;top:0px;height:100%;width:20px;margin:0;padding:0;background-image:url(http://www.iqsdirectory.com/images/shadow_left.png);background-repeat:repeat-y;}
-#shadowRight{position:absolute;right:-20px;top:0px;height:100%;width:20px;margin:0;padding:0;background-image:url(http://www.iqsdirectory.com/images/shadow_right.png);background-repeat:repeat-y;}
-#header{position:relative;height:93px;width:100%;max-width: 1050px;margin:0;padding:0;background-color:#e0dedf;background-image:url(http://www.iqsdirectory.com/images/header_bg.jpg);background-repeat:repeat-x;border-left:1px solid #3d5257;border-right:1px solid #3d5257; float: left;}
+#shadowLeft{position:absolute;left:-20px;top:0px;height:100%;width:20px;margin:0;padding:0;background-image:url(//www.iqsdirectory.com/images/shadow_left.png);background-repeat:repeat-y;}
+#shadowRight{position:absolute;right:-20px;top:0px;height:100%;width:20px;margin:0;padding:0;background-image:url(//www.iqsdirectory.com/images/shadow_right.png);background-repeat:repeat-y;}
+#header{position:relative;height:93px;width:100%;max-width: 1050px;margin:0;padding:0;background-color:#e0dedf;background-image:url(//www.iqsdirectory.com/images/header_bg.jpg);background-repeat:repeat-x;border-left:1px solid #3d5257;border-right:1px solid #3d5257; float: left;}
 
 
 #lowerContainer,#lowerBodyContainer{position:relative;height:24px;width: 100%; max-width:1024px;margin:0 auto;padding:0;border:none; clear: both;}
-#leftSide{position:relative;float:left;height:448px;width:670px;margin:0;padding:0;border:none;background-image:url(http://www.iqsdirectory.com/images/text_bg.jpg);background-repeat:repeat-x;}
-#rightSide{position:relative;float:right;height:448px;width:354px;margin:0;padding:0;border:none;background-image:url(http://www.iqsdirectory.com/images/text_bg_shadow.jpg);background-repeat:repeat-y;background-position:left}
+#leftSide{position:relative;float:left;height:448px;width:670px;margin:0;padding:0;border:none;background-image:url(//www.iqsdirectory.com/images/text_bg.jpg);background-repeat:repeat-x;}
+#rightSide{position:relative;float:right;height:448px;width:354px;margin:0;padding:0;border:none;background-image:url(//www.iqsdirectory.com/images/text_bg_shadow.jpg);background-repeat:repeat-y;background-position:left}
 
 #bodyCopy a{color:#2A4249;}
 #bodyCopy a:hover{color:#F60;}
@@ -1033,10 +1033,10 @@ body#cat1 #gradient,body#cat2 #gradient, body#cat3 #gradient, body#cat4 #gradien
 #footerAddress{position:absolute;top:8px;right:0px;height:auto;width:300px;margin-top:4px;padding:0;text-align:right;}
 #footer a:link, #footer a:visited, #footer a:hover, #footer a:active{color:#fff;text-decoration:none;}
 #footer a:hover{text-decoration:underline;}
-#browserShadow{position:absolute;top:0;left:0;height:12px;width:100%;background-image:url(http://www.iqsdirectory.com/images/browser_shadow.png);background-repeat:repeat-x;z-index:2;}
-.divider{position:relative;height:10px;width:100%; max-width: 1024px;background-image:url(http://www.iqsdirectory.com/images/divider_center.gif);background-repeat:repeat-x; float: left;}
-.dividerLeft{position:absolute;left:0px;top:0px;height:10px;width:2px;background-image:url(http://www.iqsdirectory.com/images/divider_edge.gif);background-repeat:no-repeat;}
-.dividerRight{position:absolute;right:0px;top:0px;height:10px;width:2px;background-image:url(http://www.iqsdirectory.com/images/divider_edge.gif);background-repeat:no-repeat;}
+#browserShadow{position:absolute;top:0;left:0;height:12px;width:100%;background-image:url(//www.iqsdirectory.com/images/browser_shadow.png);background-repeat:repeat-x;z-index:2;}
+.divider{position:relative;height:10px;width:100%; max-width: 1024px;background-image:url(//www.iqsdirectory.com/images/divider_center.gif);background-repeat:repeat-x; float: left;}
+.dividerLeft{position:absolute;left:0px;top:0px;height:10px;width:2px;background-image:url(//www.iqsdirectory.com/images/divider_edge.gif);background-repeat:no-repeat;}
+.dividerRight{position:absolute;right:0px;top:0px;height:10px;width:2px;background-image:url(//www.iqsdirectory.com/images/divider_edge.gif);background-repeat:no-repeat;}
 
 #orangeBanner .social-icons{position:absolute;right:10px;padding-right:0px;top:-5px;}
 #orangeBanner .social{margin:0px;}
@@ -1063,43 +1063,43 @@ body#cat1 #gradient,body#cat2 #gradient, body#cat3 #gradient, body#cat4 #gradien
 #newsFeed a:link, #newsFeed a:visited, #newsFeed a:hover, #newsFeed a:active{font-weight:bold;color:#2A4249;text-decoration:none;}
 #newsFeed a:hover{text-decoration:underline;}
 #twitterBird{position:absolute;z-index:99;top:-128px;right:275px;height:147px;width:133px;margin:0;padding:0;border:none;}
-a.twitterBird{display:block;margin:0;padding:0;height:147px;width:133px;text-decoration:none;background-image:url(http://www.iqsdirectory.com/images/twitterbird_off.png);}
-a.twitterBird:hover{background-position:-665px 0;background-image:url(http://www.iqsdirectory.com/images/twitterbird_on.png);}
+a.twitterBird{display:block;margin:0;padding:0;height:147px;width:133px;text-decoration:none;background-image:url(//www.iqsdirectory.com/images/twitterbird_off.png);}
+a.twitterBird:hover{background-position:-665px 0;background-image:url(//www.iqsdirectory.com/images/twitterbird_on.png);}
 .displace{position:absolute;left:-5000px;}
 
 .linkBox a:link, .linkBox a:visited, .linkBox a:hover, .linkBox a:active{color:#2A4249; display:block;height:auto;width:100%;margin:0;padding:2px 0 2px 2px;text-decoration:none;}
 .linkBox a{text-decoration:none;}
 .linkBox a:hover{color:#FFF;text-decoration:none;}
-#searchBar{position:absolute;top:5px;right:0px;background-image:url(http://www.iqsdirectory.com/images/searchbar_bg3.png);background-position:bottom;background-repeat:no-repeat;height:80px;width:608px;}
-#home_search_submit{display:block;position:absolute;right:25px;top:36px;height:25px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url(http://www.iqsdirectory.com/images/search_button_off.jpg);background-repeat:repeat-x;background-color:#CCC;font-family:Arial, Helvetica, sans-serif;font-size:17px;font-style:italic;font-weight:bold;color:#444;text-align:center;outline:none;text-decoration:none;text-shadow:#fff 1px 1px 1px;}
-#home_search_submit:hover{background-image:url(http://www.iqsdirectory.com/images/search_button_on.jpg);background-repeat:repeat-x;background-color:#CCC;border-top:1px solid #222;border-left:1px solid #222;border-right:1px solid #555;border-bottom:1px solid #555;color:#FFF;text-shadow:#000 0px 1px 1px;}
+#searchBar{position:absolute;top:5px;right:0px;background-image:url(//www.iqsdirectory.com/images/searchbar_bg3.png);background-position:bottom;background-repeat:no-repeat;height:80px;width:608px;}
+#home_search_submit{display:block;position:absolute;right:25px;top:36px;height:25px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url(//www.iqsdirectory.com/images/search_button_off.jpg);background-repeat:repeat-x;background-color:#CCC;font-family:Arial, Helvetica, sans-serif;font-size:17px;font-style:italic;font-weight:bold;color:#444;text-align:center;outline:none;text-decoration:none;text-shadow:#fff 1px 1px 1px;}
+#home_search_submit:hover{background-image:url(//www.iqsdirectory.com/images/search_button_on.jpg);background-repeat:repeat-x;background-color:#CCC;border-top:1px solid #222;border-left:1px solid #222;border-right:1px solid #555;border-bottom:1px solid #555;color:#FFF;text-shadow:#000 0px 1px 1px;}
 #home_search_q{display:block;position:absolute;left:170px;top:36px;height:24px;background-color:#FFF;margin:0;padding:6px 0 0 6px;border:1px solid #000;outline-width:0;font-family:Arial, Helvetica, sans-serif;font-size:16px;width:330px;}
 .shadetabs{position:absolute;z-index:3;top:1px;left:179px;height:25px;width:auto;padding:3px 0;margin-left:10px;margin-bottom:0px;font-family:Arial, Helvetica, sans-serif;font-weight:bold;font-size:13px;text-decoration:none;list-style-type:none;text-align:left;}
 .shadetabs li{display:block;float:left;height:31px;width:145px;margin:0;padding:0;text-align:center;}
-.shadetabs li a{position:relative;outline:none;display:block;height:33px;margin:0;padding:8px 0 0 0;width:140px;text-decoration:none;z-index:1;color:#444;background-image:url(http://www.iqsdirectory.com/images/search_tab_off.gif);background-repeat:no-repeat;}
+.shadetabs li a{position:relative;outline:none;display:block;height:33px;margin:0;padding:8px 0 0 0;width:140px;text-decoration:none;z-index:1;color:#444;background-image:url(//www.iqsdirectory.com/images/search_tab_off.gif);background-repeat:no-repeat;}
 .shadetabs li a:visited{color:#2d2b2b;}
 .shadetabs li a:hover{color:#000;}
-.shadetabs li a.selected{color:#111;position:relative;background-image:url(http://www.iqsdirectory.com/images/search_tab_on.gif);}
+.shadetabs li a.selected{color:#111;position:relative;background-image:url(//www.iqsdirectory.com/images/search_tab_on.gif);}
 .shadetabs li a.selected:hover{text-decoration:none;}
 .tabcontent{display:none;}
 @media print{.tabcontent{display:block !important;}
 }
 #countrytabs{height:auto;width:auto;}
 
-#tabContainer{position:relative;top:0;left:0;height:51px;width:990px;margin:0;padding:0;border:none;background-image:url(http://www.iqsdirectory.com/images/tab_under.gif);background-repeat:no-repeat;background-color:#e0dedf;}
+#tabContainer{position:relative;top:0;left:0;height:51px;width:990px;margin:0;padding:0;border:none;background-image:url(//www.iqsdirectory.com/images/tab_under.gif);background-repeat:no-repeat;background-color:#e0dedf;}
 .tabA{position:absolute;height:auto;width:auto;top:0;padding-top:20px;left:10px;z-index:2;float:left;height:31px;width:253px;background-color:none;background-image:none;text-decoration:none;}
 .tabB{position:absolute;height:auto;width:auto;top:0px;padding-top:20px;left:270px;float:left;height:31px;width:253px;margin:0;background-color:none;background-image:none;text-decoration:none;}
-.tabB a.active{position:absolute;z-index:1;height:31px;width:490px;margin-left:-270px;margin-top:-20px;padding-top:20px;padding-left:290px;background-image:url(http://www.iqsdirectory.com/images/tab_over.gif);background-repeat:no-repeat;text-decoration:none;}
+.tabB a.active{position:absolute;z-index:1;height:31px;width:490px;margin-left:-270px;margin-top:-20px;padding-top:20px;padding-left:290px;background-image:url(//www.iqsdirectory.com/images/tab_over.gif);background-repeat:no-repeat;text-decoration:none;}
 .tabA a, .tabB a{font-family:Georgia, Times New Roman, serif;font-size:13px;color:#555;text-decoration:none;padding:20px;}
 .tabA a:hover, .tabB a:hover{color:#000;}
 #tabbed_box_1{margin:0px auto 0px auto;height:auto;max-width:990px;width: 100%; float: left; clear: both;}
 .tabbed_area{position:relative;top:24px;background-color:#F0EFED;height:auto;width:100%;max-width: 990px; float: left; clear: both;}
 
-#whiteBoxShadow{position:absolute;bottom:0px;left:4px;height:26px;width:992px;margin:0;padding:0;background-image:url(http://www.iqsdirectory.com/images/white_box_bg.jpg);background-repeat:repeat-x;}
-#bgBottom{position:absolute;z-index:2;left:0px;bottom:0px;height:4px;width:100%;background-image:url(http://www.iqsdirectory.com/images/bg_bottom.gif);background-repeat:repeat-x;}
-#cornerUpperRight{position:absolute;z-index:2;right:0px;top:47px;height:5px;width:4px;background-image:url(http://www.iqsdirectory.com/images/corner_upper_right.gif);background-repeat:no-repeat;}
-#cornerBottomRight{position:absolute;z-index:2;right:0px;bottom:-4px;height:4px;width:4px;background-image:url(http://www.iqsdirectory.com/images/corner_bottom_right.gif);}
-#cornerBottomLeft{position:absolute;z-index:2;left:0px;bottom:-4px;height:4px;width:4px;background-image:url(http://www.iqsdirectory.com/images/corner_bottom_left.gif);}
+#whiteBoxShadow{position:absolute;bottom:0px;left:4px;height:26px;width:992px;margin:0;padding:0;background-image:url(//www.iqsdirectory.com/images/white_box_bg.jpg);background-repeat:repeat-x;}
+#bgBottom{position:absolute;z-index:2;left:0px;bottom:0px;height:4px;width:100%;background-image:url(//www.iqsdirectory.com/images/bg_bottom.gif);background-repeat:repeat-x;}
+#cornerUpperRight{position:absolute;z-index:2;right:0px;top:47px;height:5px;width:4px;background-image:url(//www.iqsdirectory.com/images/corner_upper_right.gif);background-repeat:no-repeat;}
+#cornerBottomRight{position:absolute;z-index:2;right:0px;bottom:-4px;height:4px;width:4px;background-image:url(//www.iqsdirectory.com/images/corner_bottom_right.gif);}
+#cornerBottomLeft{position:absolute;z-index:2;left:0px;bottom:-4px;height:4px;width:4px;background-image:url(//www.iqsdirectory.com/images/corner_bottom_left.gif);}
 
 .content p{padding-right:14px;}
 
@@ -1129,27 +1129,27 @@ a.twitterBird:hover{background-position:-665px 0;background-image:url(http://www
 .home_search_q_Dir{display:block;position:absolute;left:29px;top:25px;height:30px;background-color:#FFF;margin:0;padding:0 0 0 6px;border:1px solid #000;outline-width:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;width:330px;line-height:30px}
 .home_search_q_Dir_w{display:block;position:absolute;left:29px;top:25px;height:30px;background-color:#FFF;margin:0;padding:0 0 0 6px;border:1px solid #000;outline-width:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;width:330px;color:#736F6E;line-height:30px}
 .ie6 #home_search_q_Dir{display:block;position:absolute;left:29px;top:25px;height:30px;background-color:#FFF;margin:0;padding:0 0 0 6px;border:1px solid #000;outline-width:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;width:330px}
-#home_search_submit_Dir{display:block;position:absolute;right:27px;top:25px;height:26px;width:80px;margin:0;padding:4px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff;font-weight:bold;}
-.ie6 #home_search_submit_Dir{display:block;position:absolute;right:27px;top:25px;height:26px;width:80px;margin:0;padding:4px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
+#home_search_submit_Dir{display:block;position:absolute;right:27px;top:25px;height:26px;width:80px;margin:0;padding:4px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff;font-weight:bold;}
+.ie6 #home_search_submit_Dir{display:block;position:absolute;right:27px;top:25px;height:26px;width:80px;margin:0;padding:4px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
 #home_search_submit_Dir:hover{background-image:url('../commonimages/searchbox/search_button_on.jpg');background-repeat:repeat-x;background-color:#CCC;border-top:1px solid #222;border-left:1px solid #222;border-right:1px solid #555;border-bottom:1px solid #555;color:#FFF;text-shadow:0 1px 0 #000}
-#wrapper #header #searchBar{position:absolute;top:0;right:26px;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
-.ie6 #wrapper #header #searchBar{position:absolute;top:-15px;right:26px;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
-.ie7 #wrapper #header #searchBar{position:absolute;top:-22px;right:26px;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
+#wrapper #header #searchBar{position:absolute;top:0;right:26px;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
+.ie6 #wrapper #header #searchBar{position:absolute;top:-15px;right:26px;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
+.ie7 #wrapper #header #searchBar{position:absolute;top:-22px;right:26px;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/searchbar_bg.gif');background-position:bottom;background-repeat:no-repeat;height:74px;width:598px;float:right}
 .shadetabs{position:absolute;z-index:3;top:1%;left:199px;height:25px;width:auto;padding:3px 0;margin-left:10px;margin-bottom:0;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;text-decoration:none;list-style-type:none;text-align:left}
 .ie6 .shadetabs,.ie7 .shadetabs{position:absolute;z-index:3;top:19%;left:199px;height:25px;width:auto;padding:3px 0;margin-left:10px;margin-bottom:0;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;text-decoration:none;list-style-type:none;text-align:left}
 .safari .shadetabs{position:absolute;z-index:3;top:2%;left:199px;height:25px;width:auto;padding:3px 0;margin-left:10px;margin-bottom:0;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;text-decoration:none;list-style-type:none;text-align:left}
 .shadetabs li{display:block;float:left;height:31px;width:128px;margin:0;padding:0;text-align:center}
-.shadetabs li a{top:-10px;position:relative;outline:0;display:block;height:33px;margin:0;padding:8px 0 0 0;width:128px;text-decoration:none;z-index:999;color:#444;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_tab_off.gif');background-repeat:no-repeat}
+.shadetabs li a{top:-10px;position:relative;outline:0;display:block;height:33px;margin:0;padding:8px 0 0 0;width:128px;text-decoration:none;z-index:999;color:#444;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_tab_off.gif');background-repeat:no-repeat}
 .shadetabs li a:visited{color:#2d2b2b}
 .shadetabs li a:hover{color:#000}
-.shadetabs li a.selected{color:#111;position:relative;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_tab_on.gif')}
+.shadetabs li a.selected{color:#111;position:relative;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_tab_on.gif')}
 .shadetabs li a.selected:hover{text-decoration:none}
 .tabcontent{display:none}
 
 #countrytabs{height:auto;width:auto}
-#home_search_submit{display:block;position:absolute;right:20px;top:35px;height:25px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
-.ie6 #home_search_submit{display:block;position:absolute;right:25px;top:35px;height:30px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
-#home_search_submit:hover{background-image:url('http://www.iqsdirectory.com/commonimages/searchbox/search_button_on.jpg');background-repeat:repeat-x;background-color:#CCC;border-top:1px solid #222;border-left:1px solid #222;border-right:1px solid #555;border-bottom:1px solid #555;color:#FFF;text-shadow:0 1px 0 #000}
+#home_search_submit{display:block;position:absolute;right:20px;top:35px;height:25px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
+.ie6 #home_search_submit{display:block;position:absolute;right:25px;top:35px;height:30px;width:80px;margin:0;padding:5px 0 0 0;border-top:1px solid #666;border-left:1px solid #666;border-right:1px solid #333;border-bottom:1px solid #222;background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_button_off.jpg');background-repeat:repeat-x;background-color:#CCC;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-style:italic;color:#444;text-align:center;outline:0;text-decoration:none;text-shadow:0 1px 0 #fff}
+#home_search_submit:hover{background-image:url('//www.iqsdirectory.com/commonimages/searchbox/search_button_on.jpg');background-repeat:repeat-x;background-color:#CCC;border-top:1px solid #222;border-left:1px solid #222;border-right:1px solid #555;border-bottom:1px solid #555;color:#FFF;text-shadow:0 1px 0 #000}
 #divSearchMain{padding:10px; text-align:left;}
 .searchdivmain{margin-top:15px;}
 .searchdivinner{padding-left:10px; padding-top:15px;}

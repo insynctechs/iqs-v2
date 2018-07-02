@@ -1,12 +1,11 @@
 ﻿<%@ page title="" language="C#" masterpagefile="~/Site.Master" autoeventwireup="true" codebehind="DirectorySearch.aspx.cs" inherits="IQSDirectory.DirectorySearch" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
-    <link href="<%:RootPath %>Content/search_styles.css" rel="stylesheet" />
-    <link href='<%:RootPath %>Content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>Content/jquery.fancybox-1.3.4.css' rel='Stylesheet' type='text/css' media='screen' />    
-    <script src='<%:RootPath %>Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
-    <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
+    <link href="<%:RootPath %>content/form_styles.css" rel="stylesheet" />
+    <link href="<%:RootPath %>content/search_styles.css" rel="stylesheet" />
+    <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />  
+    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+    <script src='<%:RootPath %>scripts/move_top.js' type='text/javascript'></script>
     <div id='content_wrapper'>
             <h1><%= PageTitle %></h1>
             
@@ -101,7 +100,7 @@
 
                 <script type='text/javascript'>
                     $(document).ready(function () {
-                        $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
+                        $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
                             $('#secsbox').html(data);
                         });
                         $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });

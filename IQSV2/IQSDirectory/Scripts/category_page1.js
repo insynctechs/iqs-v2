@@ -1,4 +1,9 @@
-﻿function loadWebPreviewDefault(path)
+﻿$('a').live('touchend', function(e) {
+    var el = $(this);
+    var link = el.attr('href');
+    window.location = link;
+});
+function loadWebPreviewDefault(path)
 {
 	//$(document).ready(function () {
     if (document.getElementById('preview_iframe')) document.getElementById('preview_iframe').src = path + "images/cardboard-placeholder.jpg"; 
@@ -12,22 +17,16 @@
 		document.getElementById('preview_iframe3').src = path + "images/cardboard-placeholder.jpg";
 		$('#secpage3 aside').css('height', document.getElementById('preview_iframe3').getBoundingClientRect().height + "px"); 
 	}
-
-
 }
 function loadWebPreview(site, tier, customimage) {
    
    // var md5 = require('MD5');
-
     var secret = '!qskey2017$';
     var url = site;
-
     // Add 300 seconds to the current time for a 5 minute expiry
     var expires = new Date().getTime() + (1000 * 300);
-
     var hash = MD5(secret + expires + url);
     var auth = '925-' + expires + '-' + hash;
-
     var width = parseFloat($("#sectier1 aside").width());
     var imgUrl = '//image.thum.io/get/width/'+width+'/auth/' + auth + '/' + url;
     var custompath = document.getElementById('hdnSrhRootPath').value + 'preview_images//';
@@ -40,13 +39,9 @@ function loadWebPreview(site, tier, customimage) {
         else
         document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + imgUrl + "' /></a>";
     }
-    //else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }
-
-    
+    //else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }     
 }
-
 function setPreviewWidth() { }
-
 function effectiveDeviceWidth() {
     var deviceWidth = window.orientation == 0 ? window.screen.height : window.screen.width;
     // iOS returns available pixels, Android returns pixels / pixel ratio
@@ -68,7 +63,6 @@ function effectiveDeviceHeight() {
 function getPosition(element) {
     var xPosition = 0;
     var yPosition = 0;
-
     while (element) {
         xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
         yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
@@ -84,98 +78,15 @@ $(document).ready(function () {
     if (width > height) {
         var top = (width - height) / 2;
         //alert(width + '---' + height + '----' + top * 2);
-        $('#sectier1 ul').css('padding-top', top + "px");
-        /*if (top <= 25)
-            $('#sectier1 ul').css('padding-top', top + "px");
-        else if (top < 50) {
-            newwidth = width * 90 / 100;
-
-        }
-        else if (top < 100) {
-            newwidth = width * 80 / 100;
-
-        }
-        else if (top < 150) {
-            newwidth = width * 75 / 100;
-
-        }
-        else if (top < 200) {
-            newwidth = width * 70 / 100;
-
-        }
-        else if (top < 300) {
-            newwidth = width * 60 / 100;
-
-        }
-        else if (top < 500) {
-            newwidth = width * 50 / 100;
-
-        }
-        else {
-            newwidth = width * 49 / 100;
-
-        }
-        if (newwidth != width) {
-            var m = (parseFloat($("#sectier1").width()) - parseFloat($("#sectier1 ul").width()) - newwidth) / 2 + parseFloat($("#sectier1").css('padding-right')) / 2;
-            //alert(m);
-            $("#sectier1 aside").width(newwidth);
-            $("#sectier1 aside").css('margin-left', m + "px");
-            if (newwidth > height) {
-                var top = (newwidth - height) / 2;
-                $('#sectier1 ul').css('padding-top', top + "px");
-            }
-        }*/
+        $('#sectier1 ul').css('padding-top', top + "px");        
     }
-
     var width1 = parseFloat($("#sectier2 aside").width());
     var height1 = parseFloat($("#sectier2 ul").height());
     var newwidth1 = width1;
     if (width1 > height1) {
         var top1 = (width1 - height1) / 2;
-        $('#sectier2 ul').css('padding-top', top1 + "px");
-        /*if (top1 <= 25) {
-            $('#sectier2 ul').css('padding-top', top1 + "px");
-        }
-        else if (top1 < 50) {
-            newwidth1 = width1 * 90 / 100;
-        }
-        else if (top1 < 100) {
-            newwidth1 = width1 * 80 / 100;
-
-        }
-        else if (top1 < 150) {
-            newwidth1 = width1 * 75 / 100;
-
-        }
-        else if (top1 < 200) {
-            newwidth1 = width1 * 70 / 100;
-
-        }
-        else if (top1 < 300) {
-            newwidth1 = width1 * 60 / 100;
-
-        }
-        else if (top1 < 500) {
-            newwidth1 = width1 * 50 / 100;
-
-        }
-        else {
-            newwidth1 = width1 * 49 / 100;
-
-        }
-        if (newwidth1 != width1) {
-            var m1 = (parseFloat($("#sectier2").width()) - parseFloat($("#sectier2 ul").width()) - newwidth) / 2 + parseFloat($("#sectier2").css('padding-right')) / 2;
-            //alert(m);
-            $("#sectier2 aside").width(newwidth1);
-            $("#sectier2 aside").css('margin-left', m1 + "px");
-            if (newwidth1 > height1) {
-                var top1 = (newwidth1 - height1) / 2;
-                $('#sectier2 ul').css('padding-top', top1 + "px");
-            }
-        }*/
-
+        $('#sectier2 ul').css('padding-top', top1 + "px");     
     }
-
     $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
@@ -186,26 +97,18 @@ $(document).ready(function () {
         var h1 = parseFloat($("#sectier1 aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-        //elemFull = elemFull + widthoff;
         //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
-
         }
         else {
             top1 = y - elemtop - (h1 / 2);
         }
         top1 = Math.max(0, top1);
         $('#sectier1 .forpreview').css('margin-top', top1 + "px");
-
-
     });
-
-
-
     $('#sectier2 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
@@ -216,56 +119,60 @@ $(document).ready(function () {
         var h1 = parseFloat($("#sectier2 aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-
         //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
-
         }
         else {
             top1 = y - elemtop - (h1 / 2);
         }
         top1 = Math.max(0, top1);
         $('#sectier2 .forpreview').css('margin-top', top1 + "px");
-
-
     });
-
-
     $('#sectier3 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
         var x = e.pageX;
         var h = $(window).height();
-
         var elemheight = $("#sectier3 .adlist_ul").height();
         var elemtop = $("#sectier3 .adlist_ul").position().top;
         var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
         var h1 = parseFloat($("#sectier3 aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-
         //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-
         //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
-
         }
         else {
             top1 = y - elemtop - (h1 / 2);
         }
         top1 = Math.max(0, top1);
         $('#sectier3 .forpreview').css('margin-top', top1 + "px");
-
-
+    });
+    $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
+        $('#secsbox').html(data);
+        $('#txtsearch').val($('#hdnCategoryName').val());
+        $('#txtsearch').attr('class', 'txtsearchsel');
     });
 
+    $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+    $('.btnrfq').bind('contextmenu', function (e) { return false; });
 
-});		
+
+    $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+    $('.lnkmail').bind('contextmenu', function (e) { return false; });
+    $(".btnCAD[href='http://']").hide();
+    $(".btnCAD[href='']").hide();
+});	
+function popupwindow(url, title, w, h) {
+    var left = (screen.width / 2) - (w / 2);
+    var top = (screen.height / 2) - (h / 2);
+    window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+}
 
 //<![CDATA[ 
 function hitsLinkTrack(hitslink) {
@@ -291,17 +198,13 @@ function hitsLinkTrack(hitslink) {
                 }
             }
         }
-
         //alert("wa_account = " + acc_name + "wa_location =" + loc_name)
         var wa_pageName = location.pathname;
         // customize the page name here; 
-
         wa_account = acc_name;
         wa_location = loc_name;
-
         wa_MultivariateKey = '';
         // Set this variable to perform multivariate testing 
-
         var wa_c = new RegExp('__wa_v=([^;]+)').exec(document.cookie),
             wa_tz = new Date();
         /*if (document.referrer != '') {
@@ -318,7 +221,6 @@ function hitsLinkTrack(hitslink) {
         }
         else {
             wa_c = wa_tz.getTime();
-
             /*document.cookie = '__wa_v=' + wa_c + ';
             path = /;
             expires = 1 / 1 / '+(wa_tz.getUTCFullYear()+2);*/
@@ -331,16 +233,12 @@ function hitsLinkTrack(hitslink) {
             '&pf=' + escape(navigator.platform) + '&pg=' + escape(wa_pageName) + '&cd=' + screen.colorDepth + '&rs=' + escape(screen.width +
                 ' x ' + screen.height) + '&je=' + navigator.javaEnabled() + '&c=' + wa_c + '&tks=' + wa_tz.getTime();
         //alert(wa_img.src);
-
     }
 }//]]> 
-
 var MD5 = function (string) {
-
     function RotateLeft(lValue, iShiftBits) {
         return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
     }
-
     function AddUnsigned(lX, lY) {
         var lX4, lY4, lX8, lY8, lResult;
         lX8 = (lX & 0x80000000);
@@ -361,12 +259,10 @@ var MD5 = function (string) {
             return (lResult ^ lX8 ^ lY8);
         }
     }
-
     function F(x, y, z) { return (x & y) | ((~x) & z); }
     function G(x, y, z) { return (x & z) | (y & (~z)); }
     function H(x, y, z) { return (x ^ y ^ z); }
     function I(x, y, z) { return (y ^ (x | (~z))); }
-
     function FF(a, b, c, d, x, s, ac) {
         a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
         return AddUnsigned(RotateLeft(a, s), b);
@@ -376,17 +272,14 @@ var MD5 = function (string) {
         a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
         return AddUnsigned(RotateLeft(a, s), b);
     };
-
     function HH(a, b, c, d, x, s, ac) {
         a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
         return AddUnsigned(RotateLeft(a, s), b);
     };
-
     function II(a, b, c, d, x, s, ac) {
         a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
         return AddUnsigned(RotateLeft(a, s), b);
     };
-
     function ConvertToWordArray(string) {
         var lWordCount;
         var lMessageLength = string.length;
@@ -409,7 +302,6 @@ var MD5 = function (string) {
         lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
         return lWordArray;
     };
-
     function WordToHex(lValue) {
         var WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
         for (lCount = 0; lCount <= 3; lCount++) {
@@ -419,15 +311,11 @@ var MD5 = function (string) {
         }
         return WordToHexValue;
     };
-
     function Utf8Encode(string) {
         string = string.replace(/\r\n/g, "\n");
         var utftext = "";
-
         for (var n = 0; n < string.length; n++) {
-
             var c = string.charCodeAt(n);
-
             if (c < 128) {
                 utftext += String.fromCharCode(c);
             }
@@ -440,25 +328,18 @@ var MD5 = function (string) {
                 utftext += String.fromCharCode(((c >> 6) & 63) | 128);
                 utftext += String.fromCharCode((c & 63) | 128);
             }
-
         }
-
         return utftext;
     };
-
     var x = Array();
     var k, AA, BB, CC, DD, a, b, c, d;
     var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
     var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
     var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
     var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
-
     string = Utf8Encode(string);
-
     x = ConvertToWordArray(string);
-
     a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
-
     for (k = 0; k < x.length; k += 16) {
         AA = a; BB = b; CC = c; DD = d;
         a = FF(a, b, c, d, x[k + 0], S11, 0xD76AA478);
@@ -530,8 +411,6 @@ var MD5 = function (string) {
         c = AddUnsigned(c, CC);
         d = AddUnsigned(d, DD);
     }
-
     var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
-
     return temp.toLowerCase();
 }

@@ -3,28 +3,18 @@
 <%@ register src="~/Controls/copro-page-email.ascx" tagprefix="uc1" tagname="copropageemail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>Content/form_styles.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />     -->
-    
-    
-    <link href="<%:RootPath %>content/copro_styles_min.css" rel="stylesheet" />
+   
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
-
-    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/jquery.cookie.js' defer type='text/javascript' ></script>
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" defer  type="text/javascript"></script> 
-    <script src='<%:RootPath %>scripts/company_profile.js' async defer type='text/javascript' ></script>
-    <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
-   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  type="text/javascript"></script>   -->
-    
-    <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
+   <asp:PlaceHolder runat="server">
+        <%: Styles.Render("~/bundles/StyleCopro") %>
+        <%--: Scripts.Render("~/bundles/SiteMasterScripts") --%>
+        <%: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/ScriptCopro") %>
+    </asp:PlaceHolder>
     <input type='hidden' id='hdnEmailCaptcha' value="no" />
 
     <div id='content_wrapper'>
-        <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
-        <h1 itemprop="name"><%= ClientName %></h1>
+        <section class="row1" itemscope itemtype='https://schema.org/LocalBusiness'>
+        <h1 itemprop="name"><%: ClientName %></h1>
         <% if (ShowReviews == "Y")
             { %>
         <div class='divratingnew'><span  id='spanTopRate' class='spanratingclient'>
@@ -47,7 +37,7 @@
             <% } %>
              <% if (CompCount != "0")
             { %>
-        <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="http://schema.org/AggregateRating">
+        <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="https://schema.org/AggregateRating">
             <meta itemprop="bestRating" content="5"/>
             <meta itemprop="worstRating" content="1"/>
             <meta itemprop="ratingValue" content='<%: CompRating %>'/>
@@ -106,10 +96,10 @@
             </div>
             <div id="divAddress">
                 <img src="<%:RootPath %>/images/markera.png" alt="Geo Location Marker" title="Geo Location Marker" />
-                <div id="lblAddress" itemprop="address"itemscope itemtype="http://schema.org/PostalAddress">
+                <div id="lblAddress" itemprop="address"itemscope itemtype="https://schema.org/PostalAddress">
                     <span itemprop="addressLocality"><%= Address %></span>
                 <br>
-                <a href="<%:RootPath %>copro-map.html?address=<%=MapAddress %>&comp=<%=ClientName %>" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
+                <a href="<%:RootPath %>copro-map.html?address=<%=MapAddress %>&comp=<%=ClientNameFormatted %>" id="lnkViewMap" class="iframe coproviewmap">View Map</a>
                 </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
@@ -130,7 +120,7 @@
         </div>
         
         <div class="col2" itemprop="description" >
-            <%= ClientDesc %>
+            <%: ClientDesc %>
         </div>
 
         <div class="cleardiv"></div>
@@ -202,37 +192,7 @@
             </div>
         </div>
         <div class="col2">
-            <div id="social">
-                <span>Share this page on</span>
-                <ul>
-                    <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
-                    <li><a class="google" rel=nofollow
-                           href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
-                        Google</a></li>
-                    <li><a class="twitter" rel=nofollow
-                           href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: Master.PageTitle %>. <%: Master.PageDescription %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
-                        Twitter</a></li>
-                    <li><a class="linkedin" rel=nofollow
-                           href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%= Master.PageTitle %>&summary=<%: Master.PageDescription %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
-                        LinedIn</a></li>
-                    <li><a class="facebook" rel=nofollow href=""
-                           onclick="javascript:postToFeed('<%: Master.PageTitle %>','<%:DirectoryURL %>','<%: Master.PageDescription %>');return false;">
-                        Facebook</a></li>
-                    <li><a rel=nofollow onclick="" class="lnkmail mail"
-                           href="<%:RootPath %>copro-share-page-email.aspx?p=../../&title=<%: Master.PageTitle %>&des=<%: Master.PageDescription %>&url=<%: ShareURL %>">
-                        Mail</a></li>
-                    <li><a href="" class="print" onclick="javascript:window.print();return false;">
-                        Print</a></li>
-                </ul>
-                <script type="text/javascript">
-                    function popupwindow(url, title, w, h) {
-                        var left = (screen.width / 2) - (w / 2);
-                        var top = (screen.height / 2) - (h / 2);
-                        window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-                    }
-                    
-                </script>
-            </div>
+            
             <% if (RelatedCompaniesList != "" && RelatedCompaniesList != null)
                      { %>
             <div id="divRelated" class="rightbox clearfix" >
@@ -302,7 +262,7 @@
     </script>
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get($('#hdnSrhRootPath').val() + 'StateSearch.html', function (data) {
+            $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
                 $('#secsbox').html(data);
             });
 

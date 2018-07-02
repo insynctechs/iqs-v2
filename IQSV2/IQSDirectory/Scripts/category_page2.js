@@ -80,46 +80,7 @@ $(document).ready(function () {
         var top = (width - height) / 2;
         //alert(width + '---' + height + '----' + top * 2);
         $('#sectier1 ul').css('padding-top', top + "px");
-        /*if (top <= 25)
-            $('.adlist_ul').css('padding-top', top + "px");
-        else if (top < 50) {
-            newwidth = width * 90 / 100;
-
-        }
-        else if (top < 100) {
-            newwidth = width * 80 / 100;
-
-        }
-        else if (top < 150) {
-            newwidth = width * 75 / 100;
-
-        }
-        else if (top < 200) {
-            newwidth = width * 70 / 100;
-
-        }
-        else if (top < 300) {
-            newwidth = width * 60 / 100;
-
-        }
-        else if (top < 500) {
-            newwidth = width * 50 / 100;
-
-        }
-        else {
-            newwidth = width * 49 / 100;
-
-        }
-        if (newwidth != width) {
-            var m = (parseFloat($(".adlist_section").width()) - parseFloat($(".adlist_ul").width()) - newwidth) / 2 + parseFloat($(".adlist_section").css('padding-right')) / 2;
-            //alert(m);
-            $(".adlist_section aside").width(newwidth);
-            $(".adlist_section aside").css('margin-left', m + "px");
-            if (newwidth > height) {
-                var top = (newwidth - height) / 2;
-                $('.adlist_ul').css('padding-top', top + "px");
-            }
-        }*/
+        
     }
     
     $('h3.cname a').mousemove(function (e) {
@@ -168,6 +129,35 @@ $.fn.isOnScreen = function () {
     bounds.bottom = bounds.top + this.outerHeight();
     return ((bounds.top <= viewport.bottom) && (bounds.bottom >= viewport.top));
 };
+
+function popupwindow(url, title, w, h) {
+    var left = (screen.width / 2) - (w / 2);
+    var top = (screen.height / 2) - (h / 2);
+    window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+}
+
+$(document).ready(function () {
+    $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
+        $('#secsbox').html(data);
+        $('#txtsearch').val($('#hdnCategoryName').val());
+        $('#txtsearch').attr('class', 'txtsearchsel');
+        $('#combo').val($('#hdnStateName').val());
+    });
+
+    $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+    $('.lnkmail').bind('contextmenu', function (e) { return false; });
+
+    $('.btnrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
+    $('.btnrfq').bind('contextmenu', function (e) { return false; });
+
+    $(".btnCAD[href='http://']").hide();
+    $(".btnCAD[href='']").hide();
+    $(".btnCAD2[href='http://']").hide();
+    $(".btnCAD2[href='']").hide();
+            
+});
+
+
 //<![CDATA[ 
 function hitsLinkTrack(hitslink) {
 

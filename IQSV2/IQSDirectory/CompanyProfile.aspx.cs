@@ -71,12 +71,12 @@ namespace IQSDirectory
             try
             {
                 ClientSK = dr["CLIENT_SK"].ToString();
-                ClientName = Utils.ReplaceContent(dr["NAME"].ToString(), 1);
+                ClientName = dr["NAME"].ToString();// Utils.ReplaceContent(dr["NAME"].ToString(), 1);
                 ClientNameFormatted = Utils.FormatCompanyWebsiteLink(dr["NAME"].ToString());
                 CompRating = Convert.ToInt32(dr["RATINGAVG"].ToString()).ToString();
                 CompCount = dr["RATINGCOUNT"].ToString();
                 ShowReviews = dr["SHOW_REVIEWS"].ToString();
-                string strdescr = Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
+                string strdescr = dr["DESCRIPTION"].ToString();//Utils.ReplaceContent(dr["DESCRIPTION"].ToString(), 1);
                 ClientDesc = new HtmlString("<p>" + strdescr.Replace(Environment.NewLine, "</p><p>").Replace("</p><p>", "</p>"));
                 if (dr["COPRO_VIDEO"].ToString() != "")
                 {
@@ -93,7 +93,7 @@ namespace IQSDirectory
                     if (sName != "")
                     {
 
-                        YoutubeStyle = new HtmlString("style='background-image:url(http://img.youtube.com/vi/" + sName + "/0.jpg); background-size:100% auto;'");
+                        YoutubeStyle = new HtmlString("style='background-image:url(//img.youtube.com/vi/" + sName + "/0.jpg); background-size:100% auto;'");
                         VideoLink = new HtmlString(RootPath + "coprovideo.html?v=" + sName + "&comp=" + ClientName);
 
                     }
@@ -150,8 +150,8 @@ namespace IQSDirectory
                 Master.PageTitle = Utils.ReplaceContent(dr["Name"].ToString(), 1);
                 Master.PageKeywords = dr["Name"].ToString() + ", " + dr["Name"].ToString() + " in " + dr["CITY"].ToString() + ", " + dr["Name"].ToString() + " in " + dr["STATE"].ToString() + ", " + dr["Name"].ToString() + " in " + dr["CITY"].ToString() + " " + dr["STATE"].ToString() + ", " + dr["Name"].ToString() + " " + dr["ADDRESS"].ToString();
                 Master.PageDescription = "Find information on " + dr["Name"].ToString() + " on IQSdirectory. Request information on " + dr["Name"].ToString() + " located at " + dr["ADDRESS"].ToString() + "," + dr["CITY"].ToString() + "," + dr["STATE"].ToString() + ".";
-                Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
-                
+                Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
+
 
                 if (dtScripts.Rows.Count > 0)
                 {

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using IQSDirectory.Helpers;
 using System.Data;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
 using System.Net.Mail;
 using System.IO;
 
@@ -36,6 +30,7 @@ namespace IQSDirectory
             {
                 WebURL = wHelper.WebUrl;
                 
+
                 
                 if (Request.QueryString["CategorySK"] != null)// && Double.Parse(Request.QueryString["CategorySK"].ToString()))
                 {
@@ -66,14 +61,9 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                //CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                //CommonLogger.Error("DirectoryRFQ.Page_Load()", ex);
-                throw ex;
+                CommonLogger.Error(ex.ToString());
             }
-            finally
-            {
-            }
-
+           
         }
 
         #region "Load Tracking Scripts"
@@ -115,9 +105,9 @@ namespace IQSDirectory
             }
             catch (Exception ex)
             {
-                /*CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                CommonLogger.Error("DirectoryRFQ.LoadHeaderDetails()", ex);*/
-                throw ex;
+                CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                CommonLogger.Error("DirectoryRFQ.LoadHeaderDetails()", ex);
+                
             }
             finally
             {
@@ -229,17 +219,12 @@ namespace IQSDirectory
                 btnChkAll.Attributes.Add("onClick", " return CheckAll('" + _strCheckBtnId + "')");
 
             }
-            /*catch (BaseException bex)
-            {
-                CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                CommonLogger.Error("DirectoryRFQ.LoadCompanyDetails()", bex);
-                ctrlErrorMessage.SetError(bex.Message.ToString(), "red");
-            }*/
+            
             catch (Exception ex)
             {
-                /*CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
                 CommonLogger.Error("DirectoryRFQ.LoadCompanyDetails()", ex);
-                throw new BaseException(ex.Message);*/
+                
             }
             finally
             {
@@ -377,9 +362,8 @@ namespace IQSDirectory
             }*/
             catch (Exception ex)
             {
-                /*CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                CommonLogger.Error("InsertMethod", ex);
-                throw new BaseException(ex.Message);*/
+                CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                CommonLogger.Error("InsertMethod", ex);               
                 throw new Exception(ex.Message);
             }
             finally
@@ -440,103 +424,110 @@ namespace IQSDirectory
         #region SMTP email sending with attachment code
         private void sendMailWithAttachment(string strFromAddress, string strToAddress, string strCCAddress, string strBCCAddress, string strSubject, string strBodyContent, bool IsBodyHtml)
         {
-            string strUsername = System.Configuration.ConfigurationManager.AppSettings["MailServerUsername"];
-            string strPassword = System.Configuration.ConfigurationManager.AppSettings["MailServerpassword"];
-            //Create a new MailMessage object and specify the"From" and "To" addresses
-            System.Net.Mail.MailMessage Email = new System.Net.Mail.MailMessage();
-            Email.From = new MailAddress(strFromAddress.ToString());
-            Email = EmailAddressCollection(strToAddress.ToString(), "TO", ref Email);
-            //Email.To.Add(new MailAddress("globalforce-test@industrialquicksearch.com"));
-            if (ValidateMailAddress(ref strCCAddress))
-                Email = EmailAddressCollection(strCCAddress.ToString(), "CC", ref Email);
-            if (ValidateMailAddress(ref strBCCAddress))
-                Email = EmailAddressCollection(strBCCAddress.ToString(), "BCC", ref Email);
-            Email.Subject = strSubject.ToString();
-            Email.Body = strBodyContent.ToString();
-            Email.IsBodyHtml = IsBodyHtml;
-
-            //Response.Write(strUsername + "---" + strPassword);
-
-            /*strFileName has a attachment file name for 
-              attachment process. */
-            string strFileName = null;
-
-            /* Begining of Attachment1 process   & 
-                       Check the first open file dialog for a attachment */
-            if (inpAttachment1.PostedFile != null)
+            try
             {
-                /* Get a reference to PostedFile object */
-                HttpPostedFile attFile = inpAttachment1.PostedFile;
-                /* Get size of the file */
-                int attachFileLength = attFile.ContentLength;
-                /* Make sure the size of the file is > 0  */
-                if (attachFileLength > 0)
+                string strUsername = System.Configuration.ConfigurationManager.AppSettings["MailServerUsername"];
+                string strPassword = System.Configuration.ConfigurationManager.AppSettings["MailServerpassword"];
+                //Create a new MailMessage object and specify the"From" and "To" addresses
+                System.Net.Mail.MailMessage Email = new System.Net.Mail.MailMessage();
+                Email.From = new MailAddress(strFromAddress.ToString());
+                Email = EmailAddressCollection(strToAddress.ToString(), "TO", ref Email);
+                //Email.To.Add(new MailAddress("globalforce-test@industrialquicksearch.com"));
+                if (ValidateMailAddress(ref strCCAddress))
+                    Email = EmailAddressCollection(strCCAddress.ToString(), "CC", ref Email);
+                if (ValidateMailAddress(ref strBCCAddress))
+                    Email = EmailAddressCollection(strBCCAddress.ToString(), "BCC", ref Email);
+                Email.Subject = strSubject.ToString();
+                Email.Body = strBodyContent.ToString();
+                Email.IsBodyHtml = IsBodyHtml;
+
+                //Response.Write(strUsername + "---" + strPassword);
+
+                /*strFileName has a attachment file name for 
+                  attachment process. */
+                string strFileName = null;
+
+                /* Begining of Attachment1 process   & 
+                           Check the first open file dialog for a attachment */
+                if (inpAttachment1.PostedFile != null)
                 {
-                    /* Get the file name */
-                    strFileName = Path.GetFileName(inpAttachment1.PostedFile.FileName);
-                    inpAttachment1.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
-                    /* Create the email attachment with the uploaded file */
-                    System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment1.PostedFile.InputStream, strFileName, inpAttachment1.PostedFile.ContentType);
-                    /* Attach the newly created email attachment */
-                    Email.Attachments.Add(attach);
+                    /* Get a reference to PostedFile object */
+                    HttpPostedFile attFile = inpAttachment1.PostedFile;
+                    /* Get size of the file */
+                    int attachFileLength = attFile.ContentLength;
+                    /* Make sure the size of the file is > 0  */
+                    if (attachFileLength > 0)
+                    {
+                        /* Get the file name */
+                        strFileName = Path.GetFileName(inpAttachment1.PostedFile.FileName);
+                        inpAttachment1.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
+                        /* Create the email attachment with the uploaded file */
+                        System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment1.PostedFile.InputStream, strFileName, inpAttachment1.PostedFile.ContentType);
+                        /* Attach the newly created email attachment */
+                        Email.Attachments.Add(attach);
 
+                    }
                 }
-            }
 
-            if (inpAttachment2.PostedFile != null)
-            {
-                /* Get a reference to PostedFile object */
-                HttpPostedFile attFile = inpAttachment2.PostedFile;
-                /* Get size of the file */
-                int attachFileLength = attFile.ContentLength;
-                /* Make sure the size of the file is > 0  */
-                if (attachFileLength > 0)
+                if (inpAttachment2.PostedFile != null)
                 {
-                    /* Get the file name */
-                    strFileName = Path.GetFileName(inpAttachment2.PostedFile.FileName);
-                    inpAttachment2.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
-                    /* Create the email attachment with the uploaded file */
-                    System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment2.PostedFile.InputStream, strFileName, inpAttachment2.PostedFile.ContentType);
-                    /* Attach the newly created email attachment */
-                    Email.Attachments.Add(attach);
+                    /* Get a reference to PostedFile object */
+                    HttpPostedFile attFile = inpAttachment2.PostedFile;
+                    /* Get size of the file */
+                    int attachFileLength = attFile.ContentLength;
+                    /* Make sure the size of the file is > 0  */
+                    if (attachFileLength > 0)
+                    {
+                        /* Get the file name */
+                        strFileName = Path.GetFileName(inpAttachment2.PostedFile.FileName);
+                        inpAttachment2.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
+                        /* Create the email attachment with the uploaded file */
+                        System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment2.PostedFile.InputStream, strFileName, inpAttachment2.PostedFile.ContentType);
+                        /* Attach the newly created email attachment */
+                        Email.Attachments.Add(attach);
 
+                    }
                 }
-            }
 
-            if (inpAttachment3.PostedFile != null)
-            {
-                /* Get a reference to PostedFile object */
-                HttpPostedFile attFile = inpAttachment3.PostedFile;
-
-                /* Get size of the file */
-                int attachFileLength = attFile.ContentLength;
-                /* Make sure the size of the file is > 0  */
-                if (attachFileLength > 0)
+                if (inpAttachment3.PostedFile != null)
                 {
-                    /* Get the file name */
-                    strFileName = Path.GetFileName(inpAttachment3.PostedFile.FileName);
-                    inpAttachment3.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
-                    /* Create the email attachment with the uploaded file */
-                    System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment3.PostedFile.InputStream, strFileName, inpAttachment3.PostedFile.ContentType);
-                    /* Attach the newly created email attachment */
-                    Email.Attachments.Add(attach);
+                    /* Get a reference to PostedFile object */
+                    HttpPostedFile attFile = inpAttachment3.PostedFile;
 
+                    /* Get size of the file */
+                    int attachFileLength = attFile.ContentLength;
+                    /* Make sure the size of the file is > 0  */
+                    if (attachFileLength > 0)
+                    {
+                        /* Get the file name */
+                        strFileName = Path.GetFileName(inpAttachment3.PostedFile.FileName);
+                        inpAttachment3.PostedFile.InputStream.Seek(0, SeekOrigin.Begin);
+                        /* Create the email attachment with the uploaded file */
+                        System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(inpAttachment3.PostedFile.InputStream, strFileName, inpAttachment3.PostedFile.ContentType);
+                        /* Attach the newly created email attachment */
+                        Email.Attachments.Add(attach);
+
+                    }
                 }
+
+
+                System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient();
+
+                if (strUsername.Trim().Length > 0 & strPassword.Trim().Length > 0)
+                {
+                    //This object stores the authentication values
+                    System.Net.NetworkCredential basicAuthenticationInfo = new System.Net.NetworkCredential(strUsername, strPassword);
+                    mailClient.UseDefaultCredentials = false;
+                    mailClient.Credentials = basicAuthenticationInfo;
+                }
+                //Put your own, or your ISPs, mail server name onthis next line
+                mailClient.Host = System.Configuration.ConfigurationManager.AppSettings["MailServerIP"];
+                mailClient.Send(Email);
             }
-
-
-            System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient();
-
-            if (strUsername.Trim().Length > 0 & strPassword.Trim().Length > 0)
+            catch (Exception ex)
             {
-                //This object stores the authentication values
-                System.Net.NetworkCredential basicAuthenticationInfo = new System.Net.NetworkCredential(strUsername, strPassword);
-                mailClient.UseDefaultCredentials = false;
-                mailClient.Credentials = basicAuthenticationInfo;
+                CommonLogger.Info(ex.ToString());
             }
-            //Put your own, or your ISPs, mail server name onthis next line
-            mailClient.Host = System.Configuration.ConfigurationManager.AppSettings["MailServerIP"];
-            mailClient.Send(Email);
 
 
         }
@@ -588,18 +579,12 @@ namespace IQSDirectory
                 //Response.Redirect("RFQConfirmation.aspx?CategorySk=" + hdnCategorySK.Value, false);
                 Response.Redirect("RFQConfirmation.aspx?CategorySk=" + hdnCategorySK.Value + "&RequestIP=" + _RequestIP, false);
             }
-            /*catch (BaseException bex)
-            {
-                CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
-                CommonLogger.Error("sendMail", bex);
-                ctrlErrorMessage.SetError(bex.Message.ToString(), "red");
-            }*/
+            
             catch (Exception ex)
             {
-                /* CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
+                 CommonLogger.Error("DirectoryRFQ: Browser--> " + Request.UserAgent.ToString() + " CategorySk-->" + hdnCategorySK.Value + " ClientSK-->" + hdnRFQClientSK.Value);
                  CommonLogger.Error("sendMail", ex);
-                 throw new BaseException(ex.Message);*/
-                throw new Exception(ex.Message);
+                 throw new Exception(ex.Message);
             }
             finally
             {

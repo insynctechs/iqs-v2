@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NGZWMKN');</script>
 
 <!-- End Google Tag Manager -->
+    <meta name="referrer" content="origin" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://plus.google.com/106568831377935249480" rel="publisher" />
@@ -37,7 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href='content/jquery-ui.css'  rel='stylesheet' type='text/css' media='screen' />
 <script src='js/jquery-1.7.2.min.js' type='text/javascript' ></script>
 <script src='js/jquery-ui.js' type='text/javascript' ></script>
-<script src='iqs_tracker/js/tracker.js?client_id=-1' type='text/javascript' ></script>
 <!-- Industrial Quick Search Referring Site Stats web tools statistics hit counter code | Installed by Nate, 3/17/2010 -->
 <script type="text/javascript" id="wa_u"></script>
 <script type="text/javascript">//<![CDATA[
@@ -70,27 +70,6 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
     });
 </script>
 <!-- End Industrial Quick Search Referring Site Stats statistics web tools hit counter code -->
-<script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-  "name": "IQS Directory",
-      "url": "http://www.iqsdirectory.com",
-  "sameAs" : [ "http://google.com/+Iqsdirectory",
-    "https://twitter.com/IQSDirectory",
-    "http://www.youtube.com/c/Iqsdirectory",
-    "http://www.linkedin.com/company/iqsdirectory-com",
-    "https://www.facebook.com/IQSDirectory"] ,
-      "logo": "http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png",
-  "telephone": "877-977-5377",
-      "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1500 E Beltline Ave SE",
-    "addressLocality": "Grand Rapids",
-    "addressRegion": "Michigan"
-  }
-    }
-    </script>
 <!-- InstanceParam name="class" type="text" value="home" -->
 <!-- InstanceParam name="id" type="text" value="dhl" -->
 </head>
@@ -111,19 +90,19 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
   <!-- end --> 
   <!-- orange banner w/ links -->
   <div id="orangeBanner">
-    <span style="font-size:x-small;"><a href="http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx" title="Find out how to list your company with IQS">List Your Company</a></span> </div>
+    <span style="font-size:x-small;"><a href="//www.iqsdirectory.com/directoryhomelistyourcompany.aspx" title="Find out how to list your company with IQS">List Your Company</a></span> </div>
   <div id="bannerBack"></div>
   <!-- end orange banner -->
       <div id="orangeBannerTestimonials">
-    <span style="font-size:x-small;"><a href="http://www.iqsdirectory.com/testimonial.htm" title="What IQS clients are saying">Testimonials</a></span> </div>
+    <span style="font-size:x-small;"><a href="//www.iqsdirectory.com/testimonial.htm" title="What IQS clients are saying">Testimonials</a></span> </div>
   <!-- end orange banner -->
   <div id="header">
     <div id="headerContent">
     <!-- InstanceBeginEditable name="logo" -->
-      <div id="logo" title="IQS Directory of Industrial Manufacturers and Suppliers"><a href="http://www.iqsdirectory.com"><img src="images/iqs_logo.gif" alt="IQS Directory of Industrial Manufacturers and Suppliers" title="IQS Directory of Industrial Manufacturers and Suppliers" /></a></div>
+      <div id="logo" title="IQS Directory of Industrial Manufacturers and Suppliers"><a href="//www.iqsdirectory.com"><img src="images/iqs_logo.gif" alt="IQS Directory of Industrial Manufacturers and Suppliers" title="IQS Directory of Industrial Manufacturers and Suppliers" /></a></div>
     <!-- InstanceEndEditable -->
 <!--        <div class="social">
-    <a href="http://blog.iqsdirectory.com" target="_blank" ><div class="iOS"></div></a>
+    <a href="https://blog.iqsdirectory.com" target="_blank" ><div class="iOS"></div></a>
     <a href="http://google.com/+Iqsdirectory" target="_blank"><div class=" google"></div></a>
     <a href="https://twitter.com/IQSDirectory" target="_blank"><div class=" tiwtter"></div></a>
     <a href="http://www.youtube.com/c/Iqsdirectory" target="_blank"><div class="youtube"></div></a>
@@ -142,12 +121,12 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
   </div>
   <div id="anniversary" title="IQS Celebrates Seventeen Years: 2000-2017"></div>
   <div id="categories">
-  <a href="http://www.iqsdirectory.com/contact.html"><img src="../images/contactus.png" class="contactus-button" alt="Contact Us" title="Contact IQS" /></a>
+  <a href="//www.iqsdirectory.com/contact.html"><img src="../images/contactus.png" class="contactus-button" alt="Contact Us" title="Contact IQS" /></a>
   <div id="content_1" class="content">
 <!-- InstanceBeginEditable name="body" -->
 <div class="premium-listing-centered">
         	<a href="DirectoryPremiumListing.aspx" style="text-decoration: none; display:block;"><span class="listbutton1">Page 1 Premium Advertising</span></a>
-          <a href="http://www.iqsdirectory.com/how-iqs-works/" class="how-iqs-works">How IQS Works</a>
+          <a href="//www.iqsdirectory.com/how-iqs-works/" class="how-iqs-works">How IQS Works</a>
             <a href="DirectoryPage2Listing.aspx" style="text-decoration: none; display:block;"><span class="listbutton2">Page 2 Listing</span></a>
 </div>
 
@@ -163,9 +142,7 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
                 <div class="orangeBannerRight"></div>
             </div>
          <h2 class="premium-listing-heading">Please review our Part Washer page for our features</h2>
-        <!-- <div class="number-heading"><img src="../images/orange1.png" /><span>Site Display</span></div>-->
-                     <div id="single-display"><iframe id="preview_iframe" class="foriframe" src="http://www.iqsdirectory.com/part-washer-list.html"  scrolling="No" ></iframe></div> <!--width="300" height="150" -->
-                     <!--http://www.precisionfiltration.com/-->
+         <img src="images/list-your-company-placeholder.jpeg" alt="placeholder" title="placeholder" style="display:block; margin:0 auto;" />
                      <div class="number-block">
                      <ul>
                      <li><img src="../images/orange1.png" alt="orange 1" title="arange 1" />&nbsp;&nbsp;<span>Custom Search Tool</span></li>
@@ -218,8 +195,8 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
   <div id="lowerContainer">
 
     <div id="bodyCopy">
-      <div class="buttons"><a href="http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx" title="Page 1 Premium Listing"><div class="page1"></div></a>
-      <a href="http://www.iqsdirectory.com/directorypage2listing.aspx" title="Page 2 Listing"><div class="page2"></div></a></div>
+      <div class="buttons"><a href="//www.iqsdirectory.com/directoryhomelistyourcompany.aspx" title="Page 1 Premium Listing"><div class="page1"></div></a>
+      <a href="//www.iqsdirectory.com/directorypage2listing.aspx" title="Page 2 Listing"><div class="page2"></div></a></div>
 </div>
     <!-- ends "bodyCopy" -->
     <div class="clear"></div>
@@ -243,47 +220,47 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
 
 <li class="one">
 	<span>IQS&reg; Directory</span>
-     <a href="http://www.iqsdirectory.com/about-us.html">About Us</a><br>
-     <a href="http://www.iqsdirectory.com/testimonial.htm">Testimonials</a><br>
-     <a href="http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx">Advertise Your Company</a><br />
-	<a href="http://www.iqsdirectory.com/directorylistcompanies.aspx">Directory of Companies</a><br />
-     <a href="http://www.iqsdirectory.com/sitemap/sitemap.htm">Directory Sitemap</a><br />
+     <a href="//www.iqsdirectory.com/about-us.html">About Us</a><br>
+     <a href="//www.iqsdirectory.com/testimonial.htm">Testimonials</a><br>
+     <a href="//www.iqsdirectory.com/directoryhomelistyourcompany.aspx">Advertise Your Company</a><br />
+	<a href="//www.iqsdirectory.com/directorylistcompanies.aspx">Directory of Companies</a><br />
+     <a href="//www.iqsdirectory.com/sitemap/sitemap.htm">Directory Sitemap</a><br />
 </li>
 
 <li class="two">
 	<span>Resources</span>
-     <a href="http://www.iqsdirectory.com/resources/">Resource Center</a><br />
-	<a href="http://blog.iqsdirectory.com/">IQS&reg; Newsroom</a><br />
-	<a href="http://www.iqsdirectory.com/industry-associations.html">Manufacturing Associations</a><br />
-     <a href="http://www.iqsdirectory.com/industry-tradeshows.html">Industry Tradeshows</a><br />
-     <a href="http://www.iqsdirectory.com/faq.html">FAQ</a>
+     <a href="//www.iqsdirectory.com/resources/">Resource Center</a><br />
+	<a href="https://blog.iqsdirectory.com/">IQS&reg; Newsroom</a><br />
+	<a href="//www.iqsdirectory.com/industry-associations.html">Manufacturing Associations</a><br />
+     <a href="//www.iqsdirectory.com/industry-tradeshows.html">Industry Tradeshows</a><br />
+     <a href="//www.iqsdirectory.com/faq.html">FAQ</a>
 </li>
 
 <li class="three">
 	<span>Marketing Services</span>
-     <a href="http://www.iqsdirectory.com/web-marketing/">Web Marketing</a><br>
-     <a href="http://www.iqsdirectory.com/web-marketing/seo/">Search Engine Optimization</a><br>
-	<a href="http://www.iqsdirectory.com/web-marketing/social-media/">Social Media</a><br>
-	<a href="http://www.iqsdirectory.com/web-marketing/ppc/">PPC Management</a><br />
-     <a href="http://www.iqsdirectory.com/web-marketing/web-design/">Web Design</a><br />
+     <a href="//www.iqsdirectory.com/web-marketing/">Web Marketing</a><br>
+     <a href="//www.iqsdirectory.com/web-marketing/seo/">Search Engine Optimization</a><br>
+	<a href="//www.iqsdirectory.com/web-marketing/social-media/">Social Media</a><br>
+	<a href="//www.iqsdirectory.com/web-marketing/ppc/">PPC Management</a><br />
+     <a href="//www.iqsdirectory.com/web-marketing/web-design/">Web Design</a><br />
 
 </li>
 
 <li class="four">
 	<span>Connect with Us</span>
-     <a href="http://google.com/+Iqsdirectory" target="_blank">Google+</a><br>
+     <a href="https://google.com/+Iqsdirectory" target="_blank">Google+</a><br>
 	<a href="https://twitter.com/IQSDirectory" target="_blank">Twitter</a><br>
-	<a href="http://www.youtube.com/c/Iqsdirectory" target="_blank">YouTube</a><br />
-     <a href="http://www.linkedin.com/company/iqsdirectory-com" target="_blank">LinkedIn</a><br />
+	<a href="https://www.youtube.com/c/Iqsdirectory" target="_blank">YouTube</a><br />
+     <a href="https://www.linkedin.com/company/iqsdirectory-com" target="_blank">LinkedIn</a><br />
 	<a  href="https://www.facebook.com/IQSDirectory" target="_blank">Facebook</a>
 </li>
 </ul>
   <div class="sch-logo">
-<a href="http://www.iqsdirectory.com"><img src="../images/iqsdirectory_home_logo.png" alt="IQS Directory" title="IQS Directory" /></a>
-<a href="http://www.iqsdirectory.com/contact.html" class="contactlink"><img src="../images/contact-us1.png" alt="contact us image" title="contact us image" class="contactlink" /></a>
+<a href="//www.iqsdirectory.com"><img src="../images/iqsdirectory_home_logo.png" alt="IQS Directory" title="IQS Directory" /></a>
+<a href="//www.iqsdirectory.com/contact.html" class="contactlink"><img src="../images/contact-us1.png" alt="contact us image" title="contact us image" class="contactlink" /></a>
 </div> 
   <div class="sch-org">
-<a href="http://www.iqsdirectory.com/directorytermsconditions.htm">Terms and Conditions</a>
+<a href="//www.iqsdirectory.com/directorytermsconditions.htm">Terms and Conditions</a>
   <h3><span class="tele">877-977-5377</span></h3>
   <span>IQS Directory</span> 
   </div> 
@@ -293,7 +270,7 @@ document.getElementById('wa_u').src=wa_hp+'://loc1.hitsprocessor.com/track.js';
 
   <!-- ends "footer" --> 
 </div>
-<script type="text/javascript" src="http://www.iqsdirectory.com/js/totop.js"></script>
+<script type="text/javascript" src="js/totop.js"></script>
 <!--</div>-->
 <!-- InstanceBeginEditable name="scripts" -->
 <input type='hidden' id='hdnRootPath' value='' />

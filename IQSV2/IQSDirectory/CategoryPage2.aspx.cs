@@ -168,7 +168,7 @@ namespace IQSDirectory
 
             DataRow[] dr;
 
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
             try
             {
                 if (dtMeta.Rows.Count > 0)

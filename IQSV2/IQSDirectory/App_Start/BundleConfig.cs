@@ -35,8 +35,8 @@ namespace IQSDirectory
                             "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/bundles/SiteMasterStyles").Include(
-                "~/Content/master_styles.css",
-                "~/Content/jquery-ui.css"
+                "~/Content/master_styles.css"
+                
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/SiteMasterScripts").Include(
@@ -44,17 +44,13 @@ namespace IQSDirectory
                 "~/Scripts/jquery-ui.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/bundles/ScriptCategoryPage1").Include(
-                "~/Content/dynamic_styles.css",
-                "~/Content/stylerprint.css",
-                "~/Content/jquery-ui.css",
-                "~/Content/jquery.fancybox-1.3.4.css"
+            bundles.Add(new StyleBundle("~/bundles/StyleCategoryPage1").Include(
+                "~/Content/category_styles.css",
+                "~/Content/stylerprint.css"                
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/StyleCategoryPage1").Include(
-                "~/Scripts/jquery-1.7.2.min.js",
-                "~/Scripts/jquery.rating.pack.js",
-                "~/Scripts/jquery-ui.js",
+            bundles.Add(new ScriptBundle("~/bundles/ScriptCategoryPage1").Include(                
+                "~/Scripts/jquery.rating.pack.js",               
                 "~/Scripts/jquery.fancybox-1.3.4.js",
                 "~/Scripts/fb.js",
                 "~/Scripts/category_page1.js",
@@ -74,6 +70,23 @@ namespace IQSDirectory
                 "~/Scripts/category_page2.js",
                 "~/Scripts/move_top.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/bundles/StyleCopro").Include(
+                "~/Content/form_styles.css",
+                "~/Content/copro_styles_min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ScriptCopro").Include(
+                "~/Scripts/jquery.rating.pack.js",
+                "~/Scripts/jquery.fancybox-1.3.4.js",
+                "~/Scripts/jquery.cookie.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/company_profile.js",
+                "~/Scripts/move_top.js",
+                "~/Scripts/fb.js"
+                ));
+
+            BundleTable.EnableOptimizations = true;
 
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",

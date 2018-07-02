@@ -158,7 +158,7 @@ namespace IQSDirectory
             bool isIndexed = false;
             DataRow[] dr;
 
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
             try
             {
                 if (dtMeta.Rows.Count > 0)
@@ -190,7 +190,7 @@ namespace IQSDirectory
                         if (drIndex.Length > 0)
                         {
                             isIndexed = true;
-                            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+                            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
                         }
                     }
                     if (isIndexed == false)
@@ -199,7 +199,7 @@ namespace IQSDirectory
                         if (dr.Length > 0)
                             this.Master.PageIndex = new HtmlString(dr[0]["DESCRIPTION"].ToString());
                         else
-                            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+                            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
                     }
                 }
 

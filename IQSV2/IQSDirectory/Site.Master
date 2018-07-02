@@ -7,15 +7,17 @@
     <title><%= PageTitle %></title>
     <%= PageMeta %>   
     <meta name='copyright' content='2018 Industrial Quick Search Manufacturing Directory' />
-    <!--<meta name="referrer" content="origin">
-    <meta name="referrer" content="origin-when-cross-origin">-->
+    <meta name="referrer" content="origin">
+    <!--<meta name="referrer" content="origin-when-cross-origin">-->
     <%: HeadScript %>
     <%: PageIndex %>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/bundles/SiteMasterStyles") %>
         <%: Scripts.Render("~/bundles/SiteMasterScripts") %>
         <%--: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/SiteMasterScripts") --%>
-    </asp:PlaceHolder>
+    </asp:PlaceHolder>    
+
+    
 
     <%--    <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
@@ -26,7 +28,7 @@
     <%= BodyOpenScript %>
      <form runat="server" id="frmMaster" > 
         <header id='head'>
-            <a id='logo' title='IQSDirectory' href='http://www.iqsdirectory.com/'>IQSDirectory
+            <a id='logo' title='IQSDirectory' href='https://www.iqsdirectory.com/'>IQSDirectory
             </a>
             <div>
                 <section id='secsbox'>
@@ -34,8 +36,8 @@
                 </section>
                 <nav>
                     <ul>
-                        <li><a href='http://www.iqsdirectory.com/'>Home</a></li>
-                        <li><a href='http://www.iqsdirectory.com/directoryhomelistyourcompany.aspx'>List Your Company</a></li>
+                        <li><a href='<%= WebURL %>'>Home</a></li>
+                        <li><a href='<%= WebURL %>directoryhomelistyourcompany.aspx'>List Your Company</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,7 +45,7 @@
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
 
-        <footer id='new-footer' itemscope itemtype='http://schema.org/Organization'>
+        <footer id='new-footer' itemscope itemtype='https://schema.org/Organization'>
             <ul id='footerlinks'>
                 <li class='one'>
                     <span>IQS&reg; Directory</span>
@@ -51,12 +53,12 @@
                     <a href='<%= WebURL %>testimonial.htm'>Testimonials</a><br>
                     <a href='<%= WebURL %>directoryhomelistyourcompany.aspx'>Advertise Your Company</a><br />
                     <a href='<%= WebURL %>listcompanies/A/1'>Directory of Companies</a><br />
-                    <a href='http://www.iqsdirectory.com/sitemap/sitemap.htm'>Directory Sitemap</a><br />
+                    <a href='https://www.iqsdirectory.com/sitemap/sitemap.htm'>Directory Sitemap</a><br />
                 </li>
                 <li class='two'>
                     <span>Resources</span>
-                    <a href='http://www.iqsdirectory.com/resources/home/'>Resource Center</a><br />
-                    <a href='http://blog.iqsdirectory.com/' target='blank'>IQS&reg; Newsroom</a><br />
+                    <a href='<%= WebURL %>resources/'>Resource Center</a><br />
+                    <a href='https://blog.iqsdirectory.com/' target='blank'>IQS&reg; Newsroom</a><br />
                     <a href='<%= WebURL %>industry-associations.html'>Manufacturing Associations</a><br />
                     <a href='<%= WebURL %>industry-tradeshows.html'>Industry Tradeshows</a><br />
                     <a href='<%= WebURL %>faq.html'>FAQ</a>
@@ -70,10 +72,10 @@
                 </li>
                 <li class='four'>
                     <span>Connect with Us</span>
-                    <a href='http://google.com/+Iqsdirectory' target='_blank'>Google+</a><br>
+                    <a href='https://google.com/+Iqsdirectory' target='_blank'>Google+</a><br>
                     <a href='https://twitter.com/IQSDirectory' target='_blank'>Twitter</a><br>
-                    <a href='http://www.youtube.com/c/Iqsdirectory' target='_blank'>YouTube</a><br />
-                    <a href='http://www.linkedin.com/company/iqsdirectory-com' target='_blank'>LinkedIn</a><br />
+                    <a href='https://www.youtube.com/c/Iqsdirectory' target='_blank'>YouTube</a><br />
+                    <a href='https://www.linkedin.com/company/iqsdirectory-com' target='_blank'>LinkedIn</a><br />
                     <a href='https://www.facebook.com/IQSDirectory' target='_blank'>Facebook</a>
                 </li>
             </ul>

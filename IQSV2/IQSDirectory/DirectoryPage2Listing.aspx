@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectoryPage2Listing.aspx.cs" Inherits="IQSDirectory.DirectoryPage2Listing" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="./Content/publish_styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="./Content/jquery-ui.css" />   
-<link href="./Content/jquery.fancybox-1.3.4.css" rel='Stylesheet' type='text/css' media='screen' />
+<link href="./content/publish_styles.css" rel="stylesheet" />
+<link rel="stylesheet" href="./content/jquery-ui.css" />   
+<link href="./content/jquery.fancybox-1.3.4.css" rel='Stylesheet' type='text/css' media='screen' />
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  type="text/javascript"></script>   
-<script type="text/javascript" src="Scripts/DirectoryPage2Listing.js"></script>
-<script src='./Scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
+<script type="text/javascript" src="scripts/DirectoryPage2Listing.js"></script>
+<script src='./scripts/jquery.fancybox-1.3.4.js' type='text/javascript'></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
     <div id="outerWrapper">
     <div id="contentWrapper">

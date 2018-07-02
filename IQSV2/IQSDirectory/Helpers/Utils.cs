@@ -536,6 +536,14 @@ namespace IQSDirectory.Helpers
             }
         }
 
+        public static string MetaRobots
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["MetaRobots"].ToString();
+            }
+        }
+
         public static string ProfileEmailTestMode
         {
             get

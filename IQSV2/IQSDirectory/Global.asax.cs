@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
+
 namespace IQSDirectory
 {
     public class Global : HttpApplication
@@ -16,6 +17,7 @@ namespace IQSDirectory
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

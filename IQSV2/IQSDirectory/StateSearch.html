@@ -6,7 +6,7 @@
     <script type="text/javascript" language="javascript">
         var txtval = 'Enter A Product/Service Category Or Company Name';
         $(document).ready(function () {
-
+            
             $('#txtsearch').val(txtval);
             $('#txtsearch').focus(function () {
                 if ($('#txtsearch').val() == txtval) {
@@ -81,24 +81,24 @@
                             minLength: 0
                         }, this.options));
                     $("<a />")
-                        .insertAfter(this.element)
-                        .button({
-                            icons: {
-                                primary: "ui-icon-triangle-1-s"
-                            },
-                            text: false
-                        })
-                        .removeClass("ui-corner-all")
-                        .addClass("ui-corner-right ui-combobox-toggle")
-                        .click(function () {
-                            if (self.element.autocomplete("widget").is(":visible")) {
-                                self.element.autocomplete("close");
-                                return;
-                            }
-                            $(this).blur();
-                            self.element.autocomplete("search", "");
-                            self.element.focus();
-                        });
+                            .insertAfter(this.element)
+                            .button({
+                                icons: {
+                                    primary: "ui-icon-triangle-1-s"
+                                },
+                                text: false
+                            })
+                            .removeClass("ui-corner-all")
+                            .addClass("ui-corner-right ui-combobox-toggle")
+                            .click(function () {
+                                if (self.element.autocomplete("widget").is(":visible")) {
+                                    self.element.autocomplete("close");
+                                    return;
+                                }
+                                $(this).blur();
+                                self.element.autocomplete("search", "");
+                                self.element.focus();
+                            });
                 },
                 destroy: function () {
                     this.wrapper.remove();
@@ -110,14 +110,14 @@
 
             var list = $('#hdnCategorySK').val();
             var list1 = $('#hdnCategorySK1').val();
-            if (parseInt(list) > 0)
+            if(parseInt(list)>0)
                 var jsonText = JSON.stringify(list);
             else
                 var jsonText = JSON.stringify(list1);
             $.ajax({
                 type: "GET",
                 url: $('#hdnApiPath').val() + "api/StateSearch/GetStateForSearch",
-                data: { CategorySK: jsonText },
+                data: { CategorySK : jsonText },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
@@ -161,7 +161,7 @@
         function submitForm() {
             //alert($("#weburl").val());
             if ($.trim($("#txtsearch").val()).length > 0 && $("#txtsearch").val() != txtval) {
-                $("#txtsearch").val($.trim($("#txtsearch").val()));
+                $("#txtsearch").val($.trim($("#txtsearch").val()));               
                 var srhurl = $('#hdnSrhRootPath').val() + "search/" + encodeURIComponent($.trim($("#txtsearch").val())) + "/1/" + encodeURIComponent($.trim($("#comboval").val()));
                 //var srhurl = $('#hdnSrhRootPath').val() + "directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
 
@@ -183,9 +183,9 @@
         </li>
         <li id="libutton"><a href="#" id="btnSearch" class="submit" tabindex="2">Search</a></li>
     </ul>
-    <input type='hidden' id='hdnApiPath' value='http://216.250.147.171/IQSCoreLive/' />
-    <input type='hidden' id='hdnSrhRootPath' value="http://www.iqsdirectory.com/" />
-    <input type='hidden' id='hdnCategorySK1' value='0' />
+<input type='hidden' id='hdnApiPath' value='https://api.iqsdirectory.com/' />
+<input type='hidden' id='hdnSrhRootPath' value="https://www.iqsdirectory.com/" />
+<input type='hidden' id='hdnCategorySK1' value='0' />
 </body>
 
 </html>

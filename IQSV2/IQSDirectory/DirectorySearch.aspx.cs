@@ -282,7 +282,7 @@ namespace IQSDirectory
 
         private void GenerateMetaTagsAndScripts()
         {
-            this.Master.PageIndex = new HtmlString("<meta name='robots' content='index,follow'>");
+            this.Master.PageIndex = new HtmlString("<meta name='robots' content='" + Utils.MetaRobots + "'>");
             this.Master.PageDescription = "";
             this.Master.PageTitle = "Search IQSDirectory Company or Products for " + CurQuery + " - Page "+ CurPage;
             this.Master.BindMeta();;

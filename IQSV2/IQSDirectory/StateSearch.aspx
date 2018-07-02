@@ -5,42 +5,13 @@
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
     <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
 
-    <script src='<%:RootPath %>scripts/jquery.rating.pack.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/jquery.fancybox-1.3.4.js' defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/fb.js' async defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/category_page2.js' async defer type='text/javascript'></script>
-    <script src='<%:RootPath %>scripts/move_top.js' async defer type='text/javascript'></script>
-    <section id='seccat' itemscope="" itemtype="http://schema.org/Product">
-    <div id="social">
-        <span>Share this page on</span>
-        <ul>
-            <li><a href='http://blog.iqsdirectory.com/' target='_blank' class="iqs">IQS</a></li>
-            <li><a class="google" 
-                   href="https://plus.google.com/share?url=<%: ShareURL %>" onclick="javascript:popupwindow(this.href,'',600,600);return false;">
-                Google</a></li>
-            <li><a class="twitter" 
-                   href="https://twitter.com/share?url=<%: ShareURL %>&text=%23<%: CategoryTitle %>. <%: MetaDesc %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;" >
-                Twitter</a></li>
-            <li><a class="linkedin" 
-                   href="http://www.linkedin.com/shareArticle?mini=true&url=<%: ShareURL %>&title=<%: CategoryTitle %>&summary=<%: MetaDesc %>&source=<%: DirectoryURL %>" onclick="javascript:popupwindow(this.href,'',600,400);return false;">
-                LinkedIn</a></li>
-            <li><a class="facebook"  href=""
-                   onclick="javascript:postToFeed('<%: CategoryTitle %>','<%:DirectoryURL %>','<%: MetaDesc %>');return false;">
-                Facebook</a></li>
-            <li><a  class="lnkmail mail"
-                   href="<%:RootPath %>share-page-email.aspx?p=../&title=<%: CategoryTitle %>&des=<%: MetaDesc %>&url=<%: ShareURL %>">
-                Mail</a></li>
-            <li><a href="" class="print" onclick="javascript:window.print();return false;">
-                Print</a></li>
-        </ul>
-        <script type="text/javascript">
-            function popupwindow(url, title, w, h) {
-                var left = (screen.width/2)-(w/2);
-                var top = (screen.height/2)-(h/2);
-                window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-            }
-         </script>
-    </div>
+    <asp:PlaceHolder runat="server">
+        <%--: Styles.Render("~/bundles/SiteMasterStyles") --%>
+        <%--: Scripts.Render("~/bundles/SiteMasterScripts") --%>
+        <%: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/ScriptStateSearch") %>
+    </asp:PlaceHolder>
+    <section id='seccat' itemscope="" itemtype="https://schema.org/Product">
+    
     <h1 itemprop='name'><%: DisplayName %></h1>
     <div class="desc" itemprop='description'><%: ItemDesc %></div>
 </section>
@@ -66,18 +37,17 @@
     {
         foreach (var stAd in StateAdvertisements)
         { %>
-            <li itemscope itemtype="http://schema.org/Place">
+            <li itemscope itemtype="https://schema.org/Place">
                 <header>
                     <h3 class='cname'>
                         <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= stAd["CLIENT_NAME"] %></span></a>
-                        <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                        <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%: stAd["CITY_STATE"] %></span>
                         <span itemprop="telephone"><%: stAd["PHONE"] %></span></span>
                     </h3>
                    <div class="buttons">
                     <a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
-                     <% if (stAd["CAD_URL"].ToString()!="" && stAd["CAD_URL"].ToString()!="http://")
-                        { %><a class='btnCAD2' href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a><% } %>
+                     <a class='btnCAD2' href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                        </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%= stAd["ADDESCRIPTION"] %>
@@ -116,18 +86,18 @@
                 { %>
             <li><h2><%: H1Text %> Companies Serving <%: nghAd["STATECODE"].ToString()  %></h2></li>
             <%} %>
-            <li itemscope itemtype="http://schema.org/Place">
+            <li itemscope itemtype="https://schema.org/Place">
                 <header>
                     <h3 class='cname'>
                         <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"itemprop="url"><span itemprop="name"><%= nghAd["CLIENT_NAME"] %></span></a>
-                         <span itemprop="address" class="addr" itemscope itemtype="http://schema.org/PostalAddress">
+                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%= nghAd["CITY_STATE"] %></span>
                         <span itemprop="telephone"><%= nghAd["PHONE"] %></span></span>
                     </h3>
                     <div class="buttons">
                     <a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
-                 <% if (nghAd["CAD_URL"].ToString()!="" && nghAd["CAD_URL"].ToString()!="http://")
-                        { %><a class='btnCAD2' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a><% } %>
+                 
+                       <a class='btnCAD2' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: nghAd["ADDESCRIPTION"] %>
@@ -138,7 +108,7 @@
                             $(document).ready(function () { $('input[type=radio].star<%: nghAd["CLIENT_SK"] %>').rating({ required: true }); });
                         </script>
                     <span class="spanreadreviews">
-                        <a alt='<%: nghAd["FORMATED_NAME"] %> Profile' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["CLIENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>Read Reviews</a>
+                        <a title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["CLIENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>Read Reviews</a>
                     </span>
                     <span class='divratingclient'>
                         <input name='star<%: nghAd["CLIENT_SK"] %>' type='radio' class='star<%: nghAd["CLIENT_SK"] %>' value='1' title='1'/>
@@ -153,13 +123,11 @@
             <% 
                 precode = nghAd["theState"].ToString();
                 } %>
-            <%--<script language='javascript' type='text/javascript'>$(document).ready(function () {LoadCompanyTotalRatingByArray('62009,56037,73870,69339,71667,77096');});</script>--%>
-
+            
         </ul>
         <aside>
-            <!--<iframe id='preview_iframe' class='foriframe' src='../images/cardboard-placeholder.jpg' scrolling='no'></iframe>
-            <div class='foriframe' id='iframe_mask' style='position: absolute; cursor: pointer;'></div>-->
-            <div id="preview1" class="forpreview"> <!--<img src='https://image.thum.io/get/http://www.google.com/' /> -->
+            
+            <div id="preview1" class="forpreview"> 
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
@@ -188,13 +156,7 @@
     
     <script type='text/javascript'>
         $(document).ready(function () {
-            $.get($('#hdnSrhRootPath').val()+'StateSearch.html', function (data) {
-                $('#secsbox').html(data);
-                $('#txtsearch').val('<%: DisplayName %>');
-                $('#txtsearch').attr('class', 'txtsearchsel');
-                $('#combo').val('<%: StateName %>, <%: CountryCode %>');
-            });
-
+            
             <% foreach (var cr in ClientRatings)
                 {%>
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('enable');
@@ -202,18 +164,14 @@
             $('input[type=radio].star' + <%: cr["CLIENT_SK"].ToString() %>).rating('disable');
             if (parseInt(<%: cr["RATING"].ToString() %>) > -1) { $('#divRate' + <%: cr["CLIENT_SK"].ToString() %>).show(); }
             <% } %>
-
-            $('.lnkrfq').fancybox({ 'height': 600, 'width': 800, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
-            $('.lnkrfq').bind('contextmenu', function (e) { return false; });
             
-
-            $('.lnkmail').fancybox({ 'height': 420, 'width': 400, 'onStart': function () { $('body').css('overflow', 'hidden'); }, 'onClosed': function () { $('body').css('overflow', 'auto'); }, 'hideOnOverlayClick': false });
-            $('.lnkmail').bind('contextmenu', function (e) { return false; });
         });
     </script>
     <input type='hidden' id='hdnApiPath' value='<%: ApiPath %>' />
     <input type='hidden' id='hdnCategorySK' value='<%: CategorySK %>' />
     <input type='hidden' id='hdnSrhRootPath' value="<%: RootPath %>" />
+    <input type='hidden' id='hdnCategoryName' value="<%: DisplayName %>" />
+    <input type='hidden' id='hdnStateName' value="<%: StateName %>, <%: CountryCode %>" />
      <!-- HitsLink.com tracking script -->
     <script>
         var wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');

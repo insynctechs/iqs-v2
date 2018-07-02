@@ -13,7 +13,7 @@
     <script src='<%:RootPath %>Scripts/move_top.js' type='text/javascript'></script>
 
     <div id='content_wrapper'>
-        <section class="row1" itemscope itemtype='http://schema.org/LocalBusiness'>
+        <section class="row1" itemscope itemtype='https://schema.org/LocalBusiness'>
         <h1 itemprop="name">Brooks Instrument</h1>
         <div class='divratingnew'><span  id='spanTopRate' class='spanratingclient'>
                         <input name='topstar' type='radio' class='topcommentstar' value='1' title='1'/>
@@ -23,7 +23,7 @@
                         <input name='topstar' type='radio' class='topcommentstar' value='5' title='5'/>
                         </span><span id='spanRateNum' class='spanratingnumnew'>5/5</span>
         </div>
-        <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="http://schema.org/AggregateRating">
+        <div class="divagrating" itemprop="aggregateRating" itemscope="itemscope" itemtype="https://schema.org/AggregateRating">
             <meta itemprop="bestRating" content="5"/>
             <meta itemprop="worstRating" content="1"/>
             <meta itemprop="ratingValue" content='0'/>
