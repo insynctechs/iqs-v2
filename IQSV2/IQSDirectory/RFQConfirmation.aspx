@@ -18,10 +18,10 @@
 <!-- End Google Tag Manager -->
 
 
-    <script src='<%: WebURL %>Scripts/jquery-1.7.2.min.js' type='text/javascript' ></script>
+    <script src="/Scripts/jquery-2.1.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#btnclose').click(function () {
+            $('#btnclose').on('click',function () {
                 parent.$.fancybox.close();
             });
         });

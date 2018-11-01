@@ -1,0 +1,195 @@
+﻿<!DOCTYPE>
+<html lang="en-US">
+<head>
+    <title>Search IQSDirectory</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <script type="text/javascript" language="javascript">
+        var txtval = 'Enter A Product/Service Category Or Company Name';
+        $(document).ready(function () {
+            
+            $('#txtsearch').val(txtval);
+            $('#txtsearch').focus(function () {
+                if ($('#txtsearch').val() == txtval) {
+                    $(this).attr('class', 'txtsearchsel');
+                    $(this).val('');
+                }
+            });
+            $('#txtsearch').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this).attr('class', 'txtsearch');
+                    $(this).val(txtval);
+                }
+            });
+
+            $("#txtsearch").autocomplete({
+                source: function (request, response) {
+                    alert('Auto');
+                    var list = $('#txtsearch').val();
+                    var jsonText = JSON.stringify(list);
+                    $.ajax({
+                        type: "GET",
+                        url: $('#hdnApiPath').val() + "api/StateSearch/GetSearchResults",
+                        data: { SrhStr: jsonText },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        cache: false,
+                        success: function (data) {
+                            if (data != "Invalid") {
+                                response($.parseJSON(data));
+                            }
+                        },
+                        failure: function () {
+                            alert('Request Failed. Try Again.');
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#txtsearch').val(ui.item.value);
+                    submitForm();
+                }
+            });
+            $("#txtsearch").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    submitForm();
+                }
+            });
+            $('#btnSearch').click(function () {
+                submitForm();
+            });
+
+            $("#combo").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    submitForm();
+                }
+            });
+
+            $('#txtsearch').click(function () {
+                $(this).select();
+            });
+
+            $('#combo').click(function () {
+                $(this).select();
+            });
+
+            $.widget("ui.combobox", {
+                _create: function () {
+                    var wrapper = this.wrapper = $("<span />").addClass("ui-combobox"), self = this;
+                    this.element.wrap(wrapper);
+                    this.element.addClass("ui-state-default ui-combobox-input ui-widget ui-widget-content ui-corner-left").autocomplete(
+                        $.extend({
+                            minLength: 0
+                        }, this.options));
+                    $("<a />")
+                            .insertAfter(this.element)
+                            .button({
+                                icons: {
+                                    primary: "ui-icon-triangle-1-s"
+                                },
+                                text: false
+                            })
+                            .removeClass("ui-corner-all")
+                            .addClass("ui-corner-right ui-combobox-toggle")
+                            .click(function () {
+                                if (self.element.autocomplete("widget").is(":visible")) {
+                                    self.element.autocomplete("close");
+                                    return;
+                                }
+                                $(this).blur();
+                                self.element.autocomplete("search", "");
+                                self.element.focus();
+                            });
+                },
+                destroy: function () {
+                    this.wrapper.remove();
+                    $.Widget.prototype.destroy.call(this);
+                }
+            });
+
+            var srhdefval = "";
+
+            var list = $('#hdnCategorySK').val();
+            var list1 = $('#hdnCategorySK1').val();
+            if(parseInt(list)>0)
+                var jsonText = JSON.stringify(list);
+            else
+                var jsonText = JSON.stringify(list1);
+            $.ajax({
+                type: "GET",
+                url: $('#hdnApiPath').val() + "api/StateSearch/GetStateForSearch",
+                data: { CategorySK : jsonText },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (data) {
+                    if (data != "Invalid") {
+                        var result = $.parseJSON(data);
+                        var item = [];
+                        var id = {};
+                        for (i = 0; i < result.length; i++) {
+                            item.push(result[i][1]);
+                            id[result[i][1]] = result[i][0];
+                        }
+                        $("#combo").combobox({
+                            source: item,
+                            select: function (event, ui) {
+                                $("#comboval").val(id[ui.item.value]);
+                                if ($("#comboval").val() != "" && $.trim($("#txtsearch").val()).length > 0)
+                                    submitForm();
+                            }
+                        });
+                        if ($.trim($('#combo').val()).length == 0) {
+                            $("#combo").val(result[0][1]);
+                        }
+                        srhdefval = result[0][1];
+                    }
+                },
+                failure: function () {
+                    alert('Request Failed. Try Again.');
+                }
+            });
+
+            $('#combo').blur(function () {
+                if ($.trim($(this).val()).length == 0) {
+                    $(this).val(srhdefval);
+                    $('#comboval').val('');
+                }
+            });
+
+        });
+        function submitForm() {
+            //alert($("#weburl").val());
+            if ($.trim($("#txtsearch").val()).length > 0 && $("#txtsearch").val() != txtval) {
+                $("#txtsearch").val($.trim($("#txtsearch").val()));               
+                var srhurl = $('#hdnSrhRootPath').val() + "search/" + encodeURIComponent($.trim($("#txtsearch").val())) + "/1/" + encodeURIComponent($.trim($("#comboval").val()));
+                //var srhurl = $('#hdnSrhRootPath').val() + "directorysearch?q=" + encodeURIComponent($.trim($("#txtsearch").val())) + "&s=1&st=" + encodeURIComponent($.trim($("#comboval").val()));
+
+                window.location = srhurl;
+                return false;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--<ul id="ulsbox">
+        <li id="lisearch">-->
+    <input id="txtsearch" class="txtsearch" type="text" size="40" accesskey="/" tabindex="1" /></li>
+    <!---<li id="listate">-->
+    <!--<input id="combo" class="ui-state-default ui-combobox-input ui-widget ui-widget-content ui-corner-left ui-autocomplete-input" />
+    <input id="comboval" style="display:none;" />-->
+    <!--</li>
+        <li id="libutton">-->
+    <a href="#" id="btnSearch" class="submit" tabindex="2">Search</a>
+    <!--</li>
+    </ul>-->
+    <input type='hidden' id='hdnApiPath' value='https://api.iqsdirectory.com/' />
+    <input type='hidden' id='hdnSrhRootPath' value="http://dev.iqsdirectory.com/" />
+    <input type='hidden' id='hdnCategorySK1' value='0' />
+</body>
+
+</html>

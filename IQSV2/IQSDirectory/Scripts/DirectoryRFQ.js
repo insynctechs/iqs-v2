@@ -3,14 +3,15 @@
 $(document).ready(function () {
     
     $("#frmRFQ").validate({
+        debug:true,
         //ignore: ".ignore",
         rules: {
 
             txtCompanyName : { required: true, minlength: 2 },
             txtContactName: { required: true, minlength: 2 },
             txtContactEmail: { required: true, emailRule: true },
-            txtContactCity: { required: true },
-            txtCompanyWeb: { required: true }
+            txtContactCity: { required: true }
+            
            /*
             hiddenRecaptcha: {
                 required: function () {
@@ -29,11 +30,12 @@ $(document).ready(function () {
             txtCompanyName: { required: "Required ", minlength: "Invalid" },
             txtContactName: { required: "Required ", minlength: "Invalid" },
             txtContactEmail: { required: "Required ", emailRule: "Invalid" },
-            txtContactCity: { required: "Required ", minlength: "Invalid" },
-            txtCompanyWeb: { required: "Required ", minlength: "Invalid" }
+            txtContactCity: { required: "Required ", minlength: "Invalid" }
+            
             //hiddenRecaptcha: { required: "Required "}
         },
         submitHandler: function (form) {
+            
             form.submit();
             return false;
             /*
@@ -47,6 +49,20 @@ $(document).ready(function () {
                     
                 }
             */
+        },
+        invalidHandler: function (event, validator) {
+            // 'this' refers to the form
+            
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors == 1
+                    ? 'You missed 1 field. It has been highlighted'
+                    : 'You missed ' + errors + ' fields. They have been highlighted';
+                alert(message);
+               
+            } else {
+                alert("No error");
+            }
         }
     });
 

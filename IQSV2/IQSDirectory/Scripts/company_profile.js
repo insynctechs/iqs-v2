@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    
+   
       var recaptcha1;
       //var recaptcha2;
     /*
@@ -45,6 +45,7 @@
     //$('input[type=radio].totalreviewstar').rating('select', comprating, false);
     LoadCompanyTotalRating();
     $('#lnkRegBox').fancybox({
+        'width': 670,
         'padding': 0,
         'showCloseButton': true,
         'modal': true,
@@ -65,13 +66,13 @@
 
     LoadComments($('#hdnProfileClientSk').val(), -1);
 
-    $('#lnkWriteReview').live('click', function () {
+    $('#lnkWriteReview').on('click', function () {
         $('#hidCommentType').val('Review');
         $('#lnkRegBox').trigger('click');
        
     });
 
-    $('.lnkReply').live('click', function () {
+    $(document).on('click', 'a.lnkReply', function () {    
         $('#hidCommentType').val('Reply');
         var cid = $(this).closest('.divComments').children('#hdCommentId').attr('value');
         var cname = $(this).closest('.divComments').children('#hdCommenter').attr('value');
@@ -106,7 +107,7 @@
         return false;
     });
 
-    $('.lnkSubReply').live('click', function () {
+    $(document).on('click', 'a.lnkSubReply', function () {
         $('#hidCommentType').val('SubReply');
         var cid = $(this).closest('.divSubComments').children('#hdSubCommentId').attr('value');
         var cname = $(this).closest('.divSubComments').children('#hdCommenter').attr('value');
@@ -141,7 +142,7 @@
         return false;
     });
 
-    $('#lnkLogout').live('click', function () {
+    $('#lnkLogout').on('click', function () {
         $.ajax({
             type: "POST",
             url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/logoutsession",
@@ -168,10 +169,11 @@
         return false;
     });
 
-    $('.lnkHelpful').live('click', function () {
+    $(document).on('click', 'a.lnkHelpful', function () {
+        
         var cid = $(this).closest('.divComments').children('#hdCommentId').attr('value');
         var spnHelp = $(this).closest('.spnHelpful');
-        spnHelp.text('Sending feedback...');
+        spnHelp.html('<div class="progress"><div class="determinate" style="width:70%" ></div></div>');
         var list = [cid];
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
@@ -189,7 +191,7 @@
                 }
                 else {
                     spnHelp.next().text(msg.d);
-                    spnHelp.text('Thank you for your feedback.');
+                    spnHelp.html('<i>Thank you for your feedback.</i>');
                 }
             },
             failure: function () {
@@ -271,7 +273,7 @@ function LoadCompanyTotalRating() {
                     $('#spanTopRate').show();
                 }
                 var starval = rate + 1;
-                $('#spanRateNum').html(starval + '/5');
+                $('#spanRateNum').html("<b>"+starval+"</b>" + '/5');
                 if (rate > 0) {
                     $('#spanRateNum').show();
                 }

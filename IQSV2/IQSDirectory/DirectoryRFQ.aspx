@@ -6,14 +6,13 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="keywords" content="<%= PageKeyword %>" />
     <meta name="description" content="<%= PageDescription %>" />
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
     <link href="<%: WebURL %>Content/publish_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-     <!--include jQuery -->  
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"  
-    type="text/javascript"></script>   
-    <!--include jQuery Validation Plugin-->  
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"  
-    type="text/javascript"></script>   
+     
+    <script src="/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
     <script type="text/javascript"  src="<%: WebURL %>Scripts/DirectoryRFQ.js"></script>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <!--[if IE 5]>
@@ -110,7 +109,7 @@ screen.colorDepth + '&rs=' + escape(screen.width + ' x ' + screen.height) +
                          <input id="btnChkAll"  class="rfqbuttonbg" runat="server" value="Check All " type="button" />
                     </p>
                     <div class="warnTextRFQ2">
-                    <span class="requireD">WARNING: This form is not to be used for solicitation.</span> Solicitation is a violation of the <a href="DirectoryTermsConditions.htm" target="_parent"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. <br /> 
+                    <span class="requireD">WARNING: This form is not to be used for solicitation.</span> Solicitation is a violation of the <a href="DirectoryTermsConditions.htm" target="_parent"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. <br /> <br /> We will keep your personal information private and secure.We will not share your email address with any third parties.<br /> 
                     </div>
                 </div>
                 <div class="rfqfrmstep2 divLeft"> 

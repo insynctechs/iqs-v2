@@ -82,7 +82,7 @@
       </div>
       <form id="frmRegLogin">
       <div>
-      <h2>Or If Already registered?<br />Log-in below.</h2>
+      <h2>Or If Already registered?<br />Login below.</h2>
       <p>
       E-mail Address:<br />
       <input type="text" id="txtEmail" name="txtEmail" class="commenttextbox" />
@@ -92,7 +92,7 @@
       <input type="password" id="txtPassword" name="txtPassword" class="commenttextbox" />
       </p>
       <p class="register_login_bot_wrapper">
-      <span class="register_checkbox_wrapper"><input type="checkbox" id="chkRemember" /> Remember me?</span>
+      <span class="register_checkbox_wrapper"><input type="checkbox" id="chkRemember" value="1" /> Remember me?</span>
       <a href="#Login" id="lnkLogin" class="large">Login</a><br />
       <a href="#ForgotPassword" id="lnkForgotPassword">Forgot Password?</a>
           

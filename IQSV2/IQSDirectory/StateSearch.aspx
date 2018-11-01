@@ -1,36 +1,58 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StateSearch.aspx.cs" Inherits="IQSDirectory.StateSearch" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
+    <!--<link href="<%:RootPath %>content/category_styles.css" rel="stylesheet" media='screen'/>
     <link href='<%:RootPath %>content/stylerprint.css' rel='stylesheet' type='text/css' media='print' />
-    <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />
+    <link href='<%:RootPath %>content/jquery.fancybox-1.3.4_min.css' rel='Stylesheet' type='text/css' media='screen' />-->
 
     <asp:PlaceHolder runat="server">
         <%--: Styles.Render("~/bundles/SiteMasterStyles") --%>
         <%--: Scripts.Render("~/bundles/SiteMasterScripts") --%>
-        <%: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/ScriptStateSearch") %>
+        <%--: Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\" defer></script>", "~/bundles/ScriptStateSearch") --%>
     </asp:PlaceHolder>
-    <section id='seccat' itemscope="" itemtype="https://schema.org/Product">
-    
-    <h1 itemprop='name'><%: DisplayName %></h1>
-    <div class="desc" itemprop='description'><%: ItemDesc %></div>
-</section>
+    <script src='<%:RootPath %>scripts/category_page2.js' defer type='text/javascript'></script>
+      <div class="section no-pad-bot" id="section-color" style="padding-top:0px;"> 
+    <div class="container">
+	 <div class="row" style="margin-bottom:0px;" itemscope="" itemtype="https://schema.org/Product">
+<div class="col s12 m8 l10" >
+        <h5 class="text-shadow" style="color:#FFFFFF;font-size:20px;" itemprop='name'><%: DisplayName %></h5>
+	 <p style="font-size:12px;"  itemprop='description'><strong><%: ItemDesc %></strong> 
+      </div>      
+	  <div class="col s12 m4 l2">
+      <br><br> <!--id="download-button"--><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
+                                  id="lnkRFQ"  class="btn-large waves-effect waves-light orange btnrfq iframe" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Request For Quote</a><p></p>  <a href="<%:RootPath %><%: CategoryName %>/" id="download-button" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;"><%: DisplayName %> Home</a><BR><BR>
+      </div>    
 
-<section id='secrelcat'>
-    <h2>Related Categories</h2>
-    <ul id="ulRelatedCategories">
-        <% foreach (var dr in RelatedCategories)
-            {  %>
-            <li><a href="<%: dr["CATEGORY_URL"].ToString() %>"><%= dr["DISPLAYNAME"].ToString() %></a></li>
-        <% } %>
-    </ul>
-</section>
+    </div>
+ 
+    </div>
+  </div>
+   <!-- <div id="section-featured">
+  <div class="row featured-companies" id="featuerd-companies">
+   <div class="col-group5">
+   <div class="first" id="featured-title"><h6>Featured Companies</h6></div>
+            <div><img src="images/feldman-industries-logo.png"><br><a rel="nofollow" title="Feldman" target="_blank" href="http://feldmanindustries.com" onMouseOver="loadWebPreview('http://feldmanindustries.com', '');hitsLinkTrack('')">Feldman Industries</a></div>
+    	</div>
+	
+	</div>
+	</div>-->
+
+<section id='section-related'>
+         <div class="related-cat-wrapper">
+    <div class="col s12"><strong>Related Categories</strong>
+            <% foreach (var dr in RelatedCategories)
+                {  %>
+            <a href="<%: dr["CATEGORY_URL"].ToString() %>" class="breadcrumb"><%: dr["DISPLAYNAME"].ToString() %></a>
+            <% } %>
+        </div></div>
+    </section>
+    <div class="section" style="background-color:#f1f1f1;padding-top:0px;">
+	   <div class="container"> 
+	   
+	    <div class="row" style="width:98%; margin:0px auto;">
 
     <section id='secadpage' class="adlist_section boxnone">
-        <div class="div_buttons"><a href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK="
-                                  id="lnkRFQ" class="lnkrfq iframe">Request For Quote</a>
-            <a href="<%:RootPath %><%: CategoryName %>/" id="lnkBack" >Go To <%: H1Text %> Home</a></div>
-        <div class="clearfix"></div>
+         <div class="clearfix"></div>
         <ul class="adlist_ul">
             <li><h2><%: H1Text %> Companies Serving <%: StateName %></h2></li>
     <% if (StateAdvertisements.Count > 0)
@@ -43,11 +65,11 @@
                         <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= stAd["CLIENT_NAME"] %></span></a>
                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%: stAd["CITY_STATE"] %></span>
-                        <span itemprop="telephone"><%: stAd["PHONE"] %></span></span>
+                        <!--<span itemprop="telephone"><%: stAd["PHONE"] %></span>--></span>
                     </h3>
                    <div class="buttons">
-                    <a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>
-                     <a class='btnCAD2' href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
+                    <!--<a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>-->
+                     <a class='btnCAD2 hoverable btn-small waves-effect waves-light orange'  href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                        </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%= stAd["ADDESCRIPTION"] %>
@@ -92,12 +114,12 @@
                         <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"itemprop="url"><span itemprop="name"><%= nghAd["CLIENT_NAME"] %></span></a>
                          <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%= nghAd["CITY_STATE"] %></span>
-                        <span itemprop="telephone"><%= nghAd["PHONE"] %></span></span>
+                        <!--<span itemprop="telephone"><%= nghAd["PHONE"] %></span>--></span>
                     </h3>
                     <div class="buttons">
-                    <a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
-                 
-                       <a class='btnCAD2' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
+                    <!--<a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
+                 -->
+                       <a class='btnCAD2 hoverable btn-small waves-effect waves-light orange' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: nghAd["ADDESCRIPTION"] %>
@@ -131,28 +153,38 @@
             <img src='<%:RootPath %>images/cardboard-placeholder.jpg' alt="Mouse Over Company Names to see their previews" title="Mouse Over Company Names to see their previews" /></div>
         </aside>
     </section>
-    
-    <section id='secad_canada' >
+    </div></div></div>
+            
+    <div class="page-footer">
+    <div class="container">
+      
         <% if (CityList != "")
             { %>
-        <h3>ADDITIONAL CITIES WE SERVE INCLUDE:</h3>
-        <p><%=CityList %></p>
+        <div class="row">
+        <div class="col s12">
+          <h5 class="white-text">ADDITIONAL CITIES WE SERVE INCLUDE:</h5>
+        <p style="color:#333333"><%=CityList %></p></div></div>
         <% } %>
         <% if (CountyList != "")
-            { %>
-        <h3>ADDITIONAL COUNTIES WE SERVE INCLUDE:</h3>
-        <p><%=CountyList %></p>
+            { %><div class="row">
+        <div class="col s12">
+          <h5 class="white-text">ADDITIONAL COUNTIES WE SERVE INCLUDE:</h5>
+        <p style="color:#333333"><%=CountyList %></p></div></div>
         <% } %>
+         <div class="row">
         <% if (OtherAdvertisements.Count > 0) { %>
-    <h3>WE LIST FOR OTHER COUNTRIES TOO!</h3>
-        <h2><%: H1Text %> manufacturers in CANADA</h2>
-        <ul>
+    <h5 class="white-text">WE LIST FOR OTHER COUNTRIES TOO!</h5>
+        <h6 class="white-text"><%: H1Text %> manufacturers in CANADA</h6>
+        <ul class="can-list">
             <% foreach (var othAd in OtherAdvertisements)
                 { %>
             <li><a href="<%: RootPath %><%: CategoryName %>/<%: othAd["SEARCH_URL"].ToString() %>"><%= othAd["NAME"].ToString() %>(<%: othAd["NUMBER_OF_CLIENTS"].ToString() %>)</a></li>
             <% } %>
         </ul><% } %>
-    </section>
+    </div>
+        
+      </div>    
+    </div>
     
     <script type='text/javascript'>
         $(document).ready(function () {

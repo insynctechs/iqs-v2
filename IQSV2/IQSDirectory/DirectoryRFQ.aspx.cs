@@ -238,8 +238,9 @@ namespace IQSDirectory
         #region " Submit Button Click "
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-           
+
             divip_error.Visible = false;
+            
             if(Utils.isvalidIpAccess()==true)
             { 
                 //Captcha1.CheckEnteredValue();

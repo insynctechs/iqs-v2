@@ -1,4 +1,9 @@
-﻿function loadWebPreviewDefault(path)
+﻿$('document').on('touchend', 'a', function (e) {
+    var el = $(this);
+    var link = el.attr('href');
+    window.location = link;
+});
+function loadWebPreviewDefault(path)
 {
 	//$(document).ready(function () {
     if (document.getElementById('preview_iframe')) document.getElementById('preview_iframe').src = path + "images/cardboard-placeholder.jpg";
@@ -138,7 +143,7 @@ function popupwindow(url, title, w, h) {
 
 $(document).ready(function () {
     $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
-        $('#secsbox').html(data);
+        $('#searchBarDir').html(data);
         $('#txtsearch').val($('#hdnCategoryName').val());
         $('#txtsearch').attr('class', 'txtsearchsel');
         $('#combo').val($('#hdnStateName').val());

@@ -1,26 +1,23 @@
-﻿$('a').live('touchend', function(e) {
+$('document').on('touchend','a', function (e) {
     var el = $(this);
     var link = el.attr('href');
     window.location = link;
 });
-function loadWebPreviewDefault(path)
-{
-	//$(document).ready(function () {
-    if (document.getElementById('preview_iframe')) document.getElementById('preview_iframe').src = path + "images/cardboard-placeholder.jpg"; 
-	if(document.getElementById('preview_iframe2'))
-	{
-		document.getElementById('preview_iframe2').src = path + "images/cardboard-placeholder.jpg";
-		$('#secpage2 aside').css('height', document.getElementById('preview_iframe2').getBoundingClientRect().height + "px"); 
-	}
-	if(document.getElementById('preview_iframe3'))
-	{
-		document.getElementById('preview_iframe3').src = path + "images/cardboard-placeholder.jpg";
-		$('#secpage3 aside').css('height', document.getElementById('preview_iframe3').getBoundingClientRect().height + "px"); 
-	}
+function loadWebPreviewDefault(path) {
+    //$(document).ready(function () {
+    if (document.getElementById('preview_iframe')) document.getElementById('preview_iframe').src = path + "images/cardboard-placeholder.jpg";
+    if (document.getElementById('preview_iframe2')) {
+        document.getElementById('preview_iframe2').src = path + "images/cardboard-placeholder.jpg";
+        $('#secpage2 aside').css('height', document.getElementById('preview_iframe2').getBoundingClientRect().height + "px");
+    }
+    if (document.getElementById('preview_iframe3')) {
+        document.getElementById('preview_iframe3').src = path + "images/cardboard-placeholder.jpg";
+        $('#secpage3 aside').css('height', document.getElementById('preview_iframe3').getBoundingClientRect().height + "px");
+    }
 }
 function loadWebPreview(site, tier, customimage) {
-   
-   // var md5 = require('MD5');
+
+    // var md5 = require('MD5');
     var secret = '!qskey2017$';
     var url = site;
     // Add 300 seconds to the current time for a 5 minute expiry
@@ -28,24 +25,23 @@ function loadWebPreview(site, tier, customimage) {
     var hash = MD5(secret + expires + url);
     var auth = '925-' + expires + '-' + hash;
     var width = parseFloat($("#sectier1 aside").width());
-    var imgUrl = '//image.thum.io/get/width/'+width+'/auth/' + auth + '/' + url;
+    var imgUrl = '//image.thum.io/get/width/' + width + '/auth/' + auth + '/' + url;
     var custompath = document.getElementById('hdnSrhRootPath').value + 'preview_images//';
     //alert(imgUrl);
     //var imgUrl = '//image.thum.io/get/' + site;
     var id = 'preview' + tier;
     if (document.getElementById(id)) {
-        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(customimage) )
+        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(customimage))
             document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + custompath + customimage + "' /></a>";
         else
-        document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + imgUrl + "' /></a>";
+            document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + imgUrl + "' /></a>";
     }
     //else if (document.getElementById('PlaceHolder_Preview')) { document.getElementById('PlaceHolder_Preview').src = site; document.getElementById(id).name = thisObj.href; }     
 }
 function setPreviewWidth() { }
 function effectiveDeviceWidth() {
     var deviceWidth = window.orientation == 0 ? window.screen.height : window.screen.width;
-    // iOS returns available pixels, Android returns pixels / pixel ratio
-    // http://www.quirksmode.org/blog/archives/2012/07/more_about_devi.html
+    
     if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
         deviceWidth = deviceWidth / window.devicePixelRatio;
     }
@@ -53,8 +49,6 @@ function effectiveDeviceWidth() {
 }
 function effectiveDeviceHeight() {
     var deviceHeight = window.orientation == 0 ? window.screen.width : window.screen.height;
-    // iOS returns available pixels, Android returns pixels / pixel ratio
-    // http://www.quirksmode.org/blog/archives/2012/07/more_about_devi.html
     if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
         deviceHeight = deviceHeight / window.devicePixelRatio;
     }
@@ -78,14 +72,14 @@ $(document).ready(function () {
     if (width > height) {
         var top = (width - height) / 2;
         //alert(width + '---' + height + '----' + top * 2);
-        $('#sectier1 ul').css('padding-top', top + "px");        
+        $('#sectier1 ul').css('padding-top', top + "px");
     }
     var width1 = parseFloat($("#sectier2 aside").width());
     var height1 = parseFloat($("#sectier2 ul").height());
     var newwidth1 = width1;
     if (width1 > height1) {
         var top1 = (width1 - height1) / 2;
-        $('#sectier2 ul').css('padding-top', top1 + "px");     
+        $('#sectier2 ul').css('padding-top', top1 + "px");
     }
     $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY;
@@ -97,8 +91,6 @@ $(document).ready(function () {
         var h1 = parseFloat($("#sectier1 aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-        //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
@@ -118,9 +110,7 @@ $(document).ready(function () {
         var sectionfull = parseFloat(elemheight) + parseFloat(elemtop);
         var h1 = parseFloat($("#sectier2 aside").width());
         var elemFull = parseFloat(y) + h1;
-        var mod = (y - elemtop) % h;
-        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-        //alert(elemFull + "--" + sectionfull);
+        var mod = (y - elemtop) % h;       
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
@@ -141,8 +131,6 @@ $(document).ready(function () {
         var h1 = parseFloat($("#sectier3 aside").width());
         var elemFull = parseFloat(y) + h1;
         var mod = (y - elemtop) % h;
-        //alert('width=' + divW + 'height=' + divH + "imgheight=" + $('#sectier1 .forpreview').height());
-        //alert(elemFull + "--" + sectionfull);
         var top1;
         if (elemFull > sectionfull) {
             top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4);
@@ -154,7 +142,7 @@ $(document).ready(function () {
         $('#sectier3 .forpreview').css('margin-top', top1 + "px");
     });
     $.get($('#hdnSrhRootPath').val() + 'statesearch.html', function (data) {
-        $('#secsbox').html(data);
+        $('#searchBarDir').html(data);
         $('#txtsearch').val($('#hdnCategoryName').val());
         $('#txtsearch').attr('class', 'txtsearchsel');
     });
@@ -167,7 +155,9 @@ $(document).ready(function () {
     $('.lnkmail').bind('contextmenu', function (e) { return false; });
     $(".btnCAD[href='http://']").hide();
     $(".btnCAD[href='']").hide();
-});	
+    /*$(".btnCAD").not("[href=''][href='http://']").parent().addClass("buttons300");*/
+    $(".btnCAD[href^='http']").parent().addClass("buttons300");
+});
 function popupwindow(url, title, w, h) {
     var left = (screen.width / 2) - (w / 2);
     var top = (screen.height / 2) - (h / 2);
@@ -212,8 +202,8 @@ function hitsLinkTrack(hitslink) {
             //alert(wa_rf);
         }
         else*/
-            wa_rf = location.href;
-            var wa_sr = location.search,
+        wa_rf = location.href;
+        var wa_sr = location.search,
             wa_hp = 'http' + (location.protocol == 'https:' ? 's' : '');
 
         if (wa_c != null) {

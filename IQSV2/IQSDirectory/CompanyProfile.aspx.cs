@@ -312,7 +312,7 @@ namespace IQSDirectory
                         sb.AppendLine("<li><a href='" + RootPath + dr["DESCRIPTION"].ToString().Trim('/') + "/'  target='_blank'>" + dr["CLIENT_NAME"].ToString() + "</a></li>");
                     printed += dr["CLIENT_SK"].ToString() + ",";
                 }
-                RelatedCompaniesList = sb.ToString();
+                RelatedCompaniesList = sb.ToString().Replace("<li>", "<li><i class='fas fa-arrow-right'></i>");
                 string CTypeEnd = "";
                 if (CType.Length > 0)
                     CTypeEnd = (CType.Substring(CType.Length - 1).ToUpper() == "S") ? "" : "s";

@@ -23,6 +23,7 @@
 
             $("#txtsearch").autocomplete({
                 source: function (request, response) {
+                    //alert('Auto');
                     var list = $('#txtsearch').val();
                     var jsonText = JSON.stringify(list);
                     $.ajax({
@@ -175,17 +176,22 @@
     </script>
 </head>
 <body>
-    <ul id="ulsbox">
-        <li id="lisearch"><input id="txtsearch" class="txtsearch" type="text" size="40" accesskey="/" tabindex="1" /></li>
-        <li id="listate">
-            <input id="combo" class="ui-state-default ui-combobox-input ui-widget ui-widget-content ui-corner-left ui-autocomplete-input" />
-            <input id="comboval" style="display:none;" />
-        </li>
-        <li id="libutton"><a href="#" id="btnSearch" class="submit" tabindex="2">Search</a></li>
-    </ul>
-<input type='hidden' id='hdnApiPath' value='https://api.iqsdirectory.com/' />
-<input type='hidden' id='hdnSrhRootPath' value="https://www.iqsdirectory.com/" />
-<input type='hidden' id='hdnCategorySK1' value='0' />
+    <!--<ul id="ulsbox">
+        <li id="lisearch">-->
+    <input id="txtsearch" class="txtsearch" type="text" size="40" accesskey="/" tabindex="1" />
+    <!---<li id="listate">-->
+    
+        <input id="combo" class="ui-state-default ui-combobox-input ui-widget ui-widget-content ui-corner-left ui-autocomplete-input" />
+        <input id="comboval" style="display:none;" />
+        <!--</li>
+        <li id="libutton">-->
+        <a href="#" id="btnSearch" class="submit" tabindex="2">Search</a>
+    
+    <!--</li>
+    </ul>-->
+    <input type='hidden' id='hdnApiPath' value='https://api.iqsdirectory.com/' />
+    <input type='hidden' id='hdnSrhRootPath' value="http://dev.iqsdirectory.com/" />
+    <input type='hidden' id='hdnCategorySK1' value='0' />
 </body>
 
 </html>

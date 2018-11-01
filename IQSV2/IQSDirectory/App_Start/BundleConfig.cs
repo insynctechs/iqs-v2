@@ -39,14 +39,38 @@ namespace IQSDirectory
                 
                 ));
 
+            bundles.Add(new StyleBundle("~/bundles/MainStyles").Include(
+                "~/Styles/materialize.css",
+                "~/Styles/main_style.css",
+                "~/Styles/jquery-ui.css"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/SiteMasterScripts").Include(
                 "~/Scripts/jquery-1.7.2.min.js",                
                 "~/Scripts/jquery-ui.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/MainScripts").Include(
+               "~/Scripts/jquery-2.1.1.min.js",
+               "~/Scripts/materialize.js",
+               "~/Scripts/init.js",
+               "~/Scripts/jquery-ui-notab.js"
+               ));
+
+            bundles.Add(new ScriptBundle("~/bundles/MainScripts2").Include(
+               "~/Scripts/jquery-1.7.2.min.js",
+               "~/Scripts/jquery-ui.js"
+               ));
+
             bundles.Add(new StyleBundle("~/bundles/StyleCategoryPage1").Include(
                 "~/Content/category_styles.css",
                 "~/Content/stylerprint.css"                
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/CategoryScripts").Include(
+                /*"~/Scripts/jquery.rating.pack.js",
+                "~/Scripts/jquery.fancybox-1.3.4.js", */               
+                "~/Scripts/category_page1.js"               
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/ScriptCategoryPage1").Include(                
@@ -70,6 +94,12 @@ namespace IQSDirectory
                 "~/Scripts/category_page2.js",
                 "~/Scripts/move_top.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/StateSearchScripts").Include(
+               "~/Scripts/jquery.rating.pack.js",
+               "~/Scripts/jquery.fancybox-1.3.4.js",
+               "~/Scripts/category_page2.js"               
+               ));
 
             bundles.Add(new StyleBundle("~/bundles/StyleCopro").Include(
                 "~/Content/form_styles.css",

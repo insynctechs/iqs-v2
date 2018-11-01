@@ -34,7 +34,7 @@ namespace IQSDirectory.Controls
                 DataTable dtEmail = wHelper.GetDataTableFromWebApi(urlGetId);
                 clientEmail = dtEmail.Rows[0]["EMAIL_ADDRESS"].ToString();
                 clientName = dtEmail.Rows[0]["NAME"].ToString();
-                divEmailCName.InnerHtml = "<h2>Email " + clientName + "</h2>";
+                divEmailCName.InnerHtml = "Email " + clientName + "";
 
                 //rootDirPath = ((HtmlInputHidden)this.Parent.FindControl("hdnRootPath")).Value;
                 //string attrs = "";

@@ -460,12 +460,15 @@ namespace IQSDirectory
                 if (drProd.Length > 0)
                 {
                     productPage = drProd[0]["DESCRIPTION"].ToString();
+                    productPage = productPage.Replace("FeaturedCompany.jpg", "featuredcompany.png");
+                    productPage = productPage.Replace("featuredcompany.jpg", "featuredcompany.png");
+                    productPage = productPage.Replace("Featuredcompany.jpg", "featuredcompany.png");
                 }
                 DataRow[] drInd = dtSection.Select("SECTION_ID ='Industry Information'");
                 if (drInd.Length > 0)
                 {
 
-                    productPage = productPage.Replace("##UserInput_IndustryInformation", drInd[0]["DESCRIPTION"].ToString());
+                    productPage = productPage.Replace("##UserInput_IndustryInformation", drInd[0]["DESCRIPTION"].ToString());                    
                     ProductInformation = new HtmlString(productPage);
                 }
             }

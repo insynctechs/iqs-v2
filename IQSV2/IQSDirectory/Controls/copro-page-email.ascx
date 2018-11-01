@@ -139,16 +139,9 @@ function verify_callback1(response) {
    $("#frmMaster").valid();
 }
 </script>
-<% if (false) { %>
-    <link rel="Stylesheet" type="text/css" href="../../Content/form_styles.css" />
-    
-<% } %>
-<div id="profileForm" class="profilestyle">
-              <div id="divTop">
-               <span class="divLeft"><img src="../../images/mailicon.png" alt="Mail" title="Mail" class="h1img" /></span>
-               <span class="require divfloatright">* Indicates require Fields</span>
-               <span id="divEmailCName" class="divLeft h1txt" runat="server"><!--<h2>Email DAN-LOC Bolt &amp; Gasket</h2>--></span>
-</div>
+<div id="profileForm">
+              
+    <h5><i class="far fa-envelope"></i><span id="divEmailCName" runat="server"></span></h5>
           <div id="profContInfo">
                 <ul>
                 <li>First Name:<span class="require">* </span></li>
@@ -176,15 +169,15 @@ function verify_callback1(response) {
                 </ul>
 <div id="ip_error" class="error" runat="server" ></div>
               <div id="divStatus" runat="server" ></div>
-<div ><input type="hidden" name="val_ipblock" id="Hidden1" value="-1" runat="server" />
+<div ><input type="hidden" name="val_ipblock" id="val_ipblock" value="-1" runat="server" />
     
-    <input type="button" id="btnSend" EnableViewState="false" class="buttonBg" value="Send"  />
+    <input type="button" id="btnSend" EnableViewState="false" class="hoverable btn waves-effect waves-light orange white-text" value="Send"  />
 </div>
 </div>
 <div class="clearfix" ></div>        
 <div class="reqText">
 <div class="ProfilewarnTextRFQ">
-    <p><span class="requireD">WARNING: This form is not to be used for solicitation. </span> Solicitation is a violation of the <a href="http://www.iqsdirectory.com/DirectoryTermsConditions.htm"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. </p><br /> 
+    <p><span class="requireD">WARNING: This form is not to be used for solicitation. </span> Solicitation is a violation of the <a href="http://www.iqsdirectory.com/DirectoryTermsConditions.htm"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. <br /> <br /> We will keep your personal information private and secure.We will not share your email address with any third parties.</p><br /> 
 </div>   
 </div>
 </div>
