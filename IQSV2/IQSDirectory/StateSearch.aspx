@@ -49,7 +49,7 @@
     <div class="section" style="background-color:#f1f1f1;padding-top:0px;">
 	   <div class="container"> 
 	   
-	    <div class="row" style="width:98%; margin:0px auto;">
+	    <div class="row" >
 
     <section id='secadpage' class="adlist_section boxnone">
          <div class="clearfix"></div>
@@ -69,7 +69,7 @@
                     </h3>
                    <div class="buttons">
                     <!--<a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>-->
-                     <a class='btnCAD2 hoverable btn-small waves-effect waves-light orange'  href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
+                     <a rel='nofollow' class='btnCAD2 hoverable btn-small waves-effect waves-light orange'  href='<%: stAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                        </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%= stAd["ADDESCRIPTION"] %>
@@ -119,7 +119,7 @@
                     <div class="buttons">
                     <!--<a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>
                  -->
-                       <a class='btnCAD2 hoverable btn-small waves-effect waves-light orange' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
+                       <a rel='nofollow' class='btnCAD2 hoverable btn-small waves-effect waves-light orange' href='<%: nghAd["CAD_URL"] %>' target='_blank' >View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: nghAd["ADDESCRIPTION"] %>

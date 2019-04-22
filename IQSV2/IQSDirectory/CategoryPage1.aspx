@@ -12,10 +12,15 @@
 <script src='<%:RootPath %>scripts/category_page1.js' defer type='text/javascript'></script>
     
 
-    <section id='section-color' itemscope="" itemtype="https://schema.org/Product">
+    <section id='section-color' itemscope="" itemtype="https://schema.org/Thing">
          <div class="row container" >
         <h1 class="white-text" style="padding-top:5px;margin-bottom:0px;" itemprop='name'><%: H1Text %></h1>
         <div class="desc" itemprop='description'><p style="font-size:12px;"><strong><%: ItemDesc %></strong></p>
+            <div style="text-align:right">
+                <a href="#articles" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Articles and Press Releases</a>
+                &nbsp; &nbsp;
+                <a href="#industry-info" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Industry Information</a>
+            </div>
 </div>
              </div>
     </section>
@@ -33,7 +38,7 @@
     <div class="section" style="background-color:#f1f1f1;padding-top:0px;">
  <div class="container"> 
 	   
-	    <div class="row" style="width:98%; margin:0px auto;">
+	    <div class="row">
      <% if (Tier1Advertisements.Count > 0) { %>
     <section id='sectier1' class="adlist_section">
         <ul class="adlist_ul" style="padding-top: 67.5px;">
@@ -53,7 +58,7 @@
                    
                          <a class='btncopro hoverable btn-small waves-effect waves-light orange' title='<%: drT1Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT1Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT1Ad["PROFILE_URL"] %>'>View Company Profile</a>
                  
-                      <a class='btnCAD hoverable btn-small waves-effect waves-light orange' target="_blank" href='<%: drT1Ad["CAD_URL"] %>'>View CAD Drawings</a>
+                      <a rel='nofollow' class='btnCAD hoverable btn-small waves-effect waves-light orange' target="_blank" href='<%: drT1Ad["CAD_URL"] %>'>View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: drT1Ad["ADDESCRIPTION"] %></p>
@@ -93,7 +98,7 @@
                          <a class='btncopro hoverable btn-small waves-effect waves-light orange' title='<%: drT2Ad["FORMATED_NAME"] %> Profile' id='ID<%: drT2Ad["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drT2Ad["PROFILE_URL"] %>'>View Company Profile</a>
                  
                   
-                       <a class='btnCAD hoverable btn-small waves-effect waves-light orange' target='_blank' href='<%: drT2Ad["CAD_URL"] %>'>View CAD Drawings</a>
+                       <a rel='nofollow' class='btnCAD hoverable btn-small waves-effect waves-light orange' target='_blank' href='<%: drT2Ad["CAD_URL"] %>'>View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: drT2Ad["ADDESCRIPTION"] %></p>
@@ -165,7 +170,7 @@
     { %>
         <div id="blue-section">
     <div class="blue-wrapper">
-            <h4>ARTICLES AND PRESS RELEASES</h4>
+            <h4 id="articles">ARTICLES AND PRESS RELEASES</h4>
          
             
                 <%  int cntart = 0;

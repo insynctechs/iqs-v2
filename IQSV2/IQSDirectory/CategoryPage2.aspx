@@ -10,7 +10,7 @@
     </asp:PlaceHolder>
     <div id="section-color">
 
-  <div class="row container" style="margin-bottom:0px;"  itemscope="" itemtype="https://schema.org/Product">
+  <div class="row container" style="margin-bottom:0px;"  itemscope="" itemtype="https://schema.org/Thing">
     <h1 class="white-text" style="padding-top:5px;margin-bottom:0px;" itemprop='name'><%: H1Text %></h1>
     <p style="font-size:12px;" itemprop='description'><strong><%: ItemDesc %></strong></p>
   </div>
@@ -25,7 +25,7 @@
        <div class="section" style="background-color:#f1f1f1;padding-top:0px;">
  <div class="container"> 
 	   
-	    <div class="row" style="width:98%; margin:0px auto;">
+	    <div class="row" >
     <% if (TierAdvertisements.Count > 0) { %> <a class="hoverable waves-effect waves-light orange btn iframe btnrfq" id="lnkRFQ" href="<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=" style="position:relative;float:left;margin-top:20px;margin-bottom:-20px;">Request for Quote</a>
 
     <section id='secpage2' class="adlist_section" style="padding-top:50px;" >
@@ -36,7 +36,7 @@
             <li itemscope itemtype="https://schema.org/Place">
                 <header>
                     <h3 class='cname'>
-                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>','1', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drTAd["CLIENT_NAME"] %></span></a>
+                        <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drTAd["CLIENT_NAME"] %></span></a>
                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                             <span itemprop="addressLocality"><%: drTAd["CITY_STATE"] %></span>
                             <!--<span itemprop="telephone"><%: drTAd["PHONE"] %></span>-->
@@ -45,7 +45,7 @@
                     <div class="buttons">
                     <!--<a href='<%:RootPath %>directoryrfq.aspx?CategorySK=<%: CategorySK %>&amp;ClientSK=<%: drTAd["CLIENT_SK"] %>' class='iframe btnrfq hoverable btn-small waves-effect waves-light orange'>Request For Quote</a>
                     <a class='btncopro hoverable btn-small waves-effect waves-light orange' title='<%: drTAd["FORMATED_NAME"] %> Profile' id='ID<%: drTAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: drTAd["PROFILE_URL"] %>'>View Company Profile</a>-->
-                   <a class='btnCAD2 hoverable btn-small waves-effect waves-light orange' target="_blank" href='<%: drTAd["CAD_URL"] %>'>View CAD Drawings</a>
+                   <a rel='nofollow' class='btnCAD2 hoverable btn-small waves-effect waves-light orange' target="_blank" href='<%: drTAd["CAD_URL"] %>'>View CAD Drawings</a>
                         </div>
                 </header>
                 <p class='cdesc' itemprop="description"><%: drTAd["ADDESCRIPTION"] %></p>

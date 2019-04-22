@@ -1,77 +1,20 @@
-﻿$(document).ready(function () {
-   
-      var recaptcha1;
-      //var recaptcha2;
-    /*
-      var myCallBack = function () {
-          alert("thx LOrd");
-                //Render the recaptcha1 on the element with ID "recaptcha1"
-                recaptcha1 = grecaptcha.render('recaptcha1', {
-                    'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
-                    'theme': 'light'
-                });
-          */
-        
-            //Render the recaptcha2 on the element with ID "recaptcha2"
-        /*    recaptcha2 = grecaptcha.render('recaptcha2', {
-                'sitekey': '6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_', //Replace this with your Site key
-          'theme' : 'dark'
-        });
-      };   */
+﻿$(document).ready(function () {   
+    var recaptcha1;     
     $('#hidRootPath').val($('#hdnSrhRootPath').val());
     $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
-        success: function (msg) {
-            if (msg.d === "true") {
-                $('#divLogout').show();
-            }
-        },
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
+        type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+        data: "{}", contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
+        success: function (msg) { if (msg.d === "true") { $('#divLogout').show(); } },
+        failure: function () {alert('Request Failed. Try Again.'); }
     });
-    $('input[type=radio].totalreviewstar').rating({
-        required: true
-    });
-    $('input[type=radio].topcommentstar').rating({
-        required: true
-    });
-    //$('input[type=radio].totalreviewstar').rating('select', comprating, false);
+    $('input[type=radio].totalreviewstar').rating({ required: true });
+    $('input[type=radio].topcommentstar').rating({ required: true});
     LoadCompanyTotalRating();
-    $('#lnkRegBox').fancybox({
-        'width': 670,
-        'padding': 0,
-        'showCloseButton': true,
-        'modal': true,
-        'titleShow': false
-    });
-    $('#lnkReviewBox').fancybox({
-        'padding': 0,
-        'showCloseButton': true,
-        'modal': true,
-        'titleShow': false
-    });
-    $('#lnkReplyBox').fancybox({
-        'padding': 0,
-        'showCloseButton': true,
-        'modal': true,
-        'titleShow': false
-    });
-
+    $('#lnkRegBox').fancybox({ 'width': 670, 'padding': 0, 'showCloseButton': true, 'modal': true, 'titleShow': false });
+    $('#lnkReviewBox').fancybox({ 'padding': 0, 'showCloseButton': true, 'modal': true, 'titleShow': false });
+    $('#lnkReplyBox').fancybox({ 'padding': 0, 'showCloseButton': true, 'modal': true, 'titleShow': false });
     LoadComments($('#hdnProfileClientSk').val(), -1);
-
-    $('#lnkWriteReview').on('click', function () {
-        $('#hidCommentType').val('Review');
-        $('#lnkRegBox').trigger('click');
-       
-    });
-
+    $('#lnkWriteReview').on('click', function () {   $('#hidCommentType').val('Review'); $('#lnkRegBox').trigger('click'); });
     $(document).on('click', 'a.lnkReply', function () {    
         $('#hidCommentType').val('Reply');
         var cid = $(this).closest('.divComments').children('#hdCommentId').attr('value');
@@ -79,30 +22,15 @@
         $('#hidCommentId').val(cid);
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divCom' + cid);
-        if (divToAppend.children('#divReply' + cid).length === 0) {
-            $(divToAppend).append('<div id="divReply' + cid + '" style="padding-left:30px;"></div>');
-        }
+        if (divToAppend.children('#divReply' + cid).length === 0) {  $(divToAppend).append('<div id="divReply' + cid + '" style="padding-left:30px;"></div>'); }
         $.ajax({
-            type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            cache: false,
+            type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+            data: "{}", contentType: "application/json; charset=utf-8",dataType: "json", async: true, cache: false,
             success: function (msg) {
-                if (msg.d === "false") {
-                    $('#lnkRegBox').trigger('click');
-                    return false;
-                }
-                else {
-                    $('#lnkReplyBox').trigger('click');
-                    return false;
-                }
+                if (msg.d === "false") {$('#lnkRegBox').trigger('click'); return false;}
+                else { $('#lnkReplyBox').trigger('click'); return false;}
             },
-            failure: function () {
-                $('#divWriteReviewErr').text('Request Failed. Try Again.');
-            }
+            failure: function () { $('#divWriteReviewErr').text('Request Failed. Try Again.');}
         });
         return false;
     });
@@ -114,57 +42,28 @@
         $('#hidCommentId').val(cid);
         $('#hidCommentedBy').val(cname);
         var divToAppend = $(this).closest('#divSubCom' + cid);
-        if (divToAppend.children('#divSubReply' + cid).length === 0) {
-            $(divToAppend).append('<div id="divSubReply' + cid + '" class="nest clearfix"></div>');
-        }
+        if (divToAppend.children('#divSubReply' + cid).length === 0) { $(divToAppend).append('<div id="divSubReply' + cid + '" class="nest clearfix"></div>'); }
         $.ajax({
-            type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            cache: false,
+            type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/checkloginstate",
+            data: "{}", contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
             success: function (msg) {
-                if (msg.d === "false") {
-                    $('#lnkRegBox').trigger('click');
-                    return false;
-                }
-                else {
-                    $('#lnkReplyBox').trigger('click');
-                    return false;
-                }
+                if (msg.d === "false") { $('#lnkRegBox').trigger('click');return false;}
+                else { $('#lnkReplyBox').trigger('click');return false; }
             },
-            failure: function () {
-                $('#divWriteReviewErr').text('Request Failed. Try Again.');
-            }
+            failure: function () { $('#divWriteReviewErr').text('Request Failed. Try Again.');}
         });
         return false;
     });
 
     $('#lnkLogout').on('click', function () {
         $.ajax({
-            type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/logoutsession",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            cache: false,
+            type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/logoutsession",
+            data: "{}", contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
             success: function (msg) {
-                if (msg.d === "success") {
-                    alert("You have successfully logged out");
-                    $('#divLogout').hide();
-                    return false;
-                }
-                else {
-                    alert(msg);
-                    return false;
-                }
+                if (msg.d === "success") { alert("You have successfully logged out"); $('#divLogout').hide(); return false; }
+                else {alert(msg); return false; }
             },
-            failure: function () {
-                $('#divWriteReviewErr').text('Request Failed. Try Again.');
-            }
+            failure: function () {  $('#divWriteReviewErr').text('Request Failed. Try Again.'); }
         });
         return false;
     });
@@ -177,26 +76,13 @@
         var list = [cid];
         var jsonText = JSON.stringify({ list: list });
         $.ajax({
-            type: "POST",
-            url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/submithelpful",
-            data: jsonText,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            cache: false,
+            type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/submithelpful",
+            data: jsonText,  contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
             success: function (msg) {
-                if (msg.d === "Invalid") {
-                    spnHelp.html("Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a>");
-                    alert('Request Failed. Try Again.');
-                }
-                else {
-                    spnHelp.next().text(msg.d);
-                    spnHelp.html('<i>Thank you for your feedback.</i>');
-                }
+                if (msg.d === "Invalid") { spnHelp.html("Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a>");  alert('Request Failed. Try Again.');}
+                else { spnHelp.next().text(msg.d); spnHelp.html('<i>Thank you for your feedback.</i>'); }
             },
-            failure: function () {
-                alert('Request Failed. Try Again.');
-            }
+            failure: function () {alert('Request Failed. Try Again.');}
         });
         return false;
     });
@@ -210,8 +96,7 @@
                 setTimeout(function () {
                     if ($('#hidLastFetchId').val() > 0) {
                         LoadComments($('#hdnProfileClientSk').val(), $('#hidLastFetchId').val());
-                        $(window).scroll(scrollFunction);
-                       
+                        $(window).scroll(scrollFunction);                       
                     }
                 }, 1000);
             }
@@ -225,24 +110,13 @@ function UpdateReviewRating(ratectrl, rateval) {
     var list = [commentid, rateval];
     var jsonText = JSON.stringify({ list: list });
     $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/updatereviewrating",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
+        type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/updatereviewrating",
+        data: jsonText, contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
         success: function (msg) {
-            if (msg.d === "Success") {
-                $(ratectrl).rating('disable');
-            }
-            else {
-                alert('Request Failed. Try Again.');
-            }
+            if (msg.d === "Success") { $(ratectrl).rating('disable'); }
+            else { alert('Request Failed. Try Again.');}
         },
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
+        failure: function () { alert('Request Failed. Try Again.');}
     });
 }
 
@@ -252,43 +126,27 @@ function LoadCompanyTotalRating() {
     var jsonText = JSON.stringify({ list: list });
 
     $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/getcompanytotalrating",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
+        type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/getcompanytotalrating",
+        data: jsonText,contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
         success: function (msg) {
             if (msg.d !== "Invalid") {
-                var result = [];
-                var ms = msg.d;
-                ms = ms.replace(/\\/g, '\\');
-                result = JSON.parse(ms);
-                var rate = parseInt(result[0]);
+                var result = [];  var ms = msg.d; ms = ms.replace(/\\/g, '\\');
+                result = JSON.parse(ms); var rate = parseInt(result[0]);
                 $('input[type=radio].topcommentstar').rating('enable');
                 $('input[type=radio].topcommentstar').rating('select',rate , false);
                 $('input[type=radio].topcommentstar').rating('disable');
-                if (rate > 0) {
-                    $('#spanTopRate').show();
-                }
+                if (rate > 0) { $('#spanTopRate').show();}
                 var starval = rate + 1;
                 $('#spanRateNum').html("<b>"+starval+"</b>" + '/5');
-                if (rate > 0) {
-                    $('#spanRateNum').show();
-                }
+                if (rate > 0) { $('#spanRateNum').show();}
                 $('input[type=radio].totalreviewstar').rating('enable');
                 $('input[type=radio].totalreviewstar').rating('select', rate, false);
                 $('input[type=radio].totalreviewstar').rating('disable');
                 $('#divTotalReviewCount').text(result[1]);
             }
-            else {
-                alert('Request Failed. Try Again.');
-            }
+            else { alert('Request Failed. Try Again.');}
         },
-        failure: function () {
-            alert('Request Failed. Try Again.');
-        }
+        failure: function () {alert('Request Failed. Try Again.'); }
     });
 }
 
@@ -297,26 +155,13 @@ function LoadComments(clientsk, id) {
     var jsonText = JSON.stringify({ list: list });
     var result;
     $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchcomments",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
+        type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchcomments",
+        data: jsonText, contentType: "application/json; charset=utf-8", dataType: "json", async: true, cache: false,
         success: function (msg) {
             var str = "";
-            if (msg.d === "Invalid") {
-                $('#divCommentDisp').text('Problem Fetching Data. Please Refresh(F5).');
-            }
-            else if (msg.d == "LastRecord") {
-                $('#hidLastRecord').val('1');
-                $('.loadingdiv').remove();
-            }
-            else {
-                str = GetCommentsHTML(msg.d);
-                $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');
-            }
+            if (msg.d === "Invalid") { $('#divCommentDisp').text('Problem Fetching Data. Please Refresh(F5).');}
+            else if (msg.d == "LastRecord") { $('#hidLastRecord').val('1'); $('.loadingdiv').remove();}
+            else { str = GetCommentsHTML(msg.d); $(str).appendTo($('#divCommentDisp')).hide().slideDown('slow');}
             $('.loadingdiv').remove();
             $(str).siblings('.divComments').each(function () {
                 var commentid = $(this).children('#hdCommentId').val();
@@ -337,22 +182,12 @@ function LoadSubComments(commentid, divToAppend) {
     var list = [commentid];
     var jsonText = JSON.stringify({ list: list });
     $.ajax({
-        type: "POST",
-        url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchsubcomments",
-        data: jsonText,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        cache: false,
+        type: "POST", url: $('#hidRootPath').val() + "controls/reviewmanager.aspx/fetchsubcomments",
+        data: jsonText, contentType: "application/json; charset=utf-8",dataType: "json", async: true, cache: false,
         success: function (msg) {
-            if (msg.d != "" && msg.d != "LastRecord") {                
-                var result = GetSubCommentHTML(msg.d);
-                $(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');
-            }
+            if (msg.d != "" && msg.d != "LastRecord") { var result = GetSubCommentHTML(msg.d); $(result).appendTo($('#divReply' + commentid)).hide().slideDown('slow');}
         },
-        failure: function () {
-            $(divToAppend).append('Problem Fetching Data. Please Refresh(F5).');
-        }
+        failure: function () { $(divToAppend).append('Problem Fetching Data. Please Refresh(F5).'); }
     });
 }
 
@@ -362,9 +197,7 @@ function GetCommentsHTML(cmtjson) {
     result = JSON.parse(ms);
     var str = "";
     for (i in result) {
-
         var rate = parseInt(result[i].Rating) - 1;
-
         str += "<div class='divComments' id='divCommentid'><input type='hidden' id='hdCommentId' value='" + result[i].CommentId + "' />";
         str += "<input type='hidden' id='hdCommenter' value='" + result[i].CName + "' />";
         str += "<div class='review_title_wrapper'>";
@@ -380,7 +213,6 @@ function GetCommentsHTML(cmtjson) {
         str += "</span>";
         str += "<div style='clear:both;'></div>";
         str += "<div class='review_content_wrapper'>" + result[i].Review + "</div>";
-
         str += "<div id='divCom" + result[i].CommentId + "' class='review_action_wrapper'>";
         str += "<span class='spnHelpful'>Was this helpful? <a class='lnkHelpful small' href='#Helpful'>Yes</a></span>";
         str += "<span class='spnHelpCount' >";
@@ -392,10 +224,8 @@ function GetCommentsHTML(cmtjson) {
         str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating({required: true});";
         str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('select'," + rate + ", false);";
         str += "$('input[type=radio].commentstar" + result[i].CommentId + "').rating('disable');";
-        if (i == result.length - 1)
-            str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
+        if (i == result.length - 1) str += "$('#hidLastFetchId').val(" + result[i].CommentId + ");";
         str += "</script>";
-        //if (RatingReceived > 0)
         str += "</div>";
     }
     return str;
@@ -404,8 +234,7 @@ function GetCommentsHTML(cmtjson) {
 function GetSubCommentHTML(cmtjson) {
     var result = [];
     ms = cmtjson.replace(/\\/g, '\\');
-    result = JSON.parse(ms);
-    
+    result = JSON.parse(ms);    
     var html = "";
     for (i in result) {        
         var str = "";
@@ -420,17 +249,10 @@ function GetSubCommentHTML(cmtjson) {
         str += "</div ></div ></a > ";
         str += "</div>";
         if (parseInt(result[i].ParentSubCommentId) > 0 && html!="") {
-
             var div = "<div id='divSubReply" + result[i].ParentSubCommentId + "' class='nest clearfix' >";
             html = html.replace(div, div + str);
         }
-        else {
-            html += str;
-        }
-       
-
-        
+        else { html += str;}         
     }
-
     return html;
 }

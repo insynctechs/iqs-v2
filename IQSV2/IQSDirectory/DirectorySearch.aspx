@@ -37,7 +37,7 @@
                             
                                 <div class="leftbox">
                                         <h3>
-                                        <a href='<%: cl["WEBSITE"].ToString() %>' target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%: cl["TITLE"].ToString() %></a><br>
+                                        <a href='<%: cl["WEBSITE"].ToString() %>' rel="nofollow" target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%: cl["TITLE"].ToString() %></a><br>
                                         </h3>
                                         <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>
 
@@ -66,7 +66,7 @@
                     <% foreach (var ol in OtherList)
                         { %>
                     <li>
-                        <h3><a href='<%: ol["URL"].ToString() %>'><%: ol["TITLE"].ToString() %></a></h3>
+                        <h3><a target="_blank" rel="nofollow" href='<%: ol["URL"].ToString() %>'><%: ol["TITLE"].ToString() %></a></h3>
                         <p><%: ol["MDESC"].ToString()  %></p>
                         <a class='searchdivlink' href='<%: ol["URL"].ToString() %>'><%: ol["URL"].ToString() %></a>
                     </li>

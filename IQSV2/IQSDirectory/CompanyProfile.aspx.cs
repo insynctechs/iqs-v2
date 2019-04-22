@@ -120,7 +120,7 @@ namespace IQSDirectory
 
                 Phone = ""; Fax = "";
                 foreach (DataRow drPhone in dtPhone.Rows)
-                    Phone += drPhone.ItemArray[0].ToString() + ",";
+                    Phone += drPhone.ItemArray[0].ToString().Trim()!=""? drPhone.ItemArray[0].ToString() + "," : "";
                 if (Phone.Length > 0)
                     Phone = Phone.TrimEnd(',');
 
@@ -232,18 +232,30 @@ namespace IQSDirectory
 
                     }
                 }
+               // Response.Write("<!--maibnurl = " + mainurl + "-->");
                 if (mainurl != "")
                 {
-                    if (Convert.ToInt32(ClientSK) == 63659) //Client wants only the main host url in the display and the landing url buried in href
+                    //Response.Write("<!-- mainurl inside=" + mainurl + "-->");
+                    Uri thisURL = new Uri(mainurl);                    
+                    sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
+
+                    /*if (Convert.ToInt32(ClientSK) == 63659) //Client wants only the main host url in the display and the landing url buried in href
                     {
                         string[] urldisp = mainurl.Replace("http://", "").Replace("https://", "").Split('/');
-                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' >" + urldisp[0] + "</a>" + ",");
+                        Uri thisURL = new Uri(urldisp[0]);
+                        Response.Write("<!-- inside if " + thisURL.Host + "-->");
+                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
 
                     }
                     else
-                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' >" + mainurl.Replace("http://", "") + "</a>" + ",");
+                    {
+                        Uri thisURL = new Uri(mainurl.Replace("http://", ""));
+                        Response.Write("<!-- inside else " + thisURL.Host + "-->");
+                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
+                    }*/
                 }
-                WebsiteLink = sb.ToString().TrimEnd(',') + "<meta itemprop='url' content='" + mainurl + "'/>";
+               WebsiteLink = sb.ToString().TrimEnd(',');
+               
             }
             catch (Exception ex)
             {
@@ -416,3 +428,4 @@ namespace IQSDirectory
 
     }
 }
+ 

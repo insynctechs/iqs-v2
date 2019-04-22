@@ -264,7 +264,7 @@ namespace IQSDirectory
                             .Replace("[state], [country]", "[state]")
                             .Replace("[state],[country]", "[state]")
                             .Replace("[city],", "")
-                            .Replace("[state]", CurrentState);
+                            .Replace("[state]", r["theSTATENAME"].ToString());
                     });
                     if (dt.Rows.Count > 0)
                     {

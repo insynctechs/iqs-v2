@@ -1,26 +1,35 @@
-﻿<!DOCTYPE html>
-<html lang="en-US">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Form for Search</title>
     <script type="text/javascript" language="javascript">
         var txtval = 'Enter A Product/Service Category Or Company Name';
         $(document).ready(function () {
+            alert('Jesus');
+            alert($('#hdnApiPath').val() + "api/StateSearch/GetSearchResults");
             $('#home_search_q_Dir1').val(txtval);
             $('#home_search_q_Dir1').focus(function () {
+                
                 if ($('#home_search_q_Dir1').val() == txtval) {
                     $(this).attr('class', 'home_search_q_Dir');
                     $(this).val('');
                 }
             });
             $('#home_search_q_Dir1').blur(function () {
+               
                 if ($(this).val().length == 0) {
                     $(this).attr('class', 'home_search_q_Dir_w');
                     $(this).val(txtval);
                 }
             });
+            var availableTags = ["Canada", "United States", "United Kingdom", "Russia", "Iran", "Sweden", "France"];
+            $("#home_search_q_Dir1").autocomplete({
+                source: availableTags
+            });
+            /*
             $("#home_search_q_Dir1").autocomplete({
                 source: function (request, response) {
-
+                    alert('Test');
                     var list = $('#home_search_q_Dir1').val();
                     var jsonText = JSON.stringify(list); //{ SrhStr: list }
                     $.ajax({
@@ -48,7 +57,7 @@
                     $('#home_search_q_Dir1').val(ui.item.value);
                     submitForm();
                 }
-            });
+            });*/
             $("#home_search_q_Dir1").keyup(function (event) {
                 if (event.keyCode == 13) {
                     submitForm();
@@ -62,7 +71,7 @@
             if ($.trim($("#home_search_q_Dir1").val()).length > 0 && $("#home_search_q_Dir1").val() != txtval) {
                 $("#home_search_q_Dir1").val($.trim($("#home_search_q_Dir1").val()));
                 //var srhurl = $('#hdnRootPath').val() + "directorysearch.aspx?q=" + encodeURIComponent($.trim($("#home_search_q_Dir1").val())) + "&s=1";
-                var srhurl = $('#hdnRootPath').val() + "search/" + encodeURIComponent($.trim($("#home_search_q_Dir1").val())) + "/1/";
+                var srhurl = $('#hdnSrhRootPath').val() + "search/" + encodeURIComponent($.trim($("#home_search_q_Dir1").val())) + "/1/" ;
                 window.location = srhurl;
             }
             else {
@@ -75,8 +84,9 @@
     <div>
         <input id="home_search_q_Dir1" class="home_search_q_Dir_w" type="text" size="40" name="home_search_q_Dir1" accesskey="/" tabindex="1" />
         <a href="#" id="home_search_submit_Dir" class="submit" tabindex="2">Search</a>
-        <input type='hidden' id='hdnSrhRootPath' />
-        <input type='hidden' id='hdnApiPath' value="https://api.iqsdirectory.com/" />
+        <input type='hidden' id='hdnApiPath' value='https://api.iqsdirectory.com/' />
+        <input type='hidden' id='hdnSrhRootPath' value="http://dev.iqsdirectory.com/" />
+        <input type='hidden' id='hdnCategorySK1' value='0' />
     </div>
 </body>
 </html>

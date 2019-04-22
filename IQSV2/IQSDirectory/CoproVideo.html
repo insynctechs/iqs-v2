@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html>
 <head>
     <title>Company Profile Videos</title>
 
-    <script src='./Scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script src='/scripts/jquery-1.7.2.min.js' type='text/javascript'></script>
     <script type='text/javascript'>
         $(document).ready(function () {
 
@@ -14,7 +14,7 @@
             $('meta[name="description"]').attr('content', 'Watch video of ' + comp + ' listed in IQSDirectory');
             $('meta[name="keywords"]').attr('content', comp + ' company video at IQSDirectory, Company Video, Video of Companies listed in IQSDirectory');
             $('#tagh1').html(comp);
-            var htm = '<iframe width="854" height="480" src="http://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+            var htm = '<iframe width="854" height="480" src="https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>';
             $('#divvideo').html(htm);
         });
 

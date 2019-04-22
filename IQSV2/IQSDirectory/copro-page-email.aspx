@@ -49,7 +49,7 @@
 <div class="clearfix" ></div>
 <div class="reqText">
 <div class="ProfilewarnTextRFQ">
-    <p><span class="requireD">WARNING: This form is not to be used for solicitation. </span> Solicitation is a violation of the <a href="http://www.iqsdirectory.com/DirectoryTermsConditions.htm"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. </p><br /> 
+    <p><span class="requireD">WARNING: This form is not to be used for solicitation. </span> Solicitation is a violation of the <a href="/DirectoryTermsConditions.htm"> Terms and Conditions </a>  of this site. Solicitors will have their IP banned and reported to the FCC. </p><br /> 
 </div>
 </div>
 </form>

@@ -40,9 +40,9 @@ function postToFeed(cname, title, review) {
     var lnkurl = $(location).attr('href');
     var obj = {
         method: 'feed',
-        redirect_uri: 'http://www.iqsdirectory.com/',
+        redirect_uri: 'https://www.iqsdirectory.com/',
         link: lnkurl,
-        picture: 'http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
+        picture: 'https://www.iqsdirectory.com/images/iqsdirectory_home_logo.png',
         name: cname,
         caption: title,
         description: review

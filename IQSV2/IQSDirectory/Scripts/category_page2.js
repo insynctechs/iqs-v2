@@ -3,6 +3,12 @@
     var link = el.attr('href');
     window.location = link;
 });
+var video_sites;
+$(function () {
+    $.get($('#hdnSrhRootPath').val() + 'videosites.txt', function (data) {
+        video_sites = data;
+    });
+});
 function loadWebPreviewDefault(path)
 {
 	//$(document).ready(function () {
@@ -35,13 +41,17 @@ function loadWebPreview(site, customimage)
     var imgUrl = '//image.thum.io/get/width/' + width + '/auth/' + auth + '/' + url;
   
     var custompath = document.getElementById('hdnSrhRootPath').value + 'preview_images//';
+    //var patternClient = '/('+video_sites+')/';
+    var patternClient = new RegExp(video_sites);
+    //alert(patternClient);
     //var imgUrl = '//image.thum.io/get/' + site;
     var id = 'preview1' ;
     if (document.getElementById(id)) {
-        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(customimage) )
-            document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + custompath + customimage + "' /></a>";
-        else
-        document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' ><img src='" + imgUrl + "' /></a>";
+        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(customimage))
+            document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' rel='nofollow' ><img alt='" + site + "' title='" + site + "' src='" + custompath + customimage + "' /></a>";
+        else if (patternClient.test(site))
+            document.getElementById(id).innerHTML = "<iframe src='" + site + "' width='100%' height='400px'  ></iframe>";
+        else document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' rel='nofollow' ><img alt='" + site + "' title='" + site + "' src='" + imgUrl + "' /></a>"
     }
     
 
@@ -156,9 +166,12 @@ $(document).ready(function () {
     $('.btnrfq').bind('contextmenu', function (e) { return false; });
 
     $(".btnCAD[href='http://']").hide();
+    $(".btnCAD[href='https://']").hide();
     $(".btnCAD[href='']").hide();
     $(".btnCAD2[href='http://']").hide();
+    $(".btnCAD2[href='https://']").hide();
     $(".btnCAD2[href='']").hide();
+   
             
 });
 

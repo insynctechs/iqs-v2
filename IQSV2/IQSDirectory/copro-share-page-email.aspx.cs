@@ -145,7 +145,7 @@ namespace IQSDirectory
                 string _Subject = "[IQS DIRECTORY] - " + txtTitle.Value.ToUpper().Replace("%20", " ");
                 string _strMailBody = "<a href = '" + txtUrl.Value.ToString() + "' > " + txtTitle.Value.Replace(" % 20", " ") + "</a><br/><br/>";
                 _strMailBody += "<br/><br/>"+txtDescription.Value.ToString();
-                _strMailBody += "<br/><br/><a href='" + txtUrl.Value.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
+                _strMailBody += "<br/><br/><a href='" + txtUrl.Value.ToString() + "'><img alt='IQS Directory' src='https://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
                 _strMailBody += "<br/><br/> Thanks & Regards <br/>" + Request.Form["txtName"].ToString();
                 //sendMailWithAttachment(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
                 bool mailstatus = Utils.SendMail("sumi@insynctechs.com", "sumi@insynctechs.com, sumiajit@gmail.com", "linda@insynctechs.com", string.Empty, _Subject, _strMailBody, true);

@@ -72,7 +72,7 @@ namespace IQSDirectory
                 {
                     //Response.Write("Category");
                     dtNw = GetArticles();
-                    dtBl = GetBlogs();
+                    //dtBl = GetBlogs();
                     DisplayCategory(dt.Rows[0]["Category_SK"].ToString());
                 }
                 else
