@@ -283,6 +283,9 @@ namespace IQSDirectory.Helpers
                     _replacecontent = _replacecontent.Replace("---", "-");
                     _replacecontent = _replacecontent.Replace("--", "-");
                     break;
+
+                case 4: _replacecontent = Regex.Replace(_replacecontent, @"\D", "");
+                    break;
             }
             return _replacecontent;
         }

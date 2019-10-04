@@ -39,7 +39,7 @@ namespace IQSDirectory
                 
                 ));
 
-            bundles.Add(new StyleBundle("~/bundles/MainStyles").Include(
+            bundles.Add(new StyleBundle("~/bundles/MainStyles").Include(                
                 "~/Styles/materialize.css",
                 "~/Styles/main_style.css",
                 "~/Styles/jquery-ui.css"

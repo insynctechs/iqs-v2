@@ -20,8 +20,8 @@
                     <% foreach (var pl in ProductList)
                         { %>
                     <li>
-                        <h3><a href='<%: pl["URL"].ToString() %>' title="<%: pl["TITLE"].ToString() %>"><%: pl["TITLE"].ToString() %></a></h3>
-                        <p><%: pl["MDESC"].ToString()  %></p>
+                        <h3><a href='<%: pl["URL"].ToString() %>' title="<%: pl["TITLE"].ToString() %>"><%= pl["TITLE"].ToString() %></a></h3>
+                        <p><%= pl["MDESC"].ToString()  %></p>
                         <a href='<%: pl["URL"].ToString() %>'><%: pl["URL"].ToString() %></a>
                     </li>
                     <% } %></ul><br /><br />
@@ -37,7 +37,7 @@
                             
                                 <div class="leftbox">
                                         <h3>
-                                        <a href='<%: cl["WEBSITE"].ToString() %>' rel="nofollow" target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%: cl["TITLE"].ToString() %></a><br>
+                                        <a href='<%: cl["WEBSITE"].ToString() %>' rel="nofollow" target='_blank' title='<%: cl["TITLE"].ToString() %>' ><%= cl["TITLE"].ToString() %></a><br>
                                         </h3>
                                         <div class="contact"><span><%: cl["CCITY"].ToString() %>, <%: cl["CSTATE"].ToString() %></span>
 
@@ -53,7 +53,7 @@
                                     <a href='<%: cl["URL"].ToString() %>' title='<%: cl["FORMATED_TITLE"].ToString() %> Profile' class='hoverable btn waves-effect waves-light orange lnkviewcopro'>View Company Profile</a>
                                         
                                     </div>
-                                    <p ><%: cl["MDESC"].ToString() %></p>
+                                    <p ><%= cl["MDESC"].ToString() %></p>
                                
                                 
                                 
@@ -66,8 +66,8 @@
                     <% foreach (var ol in OtherList)
                         { %>
                     <li>
-                        <h3><a target="_blank" rel="nofollow" href='<%: ol["URL"].ToString() %>'><%: ol["TITLE"].ToString() %></a></h3>
-                        <p><%: ol["MDESC"].ToString()  %></p>
+                        <h3><a target="_blank" rel="nofollow" href='<%: ol["URL"].ToString() %>'><%= ol["TITLE"].ToString() %></a></h3>
+                        <p><%= ol["MDESC"].ToString()  %></p>
                         <a class='searchdivlink' href='<%: ol["URL"].ToString() %>'><%: ol["URL"].ToString() %></a>
                     </li>
                     <% } %></ul>

@@ -1,15 +1,14 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="copro-page-email.ascx.cs" Inherits="IQSDirectory.Controls.copro_page_email" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="copro-page-email_v1.ascx.cs" Inherits="IQSDirectory.Controls.copro_page_email_v1" %>
 <script type="text/javascript">
     $(document).ready(function () {         
     $("#frmMaster").validate({        
         ignore: ".ignore",
         rules: {
-            txtCompanyName: { required: true },
-            txtFirstName: { required: true },    
-            txtLastName: { required: true },    
+            txtFirstName: { required: true },
+            txtLastName: { required: true },
             txtEmailAddress: { required: true, emailRule: true },
-            txtPhone: { required: true },
-            txtCity: { required: true }            ,
+            txtCompanyName: { required: true },
+            txtZip: { required: true }            ,
             hiddenRecaptcha1: { required: function () {
                     if (grecaptcha.getResponse(recaptcha1) == '') {
                         return true;
@@ -20,12 +19,11 @@
             }
         },
         messages: {
-            txtCompanyName: { required: "Required " },
-            txtFirstName: { required: "Required " },   
+            txtFirstName: { required: "Required " },
             txtLastName: { required: "Required " },
             txtEmailAddress: { required: "Required ", emailRule: "Invalid" },
-             txtPhone: { required: "Required " },
-            txtCity: {required: "Required"},
+            txtCompanyName: { required: "Required " },
+            txtZip: {required: "Required"},
             hiddenRecaptcha1: { required: "Required "}
         },
         submitHandler: function (form) {
@@ -80,7 +78,7 @@
         if ($("#frmMaster").valid())
         {           
             //$(this).prop('disabled', 'disabled');
-            list = [$('#txtCompanyName').val(), $('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtPhone').val(),  $('#txtCity').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val()];
+            list = [$('#txtFirstName').val(), $('#txtLastName').val(), $('#txtEmailAddress').val(), $('#txtCompanyName').val(), $('#txtZip').val(), $('#txtSubject').val(), $('#txtMessage').val(), $('#hdnProfileClientSk').val()];
             jsonText = JSON.stringify({ list: list });
             $.ajax({
                 type: "POST",
@@ -91,10 +89,9 @@
                 async: true,
                 cache: false,
                 success: function (msg) {
-
-
+                    //alert(msg);
                     if (msg.d == "Success") {
-                       
+                        //alert("Mail has been sent sucessfully!!!");
                         $.fancybox({
                             type: 'iframe',
                             href: $('#hdnSrhRootPath').val() + 'copro-page-email-thankyou.aspx'                            
@@ -103,11 +100,11 @@
                         $('#txtLastName').val('');
                         $('#txtEmailAddress').val('');
                         $('#txtCompanyName').val('');
-                        $('#txtPhone').val('');                       
-                        $('#txtCity').val('');
+                        $('#txtZip').val('');                       
+                        $('#txtSubject').val('');
                         $('#txtMessage').val('');
                     }
-                    else if (msg.d == "Country") {
+                    else if (msg == "Country") {
                         alert("The Use of this Form is Restricted - Please Contact IQSDirectory with Questions.");
                     }
                     else if (msg.d == "Error1") {
@@ -147,21 +144,19 @@ function verify_callback1(response) {
     <h5><i class="far fa-envelope"></i><span id="divEmailCName" runat="server"></span></h5>
           <div id="profContInfo">
                 <ul>
-                <li>Company Name :<span class="require">* </span></li>
-                <li><input type="text" id="txtCompanyName"  name="txtCompanyName" class="commenttextbox"  /></li> 
-                <li>Contact First Name:<span class="require">* </span></li>
+                <li>First Name:<span class="require">* </span></li>
                 <li><input type="text" id="txtFirstName" name="txtFirstName" class="commenttextbox"  /></li>
-                <li>Contact Last Name:<span class="require">* </span></li>
+                <li>Last Name:<span class="require">* </span></li>
                 <li><input type="text" id="txtLastName" name="txtLastName" class="commenttextbox"  /></li>
                 <li>Email Address :<span class="require">* </span></li>
                 <li><input type="text" id="txtEmailAddress" name="txtEmailAddress" class="commenttextbox"  /></li>
-                <li>Phone:<span class="require">* </span></li>
-                <li><input type="text" id="txtPhone" name="txtPhone" class="commenttextbox"  /></li>           
-                               
-                <li>City, State :<span class="require">* </span></li>
-                <li><input type="text" id="txtCity" name="txtCity" class="commenttextbox"  /></li>            
-                
-                <li>Message/Questions :</li>
+                <li>Company Name :<span class="require">* </span></li>
+                <li><input type="text" id="txtCompanyName"  name="txtCompanyName" class="commenttextbox"  /></li>                
+                <li>Zip/Postal Code :<span class="require">* </span></li>
+                <li><input type="text" id="txtZip" name="txtZip" class="commenttextbox"  /></li>                
+                <li>Subject :</li>
+                <li><input type="text" id="txtSubject" name="txtSubject" class="rfqtextboxsub width90" maxlength="200"  /></li>
+                <li>Message :</li>
                 <li><textarea id="txtMessage" name="txtMessage" class="TextCtrlArea width90" style="height:64px;"  ></textarea></li>
                 <li><!--<div class="g-recaptcha" data-sitekey="6Lc72zMUAAAAABk1ajqMH-ThUswu6BIps5JS10s_"  ></div>
                     <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha"  data-callback="recaptchaCallback"  /> 

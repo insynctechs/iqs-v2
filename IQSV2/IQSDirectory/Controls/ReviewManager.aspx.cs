@@ -574,12 +574,12 @@ namespace IQSDirectory
                 if (Utils.isvalidIpAccess()== true )
                 {
                     
-                    string FirstName = list[0];
-                    string LastName = list[1];
-                    string EmailAddress = list[2];
-                    string CompanyName = list[3];
-                    string Zip = list[4];
-                    string Subject = list[5];
+                    string CompanyName = list[0];
+                    string FirstName = list[1];
+                    string LastName = list[2];
+                    string EmailAddress = list[3];
+                    string Phone = list[4];
+                    string City = list[5];                    
                     string Message = list[6];
                     string ClientSk = list[7];
                    
@@ -588,42 +588,39 @@ namespace IQSDirectory
 
                     //insert profile request into form
                     
-                    var urlGetId = string.Format("api/Clients/InsertDirectoryProfileEmailDetails?FirstName=" + FirstName+"&LastName="+LastName+"&EmailAddress="+EmailAddress+"&CompanyName="+CompanyName+"&Zip="+Zip+"&Subject="+Subject+"&Message="+Message+"&ClientSk="+ClientSk+"&RequestIp="+_RequestIP);
+                    var urlGetId = string.Format("api/Clients/InsertCompanyProfileEmailDetails?CompanyName=" + CompanyName + "&FirstName=" + FirstName + "&LastName=" + LastName + "&EmailAddress="+EmailAddress+"&Phone="+Phone+ "&City=" + City+ "&Subject="+ Utils.ProfileEmailSubject +"&Message="+Message+"&ClientSk="+ClientSk+"&RequestIp="+_RequestIP);
                     int intIsSucess = wHelper.GetExecuteNonQueryResFromWebApi(urlGetId);
 
                     if (intIsSucess != 0)
                     {
                     
-                        StringBuilder strEmailContent = new StringBuilder();
+                       
+                        string _strMailBody = "Name : " + FirstName + " " + LastName  + " <br/>" + "Company : " + CompanyName + "<br/>" + "Email : " + EmailAddress + "<br/>" + "Contact Phone : " + Phone + "<br>" + "City, State : " + City + "<br>" + "Message/Questions/ : " + Message + "<br>" + "Requested IP:" + _RequestIP;
+                        /*StringBuilder strEmailContent = new StringBuilder();
                         strEmailContent.AppendLine("<table width='100%' align='center'>");
                         strEmailContent.AppendLine("<tr>");
-                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Address:</b>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Company Name:</b>");
                         strEmailContent.AppendLine("</td>");
                         strEmailContent.AppendLine("<td align='left' width='80%'>");
-                        strEmailContent.AppendLine(FirstName + " " + LastName + ", " + EmailAddress + ", " + Zip + " <BR>");
+                        strEmailContent.AppendLine(CompanyName + "<BR>");
                         strEmailContent.AppendLine("</td></tr>");
                         strEmailContent.AppendLine("<tr>");
-                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Subject:</b>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Contact Details:</b>");
                         strEmailContent.AppendLine("</td>");
                         strEmailContent.AppendLine("<td align='left' width='80%'>");
-                        strEmailContent.AppendLine(Subject + "<BR>");
+                        strEmailContent.AppendLine(FirstName + " " + LastName + ", <br/> " + City + ", <br/>" + EmailAddress + ",<br/> " + Phone + " <BR>");
                         strEmailContent.AppendLine("</td></tr>");
+                       
 
                         strEmailContent.AppendLine("<tr>");
                         strEmailContent.AppendLine("<td align='left' width='20%'><b>Message:</b>");
                         strEmailContent.AppendLine("</td>");
                         strEmailContent.AppendLine("<td align='left' width='80%'>");
                         strEmailContent.AppendLine(Message + "<BR>");
-                        strEmailContent.AppendLine("</td></tr>");
-
-
-                        strEmailContent.AppendLine("<tr>");
-                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Additional Info:</b>");
-                        strEmailContent.AppendLine("</td>");
-                        strEmailContent.AppendLine("<td align='left' width='80%'>");
+                        strEmailContent.AppendLine("</td></tr>");                       
 
                         strEmailContent.AppendLine("<tr>");
-                        strEmailContent.AppendLine("<td align='left' width='20%'><b>RequestIP:</b>");
+                        strEmailContent.AppendLine("<td align='left' width='20%'><b>Requested IP:</b>");
                         strEmailContent.AppendLine("<td>");
                         strEmailContent.AppendLine(_RequestIP);//changes on FEB/17/2010 to display the Request host IP
                         strEmailContent.AppendLine("</td>");
@@ -637,7 +634,7 @@ namespace IQSDirectory
                         strEmailContent.AppendLine("</td>");
                         strEmailContent.AppendLine("</tr>");
                         strEmailContent.AppendLine("</table>");
-
+                        */
                         string _toAddress = string.Empty;
                         string _ccAddress = string.Empty;
                         string _FromAddress = string.Empty;
@@ -674,7 +671,7 @@ namespace IQSDirectory
                             }
                         }
                         
-                        bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, strEmailContent.ToString(), true);
+                        bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, _ccAddress, "", _Subject, _strMailBody, true);
                         //return mailstatus+","+_FromAddress + "," + _toAddress + "," + _ccAddress + ", , " + _Subject + ", " + strEmailContent.ToString();
                         if (mailstatus == true)
                              return "Success";
@@ -722,7 +719,7 @@ namespace IQSDirectory
                     string _Subject = "[IQS DIRECTORY] - " + _title.ToUpper().Replace("%20", " ");
                     string _strMailBody = "<a href = '" + _url.ToString() + "' > " + _title.Replace(" % 20", " ") + "</a><br/><br/>";
                     _strMailBody += "<br/><br/>" + _description.ToString();
-                    _strMailBody += "<br/><br/><a href='" + _url.ToString() + "'><img alt='IQS Directory' src='http://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
+                    _strMailBody += "<br/><br/><a href='" + _url.ToString() + "'><img alt='IQS Directory' src='https://www.iqsdirectory.com/images/iqsdirectory_home_logo.png' /></a>";
                     _strMailBody += "<br/><br/> Thanks & Regards <br/>" + _FromName.ToString();
                     bool mailstatus = Utils.SendMail(_FromAddress, _toAddress, string.Empty, string.Empty, _Subject, _strMailBody, true);
                     if (mailstatus == true)

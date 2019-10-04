@@ -91,19 +91,45 @@ img{max-width:100%;height:auto}
 #copro-articles a.btn{float:right}
 span.viewMapCopro{margin-left:10px}
 .blue-wrapper{width:95%;margin:0 auto}
+#secartmain #blue-section {
+    background-color: #f1f1f1 !important;
+}
 #secartmain .blue-wrapper {
     width: 75% !important;
     margin: 0 auto
 }
+    #secartmain .blue-wrapper .card.blue-grey.darken-1 {
+        /*background-color:#2e5c69 !important;  border:none;*/ -webkit-box-shadow: none;
+        box-shadow: none; border-radius:10px !important;
+    }
 #secartmain #blue-section a.btn {
     font-size: 0.8rem !important;
-    height:30px;
-    line-height:30px;
-    padding:0 1rem !important;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 !important;
+    background: none;
+    text-decoration: underline;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
+#secartmain #blue-section a:hover {
+    color: #fb9622;
+}
+#secartmain .card .card-content .card-title{font-size:17px !important;}
+#secartmain .card .card-content{padding:15px!important}
 #secartmain .blue-wrapper h4 {
-    text-align:center;
+    text-align: center;
+    color: #de7423;
+    text-shadow: 1px 1px 2px black;
 }
+#p1head {
+    padding-top: 10px;
+    margin-bottom: 0px;
+    display: table-cell;
+    width: 99%;
+    padding-right: 1%;
+}
+#p1artbuttons{display:table-cell; min-width:175px; text-align:right; vertical-align:bottom;}
 #blue-section .breadcrumb{font-size:20px;font-weight:bold;color:#fff}
 #blue-section .breadcrumb:before{font-size:20px;color:#fff;margin:2px 8px 0 0}
 #blue-section .breadcrumb:last-child{color:#fff}
@@ -255,7 +281,8 @@ ul.complist li{float:left;width:48%;margin:5px 1%;padding:0;height:auto}
 .profile li a:hover{color:#de7423}
 .siteMapCont{max-width:920px;margin-left:auto;margin-right:auto;padding:0;min-height:200px!important;height:200px;height:auto}
 .sitemapContIn{width:24%;float:left;padding-right:1%;margin-bottom:10px}
-#divCompUrls{font-size:20px}
+#divCompUrls{font-size:18px; margin:15px 0;}
+#divCompUrls a {  word-wrap: break-word;}
 .adlist_section{clear:both;float:left;height:auto;overflow:hidden;margin-bottom:10px}
 .adlist_section aside{float:left;width:50%;padding-top:40px;height:auto;overflow:hidden;margin-left:4%}
 .adlist_section aside img{width:100%}
@@ -267,6 +294,23 @@ ul.complist li{float:left;width:48%;margin:5px 1%;padding:0;height:auto}
 .adlist_section h3{float:left;margin:0 1% 0 0;color:#2f2f2f;font-weight:bold;min-height:30px;padding-left:10px;padding-top:5px;font-size:13px;line-height:normal;position:relative}
 .adlist_section h3 a{color:#ca550d;display:block;float:left;font-size:22px;font-weight:bold;line-height:normal}
 .adlist_section h3 span{display:block;float:left;font-weight:bold;margin-right:20px}
+/*.adlist_section h3 .addr a[href^="tel:"]:before {  content: "\260e";  margin-right: 0.5em;}*/
+.adlist_section h3 .addr a {
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin-right: 20px;
+    color: #2f2f2f;
+    display: block;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: normal; text-decoration:none;
+}
+adlist_section h3 .addr a:hover {
+    color: #2f2f2f;
+    text-decoration: none;
+}
 .adlist_section .buttons{height:auto;overflow:hidden;position:relative}
 .adlist_section .buttons300{width:294px!important}
 .adlist_section .buttons a{background-color:#474747;border:1px outset #ddd;color:#fb9622;display:block;font-weight:bold;height:auto;font-size:12px;padding:8px 8px;text-align:center;text-decoration:none;float:right;text-transform:uppercase}
@@ -492,7 +536,8 @@ ul.can-list li{padding:10px;margin:10px;list-style:none;float:left}
 }@media only screen and (max-width:768px){.adlist_section aside,#secadpage #secadpageart aside{margin-top:0!important;display:none}
 .adlist_section ul{width:100%}
 #secartmain .blue-wrapper {width: 95% !important;}
-#secartmain .blue-wrapper h4 { text-align: left;}      
+#secartmain .blue-wrapper h4 { text-align: left;}  
+
 }@media screen and (max-width:850px){#logo-container{float:left;margin:0 auto; }
 #search{float:none;max-width:100%}
 #searchBarDir{margin-right:0}
@@ -509,7 +554,15 @@ nav a.sidenav-trigger{display:block;right:10px}
 nav .brand-logo{max-width:100%;padding-bottom:30px}
 #logo-container{width:100%}
 #search{float:none;max-width:100%;padding-right:10px;padding-left:20px;padding-top:10px}
-}@media only screen and (max-width:450px){.ui-combobox{width:38%;font-size:11px!important}
+#p1head{display:block; margin-bottom:6px;}
+#p1artbuttons{display:block; width:100%;}
+}
+@media only screen and (max-width:450px) {
+    .ui-combobox {
+        width: 38%;
+        font-size: 11px !important
+    }
+}
 @media only screen and (max-width:380px){#searchBarDir{display:block}
 #txtsearch{width:94%;display:inline-block}
 .ui-combobox{width:61%;display:inline-block}
@@ -519,11 +572,11 @@ nav .brand-logo{max-width:100%;padding-bottom:30px}
 }@media only screen and (max-width:200px){.ui-combobox{width:94%;display:inline-block}
 #btnSearch{margin-right:10px;width:94%;display:inline-block;text-align:center}
 }@media only screen and (max-width:640px){ul.complist li{width:98%}
-nav{height:auto;overflow:hidden}
+nav{height:auto;overflow:hidden; min-height:150px;}
 .sitemapContIn{width:100%}
 }@media screen and (max-width:1040px){.equipRightSide{display:none; }
 #secartmain .blue-wrapper {  width: 90% !important; }
-#secartmain .blue-wrapper h4 { text-align: center; }   
+#secartmain .blue-wrapper h4 { text-align: center; }  
 }@media(max-width:567px){ul.top-categories.five li,ul.top-categories.ten li,ul.top-categories.nine li,ul.top-categories.nine li.r2{width:100%}
 }@media screen and (max-width:900px){#fancybox-wrap{left:0!important}
 }

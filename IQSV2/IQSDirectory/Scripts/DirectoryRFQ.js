@@ -10,6 +10,7 @@ $(document).ready(function () {
             txtCompanyName : { required: true, minlength: 2 },
             txtContactName: { required: true, minlength: 2 },
             txtContactEmail: { required: true, emailRule: true },
+            txtContactPhone: { required: true },
             txtContactCity: { required: true }
             
            /*
@@ -30,7 +31,8 @@ $(document).ready(function () {
             txtCompanyName: { required: "Required ", minlength: "Invalid" },
             txtContactName: { required: "Required ", minlength: "Invalid" },
             txtContactEmail: { required: "Required ", emailRule: "Invalid" },
-            txtContactCity: { required: "Required ", minlength: "Invalid" }
+            txtContactPhone: { required: "Required " },
+            txtContactCity: { required: "Required " }
             
             //hiddenRecaptcha: { required: "Required "}
         },

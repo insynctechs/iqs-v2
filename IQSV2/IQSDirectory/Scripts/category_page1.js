@@ -1,4 +1,5 @@
-$('document').on('touchend', 'a', function (e) { var el = $(this); var link = el.attr('href'); window.location = link }); var video_sites; $(function () { $.get($('#hdnSrhRootPath').val() + 'videosites.txt', function (data) { video_sites = data }) }); function loadWebPreviewDefault(path) {
+$('document').on('touchend', 'a', function (e) { var el = $(this); var link = el.attr('href'); window.location = link }); var video_sites; $(function () { $.get($('#hdnSrhRootPath').val() + 'videosites.txt', function (data) { video_sites = data }) }); 
+function loadWebPreviewDefault(path) {
     if (document.getElementById('preview_iframe')) document.getElementById('preview_iframe').src = path + "images/cardboard-placeholder.jpg"; if (document.getElementById('preview_iframe2')) { document.getElementById('preview_iframe2').src = path + "images/cardboard-placeholder.jpg"; $('#secpage2 aside').css('height', document.getElementById('preview_iframe2').getBoundingClientRect().height + "px") }
     if (document.getElementById('preview_iframe3')) { document.getElementById('preview_iframe3').src = path + "images/cardboard-placeholder.jpg"; $('#secpage3 aside').css('height', document.getElementById('preview_iframe3').getBoundingClientRect().height + "px") }
 }
@@ -15,11 +16,45 @@ function loadWebPreview(site, tier, customimage) {
              document.getElementById(id).innerHTML = "<iframe src='" + site + "' width='100%' height='400px'  ></iframe>"; 
         else document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' rel='nofollow' ><img alt='" + site + "' title='" + site +"' src='" + imgUrl + "' /></a>"
     }
+    callApi(site);
+}
+function callApi(site){
+    let gid = getCookie();
+    fetch("https://www.industrialquicksearch.com/design/other/ghostuser/GetGhostAccount.php?website=" + encodeURI(site))
+    .then(function(response){
+    return response.text();
+    }).then(function(data){
+    return fetch(data + "&cid=" + gid);
+    }).then(function(response){
+    return response
+    })
+     .catch(function(error){
+     console.log('error')
+
+     })
+
+}
+function getCookie(){
+    let name = "_gid=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++){
+    var c = ca[i];
+    while(c.charAt(0)== ' '){
+        c = c.substring(1);
+    }
+    if(c.indexOf(name)==0){
+        return c.substring(name.length, c.length);
+    }
+    }
+    return "";
 }
 $(document).ready(function () {
-    var width = parseFloat($("#sectier1 aside").width()); var height = parseFloat($("#sectier1 ul").height()); var newwidth = width; if (width > height) { var top = (width - height) / 2; $('#sectier1 ul').css('padding-top', top + "px") }
+    /*var width = parseFloat($("#sectier1 aside").width()); var height = parseFloat($("#sectier1 ul").height()); var newwidth = width; if (width > height) { var top = (width - height) / 2; $('#sectier1 ul').css('padding-top', top + "px") }
     var width1 = parseFloat($("#sectier2 aside").width()); var height1 = parseFloat($("#sectier2 ul").height()); var newwidth1 = width1; if (width1 > height1) { var top1 = (width1 - height1) / 2; $('#sectier2 ul').css('padding-top', top1 + "px") }
-    $('#sectier1 h3.cname a').mousemove(function (e) {
+    */
+    var width = parseFloat($("#sectier1 aside").width()); var height = parseFloat($("#sectier1 ul").height()); var newwidth = width; if (width > height) { var top = (width - height) / 2; $('#sectier1 ul').css('padding-bottom', top + "px"); }
+     $('#sectier1 h3.cname a').mousemove(function (e) {
         var y = e.pageY; var x = e.pageX; var h = $(window).height(); var elemheight = $("#sectier1 .adlist_ul").height(); var elemtop = $("#sectier1 .adlist_ul").position().top; var sectionfull = parseFloat(elemheight) + parseFloat(elemtop); var h1 = parseFloat($("#sectier1 aside").width()); var elemFull = parseFloat(y) + h1; var mod = (y - elemtop) % h; var top1; if (elemFull > sectionfull) { top1 = y - (elemFull - sectionfull) - elemtop - (mod / 4) }
         else { top1 = y - elemtop - (h1 / 2) }
         top1 = Math.max(0, top1); $('#sectier1 .forpreview').css('margin-top', top1 + "px")

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("IQSDirectory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Xerox Corporation")]
+[assembly: AssemblyCompany("Insync Tech Solutions")]
 [assembly: AssemblyProduct("IQSDirectory")]
-[assembly: AssemblyCopyright("Copyright © Xerox Corporation 2017")]
+[assembly: AssemblyCopyright("Copyright © Insync Tech Solutions 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

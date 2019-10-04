@@ -210,49 +210,47 @@ namespace IQSDirectory
                     noFollow = " rel='nofollow' ";
                 StringBuilder sb = new StringBuilder();
 
-                string mainurl = "";
+                string mainurl = ""; bool disable_url = false;
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (Convert.ToBoolean(dr.ItemArray[1].ToString()) == true)
+                    string addHttp = "";
+                    if (!dr.ItemArray[0].ToString().ToLower().StartsWith("https://") && !dr.ItemArray[0].ToString().ToLower().StartsWith("http://"))
                     {
-                        sb.Append("<span class='DPFCompanyResource1'>" + dr.ItemArray[0].ToString() + "</span>,");
+                        addHttp = "http://";
                     }
+                    if (dr.ItemArray[0].ToString().IndexOf(',') > 0)
+                        mainurl = addHttp + dr.ItemArray[0].ToString().Substring(0, dr.ItemArray[0].ToString().IndexOf(','));
                     else
-                    {
-                        string addHttp = "";
-                        if (!dr.ItemArray[0].ToString().ToLower().StartsWith("https://") && !dr.ItemArray[0].ToString().ToLower().StartsWith("http://"))
-                        {
-                            addHttp = "http://";
-                        }
-                        string thisurl = addHttp + dr.ItemArray[0].ToString();
-                        if (mainurl == "")
-                            mainurl = thisurl;
-                        else if (mainurl != "" && thisurl.Length < mainurl.Length)
-                            mainurl = thisurl;
+                        mainurl = addHttp + dr.ItemArray[0].ToString();
+                    /*string thisurl = addHttp + dr.ItemArray[0].ToString().Substring(0,;
+                    if (mainurl == "")
+                        mainurl = thisurl;
+                    else if (mainurl != "" && thisurl.Length < mainurl.Length)
+                        mainurl = thisurl;*/
+                    disable_url = Convert.ToBoolean(dr.ItemArray[1].ToString());
 
-                    }
+
                 }
                // Response.Write("<!--maibnurl = " + mainurl + "-->");
                 if (mainurl != "")
                 {
                     //Response.Write("<!-- mainurl inside=" + mainurl + "-->");
-                    Uri thisURL = new Uri(mainurl);                    
-                    sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
+                    Uri thisURL = new Uri(mainurl);
 
-                    /*if (Convert.ToInt32(ClientSK) == 63659) //Client wants only the main host url in the display and the landing url buried in href
+                    //string mainurl1 = mainurl.Substring(0, mainurl.IndexOf(thisURL.Host) + thisURL.Host.Length);
+                    string mainurl1 = mainurl.Replace("http://", "").Replace("https://", "");
+                    if ( disable_url == true)
                     {
-                        string[] urldisp = mainurl.Replace("http://", "").Replace("https://", "").Split('/');
-                        Uri thisURL = new Uri(urldisp[0]);
-                        Response.Write("<!-- inside if " + thisURL.Host + "-->");
-                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
-
+                        sb.Append("<span class='DPFCompanyResource1'>" + mainurl1 + "</span>,");
                     }
                     else
                     {
-                        Uri thisURL = new Uri(mainurl.Replace("http://", ""));
-                        Response.Write("<!-- inside else " + thisURL.Host + "-->");
-                        sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
-                    }*/
+                        if(mainurl1.IndexOf("mm_campaign=") >=0 || mainurl1.IndexOf("utm_source=") >=0) // tracking url
+                            sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + thisURL.Host + "</a>" + ",");
+                        else
+                            sb.Append("<a " + noFollow + "alt='" + ClientNameFormatted + "' title='" + ClientNameFormatted + "' href='" + mainurl + "' class='DPFCompanyResource1' target='_blank' itemprop='url' >" + mainurl1 + "</a>" + ",");
+
+                    }
                 }
                WebsiteLink = sb.ToString().TrimEnd(',');
                

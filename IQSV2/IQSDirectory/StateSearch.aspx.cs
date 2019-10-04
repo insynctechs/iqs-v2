@@ -255,11 +255,17 @@ namespace IQSDirectory
                     dt.Columns.Add("FORMATED_NAME");
                     dt.Columns.Add("FORMATED_URL");
                     dt.Columns.Add("PROFILE_URL");
+                    dt.Columns.Add("NUM_PHONE");
                     dt.AsEnumerable().ToList().ForEach(r =>
                     {
                         r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
                         r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
                         r["PROFILE_URL"] = Utils.ReplaceContent(r["COPRA_PATH"].ToString(), 0);
+                        string[] phoneList = r["PHONE"].ToString().Split(',').Where(x => x != null && x.Trim().Length > 0).Select(x => x.Trim()).ToArray();
+                        foreach (string phone in phoneList)
+                        {
+                            r["NUM_PHONE"] += "<a itemprop='telephone' href='tel:+1-" + phone + "' >" + phone + "</a>";
+                        }
                         r["ADDESCRIPTION"] = r["ADDESCRIPTION"].ToString().Replace("[keyword]", H1Text)
                             .Replace("[state], [country]", "[state]")
                             .Replace("[state],[country]", "[state]")

@@ -156,10 +156,18 @@ namespace IQSDirectory
                 dt.Columns.Add("FORMATED_NAME");
                 dt.Columns.Add("FORMATED_URL");
                 dt.Columns.Add("PROFILE_URL");
+                dt.Columns.Add("NUM_PHONE");
                 dt.AsEnumerable().ToList().ForEach(r =>
                 {
                     r["FORMATED_NAME"] = Utils.FormatCompanyWebsiteLink(r["CLIENT_NAME"].ToString());
                     r["FORMATED_URL"] = Utils.ReplaceContent(r["COMPANY_URL"].ToString(), 0);
+                    //r["NUM_PHONE"] = Regex.Replace(r["PHONE"].ToString(), "\\D", "");
+                    string[] phoneList = r["PHONE"].ToString().Split(',').Where(x => x != null && x.Trim().Length > 0).Select(x => x.Trim()).ToArray(); 
+                    foreach(string phone in phoneList)
+                    {
+                        r["NUM_PHONE"] += "<a itemprop='telephone' href='tel:+1-" + phone + "' >" + phone + "</a>";
+                    }
+                    //r["NUM_PHONE"] = r["NUM_PHONE"].ToString().TrimEnd(new char[] { ',', ' ' });
                     r["PROFILE_URL"] = Utils.ReplaceContent(ProfileLinks.Where(
                         p => p["ADVERTISEMENT_SK"].ToString() == r["ADVERTISEMENT_SK"].ToString()
                         && p["ENTITY_ATTRIBUTE_ID"].ToString() == "E-MAIL")

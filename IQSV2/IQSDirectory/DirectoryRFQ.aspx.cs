@@ -240,8 +240,13 @@ namespace IQSDirectory
         {
 
             divip_error.Visible = false;
-            
-            if(Utils.isvalidIpAccess()==true)
+
+            if(txtContactEmail.Text.ToLower().Trim()=="nino.pedrett@gmail.com")
+            {
+                divip_error.Visible = true;
+                OnSecurityFailure(2);
+            }
+            else if (Utils.isvalidIpAccess()==true)
             { 
                 //Captcha1.CheckEnteredValue();
                 InsertMethod();

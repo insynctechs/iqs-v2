@@ -39,7 +39,7 @@
                         <a rel='nofollow' title='<%: drTAd["FORMATED_NAME"] %>' target='_blank' href='<%: drTAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drTAd["COMPANY_URL"] %>', '<%: drTAd["IMAGE"] %>');hitsLinkTrack('<%: drTAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drTAd["CLIENT_NAME"] %></span></a>
                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                             <span itemprop="addressLocality"><%: drTAd["CITY_STATE"] %></span>
-                            <!--<span itemprop="telephone"><%: drTAd["PHONE"] %></span>-->
+                            <%= drTAd["NUM_PHONE"] %>
                         </span>
                     </h3>
                     <div class="buttons">

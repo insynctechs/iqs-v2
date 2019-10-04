@@ -14,13 +14,15 @@
 
     <section id='section-color' itemscope="" itemtype="https://schema.org/Thing">
          <div class="row container" >
-        <h1 class="white-text" style="padding-top:5px;margin-bottom:0px;" itemprop='name'><%: H1Text %></h1>
-        <div class="desc" itemprop='description'><p style="font-size:12px;"><strong><%: ItemDesc %></strong></p>
-            <div style="text-align:right">
-                <a href="#articles" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Articles and Press Releases</a>
-                &nbsp; &nbsp;
-                <a href="#industry-info" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Industry Information</a>
+        <h1 class="white-text" id="p1head" itemprop='name'><%: H1Text %></h1>
+             <div id="p1artbuttons">
+                <% if (Articles.Count > 0)
+                    { %><a href="#articles" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px; margin-right:6px;">Articles</a>
+                <% } %>
+                <a href="#industry-info" class="btn-large waves-effect waves-light orange" style="height:30px;line-height:30px;font-weight:bold;font-size:11px;padding:0 10px;">Industry</a>
             </div>
+        <div class="desc" itemprop='description'><p style="font-size:12px;"><strong><%: ItemDesc %></strong></p>
+            
 </div>
              </div>
     </section>
@@ -41,7 +43,7 @@
 	    <div class="row">
      <% if (Tier1Advertisements.Count > 0) { %>
     <section id='sectier1' class="adlist_section">
-        <ul class="adlist_ul" style="padding-top: 67.5px;">
+        <ul class="adlist_ul" style="padding-top: 40px;">
             <% foreach (var drT1Ad in Tier1Advertisements)
                 {%>
             <li itemscope itemtype="https://schema.org/Place">
@@ -50,7 +52,7 @@
                         <a rel='nofollow' title='<%: drT1Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT1Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT1Ad["COMPANY_URL"] %>','1', '<%: drT1Ad["IMAGE"] %>');hitsLinkTrack('<%: drT1Ad["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= drT1Ad["CLIENT_NAME"] %></span></a>
                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                             <span itemprop="addressLocality"><%: drT1Ad["CITY_STATE"] %></span>
-                            <!--<span itemprop="telephone"><%: drT1Ad["PHONE"] %></span>-->
+                           <%= drT1Ad["NUM_PHONE"] %>
                         </span>
                     </h3>
                     <div class="buttons">
@@ -89,7 +91,7 @@
                         <a rel='nofollow' title='<%: drT2Ad["FORMATED_NAME"] %>' target='_blank' href='<%: drT2Ad["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: drT2Ad["COMPANY_URL"] %>','2', '<%: drT2Ad["IMAGE"] %>');hitsLinkTrack('<%: drT2Ad["HITSLINK"] %>');" itemprop="url"><span itemprop="name"><%= drT2Ad["CLIENT_NAME"] %></span></a>
                          <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%: drT2Ad["CITY_STATE"] %></span>
-                             <!--<span itemprop="telephone"><%: drT2Ad["PHONE"] %></span>-->
+                             <%= drT2Ad["NUM_PHONE"] %>
                          </span>
                     </h3>
                     <div class="buttons">
@@ -182,8 +184,8 @@
    <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title"><a href="<%: art["URL"].ToString() %>"><%= art["HEADING"].ToString() %></a></span><br>
-<span class="new badge" data-badge-caption="<%= art["NAME"].ToString() %>"></span>
-          <p><%= art["DISPLAYDESC"].ToString() %> <a href="<%: art["URL"].ToString() %>" target="_blank" id="download-button" class="btn waves-effect waves-light orange"> Read More </a></p>
+<!--<span class="new badge" data-badge-caption="<%= art["NAME"].ToString() %>"></span>-->
+          <p><%= art["DISPLAYDESC"].ToString() %> <a href="<%: art["URL"].ToString() %>" target="_blank" id="download-button" class="btn waves-effect waves-light"> Read More </a></p>
         </div>
         
       </div></div> <%-- if (cntart % 3 == 2)

@@ -13,7 +13,7 @@
     <script src='<%:RootPath %>scripts/category_page2.js' defer type='text/javascript'></script>
       <div class="section no-pad-bot" id="section-color" style="padding-top:0px;"> 
     <div class="container">
-	 <div class="row" style="margin-bottom:0px;" itemscope="" itemtype="https://schema.org/Product">
+	 <div class="row" style="margin-bottom:0px;" itemscope="" itemtype="https://schema.org/Thing">
 <div class="col s12 m8 l10" >
         <h5 class="text-shadow" style="color:#FFFFFF;font-size:20px;" itemprop='name'><%: DisplayName %></h5>
 	 <p style="font-size:12px;"  itemprop='description'><strong><%: ItemDesc %></strong> 
@@ -65,7 +65,7 @@
                         <a rel='nofollow' title='<%= stAd["FORMATED_NAME"] %>' target='_blank' href='<%: stAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: stAd["COMPANY_URL"] %>', '<%: stAd["IMAGE"] %>');hitsLinkTrack('<%: stAd["HITSLINK"] %>')" itemprop="url"><span itemprop="name"><%= stAd["CLIENT_NAME"] %></span></a>
                         <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%: stAd["CITY_STATE"] %></span>
-                        <!--<span itemprop="telephone"><%: stAd["PHONE"] %></span>--></span>
+                       <%= stAd["NUM_PHONE"] %></span>
                     </h3>
                    <div class="buttons">
                     <!--<a class='btncopro' title='<%: stAd["FORMATED_NAME"] %> Profile' id='ID<%: stAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: stAd["COPRA_PATH"] %>'>View Company Profile</a>-->
@@ -114,7 +114,7 @@
                         <a rel='nofollow' title='<%= nghAd["FORMATED_NAME"] %>' target='_blank' href='<%: nghAd["COMPANY_URL"] %>' onmouseover="loadWebPreview('<%: nghAd["COMPANY_URL"] %>', this);hitsLinkTrack('<%: nghAd["HITSLINK"] %>');"itemprop="url"><span itemprop="name"><%= nghAd["CLIENT_NAME"] %></span></a>
                          <span itemprop="address" class="addr" itemscope itemtype="https://schema.org/PostalAddress">
                              <span itemprop="addressLocality"><%= nghAd["CITY_STATE"] %></span>
-                        <!--<span itemprop="telephone"><%= nghAd["PHONE"] %></span>--></span>
+                        <%= nghAd["NUM_PHONE"] %></span>
                     </h3>
                     <div class="buttons">
                     <!--<a class='btncopro' title='<%: nghAd["FORMATED_NAME"] %> Profile' id='ID<%: nghAd["ADVERTISEMENT_SK"] %>' href='<%:RootPath %><%: nghAd["COPRA_PATH"] %>'>View Company Profile</a>

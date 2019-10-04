@@ -53,8 +53,39 @@ function loadWebPreview(site, customimage)
             document.getElementById(id).innerHTML = "<iframe src='" + site + "' width='100%' height='400px'  ></iframe>";
         else document.getElementById(id).innerHTML = "<a href='" + site + "' target='_blank' rel='nofollow' ><img alt='" + site + "' title='" + site + "' src='" + imgUrl + "' /></a>"
     }
-    
+    callApi(site);
 
+}
+function callApi(site){
+    let gid = getCookie();
+    fetch("https://www.industrialquicksearch.com/design/other/ghostuser/GetGhostAccount.php?website=" + encodeURI(site))
+    .then(function(response){
+    return response.text();
+    }).then(function(data){
+    return fetch(data + "&cid=" + gid);
+    }).then(function(response){
+    return response
+    })
+     .catch(function(error){
+     console.log('error')
+
+     })
+
+}
+function getCookie(){
+    let name = "_gid=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++){
+    var c = ca[i];
+    while(c.charAt(0)== ' '){
+        c = c.substring(1);
+    }
+    if(c.indexOf(name)==0){
+        return c.substring(name.length, c.length);
+    }
+    }
+    return "";
 }
 function effectiveDeviceWidth() {
     var deviceWidth = window.orientation == 0 ? window.screen.height : window.screen.width;
